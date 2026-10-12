@@ -1,0 +1,330 @@
+html
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../../assets/images/favicon/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../../assets/images/favicon/favicon.png" rel="icon" type="image/png"/>
+<link href="../../../assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<title>Controles de Acesso e Contas</title>
+<meta content="Learn the difference between authentication and authorization, explore access control methods, and understand role-based access control with relational databases." name="description"/>
+<script src="../../../assets/js/main.js" type="module"></script>
+<script src="../../../assets/js/theme-preference.js"></script>
+</head>
+<body>
+<div class="content-grid">
+<header class="full-width">
+<input aria-controls="site-primary-nav" class="visually-hidden" id="site-nav-toggle" type="checkbox"/>
+<label aria-hidden="true" class="site-nav-backdrop" for="site-nav-toggle"></label>
+<div class="inner">
+<div class="site-brand">
+<a aria-label="CSE 340 home" class="brand-link" href="../../../index.html">
+<img alt="BYU–Idaho" class="site-logo" decoding="async" src="../../../assets/images/logos/byui-logo.png"/>
+</a>
+</div>
+<div class="site-course-info">
+<a href="../../../index.html">
+<span class="course-code">CSE 340</span>
+                 • 
+                <span class="course-name">Desenvolvimento Back-end Web</span>
+</a>
+</div>
+<nav aria-label="Primary" class="site-primary-nav" id="site-primary-nav">
+<ul aria-label="Course units" class="nav-list">
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<div class="site-header-tools">
+<label class="site-nav-menu-btn" for="site-nav-toggle">
+<span class="visually-hidden">Menu</span>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-open" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"></path></svg>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-close" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"></path></svg>
+</label>
+<input aria-controls="site-search-panel" class="visually-hidden" id="site-search-toggle" type="checkbox"/>
+<label class="site-search-trigger" for="site-search-toggle">
+<span class="visually-hidden">Alternar pesquisa no site</span>
+<span aria-hidden="true">🔎</span>
+<span aria-hidden="true">✕</span>
+</label>
+<details class="theme-menu">
+<summary class="theme-control">
+<span class="visually-hidden">Esquema de cores</span>
+</summary>
+<div aria-label="Choose color scheme" class="theme-extra" role="group">
+<label class="theme-control theme-pick" data-theme-pick="light">
+<input name="theme-preference" type="radio" value="light"/>
+<span aria-hidden="true">☀️</span>
+<span class="visually-hidden">Claro</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="system">
+<input name="theme-preference" type="radio" value="system"/>
+<span aria-hidden="true">⚙️</span>
+<span class="visually-hidden">Padrão do sistema</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="dark">
+<input name="theme-preference" type="radio" value="dark"/>
+<span aria-hidden="true">🌖</span>
+<span class="visually-hidden">Escuro</span>
+</label>
+</div>
+</details>
+</div>
+</div>
+<div aria-label="Site search" id="site-search-panel" role="region">
+<form action="" method="get" role="search">
+<label class="visually-hidden" for="site-search-query">Pesquisar</label>
+<input autocomplete="off" enterkeyhint="search" id="site-search-query" name="query" placeholder="Search…" type="search"/>
+</form>
+<div aria-live="polite" class="site-search-results" id="site-search-results"></div>
+</div>
+</header>
+<main>
+<nav aria-label="Course units" class="course-breadcrumbs unit">
+<ul>
+<li>
+<a aria-label="Home" href="../../../index.html">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z">
+</path></svg>
+</a>
+</li>
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<section>
+<h1>Controles de Acesso e Contas</h1>
+<p> Aplicações web modernas atendem a diversos usuários com diferentes necessidades e permissões. Um portal escolar pode precisar distinguir entre alunos visualizando suas notas e instrutores inserindo-as. Uma loja online deve separar clientes que navegam pelos produtos de administradores que gerenciam o inventário. Um sistema de gerenciamento de conteúdo requer diferentes capacidades para autores, editores e administradores. Esta leitura explora como as aplicações implementam essas distinções por meio de sistemas de controle de acesso. </p>
+<p> Ao final desta leitura, você compreenderá a diferença fundamental entre autenticação e autorização, explorará diversos métodos para implementar o controle de acesso e aprenderá como sistemas baseados em funções se integram com bancos de dados relacionais. Esse conhecimento fornece o fundamento para construir aplicações que atendem a diferentes tipos de usuários enquanto mantêm a segurança e os limites apropriados de acesso. </p>
+</section>
+<section>
+<h2>Autenticação vs Autorização</h2>
+<p> Antes de se aprofundar nos sistemas de controle de acesso, devemos distinguir entre dois conceitos frequentemente confundidos: autenticação e autorização. Embora muitas vezes mencionados juntos, eles servem a propósitos fundamentalmente diferentes na segurança da aplicação. </p>
+<h3>Autenticação: Provando quem você é</h3>
+<p> A autenticação responde à pergunta "Quem é você?". Quando você faz login em um site com seu nome de usuário e senha, você se autentica provando sua identidade. O sistema verifica se você é quem afirma ser, checando suas credenciais com as informações armazenadas. A autenticação estabelece sua identidade, mas não diz nada sobre o que você pode fazer uma vez dentro do sistema. </p>
+<p> Pense na autenticação como mostrar seu ID na entrada de um prédio. O guarda de segurança verifica sua identidade, confirma se você é quem seu ID diz que você é e permite sua entrada. No entanto, seu ID sozinho não determina quais andares você pode acessar ou em quais salas pode entrar depois que estiver lá dentro. </p>
+<h3>Autorização: Determinando o que você pode fazer</h3>
+<p> A autorização responde à pergunta "O que você tem permissão para fazer?". Depois de se autenticar (provar sua identidade), o sistema deve determinar suas permissões. Você pode visualizar esta página? Pode editar este conteúdo? Pode excluir estes registros? A autorização controla o acesso a recursos e funcionalidades com base em quem você é. </p>
+<p> Continuando com a analogia do prédio, a autorização é como o cartão de acesso que você recebe após mostrar seu ID. Seu cartão pode conceder acesso a determinados andares, mas não a outros, a certas salas, mas não à sala do servidor, em certos horários, mas não fora do expediente. Sua identidade foi verificada (autenticação) e, agora, suas permissões determinam onde você pode ir e o que pode fazer (autorização). </p>
+<h3>Separação Moderna: OAuth e Autenticação de Terceiros</h3>
+<p> Aplicações web modernas frequentemente separam completamente a autenticação de sua lógica principal de aplicação. Você provavelmente já viu botões como "Entrar com o Google" ou "Continuar com o GitHub" em sites. Eles usam protocolos como OAuth para delegar a autenticação a terceiros de confiança enquanto mantêm a autorização dentro da própria aplicação. </p>
+<p> Quando você clica em "Entrar com o Google", o Google lida com a autenticação (verificando se você é quem afirma ser), mas a aplicação na qual você está entrando ainda controla a autorização (determinando o que você pode fazer). O Google confirma sua identidade e fornece informações básicas sobre você, mas não diz à aplicação se você deve ser um usuário comum ou um administrador. A aplicação faz essa determinação com base em suas próprias regras de autorização. </p>
+<p> Essa separação demonstra um princípio importante: autenticação e autorização são preocupações distintas que podem ser tratadas por sistemas diferentes. Neste curso, nós mesmos construiremos tanto a autenticação quanto a autorização, mas entender essa separação ajuda a esclarecer o papel que cada uma desempenha na segurança da aplicação. </p>
+<div class="callout info icon">
+<div class="title">Lembre-se da Distinção</div>
+<p> A autenticação verifica a identidade ("Você é mesmo o Bob?"), enquanto a autorização determina as permissões ("O que o Bob pode fazer?"). Você pode ter uma sem a outra, e elas frequentemente envolvem sistemas e técnicas diferentes. </p>
+</div>
+</section>
+<section>
+<h2>Métodos de Controle de Acesso</h2>
+<p> Assim que os usuários se autenticam, as aplicações precisam de maneiras sistemáticas para controlar o que os usuários autenticados podem acessar e modificar. Aplicações diferentes exigem níveis diferentes de complexidade em seus sistemas de controle de acesso. Um blog simples pode precisar apenas de sinalizadores de permissão básicos, enquanto um sistema empresarial pode exigir hierarquias de papéis sofisticadas e permissões detalhadas. Vamos examinar várias abordagens comuns, progredindo do simples para o mais complexo. </p>
+<h3>Sinalizadores de Permissão Simples</h3>
+<p> A forma mais simples de controle de acesso usa sinalizadores booleanos armazenados diretamente nas contas de usuário. Um registro de usuário pode incluir campos como <code>isAdmin</code>, <code>canPost</code>, ou <code>canModerate</code>. Quando a aplicação precisa verificar as permissões, ela simplesmente olha para esses sinalizadores. </p>
+<pre><code class="javascript">
+        // Simple permission flag approach
+        const user = {
+            id: 1,
+            username: 'jsmith',
+            email: 'jsmith@example.com',
+            isAdmin: false,
+            canEditPosts: true,
+            canDeleteComments: false
+        };
+
+        // Checking permissions
+        if (user.isAdmin) {
+            // Allow access to admin panel
+        }
+
+        if (user.canEditPosts) {
+            // Show edit button
+        }
+    </code></pre>
+<p> Esta abordagem funciona bem para aplicações simples com poucos tipos de permissão. É fácil de entender e implementar, exige uma estrutura de banco de dados mínima e fornece verificações de permissão claras e diretas. No entanto, ela escala mal à medida que as aplicações se tornam mais complexas. Adicionar novos tipos de permissão exige alterações no esquema do banco de dados. Gerenciar usuários com muitas combinações de permissões diferentes se torna incômodo, e você pode acabar com dezenas de campos booleanos poluindo sua tabela de usuários. </p>
+<h3>Listas de Controle de Acesso</h3>
+<p> As Listas de Controle de Acesso (ACLs, do inglês Access Control Lists) oferecem mais flexibilidade ao listar explicitamente o que cada usuário pode acessar. Em vez de armazenar sinalizadores de permissão gerais, as ACLs associam recursos específicos a usuários específicos e suas ações permitidas. Esta abordagem é comum em sistemas de arquivos e sistemas de gerenciamento de conteúdo nos quais as permissões variam por recurso. </p>
+<pre><code class="javascript">
+        // ACL approach - permissions tied to specific resources
+        const permissions = [
+            { userId: 1, resourceType: 'post', resourceId: 42, action: 'read' },
+            { userId: 1, resourceType: 'post', resourceId: 42, action: 'edit' },
+            { userId: 1, resourceType: 'post', resourceId: 57, action: 'read' },
+            { userId: 2, resourceType: 'post', resourceId: 42, action: 'read' }
+        ];
+
+        // Checking if user can edit a specific post
+        function canUserEditPost(userId, postId) {
+            return permissions.some(p =&gt; 
+                p.userId === userId &amp;&amp; 
+                p.resourceType === 'post' &amp;&amp; 
+                p.resourceId === postId &amp;&amp; 
+                p.action === 'edit'
+            );
+        }
+    </code></pre>
+<p> As ACLs fornecem controle detalhado sobre recursos individuais. As permissões de usuário podem variar por item específico, tornando-as ideais quando usuários diferentes precisam de acessos diferentes aos mesmos tipos de recursos. Um sistema de gerenciamento de documentos pode usar ACLs para que os usuários possam compartilhar documentos específicos com colegas específicos, mantendo outros privados. </p>
+<p> A compensação é a complexidade. As tabelas de ACL podem crescer muito, e verificar permissões exige mais consultas ao banco de dados. O gerenciamento de permissões se torna mais complexo, pois você deve rastrear permissões para cada combinação de usuário-recurso. Para muitas aplicações, esse nível de granularidade é desnecessário. </p>
+<h3>Controle de Acesso Baseado em Papéis</h3>
+<p> O Controle de Acesso Baseado em Papéis (RBAC, do inglês Role-Based Access Control) estabelece um equilíbrio entre simplicidade e flexibilidade. Em vez de conceder permissões diretamente aos usuários ou rastrear permissões por recurso, o RBAC agrupa os usuários em papéis. Cada papel tem um conjunto definido de permissões, e os usuários herdam as permissões de seu papel atribuído. </p>
+<p> Considere uma aplicação de portal escolar. Em vez de marcar usuários individuais com sinalizadores como <code>canViewGrades</code>, <code>canEditGrades</code>, <code>canManageCourses</code>, e <code>canCreateAccounts</code>, você cria papéis: <code>student</code>, <code>instructor</code>, e <code>admin</code>. Cada papel vem com um conjunto compreendido de recursos. Os alunos podem ver suas próprias notas, os instrutores podem inserir notas para seus cursos e os administradores podem gerenciar todo o sistema. </p>
+<pre><code class="javascript">
+        // RBAC approach - permissions associated with roles
+        const user = {
+            id: 1,
+            username: 'jsmith',
+            email: 'jsmith@example.com',
+            roleId: 2  // References a role
+        };
+
+        const roles = {
+            1: { name: 'user', permissions: ['view_profile', 'edit_own_profile'] },
+            2: { name: 'admin', permissions: ['view_profile', 'edit_own_profile', 'edit_any_profile', 'manage_users'] }
+        };
+
+        // Checking permissions through roles
+        function hasPermission(user, permission) {
+            const role = roles[user.roleId];
+            return role.permissions.includes(permission);
+        }
+    </code></pre>
+<p> O RBAC oferece várias vantagens que o tornam popular em muitas aplicações. Os papéis se alinham naturalmente com a estrutura organizacional (funcionário, gerente, administrador). O gerenciamento de permissões se torna mais simples porque você gerencia as permissões dos papéis em vez das permissões individuais dos usuários. Quando você precisa alterar o que os gerentes podem fazer, você atualiza o papel de gerente uma única vez em vez de atualizar centenas de registros de usuários individuais. Novos usuários podem receber acesso adequado rapidamente ao atribuir-lhes um papel. </p>
+<p> O RBAC lida com o caso comum de forma elegante: a maioria dos usuários se encaixa em categorias pré-definidas com permissões padrão. O sistema permanece flexível o suficiente para adicionar novos papéis à medida que as necessidades evoluem, mantendo-se simples o suficiente para ser compreendido e mantido. Esta é a abordagem que vamos implementar neste curso. </p>
+<div class="callout info icon">
+<div class="title">Escolhendo a Abordagem Correta</div>
+<p> Sinalizadores de permissão simples funcionam bem para aplicações com poucos tipos de permissão e variação mínima entre os usuários. As ACLs se destacam quando as permissões devem variar significativamente por recurso individual. O RBAC oferece o melhor equilíbrio para aplicações onde os usuários se encaixam naturalmente em categorias com necessidades de permissão semelhantes. A maioria das aplicações web se beneficia da combinação de simplicidade e flexibilidade do RBAC. </p>
+</div>
+</section>
+<section>
+<h2>Controle de Acesso Baseado em Papéis e Bancos de Dados Relacionais</h2>
+<p> Entender como o RBAC se integra a bancos de dados relacionais é crucial para a implementação. A estrutura do banco de dados afeta diretamente a eficiência com que você pode verificar permissões e a facilidade com que pode modificar as definições de papéis. Vamos examinar o design típico do banco de dados e depois explorar como o código da aplicação usa essa estrutura para impor o controle de acesso. </p>
+<h3>Estrutura de Banco de Dados para RBAC</h3>
+<p> Um sistema RBAC básico tipicamente envolve pelo menos duas tabelas: uma tabela <code>users</code> e uma tabela <code>roles</code>. A tabela de usuários contém informações da conta (nome de usuário, e-mail, hash de senha) além de uma referência de chave estrangeira para a tabela de papéis. A tabela de papéis define os papéis disponíveis e pode opcionalmente armazenar configurações específicas de cada papel. </p>
+<pre><code class="sql">
+        -- Roles table defines available roles
+        CREATE TABLE roles (
+            role_id SERIAL PRIMARY KEY,
+            role_name VARCHAR(50) UNIQUE NOT NULL,
+            role_description TEXT
+        );
+
+        -- Users table references roles
+        CREATE TABLE users (
+            user_id SERIAL PRIMARY KEY,
+            username VARCHAR(50) UNIQUE NOT NULL,
+            email VARCHAR(100) UNIQUE NOT NULL,
+            password_hash VARCHAR(255) NOT NULL,
+            role_id INTEGER REFERENCES roles(role_id),
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+
+        -- Seed with basic roles
+        INSERT INTO roles (role_name, role_description) VALUES 
+            ('user', 'Standard user with basic access'),
+            ('admin', 'Administrator with full system access');
+    </code></pre>
+<p> Esta estrutura estabelece um relacionamento: cada usuário tem exatamente uma função, e cada função pode ser atribuída a muitos usuários (um relacionamento de um para muitos). Quando você consulta um usuário, pode facilmente fazer um join com a tabela de funções para recuperar as informações da função dele. Quando você precisa atualizar as definições de função, você modifica a tabela de funções, e todos os usuários com essa função refletem imediatamente a alteração. </p>
+<p> Sistemas mais sofisticados podem incluir tabelas adicionais. Uma <code>permissions</code> tabela poderia enumerar todas as ações possíveis no sistema. Uma <code>role_permissions</code> tabela de junção associaria então as funções às suas permissões específicas, permitindo a atribuição dinâmica de permissões sem alterações de código. Para este curso, manteremos a estrutura mais simples, com a lógica de permissão manipulada no código da aplicação e não no banco de dados. </p>
+<h3>Aplicando o Controle de Acesso no Código da Aplicação</h3>
+<p> A estrutura do banco de dados armazena funções, mas o código da aplicação as aplica. Em aplicações Express, funções de middleware fornecem uma maneira elegante de verificar permissões antes de permitir o acesso a rotas. Essas funções de middleware examinam a função do usuário autenticado e permitem que a requisição prossiga ou negam o acesso. </p>
+<pre><code class="javascript">
+        // Middleware to require specific role
+        function requireRole(roleName) {
+            return (req, res, next) =&gt; {
+                // Assumes user object is attached to req by authentication middleware
+                if (!req.user) {
+                    return res.status(401).send('Not authenticated');
+                }
+
+                if (req.user.role_name !== roleName) {
+                    return res.status(403).send('Insufficient permissions');
+                }
+
+                // User has required role, allow request to proceed
+                next();
+            };
+        }
+
+        // Using the middleware on routes
+        app.get('/admin/dashboard', requireRole('admin'), (req, res) =&gt; {
+            res.render('admin/dashboard');
+        });
+
+        app.post('/admin/users/:id/edit', requireRole('admin'), (req, res) =&gt; {
+            // Only admins can reach this code
+            // Handle user editing logic
+        });
+    </code></pre>
+<p> Esse padrão é comum e eficaz. As funções de middleware são executadas antes dos manipuladores de rota, fornecendo um ponto de verificação onde o acesso pode ser verificado. Se o usuário não tiver permissão, o middleware envia uma resposta de erro e interrompe a requisição. Se o usuário tiver permissão, o middleware chama <code>next()</code>, permitindo que a requisição continue para o manipulador de rota. </p>
+<p> Os controladores também podem verificar permissões para um controle de acesso mais detalhado. Enquanto o middleware funciona bem para proteção no nível da rota (rotas inteiras exigem funções específicas), os controladores lidam com lógicas específicas da situação (usuários podem editar seu próprio perfil, mas administradores podem editar qualquer perfil). </p>
+<pre><code class="javascript">
+        // Controller with role-specific logic
+        async function editUserProfile(req, res) {
+            const targetUserId = req.params.userId;
+            const currentUser = req.user;
+
+            // Admins can edit anyone, users can only edit themselves
+            const canEdit = currentUser.role_name === 'admin' || 
+                           currentUser.user_id === parseInt(targetUserId);
+
+            if (!canEdit) {
+                return res.status(403).send('You cannot edit this profile');
+            }
+
+            // Proceed with editing logic
+            // ...
+        }
+    </code></pre>
+<p> Essa combinação de middleware para requisitos amplos de função e lógica de controlador para cenários de permissão específicos fornece um controle de acesso flexível e fácil de manter. O middleware mantém usuários não autorizados afastados de seções inteiras da aplicação, enquanto a lógica do controlador lida com as nuances de quem pode fazer o que em quais recursos específicos. </p>
+<div class="callout warn icon">
+<div class="title">Nunca Confie no Controle de Acesso do Lado do Cliente</div>
+<p> Ocultar botões ou itens de menu com base nas funções do usuário melhora a experiência do usuário, mas não fornece segurança. Os usuários podem manipular seu navegador ou fazer requisições HTTP diretas para burlar restrições do lado do cliente. Sempre aplique o controle de acesso no servidor usando middleware e lógica de controlador. Os controles do lado do cliente são para conveniência, os controles do lado do servidor são para segurança. </p>
+</div>
+</section>
+<section>
+<h2>Considerações de Segurança</h2>
+<p> A implementação do controle de acesso envolve mais do que apenas verificar funções. Vários princípios de segurança ajudam a garantir que seu sistema de autorização permaneça robusto e seguro. </p>
+<p>
+<strong>Princípio do Menor Privilégio</strong>: Os usuários devem ter as permissões mínimas necessárias para realizar suas tarefas. Em caso de dúvida, restrinja o acesso em vez de concedê-lo. Você sempre pode adicionar permissões mais tarde se os usuários precisarem delas, mas remover permissões depois que os usuários as esperam é mais difícil e pode introduzir vulnerabilidades de segurança se for ignorado. </p>
+<p>
+<strong>Defesa em Profundidade</strong>: Múltiplas camadas de segurança fornecem melhor proteção do que qualquer mecanismo único. Verifique as permissões no nível da rota com middleware, verifique-as novamente nos controladores antes de operações sensíveis e valide a entrada do usuário em todo o processo. Se uma verificação falhar ou for burlada, outras verificações ainda poderão impedir o acesso não autorizado. </p>
+<p>
+<strong>Falhe de Forma Segura</strong>: Quando as verificações de permissão encontrarem erros ou condições inesperadas, elas devem negar o acesso em vez de permiti-lo. Se você não puder determinar se um usuário deve ter acesso (talvez porque o banco de dados esteja temporariamente indisponível), o padrão seguro é negar a requisição. Falhar de forma segura evita que erros temporários se tornem vulnerabilidades de segurança. </p>
+<p>
+<strong>Audite Ações Importantes</strong>: Registre em log eventos significativos, especialmente aqueles que envolvem alterações de privilégios ou acesso a dados sensíveis. Se um administrador editar a conta de outro usuário, registre em log quem fez a alteração, quando ela aconteceu e o que mudou. Os logs de auditoria ajudam a detectar acesso não autorizado e fornecem responsabilidade. </p>
+<div class="callout warn icon">
+<div class="title">Erros Comuns de Segurança</div>
+<p> Evite armadilhas comuns: Não exponha informações de função no JavaScript do lado do cliente que os usuários possam manipular. Não confie apenas na ocultação de elementos da interface do usuário para restringir o acesso. Não use identificadores de função previsíveis que os usuários possam adivinhar. Não pule verificações de autorização em endpoints de API ou manipuladores AJAX. Cada rota que modifica dados ou exibe informações sensíveis precisa de verificações de autorização adequadas. </p>
+</div>
+</section>
+<section>
+<h2>Conclusão</h2>
+<p> Os sistemas de controle de acesso formam uma parte crucial da segurança de aplicações, determinando o que os usuários autenticados podem ver e fazer. Compreender a distinção entre autenticação (provar a identidade) e autorização (determinar permissões) fornece o fundamento para construir sistemas seguros. Diferentes métodos de controle de acesso atendem a diferentes necessidades: sinalizadores de permissão simples para cenários básicos, Listas de Controle de Acesso para permissões detalhadas de recursos, e Controle de Acesso Baseado em Funções para o caso comum em que os usuários se enquadram naturally em categorias. </p>
+<p> O RBAC se integra elegantemente com bancos de dados relacionais por meio de relacionamentos de chave estrangeira entre usuários e papéis. O middleware do Express oferece uma maneira limpa e de fácil manutenção para impor requisitos de papéis, verificando permissões antes que as rotas sejam executadas. Os controladores lidam com a lógica específica de cada situação, na qual os requisitos de permissão variam com base no contexto, como usuários editando suas próprias informações em comparação com administradores editando as informações de qualquer pessoa. </p>
+<p> Na próxima Tarefa, você implementará um sistema de dois papéis com usuários padrão e administradores. Esta prática mão na massa consolidará sua compreensão de como o RBAC funciona em aplicações reais. Você criará estruturas de banco de dados para dar suporte aos papéis, escreverá middlewares para impor os requisitos de papéis e construirá controladores que respeitem os limites de permissão. Essas habilidades se transferem diretamente para sistemas mais complexos e aplicações maiores, onde o controle de acesso se torna ainda mais crítico. </p>
+</section>
+</main>
+<footer class="full-width">
+<div class="columns two">
+<div>
+<span class="course-code">CSE 340</span>
+             • 
+            <span class="course-name">Desenvolvimento de Back-end Web</span>
+</div>
+<div> © 2024–2026 BYU–Idaho <a href="https://www.byui.edu/computer-science-engineering/" rel="noopener noreferrer" target="_blank">Departamento de CSE</a>. Todos os direitos reservados. </div>
+</div>
+</footer>
+</div>
+</body>
+</html>

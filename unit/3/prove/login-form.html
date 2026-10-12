@@ -1,0 +1,867 @@
+html
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../../assets/images/favicon/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../../assets/images/favicon/favicon.png" rel="icon" type="image/png"/>
+<link href="../../../assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<title>Instruções da Tarefa</title>
+<meta content="Build a secure login page and protected dashboard using Express sessions and PostgreSQL. Implement authentication, session management, and route protection for user accounts." name="description"/>
+<script src="../../../assets/js/main.js" type="module"></script>
+<script src="../../../assets/js/theme-preference.js"></script>
+</head>
+<body>
+<div class="content-grid">
+<header class="full-width">
+<input aria-controls="site-primary-nav" class="visually-hidden" id="site-nav-toggle" type="checkbox"/>
+<label aria-hidden="true" class="site-nav-backdrop" for="site-nav-toggle"></label>
+<div class="inner">
+<div class="site-brand">
+<a aria-label="CSE 340 home" class="brand-link" href="../../../index.html">
+<img alt="BYU–Idaho" class="site-logo" decoding="async" src="../../../assets/images/logos/byui-logo.png"/>
+</a>
+</div>
+<div class="site-course-info">
+<a href="../../../index.html">
+<span class="course-code">CSE 340</span>
+                 • 
+                <span class="course-name">Desenvolvimento Web Back-end</span>
+</a>
+</div>
+<nav aria-label="Primary" class="site-primary-nav" id="site-primary-nav">
+<ul aria-label="Course units" class="nav-list">
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<div class="site-header-tools">
+<label class="site-nav-menu-btn" for="site-nav-toggle">
+<span class="visually-hidden">Menu</span>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-open" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"></path></svg>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-close" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"></path></svg>
+</label>
+<input aria-controls="site-search-panel" class="visually-hidden" id="site-search-toggle" type="checkbox"/>
+<label class="site-search-trigger" for="site-search-toggle">
+<span class="visually-hidden">Alternar pesquisa no site</span>
+<span aria-hidden="true">🔎</span>
+<span aria-hidden="true">✕</span>
+</label>
+<details class="theme-menu">
+<summary class="theme-control">
+<span class="visually-hidden">Esquema de cores</span>
+</summary>
+<div aria-label="Choose color scheme" class="theme-extra" role="group">
+<label class="theme-control theme-pick" data-theme-pick="light">
+<input name="theme-preference" type="radio" value="light"/>
+<span aria-hidden="true">☀️</span>
+<span class="visually-hidden">Claro</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="system">
+<input name="theme-preference" type="radio" value="system"/>
+<span aria-hidden="true">⚙️</span>
+<span class="visually-hidden">Padrão do sistema</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="dark">
+<input name="theme-preference" type="radio" value="dark"/>
+<span aria-hidden="true">🌖</span>
+<span class="visually-hidden">Escuro</span>
+</label>
+</div>
+</details>
+</div>
+</div>
+<div aria-label="Site search" id="site-search-panel" role="region">
+<form action="" method="get" role="search">
+<label class="visually-hidden" for="site-search-query">Pesquisar</label>
+<input autocomplete="off" enterkeyhint="search" id="site-search-query" name="query" placeholder="Search…" type="search"/>
+</form>
+<div aria-live="polite" class="site-search-results" id="site-search-results"></div>
+</div>
+</header>
+<main>
+<nav aria-label="Course units" class="course-breadcrumbs unit">
+<ul>
+<li>
+<a aria-label="Home" href="../../../index.html">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z">
+</path></svg>
+</a>
+</li>
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<section>
+<h1>Construindo um Sistema de Login com Gerenciamento de Sessão</h1>
+<p> Nesta tarefa, você criará um sistema de autenticação completo que permite que os usuários façam login com suas contas registradas, mantenha o estado de login durante as visitas às páginas e forneça acesso seguro a conteúdos protegidos. Isso completa sua trilogia de gerenciamento de usuários, adicionando autenticação baseada em sessão aos sistemas de registro e contato que você já construiu. </p>
+<p> Você implementará o gerenciamento de sessão usando sessões do Express armazenadas em seu banco de dados PostgreSQL, criará middleware para proteger rotas que exigem autenticação e construirá uma navegação condicional que se adapta com base no status de login. Esta tarefa enfatiza as melhores práticas de segurança, mantendo os mesmos padrões de arquitetura MVC que você vem usando ao longo desta série. </p>
+<div class="callout warn">
+<p> Ferramentas de IA poderiam concluir esta tarefa para você em apenas alguns minutos. <strong>Não ceda a essa tentação.</strong> Se você deixar a IA fazer o trabalho por você, perderá o aprendizado de habilidades críticas e colocará sua carreira futura em risco. As habilidades de segurança e autenticação que você desenvolve aqui são fundamentais para o desenvolvimento web. Os empregadores esperam que você entenda como a autenticação funciona, como proteger os dados do usuário e como implementar um gerenciamento de sessão seguro. Se você confiar na IA para essas habilidades fundamentais, poderá ter dificuldades para passar em entrevistas técnicas ou ter sucesso em empregos de desenvolvimento no mundo real. Reserve um tempo para aprender e praticar esses conceitos por conta própria, pois eles são essenciais para o seu futuro como desenvolvedor. </p>
+</div>
+</section>
+<section>
+<h2>Entendendo o Gerenciamento de Sessão</h2>
+<p> O HTTP é um protocolo sem estado, o que significa que cada requisição para o seu servidor é independente e não contém memória de requisições anteriores. No entanto, as aplicações web precisam se lembrar de informações sobre os usuários entre as requisições, como se eles estão logados, suas preferências ou o conteúdo do carrinho de compras. </p>
+<p> As sessões resolvem esse problema criando um mecanismo de armazenamento temporário que persiste por várias requisições do mesmo usuário. Quando um usuário faz login com sucesso, seu servidor cria uma sessão contendo suas informações de usuário. O servidor envia um identificador de sessão para o navegador do usuário como um cookie, e o navegador inclui automaticamente esse identificador em cada requisição subsequente. </p>
+<p> As sessões do Express podem armazenar dados de sessão em vários lugares: memória (que desaparece quando o servidor é reiniciado), arquivos ou bancos de dados. Esta tarefa usa o PostgreSQL para o armazenamento de sessões porque ele oferece persistência, escalabilidade e integração com sua infraestrutura de banco de dados existente. A biblioteca connect-pg-simple cria e gerencia automaticamente a estrutura da tabela de sessões. </p>
+<div class="callout info icon">
+<div class="title">Segurança da Sessão</div>
+<p> Os identificadores de sessão são essencialmente senhas temporárias que concedem acesso às contas dos usuários. A biblioteca express-session gera automaticamente IDs de sessão criptograficamente seguros e lida com a transmissão segura de cookies. Nunca tente criar seu próprio sistema de gerenciamento de sessão, pois é necessário conhecimento especializado em criptografia e segurança para implementá-lo com segurança. </p>
+<p> As sessões têm tempos de expiração para limitar a janela de vulnerabilidade se um ID de sessão for comprometido. Esta tarefa configura sessões de 24 horas, o que significa que os usuários precisarão fazer login novamente após um dia de inatividade. </p>
+</div>
+</section>
+<section>
+<h2>Preparação</h2>
+<h3>1. Gerar o Segredo da Sessão</h3>
+<p> Antes de configurar o gerenciamento de sessão, você precisa de um segredo de sessão seguro. Este segredo é usado para assinar e criptografar dados de sessão, protegendo-os contra adulterações. Os segredos de sessão devem ser criptograficamente aleatórios e mantidos em segredo. </p>
+<p> Use o <a href="https://jwtsecrets.com/#generator" rel="noopener noreferrer" target="_blank">Gerador de Segredos JWT</a> para criar um segredo aleatório de pelo menos 128 bits. Adicione-o ao seu <code>.env</code> arquivo: </p>
+<pre><code class="bash">
+        SESSION_SECRET=your_generated_secret_here
+    </code></pre>
+<div class="callout warn icon">
+<p> Nunca faça commit do seu <code>.env</code> arquivo para o controle de versão nem compartilhe seu segredo de sessão publicamente. Se o seu segredo for comprometido, todas as sessões existentes se tornam vulneráveis a ataques de sequestro. Trate seu segredo de sessão com o mesmo nível de segurança aplicado a senhas de banco de dados e chaves de API. </p>
+</div>
+<h3>2. Instalar Pacotes de Sessão</h3>
+<p> Instale os pacotes de gerenciamento de sessão necessários: </p>
+<pre><code class="bash">
+        pnpm install express-session connect-pg-simple
+    </code></pre>
+<p> Esses pacotes trabalham juntos para fornecer a funcionalidade de sessão: o express-session lida com o gerenciamento principal da sessão, enquanto o connect-pg-simple armazena dados de sessão no seu banco de dados PostgreSQL e cria automaticamente a tabela de sessão necessária. </p>
+<h3>3. Configurar Middleware de Sessão</h3>
+<p> Configure o middleware de sessão no seu <code>server.js</code>. Adicione estas instruções de importação no topo com suas outras importações: </p>
+<pre><code class="javascript">
+        import session from 'express-session';
+        import connectPgSimple from 'connect-pg-simple';
+        import { caCert } from './src/models/db.js';
+    </code></pre>
+<p> Adicione a configuração de sessão à sua estrutura de middleware do Express. Coloque este código logo após a declaração do app <code>const app = express();</code> mas antes das suas configurações de middleware existentes: </p>
+<pre><code class="javascript">
+        // Initialize PostgreSQL session store
+        const pgSession = connectPgSimple(session);
+
+        // Configure session middleware
+        app.use(session({
+            store: new pgSession({
+                conObject: {
+                    connectionString: process.env.DB_URL,
+                    // Configure SSL for session store connection (required by BYU-I databases)
+                    ssl: {
+                        ca: caCert,
+                        rejectUnauthorized: true,
+                        checkServerIdentity: () =&gt; { return undefined; }
+                    }
+                },
+                tableName: 'session',
+                createTableIfMissing: true
+            }),
+            secret: process.env.SESSION_SECRET,
+            resave: false,
+            saveUninitialized: false,
+            cookie: {
+                secure: NODE_ENV.includes('dev') !== true,
+                httpOnly: true,
+                maxAge: 24 * 60 * 60 * 1000
+            }
+        }));
+    </code></pre>
+<div class="callout info">
+<div class="title">Opções de Configuração de Sessão</div>
+<p> A configuração de sessão inclui várias opções de segurança importantes. A <code>httpOnly: true</code> impede que o código JavaScript acesse cookies de sessão, protegendo contra ataques XSS. A <code>secure</code> determina se os cookies exigem HTTPS; ela usa HTTP durante o desenvolvimento, mas alterna para HTTPS em produção. </p>
+<p> A <code>maxAge</code> controla quanto tempo as sessões duram antes de expirar; aqui está definida para 24 horas (24 * 60 * 60 * 1000 milissegundos). A <code>resave: false</code> previne atualizações desnecessárias de sessão, e <code>saveUninitialized: false</code> previne a criação de sessões para usuários que não fizeram login. </p>
+</div>
+<h3>4. Adicionar Sistema de Limpeza de Sessão</h3>
+<p> O armazenamento de sessão no banco de dados exige manutenção para remover sessões expiradas. Em aplicações web de produção, isso normalmente é tratado por cron jobs (tarefas agendadas que são executadas no nível do sistema operacional) ou agendadores baseados em nuvem. Essas ferramentas externas são executadas independentemente da sua aplicação e podem executar scripts de manutenção em um cronograma fixo. </p>
+<p> Para este curso, configurar cron jobs externos exigiria experiência em gerenciamento de servidor e infraestrutura que não está livremente disponível para projetos de alunos. Em vez disso, você implementará um sistema de limpeza interno que executa dentro da sua aplicação Node.js. Embora essa abordagem não seja ideal para sistemas de produção em grande escala (sua limpeza para quando o servidor está offline), ela oferece uma solução prática para ambientes de aprendizado e implantações em pequena escala, além de ensinar os fundamentos de tarefas de manutenção automatizadas. </p>
+<p> Crie um novo arquivo em <code>src/utils/session-cleanup.js</code> com o seguinte conteúdo: </p>
+<pre><code class="javascript">
+        import db from '../models/db.js';
+
+        /**
+         * Removes expired sessions from the database.
+         * In production, this would typically be handled by a cron job.
+         */
+        const cleanupExpiredSessions = async () =&gt; {
+            try {
+                const result = await db.query(
+                    `DELETE FROM session WHERE expire &lt; NOW()`
+                );
+
+                if (result.rowCount &gt; 0) {
+                    console.log(`Cleaned up ${result.rowCount} expired sessions`);
+                }
+            } catch (error) {
+                // Check if the error is due to the session table not existing (PostgreSQL error code 42P01)
+                if (error.code === '42P01') {
+                    console.log('Session table does not exist yet:\n→ It will be created when the first session is initialized.');
+                    return;
+                }
+                
+                // Log actual errors
+                console.error('Error cleaning up sessions:', error);
+            }
+        };
+
+        /**
+         * Starts automatic session cleanup that runs every 24 hours.
+         * Runs immediately on startup to handle any sessions that expired while server was offline.
+         */
+        const startSessionCleanup = () =&gt; {
+            // Run cleanup immediately on startup (catches sessions that expired while offline)
+            cleanupExpiredSessions();
+            
+            // Schedule cleanup to run every 12 hours
+            const twelveHours = 12 * 60 * 60 * 1000;
+            setInterval(cleanupExpiredSessions, twelveHours);
+
+            console.log('Session cleanup scheduled to run every 12 hours');
+        };
+
+        export { startSessionCleanup };
+    </code></pre>
+<p> Agora integre o sistema de limpeza na inicialização do seu servidor. Em <code>server.js</code>, adicione esta importação no topo com suas outras importações: </p>
+<pre><code class="javascript">
+        import { startSessionCleanup } from './src/utils/session-cleanup.js';
+    </code></pre>
+<p> Adicione esta linha logo após a sua configuração de middleware de sessão: </p>
+<pre><code class="javascript">
+        // Start automatic session cleanup
+        startSessionCleanup();
+    </code></pre>
+<div class="callout info">
+<p> Esta função de limpeza exclui sessões que passaram do tempo de expiração, impedindo que sua tabela de sessão cresça indefinidamente. A limpeza é executada imediatamente quando seu servidor inicia (lidando com quaisquer sessões que expiraram enquanto o servidor estava offline) e, em seguida, é executada a cada 12 horas automaticamente. A biblioteca connect-pg-simple define automaticamente os tempos de expiração com base na sua <code>maxAge</code> configuração (24 horas neste caso). </p>
+<p> Como a limpeza é executada na inicialização, mesmo se o seu servidor ficar offline por dias ou semanas, as sessões expiradas serão limpas assim que o servidor voltar a ficar online. O temporizador de intervalo garante então a manutenção regular enquanto o servidor estiver em execução. </p>
+</div>
+<h3>5. Atualizar Middleware Global</h3>
+<p> Atualize seu middleware global para incluir o gerenciamento do estado de autenticação. Abra <code>src/middleware/global.js</code> e adicione este código na <code>addLocalVariables</code> função: </p>
+<pre><code class="javascript">
+        // Convenience variable for UI state based on session state
+        res.locals.isLoggedIn = false;
+        if (req.session &amp;&amp; req.session.user) {
+            res.locals.isLoggedIn = true;
+        }
+    </code></pre>
+<div class="callout warn icon">
+<div class="title">Nota de Segurança Importante</div>
+<p> A <code>isLoggedIn</code> variável é uma funcionalidade conveniente para exibir links de navegação e elementos da interface do usuário adequados. No entanto, ocultar links de navegação não oferece segurança porque os usuários ainda podem digitar URLs diretamente em seus navegadores. Qualquer rota que realmente exija autenticação deve ser protegida com o <code>requireLogin</code> middleware que você criará mais adiante nesta tarefa. Este middleware realiza a verificação de segurança real e redireciona usuários não autorizados para a página de login. </p>
+</div>
+<h3>6. Reiniciar e Verificar</h3>
+<p> Reinicie seu servidor e verifique o console para ver a mensagem de agendamento de limpeza de sessão. A tabela de sessão do connect-pg-simple é criada sob demanda na primeira utilização (quando uma sessão é armazenada), então não se assuste se a tabela não aparecer imediatamente. O objetivo por enquanto é que a inicialização não produza erros. Mais adiante nesta tarefa, você criará a funcionalidade de login que armazena sessões e preenche a tabela de sessão. </p>
+</section>
+<section>
+<h2>Instruções da Tarefa</h2>
+<h3>1. Configurar Carregamento Dinâmico de CSS</h3>
+<p> Adicione o middleware à sua configuração de rotas para carregar o CSS de login. Abra <code>src/controllers/routes.js</code> e adicione o seguinte middleware com os seus outros middlewares específicos de rota: </p>
+<pre><code class="javascript">
+        // Add login-specific styles to all login routes
+        router.use('/login', (req, res, next) =&gt; {
+            res.addStyle('&lt;link rel="stylesheet" href="/css/login.css"&gt;');
+            next();
+        });
+    </code></pre>
+<p> Isso segue o mesmo padrão que você usou nas tarefas de formulário de contato e registro, garantindo que o CSS de login seja carregado para todas as rotas sob <code>/login</code>.
+    </p>
+<h3>2. Criar estilos de login</h3>
+<p> Crie <code>public/css/login.css</code> com estilização abrangente para o sistema de login: </p>
+<pre><code class="css">
+        /* Login Form Styles */
+        .login-form {
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+            h2 {
+                text-align: center;
+                color: #2c5aa0;
+                margin-top: 0;
+                margin-bottom: 1.5rem;
+            }
+
+            .form-group {
+                margin-bottom: 1.5rem;
+
+                label {
+                    display: block;
+                    margin-bottom: 0.5rem;
+                    font-weight: 500;
+                    color: #333;
+                }
+
+                input {
+                    width: 100%;
+                    padding: 0.75rem;
+                    border: 1px solid #ddd;
+                    border-radius: 6px;
+                    font-size: 1rem;
+                    font-family: inherit;
+                    box-sizing: border-box;
+                    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+                    &amp;:focus {
+                        outline: none;
+                        border-color: #2c5aa0;
+                        box-shadow: 0 0 5px rgba(44, 90, 160, 0.3);
+                    }
+                }
+            }
+
+            button[type="submit"] {
+                width: 100%;
+                padding: 1rem;
+                background-color: #2c5aa0;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                font-size: 1rem;
+                font-weight: 500;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+
+                &amp;:hover {
+                    background-color: #1e3a6f;
+                }
+
+                &amp;:disabled {
+                    background-color: #ccc;
+                    cursor: not-allowed;
+                }
+            }
+
+            .form-footer {
+                margin-top: 1.5rem;
+                text-align: center;
+                font-size: 0.9rem;
+
+                a {
+                    color: #2c5aa0;
+                    text-decoration: none;
+
+                    &amp;:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+
+        /* Dashboard Styles */
+        .dashboard {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+
+            h1 {
+                color: #2c5aa0;
+                margin-bottom: 1rem;
+            }
+
+            &amp; &gt; p {
+                margin-bottom: 2rem;
+                color: #666;
+            }
+
+            .user-info,
+            .session-debug {
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+
+                h2,
+                h3 {
+                    color: #2c5aa0;
+                    margin-top: 0;
+                    margin-bottom: 1rem;
+                }
+
+                .user-detail {
+                    margin-bottom: 0.5rem;
+                    font-size: 1rem;
+
+                    .label {
+                        font-weight: bold;
+                        color: #495057;
+                        display: inline-block;
+                        width: 120px;
+                    }
+
+                    .value {
+                        color: #333;
+                    }
+                }
+            }
+
+            .session-debug {
+                pre {
+                    background-color: #f1f3f4;
+                    border: 1px solid #d1d5db;
+                    border-radius: 4px;
+                    padding: 1rem;
+                    margin: 0;
+                    font-size: 0.9rem;
+                    line-height: 1.4;
+                    overflow-x: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                }
+            }
+
+            .dashboard-actions {
+                text-align: center;
+
+                .logout-button {
+                    display: inline-block;
+                    background-color: #dc3545;
+                    color: white;
+                    padding: 0.75rem 2rem;
+                    text-decoration: none;
+                    border-radius: 6px;
+                    font-weight: 500;
+                    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+
+                    &amp;:hover {
+                        background-color: #c82333;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        text-decoration: none;
+                        color: white;
+                    }
+
+                    &amp;:active {
+                        transform: translateY(1px);
+                    }
+                }
+            }
+        }
+
+        /* Error and success messages */
+        .auth-message {
+            max-width: 500px;
+            margin: 1rem auto;
+            padding: 1rem;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 500;
+
+            &amp;.success {
+                background-color: #d4edda;
+                border: 1px solid #c3e6cb;
+                color: #155724;
+            }
+
+            &amp;.error {
+                background-color: #f8d7da;
+                border: 1px solid #f5c6cb;
+                color: #721c24;
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .login-form,
+            .dashboard {
+                margin: 1rem;
+                padding: 1rem;
+            }
+
+            .user-detail .label {
+                width: 100px;
+            }
+        }
+    </code></pre>
+<h3>3. Atualizar a navegação com exibição condicional</h3>
+<p> Modifique a navegação do seu site para mostrar links diferentes com base no status de autenticação. Abra <code>src/views/partials/header.ejs</code> e substitua toda a sua seção de navegação por esta estrutura condicional: </p>
+<pre><code class="html">
+        &lt;nav&gt;
+            &lt;ul&gt;
+                &lt;!-- Always visible links --&gt;
+                &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/about"&gt;About&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/catalog"&gt;Course Catalog&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/faculty"&gt;Faculty Directory&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/contact"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/demo"&gt;Middleware Demo&lt;/a&gt;&lt;/li&gt;
+                
+                &lt;!-- Only visible when logged in --&gt;
+                &lt;% if (isLoggedIn) { %&gt;
+                    &lt;li&gt;&lt;a href="/dashboard"&gt;Dashboard&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="/register/list"&gt;All Users&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="/contact/responses"&gt;Contact Responses&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="/logout"&gt;Logout&lt;/a&gt;&lt;/li&gt;
+                &lt;% } %&gt;
+                
+                &lt;!-- Only visible when NOT logged in --&gt;
+                &lt;% if (!isLoggedIn) { %&gt;
+                    &lt;li&gt;&lt;a href="/login"&gt;Login&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="/register"&gt;Register&lt;/a&gt;&lt;/li&gt;
+                &lt;% } %&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    </code></pre>
+<p> Esta estrutura de navegação usa a <code>isLoggedIn</code> variável do seu middleware global para controlar quais links ficam visíveis. Funcionalidades principais do site, como o catálogo de cursos e o diretório do corpo docente, permanecem acessíveis a todos os usuários, enquanto páginas administrativas, como a lista de usuários e as respostas de contato, ficam visíveis apenas para usuários autenticados. Os links de autenticação (login e registro) são ocultados assim que os usuários fazem login, sendo substituídos pelas opções de painel e logout. </p>
+<div class="callout info icon">
+<div class="title">Conveniência da interface do usuário vs Segurança</div>
+<p> A <code>isLoggedIn</code> variável é uma funcionalidade de conveniência para exibir links de navegação e elementos de interface do usuário adequados. No entanto, ocultar links de navegação não oferece segurança, pois os usuários ainda podem digitar URLs diretamente em seus navegadores. </p>
+<p> Qualquer rota que realmente exija autenticação deve ser protegida com o <code>requireLogin</code> middleware. Este middleware realiza a verificação de segurança real e redireciona usuários não autorizados para a página de login. Por enquanto, o painel é a única rota protegida. Você irá refatorar outras rotas para usar este middleware em tarefas futuras. </p>
+</div>
+<h3>4. Criar middleware de autenticação</h3>
+<p> Crie um middleware reutilizável para proteger rotas que exigem autenticação. Crie um novo arquivo em <code>src/middleware/auth.js</code>:
+    </p>
+<pre><code class="javascript">
+        /**
+         * Middleware to require authentication for protected routes.
+         * Redirects to login page if user is not authenticated.
+         * Sets res.locals.isLoggedIn = true for authenticated requests.
+         */
+        const requireLogin = (req, res, next) =&gt; {
+            // Check if user is logged in via session; we can beef this up later with roles and permissions
+            if (req.session &amp;&amp; req.session.user) {
+                // User is authenticated - set UI state and continue
+                res.locals.isLoggedIn = true;
+                next();
+            } else {
+                // User is not authenticated - redirect to login
+                res.redirect('/login');
+            }
+        };
+
+        export { requireLogin };
+    </code></pre>
+<p> Esta função de middleware verifica a existência de uma sessão de usuário e permite que a requisição continue (para usuários autenticados) ou redireciona para a página de login (para usuários não autenticados). Ao colocá-la em um arquivo de middleware separado, você pode importá-la e usá-la facilmente em qualquer rota que exija autenticação. </p>
+<div class="callout info icon">
+<div class="title">Organização do middleware</div>
+<p> O middleware de autenticação deve ficar em seu próprio arquivo porque ele fornece funcionalidades das quais muitas partes diferentes da sua aplicação podem precisar. Rotas, controladores e outros middlewares podem importar e usar funções de autenticação sem criar dependências circulares ou confusão arquitetural. Esta separação de responsabilidades torna seu código mais fácil de manter e testar. Se precisar modificar a lógica de autenticação posteriormente, você só precisará alterá-la em um único lugar. </p>
+</div>
+<div class="callout warning icon">
+<p> Não remova nem altere o middleware global existente em <code>src/middleware/global.js</code>. A <code>isLoggedIn</code> variável definida lá ainda é necessária para a renderização condicional da interface do usuário, embora as verificações reais de segurança sejam tratadas pelo novo <code>requireLogin</code> middleware. </p>
+</div>
+<h3>5. Criar o modelo de login</h3>
+<p> Crie a camada de interação com o banco de dados para operações de login. Crie um novo arquivo em <code>src/models/forms/login.js</code> com o seguinte conteúdo: </p>
+<pre><code class="javascript">
+        import bcrypt from 'bcrypt';
+        import db from '../db.js';
+
+        /**
+         * Find a user by email address for login verification.
+         * 
+         * @param {string} email - Email address to search for
+         * @returns {Promise&lt;Object|null&gt;} User object with password hash or null if not found
+         */
+        const findUserByEmail = async (email) =&gt; {
+            // TODO: Write SELECT query for id, name, email, password, created_at
+            // TODO: Use LOWER() on both sides for case-insensitive email comparison
+            // TODO: Use $1 placeholder for email parameter
+            // TODO: Add LIMIT 1 to ensure only one result
+            // TODO: Execute query and return first row or null
+        };
+
+        /**
+         * Verify a plain text password against a stored bcrypt hash.
+         * 
+         * @param {string} plainPassword - The password to verify
+         * @param {string} hashedPassword - The stored password hash
+         * @returns {Promise&lt;boolean&gt;} True if password matches, false otherwise
+         */
+        const verifyPassword = async (plainPassword, hashedPassword) =&gt; {
+            // TODO: Use bcrypt.compare() to verify the password
+            // TODO: Return the result (true/false)
+        };
+
+        export { findUserByEmail, verifyPassword };
+    </code></pre>
+<p> Conclua os itens TODO em cada função. Para <code>findUserByEmail</code>, use <code>LOWER(email) = LOWER($1)</code> para realizar a correspondência de e-mail sem diferenciação entre maiúsculas e minúsculas. A <code>verifyPassword</code> função deve usar <code>bcrypt.compare(plainPassword, hashedPassword)</code> que retorna uma promise que é resolvida para um booleano. </p>
+<div class="callout info">
+<p> Observe que estas funções de modelo não incluem blocos try-catch. Sua aplicação usa um manipulador de erros global para capturar e processar todos os erros, incluindo erros de consulta ao banco de dados e falhas do bcrypt. Isso mantém sua camada de modelo limpa e focada em operações de dados, enquanto a lógica de tratamento de erros permanece centralizada no seu middleware de tratamento de erros. </p>
+</div>
+<h3>6. Criar o controlador de login</h3>
+<p> Crie os manipuladores de rota para autenticação. Crie um novo arquivo em <code>src/controllers/forms/login.js</code> com o seguinte conteúdo: </p>
+<pre><code class="javascript">
+        import { body, validationResult } from 'express-validator';
+        import { findUserByEmail, verifyPassword } from '../../models/forms/login.js';
+        import { Router } from 'express';
+
+        const router = Router();
+
+        /**
+         * Validation rules for login form
+         */
+        const loginValidation = [
+            body('email')
+                .trim()
+                .isEmail()
+                .withMessage('Please provide a valid email address')
+                .normalizeEmail(),
+            
+            body('password')
+                .isLength({ min: 8 })
+                .withMessage('Password is required')
+        ];
+
+        /**
+         * Display the login form.
+         */
+        const showLoginForm = (req, res) =&gt; {
+            // TODO: Render the login form view (forms/login/form)
+            // TODO: Pass title: 'User Login'
+        };
+
+        /**
+         * Process login form submission.
+         */
+        const processLogin = async (req, res) =&gt; {
+            // Check for validation errors
+            const errors = validationResult(req);
+            
+            if (!errors.isEmpty()) {
+                // TODO: Log validation errors to console
+                // TODO: Redirect back to /login
+                return;
+            }
+
+            // TODO: Extract email and password from req.body
+            
+            try {
+                // TODO: Find user by email using findUserByEmail()
+                // TODO: If not found, log "User not found" and redirect to /login
+                
+                // TODO: Verify password using verifyPassword(password, user.password)
+                // TODO: If password incorrect, log "Invalid password" and redirect to /login
+                
+                // SECURITY: Remove password from user object before storing in session
+                delete user.password;
+                
+                // TODO: Store user in session: req.session.user = user
+                // TODO: Redirect to /dashboard
+            } catch (error) {
+                // Model functions do not catch errors, so handle them here
+                // TODO: Log error to console
+                // TODO: Redirect to /login
+            }
+        };
+
+        /**
+         * Handle user logout.
+         * 
+         * NOTE: connect.sid is the default session cookie name since we did not
+         * specify a custom name when creating the session in server.js.
+         */
+        const processLogout = (req, res) =&gt; {
+            // First, check if there is a session object on the request
+            if (!req.session) {
+                // If no session exists, there's nothing to destroy,
+                // so we just redirect the user back to the home page
+                return res.redirect('/');
+            }
+
+            // Call destroy() to remove this session from the store (PostgreSQL in our case)
+            req.session.destroy((err) =&gt; {
+                if (err) {
+                    // If something goes wrong while removing the session from the database:
+                    console.error('Error destroying session:', err);
+
+                    /**
+                     * Clear the session cookie from the browser anyway, so the client
+                     * does not keep sending an invalid session ID.
+                     */
+                    res.clearCookie('connect.sid');
+
+                    /** 
+                     * Normally we would respond with a 500 error since logout did not fully succeed.
+                     * Example: return res.status(500).send('Error logging out');
+                     * 
+                     * Since this is a practice site, we will redirect to the home page anyway.
+                     */
+                    return res.redirect('/');
+                }
+
+                // If session destruction succeeded, clear the session cookie from the browser
+                res.clearCookie('connect.sid');
+
+                // Redirect the user to the home page
+                res.redirect('/');
+            });
+        };
+
+        /**
+         * Display protected dashboard (requires login).
+         */
+        const showDashboard = (req, res) =&gt; {
+            const user = req.session.user;
+            const sessionData = req.session;
+
+            // Security check! Ensure user and sessionData do not contain password field
+            if (user &amp;&amp; user.password) {
+                console.error('Security error: password found in user object');
+                delete user.password;
+            }
+            if (sessionData.user &amp;&amp; sessionData.user.password) {
+                console.error('Security error: password found in sessionData.user');
+                delete sessionData.user.password;
+            }
+            
+            // TODO: Render the dashboard view (dashboard)
+            // TODO: Pass title: 'Dashboard', user, and sessionData to template
+        };
+
+        // Routes
+        router.get('/', showLoginForm);
+        router.post('/', loginValidation, processLogin);
+
+        // Export router as default, and specific functions for root-level routes
+        export default router;
+        export { processLogout, showDashboard };
+    </code></pre>
+<p> Conclua todos os itens TODO seguindo estas diretrizes: </p>
+<ul>
+<li> Para o gerenciamento de sessão, armazene os dados do usuário sem o campo de senha: <code>{ id, name, email, created_at }</code>
+</li>
+<li> Use mensagens de erro genéricas para os usuários ("E-mail ou senha inválidos"), mas logs específicos no console para depuração </li>
+<li> A <code>processLogin</code> função inclui try-catch porque as funções do modelo não tratan erros por si mesmas. Seu manipulador de erros global capturará erros não tratados, mas o controlador precisa capturar erros esperados (como usuário não encontrado ou senha inválida) para fornecer o feedback adequado ao usuário. </li>
+<li> Certifique-se de compreender o que a <code>processLogout</code> função está fazendo, lendo os comentários com atenção </li>
+<li> Em <code>showDashboard</code>, verifique se a senha não está nos objetos user ou sessionData como uma verificação de segurança </li>
+</ul>
+<h3>7. Integrar rotas de autenticação</h3>
+<p> Conecte seu controlador de autenticação ao sistema de roteamento principal. Abra <code>src/controllers/routes.js</code> e adicione estas importações no topo com suas outras importações (lembre-se de que <code>{ Router }</code> deve ser a última importação): </p>
+<pre><code class="javascript">
+        import loginRoutes from './forms/login.js';
+        import { processLogout, showDashboard } from './forms/login.js';
+        import { requireLogin } from '../middleware/auth.js';
+    </code></pre>
+<p> Adicione estas rotas ao seu roteador após as suas outras definições de rota: </p>
+<pre><code class="javascript">
+        // Login routes (form and submission)
+        router.use('/login', loginRoutes);
+
+        // Authentication-related routes at root level
+        router.get('/logout', processLogout);
+        router.get('/dashboard', requireLogin, showDashboard);
+    </code></pre>
+<p> O formulário de login e as rotas de envio estão agrupados sob <code>/login</code>. No entanto, logout e dashboard existem no nível raiz porque não estão logicamente "sob" o caminho de login. O dashboard usa o <code>requireLogin</code> middleware para garantir que apenas usuários autenticados possam acessá-lo. Esta estrutura mantém as coisas simples por enquanto; em uma tarefa futura de refatoração, você reorganizará as rotas quando tiver várias páginas relacionadas ao dashboard. </p>
+<h3>8. Criar Views de Login</h3>
+<p> Construa a interface do usuário para login e dashboard. Crie o diretório <code>src/views/forms/login/</code> e crie <code>form.ejs</code> nesse diretório: </p>
+<pre><code class="html">
+        &lt;%- include('../../partials/header') %&gt;
+        &lt;main&gt;
+            &lt;h1&gt;&lt;%= title %&gt;&lt;/h1&gt;
+            &lt;p&gt;
+                Enter your email and password to access your account. Do not have an account? &lt;a href="/register"&gt;Register here&lt;/a&gt;.
+            &lt;/p&gt;
+            
+            &lt;form method="POST" action="/login" class="login-form"&gt;
+                &lt;!-- Email field --&gt;
+                &lt;div class="form-group"&gt;
+                    &lt;!-- TODO: Add label for email --&gt;
+                    &lt;!-- TODO: Add input type="email" with id, name, and required --&gt;
+                    &lt;!-- TODO: Add appropriate placeholder text --&gt;
+                &lt;/div&gt;
+                
+                &lt;!-- Password field --&gt;
+                &lt;!-- TODO: Create form-group div --&gt;
+                &lt;!-- TODO: Add label for password --&gt;
+                &lt;!-- TODO: Add input type="password" with id, name, minlength="8", and required --&gt;
+                &lt;!-- TODO: Add appropriate placeholder text --&gt;
+                
+                &lt;!-- Submit button --&gt;
+                &lt;!-- TODO: Add button type="submit" with text "Sign In" or "Login" --&gt;
+                
+                &lt;div class="form-footer"&gt;
+                    &lt;p&gt;New user? &lt;a href="/register"&gt;Create an account&lt;/a&gt;&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/form&gt;
+        &lt;/main&gt;
+        &lt;%- include('../../partials/footer') %&gt;
+    </code></pre>
+<p> Crie o formulário seguindo a mesma estrutura do seu formulário de registro, mas com apenas dois campos: e-mail e senha. Inclua atributos de validação no lado do cliente que correspondam às regras no lado do servidor. </p>
+<p> Agora crie <code>src/views/dashboard.ejs</code> para a página protegida: </p>
+<pre><code class="html">
+        &lt;%- include('partials/header') %&gt;
+        &lt;main&gt;
+            &lt;div class="dashboard"&gt;
+                &lt;h1&gt;Welcome to Your Dashboard&lt;/h1&gt;
+                &lt;p&gt;
+                    This is a protected page that requires authentication. Only logged-in users can access this content.
+                &lt;/p&gt;
+                
+                &lt;div class="user-info"&gt;
+                    &lt;h2&gt;Your Account Information&lt;/h2&gt;
+                    &lt;!-- TODO: Display user.name in a div with class="user-detail" --&gt;
+                    &lt;!-- TODO: Use span with class="label" for "Name:" and span with class="value" for the actual name --&gt;
+                    &lt;!-- TODO: Display user.email in the same format --&gt;
+                    &lt;!-- TODO: Display user.created_at formatted with toLocaleDateString() --&gt;
+                &lt;/div&gt;
+                
+                &lt;div class="session-debug"&gt;
+                    &lt;h3&gt;Session Information (For Learning Purposes)&lt;/h3&gt;
+                    &lt;p&gt;&lt;em&gt;This section shows your current session data for educational purposes.&lt;/em&gt;&lt;/p&gt;
+                    &lt;pre&gt;&lt;%= JSON.stringify(sessionData, null, 2) %&gt;&lt;/pre&gt;
+                    &lt;p&gt;
+                        &lt;strong&gt;If you see a password property in the above object you have a security vulnerability, fix it!&lt;/strong&gt;
+                    &lt;/p&gt;
+                &lt;/div&gt;
+                
+                &lt;div class="dashboard-actions"&gt;
+                    &lt;a href="/logout" class="logout-button"&gt;Logout&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/main&gt;
+        &lt;%- include('partials/footer') %&gt;
+    </code></pre>
+<p> Conclua os TODOs para exibir informações do usuário e dados de sessão. As informações do usuário devem seguir a estrutura CSS com <code>user-detail</code>, <code>label</code>, e <code>value</code> classes. A seção de depuração da sessão ajuda você a verificar se sua sessão está funcionando corretamente e não contém informações confidenciais, como senhas. </p>
+<h3>9. Teste Seu Sistema de Autenticação</h3>
+<p> Teste minuciosamente todo o seu sistema de autenticação: </p>
+<ol>
+<li> Acesse <a href="http://127.0.0.1:3000/login" rel="noopener noreferrer" target="_blank">http://127.0.0.1:3000/login</a> e verifique se o formulário de login é exibido corretamente. </li>
+<li> Teste tentativas de login inválido com e-mails inexistentes e senhas incorretas. Verifique o console do seu servidor para ver as mensagens de erro apropriadas. </li>
+<li> Registre um novo usuário, se necessário, e faça login com essas credenciais. </li>
+<li> Após o login bem-sucedido, verifique se você é redirecionado para o dashboard e consegue ver suas informações de usuário e dados de sessão. Confirme que não há nenhuma propriedade de senha na saída de depuração da sessão. </li>
+<li> Verifique se a navegação muda para mostrar as opções de dashboard e logout quando estiver conectado. </li>
+<li> Tente acessar <a href="http://127.0.0.1:3000/dashboard" rel="noopener noreferrer" target="_blank">http://127.0.0.1:3000/dashboard</a> em uma janela anônima. Você deve ser redirecionado para a página de login. </li>
+<li> Teste a funcionalidade de logout e verifique se a sessão é destruída. Após o logout, tente acessar o dashboard novamente e confirme que é redirecionado para o login. </li>
+<li> Feche e reabra seu navegador e, em seguida, retorne ao seu site para verificar a persistência da sessão entre sessões do navegador. </li>
+</ol>
+<p> Use o pgAdmin para examinar a tabela de sessões e verificar se os dados de sessão estão sendo armazenados adequadamente. A tabela de sessões deve conter entradas com IDs de sessão, dados de sessão criptografados e carimbos de data/hora de expiração. Você também deve ver mensagens no console sobre a limpeza de sessão executada na inicialização e periodicamente. </p>
+<div class="callout warn">
+<p> Os testes de segurança são cruciais para sistemas de autenticação. Sempre teste cenários válidos e inválidos, verifique se as rotas protegidas estão realmente protegidas e confirme se as sessões são criadas e destruídas adequadamente. Preste atenção às mensagens do console para garantir que a lógica de validação e autenticação esteja funcionando corretamente. O mais importante é verificar se as senhas nunca aparecem nos dados ou logs de sessão. </p>
+</div>
+</section>
+<section>
+<h2>Resumo dos Conceitos-Chave</h2>
+<p> Esta tarefa completou sua compreensão da autenticação web full-stack, implementando o gerenciamento de sessão, a proteção de rotas e as interações do usuário com estado. Você aprendeu como as sessões do Express preenchem a lacuna entre a natureza sem estado do HTTP e a necessidade de um estado de usuário persistente em aplicações web. </p>
+<p> Os padrões de middleware que você implementou demonstram a separação de responsabilidades na segurança web. O <code>requireLogin</code> middleware fornece proteção de autenticação reutilizável que pode ser aplicada a qualquer rota, enquanto o middleware global gerencia o estado da interface do usuário para uma experiência do usuário consistente. </p>
+<p> Sua navegação condicional ilustra a diferença entre a conveniência da interface do usuário e as medidas de segurança reais. Enquanto a <code>isLoggedIn</code> variável ajuda a criar experiências de usuário apropriadas, o <code>requireLogin</code> middleware fornece a segurança real, verificando a autenticação no lado do servidor. </p>
+<p> A integração do armazenamento de sessão com o PostgreSQL fornece um gerenciamento de sessão persistente e escalável, que sobrevive a reinicializações do servidor e pode lidar com múltiplos usuários concorrentes. O sistema automatizado de limpeza que você implementou imita práticas de manutenção em produção, ensinando sobre tarefas agendadas e manutenção de banco de dados, mesmo que você tenha usado uma solução interna em vez de trabalhos cron externos. </p>
+</section>
+<section>
+<h2>Experimente e Estenda</h2>
+<p> Tente adicionar rotas protegidas adicionais usando o <code>requireLogin</code> middleware. Aplique este middleware à página de lista de usuários (<code>/register/list</code>) e à página de respostas de contato (<code>/contact/responses</code>) para ver como a proteção de rotas escala em sua aplicação. </p>
+<p> Experimente diferentes configurações de duração de sessão para entender as compensações entre a conveniência do usuário e a segurança. Tente implementar a funcionalidade "lembrar-me" estendendo condicionalmente a duração da sessão com base em uma caixa de seleção no formulário de login. </p>
+</section>
+</main>
+<footer class="full-width">
+<div class="columns two">
+<div>
+<span class="course-code">CSE 340</span>
+             • 
+            <span class="course-name">Desenvolvimento Web Back-end</span>
+</div>
+<div> © 2024–2026 BYU–Idaho <a href="https://www.byui.edu/computer-science-engineering/" rel="noopener noreferrer" target="_blank">Departamento de CSE</a>. Todos os direitos reservados. </div>
+</div>
+</footer>
+</div>
+</body>
+</html>

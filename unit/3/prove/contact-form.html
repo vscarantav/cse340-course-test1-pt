@@ -1,0 +1,625 @@
+html
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../../assets/images/favicon/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../../assets/images/favicon/favicon.png" rel="icon" type="image/png"/>
+<link href="../../../assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<title>Instruções da Tarefa</title>
+<meta content="Create a functional contact form with client-side and server-side validation and database storage using Express and PostgreSQL." name="description"/>
+<script src="../../../assets/js/main.js" type="module"></script>
+<script src="../../../assets/js/theme-preference.js"></script>
+</head>
+<body>
+<div class="content-grid">
+<header class="full-width">
+<input aria-controls="site-primary-nav" class="visually-hidden" id="site-nav-toggle" type="checkbox"/>
+<label aria-hidden="true" class="site-nav-backdrop" for="site-nav-toggle"></label>
+<div class="inner">
+<div class="site-brand">
+<a aria-label="CSE 340 home" class="brand-link" href="../../../index.html">
+<img alt="BYU–Idaho" class="site-logo" decoding="async" src="../../../assets/images/logos/byui-logo.png"/>
+</a>
+</div>
+<div class="site-course-info">
+<a href="../../../index.html">
+<span class="course-code">CSE 340</span>
+                 • 
+                <span class="course-name">Desenvolvimento Web Back-end</span>
+</a>
+</div>
+<nav aria-label="Primary" class="site-primary-nav" id="site-primary-nav">
+<ul aria-label="Course units" class="nav-list">
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<div class="site-header-tools">
+<label class="site-nav-menu-btn" for="site-nav-toggle">
+<span class="visually-hidden">Menu</span>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-open" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"></path></svg>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-close" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"></path></svg>
+</label>
+<input aria-controls="site-search-panel" class="visually-hidden" id="site-search-toggle" type="checkbox"/>
+<label class="site-search-trigger" for="site-search-toggle">
+<span class="visually-hidden">Alternar pesquisa do site</span>
+<span aria-hidden="true">🔎</span>
+<span aria-hidden="true">✕</span>
+</label>
+<details class="theme-menu">
+<summary class="theme-control">
+<span class="visually-hidden">Esquema de cores</span>
+</summary>
+<div aria-label="Choose color scheme" class="theme-extra" role="group">
+<label class="theme-control theme-pick" data-theme-pick="light">
+<input name="theme-preference" type="radio" value="light"/>
+<span aria-hidden="true">☀️</span>
+<span class="visually-hidden">Claro</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="system">
+<input name="theme-preference" type="radio" value="system"/>
+<span aria-hidden="true">⚙️</span>
+<span class="visually-hidden">Padrão do sistema</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="dark">
+<input name="theme-preference" type="radio" value="dark"/>
+<span aria-hidden="true">🌖</span>
+<span class="visually-hidden">Escuro</span>
+</label>
+</div>
+</details>
+</div>
+</div>
+<div aria-label="Site search" id="site-search-panel" role="region">
+<form action="" method="get" role="search">
+<label class="visually-hidden" for="site-search-query">Pesquisar</label>
+<input autocomplete="off" enterkeyhint="search" id="site-search-query" name="query" placeholder="Search…" type="search"/>
+</form>
+<div aria-live="polite" class="site-search-results" id="site-search-results"></div>
+</div>
+</header>
+<main>
+<nav aria-label="Course units" class="course-breadcrumbs unit">
+<ul>
+<li>
+<a aria-label="Home" href="../../../index.html">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z">
+</path></svg>
+</a>
+</li>
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<section>
+<h1>Construindo seu Primeiro Formulário: Fale Conosco</h1>
+<p> Nesta tarefa, você criará um formulário de contato funcional que permite aos usuários enviar mensagens por meio do seu site. Este formulário demonstrará o ciclo completo do processamento de formulários web: exibir um formulário aos usuários, manipular seus envios com requisições POST, validar os dados tanto do lado do cliente quanto do servidor e armazenar os resultados em seu banco de dados PostgreSQL. </p>
+<p> Você construirá esta funcionalidade usando a arquitetura MVC adequada, criando controladores dedicados para manipulação de formulários, modelos para operações de banco de dados e exibições para interação do usuário. Esta tarefa introduz a validação do lado do servidor usando a biblioteca express-validator, que fornece ferramentas de validação de nível profissional usadas em aplicações web em produção. </p>
+</section>
+<section>
+<h2>Entendendo o Problema</h2>
+<p> Sites estáticos só podem exibir informações, mas aplicações web dinâmicas precisam coletar e processar a entrada do usuário. Formulários de contato são uma das maneiras mais comuns pelas quais os sites interagem com seus visitantes, permitindo que os usuários façam perguntas, relatem problemas ou forneçam feedback sem a necessidade de clientes de e-mail ou serviços externos. </p>
+<p> No entanto, aceitar a entrada do usuário cria vários desafios que os sites estáticos nunca enfrentam. Os usuários podem enviar formulários vazios, fornecer dados inválidos ou até mesmo tentar injetar conteúdo malicioso. Sua aplicação precisa validar todos os dados recebidos, tratar erros de forma harmoniosa e armazenar os envios válidos com segurança em seu banco de dados. </p>
+<p> Esta tarefa aborda esses desafios implementando tanto a validação do lado do cliente (para feedback imediato do usuário) quanto a validação do lado do servidor (para segurança e integridade dos dados). Você criará uma tabela no banco de dados para armazenar envios, construirá rotas e controladores para manipular o processamento do formulário e implementará uma validação abrangente para garantir a qualidade dos dados. </p>
+</section>
+<section>
+<h2>Preparação</h2>
+<p> Antes de construir o formulário de contato, você precisa criar uma tabela no banco de dados para armazenar os envios do formulário de contato. Você usará uma abordagem de arquivo SQL que segue o mesmo padrão do seu <code>seed.sql</code> arquivo existente, mas em um arquivo separado dedicado às suas tarefas de prática. </p>
+<p> Crie um novo arquivo em <code>src/models/sql/practice.sql</code>. Este arquivo servirá como um espaço dedicado para todas as alterações no banco de dados das suas tarefas de prática ao longo do curso. Você adicionará a tabela do formulário de contato agora, e tarefas futuras poderão adicionar tabelas adicionais ou modificações a este mesmo arquivo. Adicione o seguinte conteúdo: </p>
+<pre><code class="sql">
+        -- Practice database tables for assignments
+        -- This file accumulates changes from multiple assignments
+        -- Add new tables and modifications here as you work through the course
+
+        -- Contact form table
+        CREATE TABLE IF NOT EXISTS contact_form (
+            id SERIAL PRIMARY KEY,
+            subject VARCHAR(255) NOT NULL,
+            message TEXT NOT NULL,
+            submitted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+    </code></pre>
+<p> Em seguida, modifique seu <code>src/models/setup.js</code> arquivo para executar este arquivo SQL de prática como parte do processo de semeadura. Abra <code>setup.js</code> e localize a linha que diz <code>console.log('Database seeded successfully');</code>. Imediatamente ANTES desta linha (após o <code>await db.query(seedSQL);</code> mas antes do log de sucesso), adicione o seguinte código: </p>
+<pre><code class="javascript">
+        // Run practice.sql if it exists (for student assignments)
+        const practicePath = join(__dirname, 'sql', 'practice.sql');
+        if (fs.existsSync(practicePath)) {
+            const practiceSQL = fs.readFileSync(practicePath, 'utf8');
+            await db.query(practiceSQL);
+            console.log('Practice database tables initialized');
+        }
+    </code></pre>
+<p> Este código verifica se <code>practice.sql</code> existe e o executa como parte do processo de semeadura (seed). A verificação do arquivo garante que sua aplicação ainda funcione mesmo que você ainda não tenha criado o arquivo de prática. Este SQL de prática será executado toda vez que você disparar uma nova semeadura do banco de dados ao excluir dados da tabela faculty. </p>
+<div class="callout message">
+<div class="title">Entendendo a Abordagem com Arquivo SQL</div>
+<p> Você pode se perguntar por que usamos um arquivo <code>practice.sql</code> separado em vez de colocar tudo em <code>seed.sql</code>. Esta separação mantém suas tarefas de prática isoladas da estrutura principal do banco de dados do curso. O <code>seed.sql</code> arquivo contém os dados iniciais que todo aluno precisa, enquanto o <code>practice.sql</code> contém seu trabalho de prática individual que crescerá ao longo do tempo. </p>
+<p> Observe o uso de <code>CREATE TABLE IF NOT EXISTS</code> no SQL. Isso torna o script idempotente, o que significa que você pode executá-lo várias vezes com segurança, sem erros. Toda vez que o processo de semeadura for executado (quando a tabela faculty estiver vazia), ele também executará o seu SQL de prática. A <code>IF NOT EXISTS</code> cláusula previne erros se a tabela já existir. </p>
+</div>
+<p> Reinicie seu servidor e verifique se a tabela foi criada checando o console do seu servidor. Você deve ver a mensagem "Practice database tables initialized" após "Database seeded successfully". Use o pgAdmin para examinar as tabelas do seu banco de dados e confirmar que uma nova <code>contact_form</code> tabela existe com colunas para ID, subject, message e timestamp de envio (submitted). Não prossiga até confirmar que a tabela existe e que seu servidor inicia sem erros. </p>
+<div class="callout info icon"> Lembre-se de que, para semear novamente o banco de dados e executar o SQL de prática novamente, você precisa excluir todos os dados da tabela faculty. Isso dispara o processo de semeadura, que agora inclui o seu arquivo SQL de prática. </div>
+</section>
+<section>
+<h2>Instruções da Tarefa</h2>
+<h3>1. Instalar o Express-Validator</h3>
+<p> Instale a biblioteca express-validator, que fornece ferramentas de validação de nível profissional para aplicações Express: </p>
+<pre><code class="bash">
+        pnpm install express-validator
+    </code></pre>
+<div class="callout message">
+<div class="title">Por que Usar uma Biblioteca de Validação?</div>
+<p> Você pode se perguntar por que usamos o express-validator em vez de escrever nossas próprias funções de validação. Isso se conecta a um princípio importante mencionado anteriormente no curso: seja intencional sobre as dependências. Embora você possa escrever código de validação personalizado, usar o express-validator oferece vários benefícios importantes que justificam adicionar essa dependência: </p>
+<p>
+<strong>Segurança:</strong> O express-validator é testado na prática por milhares de desenvolvedores e lida com casos limite de segurança (como prevenção de XSS e higienização adequada de entrada) que são fáceis de passar despercebidos em código personalizado. Escrever uma validação segura do zero exige um conhecimento profundo de vetores de ataque que a maioria dos desenvolvedores adquire apenas após anos de experiência. </p>
+<p>
+<strong>Boas Práticas:</strong> Ele implementa padrões de validação de nível industrial usados em aplicações em produção, ensinando como desenvolvedores profissionais lidam com a validação. Quando você se juntar a uma equipe de desenvolvimento, quase certamente encontrará esta ou uma biblioteca de validação semelhante. </p>
+<p>
+<strong>Menos Código, Menos Bugs:</strong> Escrever uma validação robusta do zero requer lidar com muitos casos limite. O express-validator fornece essa funcionalidade de forma pronta para uso, reduzindo bugs e economizando um tempo significativo de desenvolvimento. A alternativa seriam centenas de linhas de código de validação personalizado que precisariam de testes minuciosos. </p>
+<p>
+<strong>Rico em Funcionalidades:</strong> Ele inclui validadores integrados para casos comuns (e-mail, URL, comprimento, padrões) que exigiriam uma quantidade significativa de código personalizado para serem replicados adequadamente. Esses validadores lidam com caracteres internacionais, vários formatos e casos limite que são fáceis de ignorar. </p>
+<p> No desenvolvimento profissional, você quase sempre usará bibliotecas de validação em vez de escrever uma validação personalizada para cada projeto. Aprender o express-validator agora prepara você para práticas de desenvolvimento do mundo real e ensina quando adicionar uma dependência é a escolha certa. </p>
+</div>
+<h3>2. Configurar o Express para Lidar com Requisições POST</h3>
+<p> Ganta que sua aplicação Express esteja configurada para analisar dados de formulário codificados em URL de requisições POST. Abra o seu <code>server.js</code> e adicione o seguinte middleware na seção onde você configura os middlewares do Express, logo após o código que serve arquivos estáticos: </p>
+<pre><code class="javascript">
+        // Allow Express to receive and process POST data
+        app.use(express.urlencoded({ extended: true }));
+        app.use(express.json());
+    </code></pre>
+<p> A primeira linha habilita a análise de dados de formulário enviados com o tipo de conteúdo <code>application/x-www-form-urlencoded</code>, o qual é o que os formulários HTML usam por padrão. A segunda linha habilita a análise de dados JSON, o que será útil para futuras tarefas envolvendo APIs. </p>
+<div class="callout info">
+<p> Esta configuração de middleware lida com dados de formulário baseados em texto e JSON, mas não lida com envios de arquivos. O envio de arquivos requer um middleware diferente que processa <code>multipart/form-data</code>, o qual é coberto em uma tarefa opcional mais adiante no curso. Para esta tarefa de formulário de contato, você trabalhará apenas com entrada de texto. </p>
+</div>
+<h3>3. Adicionar Estilização ao Formulário de Contato</h3>
+<p> Crie um arquivo CSS para estilizar seu formulário de contato. Crie <code>public/css/contact.css</code> com o seguinte conteúdo: </p>
+<pre><code class="css">
+        /* Contact Form Styles */
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+
+            h2 {
+                color: #2c5aa0;
+                border-bottom: 2px solid #2c5aa0;
+                padding-bottom: 0.5rem;
+                margin: 0 0 1.5rem 0;
+                text-align: center;
+            }
+
+            .form-group {
+                margin-bottom: 1.5rem;
+
+                label {
+                    display: block;
+                    margin-bottom: 0.5rem;
+                    font-weight: 500;
+                    color: #333;
+                }
+
+                input,
+                textarea {
+                    width: 100%;
+                    padding: 0.75rem;
+                    border: 1px solid #ddd;
+                    border-radius: 6px;
+                    font-size: 1rem;
+                    font-family: inherit;
+                    transition: border-color 0.3s ease;
+
+                    &amp;:focus {
+                        outline: none;
+                        border-color: #2c5aa0;
+                    }
+                }
+
+                textarea {
+                    resize: vertical;
+                    min-height: 150px;
+                }
+            }
+
+            button[type="submit"] {
+                width: 100%;
+                padding: 1rem;
+                background-color: #2c5aa0;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                font-size: 1rem;
+                font-weight: 500;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+
+                &amp;:hover {
+                    background-color: #1e3a6f;
+                }
+            }
+        }
+
+        /* Contact Responses Styles */
+        .contact-responses {
+            max-width: 800px;
+            margin: 2rem auto;
+
+            .response-item {
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+
+                .response-subject {
+                    color: #2c5aa0;
+                    margin: 0 0 1rem 0;
+                    font-size: 1.25rem;
+                }
+
+                .response-message {
+                    color: #333;
+                    line-height: 1.6;
+                    margin: 0 0 1rem 0;
+                    white-space: pre-wrap;
+                }
+
+                .response-date {
+                    color: #666;
+                    font-size: 0.875rem;
+                    margin: 0;
+                }
+            }
+
+            .no-responses {
+                text-align: center;
+                color: #666;
+                font-style: italic;
+                padding: 2rem;
+            }
+        }
+    </code></pre>
+<p> Este CSS fornece uma estilização limpa e moderna para o formulário de contato e para a página de respostas. Os seletores aninhados usam a sintaxe moderna de aninhamento CSS para manter os estilos relacionados organizados. </p>
+<h3>4. Configurar o Carregamento Dinâmico de CSS</h3>
+<p> Adicione o middleware à sua configuração de rotas para carregar o CSS do formulário de contato apenas em páginas relacionadas a contato. Abra <code>src/controllers/routes.js</code> e adicione o seguinte middleware com seus outros middlewares específicos de rota (perto do middleware de catálogo e corpo docente): </p>
+<pre><code class="javascript">
+        // Add contact-specific styles to all contact routes
+        router.use('/contact', (req, res, next) =&gt; {
+            res.addStyle('&lt;link rel="stylesheet" href="/css/contact.css"&gt;');
+            next();
+        });
+    </code></pre>
+<p> Isso garante que o arquivo CSS de contato seja carregado para qualquer rota que comece com <code>/contact</code>, seguindo o mesmo padrão que você implementou na tarefa de Refatoração de Organização. </p>
+<h3>5. Criar o Controlador de Contato</h3>
+<p> Crie o arquivo de controlador para a funcionalidade do seu formulário de contato. Crie <code>src/controllers/forms/contact.js</code>. Você pode notar que este arquivo conterá funções de controlador, regras de validação e definições de rota, tudo junto em um único arquivo. Este é um padrão comum e prático em aplicações Express para funcionalidades deste tamanho. </p>
+<div class="callout message">
+<div class="title">Compreendendo a Organização de Controllers</div>
+<p> Em frameworks maiores, como Ruby on Rails ou ASP.NET MVC, controllers, rotas e validação costumam ser separados em arquivos ou camadas diferentes. No entanto, o Express é um framework minimalista que oferece flexibilidade na organização do código. Para funcionalidades de pequeno a médio porte, combinar funcionalidades relacionadas em um único arquivo de controller é uma abordagem padrão e prática. </p>
+<p> Você pode perguntar: "Isso não viola a separação do MVC?" De forma alguma. A separação do MVC significa manter suas responsabilidades organizadas: os Models lidam com dados e operações de banco de dados, as Views lidam com a apresentação e os Controllers lidam com o processamento de requisição, validação e coordenação entre models e views. A validação e o roteamento fazem parte da camada do controller, não são responsabilidades separadas. O que importa é que a lógica do seu banco de dados permaneça nos models e a lógica de apresentação permaneça nas views. </p>
+<p> Esta abordagem de arquivo único mantém toda a lógica do formulário de contato em um só lugar, tornando-a mais fácil de entender e manter. Você pode ver as regras de validação logo ao lado das funções do controller que as utilizam, e as rotas que conectam tudo. Conforme sua aplicação cresce, você pode dividir os arquivos se um controller ficar muito grande ou se as regras de validação precisarem ser reutilizadas em vários controllers. Por enquanto, manter o código relacionado junto segue o princípio de alta coesão e torna sua base de código mais fácil de manter. </p>
+</div>
+<p> Adicione o seguinte conteúdo a <code>src/controllers/forms/contact.js</code>:
+    </p>
+<pre><code class="javascript">
+        import { Router } from 'express';
+        import { body, validationResult } from 'express-validator';
+        import { createContactForm, getAllContactForms } from '../../models/forms/contact.js';
+
+        const router = Router();
+
+        /**
+         * Display the contact form page.
+         */
+        const showContactForm = (req, res) =&gt; {
+            res.render('forms/contact/form', {
+                title: 'Contact Us'
+            });
+        };
+
+        /**
+         * Handle contact form submission with validation.
+         * If validation passes, save to database and redirect.
+         * If validation fails, log errors and redirect back to form.
+         */
+        const handleContactSubmission = async (req, res) =&gt; {
+            // Check for validation errors
+            const errors = validationResult(req);
+            
+            if (!errors.isEmpty()) {
+                // Log validation errors for developer debugging
+                console.error('Validation errors:', errors.array());
+                // Redirect back to form without saving
+                return res.redirect('/contact');
+            }
+
+            // Extract validated data
+            const { subject, message } = req.body;
+
+            try {
+                // Save to database
+                await createContactForm(subject, message);
+                console.log('Contact form submitted successfully');
+                // Redirect to responses page on success
+                res.redirect('/contact/responses');
+            } catch (error) {
+                console.error('Error saving contact form:', error);
+                res.redirect('/contact');
+            }
+        };
+
+        /**
+         * Display all contact form submissions.
+         */
+        const showContactResponses = async (req, res) =&gt; {
+            let contactForms = [];
+            
+            try {
+                contactForms = await getAllContactForms();
+            } catch (error) {
+                console.error('Error retrieving contact forms:', error);
+            }
+
+            res.render('forms/contact/responses', {
+                title: 'Contact Form Submissions',
+                contactForms
+            });
+        };
+
+        /**
+         * GET /contact - Display the contact form
+         */
+        router.get('/', showContactForm);
+
+        /**
+         * POST /contact - Handle contact form submission with validation
+         */
+        router.post('/',
+            [
+                body('subject')
+                    .trim()
+                    .isLength({ min: 2 })
+                    .withMessage('Subject must be at least 2 characters'),
+                body('message')
+                    .trim()
+                    .isLength({ min: 10 })
+                    .withMessage('Message must be at least 10 characters')
+            ],
+            handleContactSubmission
+        );
+
+        /**
+         * GET /contact/responses - Display all contact form submissions
+         */
+        router.get('/responses', showContactResponses);
+
+        export default router;
+    </code></pre>
+<div class="callout info icon">
+<p> Nesta Tarefa, os erros de validação são registrados no log do console para depuração do desenvolvedor, e o usuário é simplesmente redirecionado de volta para o formulário. Em uma Tarefa futura, você aprenderá como exibir mensagens de erro úteis para os usuários quando a validação falhar, proporcionando uma melhor experiência do usuário. Por enquanto, o foco está na implementação de validação segura no lado do servidor e na compreensão do fluxo de trabalho de validação. </p>
+</div>
+<p> Agora integre estas rotas ao seu arquivo de rotas principal. Abra <code>src/controllers/routes.js</code>, importe as rotas de contato no topo junto com suas outras importações: </p>
+<pre><code class="javascript">
+        import contactRoutes from './forms/contact.js';
+    </code></pre>
+<p> Em seguida, adicione as rotas de contato ao seu roteador após as outras definições de rota: </p>
+<pre><code class="javascript">
+        // Contact form routes
+        router.use('/contact', contactRoutes);
+    </code></pre>
+<h3>6. Crie o Model de Contato</h3>
+<p> Crie o arquivo de model que lida com as operações de banco de dados para os envios do formulário de contato. Crie <code>src/models/forms/contact.js</code> com o seguinte conteúdo: </p>
+<pre><code class="javascript">
+        import db from '../db.js';
+
+        /**
+         * Inserts a new contact form submission into the database.
+         * 
+         * @param {string} subject - The subject of the contact message
+         * @param {string} message - The message content
+         * @returns {Promise&lt;Object&gt;} The newly created contact form record
+         */
+        const createContactForm = async (subject, message) =&gt; {
+            const query = `
+                INSERT INTO contact_form (subject, message)
+                VALUES ($1, $2)
+                RETURNING *
+            `;
+            const result = await db.query(query, [subject, message]);
+            return result.rows[0];
+        };
+
+        /**
+         * Retrieves all contact form submissions, ordered by most recent first.
+         * 
+         * @returns {Promise&lt;Array&gt;} Array of contact form records
+         */
+        const getAllContactForms = async () =&gt; {
+            const query = `
+                SELECT id, subject, message, submitted
+                FROM contact_form
+                ORDER BY submitted DESC
+            `;
+            const result = await db.query(query);
+            return result.rows;
+        };
+
+        export { createContactForm, getAllContactForms };
+    </code></pre>
+<div class="callout info">
+<div class="title">Consultas Parametrizadas para Segurança</div>
+<p> Observe como o model usa consultas parametrizadas com <code>$1</code> e <code>$2</code> placeholders em vez de concatenar a entrada do usuário diretamente em strings SQL. Isso é crítico para evitar ataques de injeção de SQL, onde usuários mal-intencionados poderiam manipular seu banco de dados inserindo comandos SQL em campos de formulário. </p>
+<p> O driver do PostgreSQL escapa e sanitiza automaticamente os valores que você passa no segundo argumento para <code>db.query()</code>, garantindo que a entrada do usuário seja tratada como dados em vez de código SQL executável. Nunca concatene a entrada do usuário em consultas SQL, mesmo que ache que a entrada é segura. </p>
+</div>
+<h3>7. Compreendendo o express-validator</h3>
+<p> A biblioteca express-validator fornece funções middleware que validam os dados da requisição recebida. Em seu arquivo de controller, você definiu regras de validação como um array de funções middleware na definição da rota, antes da sua função de controller. Cada regra de validação é executada em sequência, verificando condições específicas sobre os dados enviados. </p>
+<p> A <code>body()</code> função cria um validador para um campo específico no corpo da requisição. Você pode encadear métodos para especificar regras de validação: </p>
+<ul>
+<li>
+<code>trim()</code> remove espaços em branco do início e do fim do valor </li>
+<li>
+<code>isLength({ min: 2 })</code> exige que o valor tenha pelo menos 2 caracteres </li>
+<li>
+<code>withMessage()</code> fornece uma mensagem de erro personalizada se a validação falhar </li>
+</ul>
+<p> Em sua função de controller, a <code>validationResult(req)</code> função coleta todos os erros de validação da requisição. Se <code>errors.isEmpty()</code> retornar false, a validação falhou e você não deve processar os dados. O <code>errors.array()</code> método retorna um array de objetos de erro que você pode registrar no log ou exibir para os usuários. </p>
+<p> Esta separação de responsabilidades mantém suas regras de validação próximas das definições de rota, enquanto mantém suas funções de controller focadas em manipular os dados validados. O middleware de validação é executado antes da sua função de controller, garantindo que o seu controller receba apenas dados válidos. </p>
+<div class="callout info">
+<div class="title">Métodos de Validação Comuns</div>
+<p> O express-validator fornece muitos métodos de validação nativos que você pode usar: </p>
+<ul>
+<li>
+<code>isEmail()</code> valida endereços de e-mail </li>
+<li>
+<code>isURL()</code> valida URLs </li>
+<li>
+<code>isNumeric()</code> garante que o valor contenha apenas números </li>
+<li>
+<code>isLength({ min, max })</code> verifica o tamanho da string </li>
+<li>
+<code>matches(pattern)</code> valida em relação a uma expressão regular </li>
+<li>
+<code>custom()</code> cria uma lógica de validação personalizada </li>
+</ul>
+<p> Você também pode encadear métodos de sanitização como <code>trim()</code>, <code>escape()</code>, e <code>normalizeEmail()</code> para limpar e padronizar dados de entrada antes da validação. </p>
+</div>
+<h3>8. Criar as Views do Formulário de Contato</h3>
+<p> Crie a interface do usuário para o seu formulário de contato. Primeiro, crie a estrutura de diretórios: <code>src/views/forms/contact/</code>. Em seguida, crie <code>src/views/forms/contact/form.ejs</code> com o seguinte conteúdo: </p>
+<pre><code class="html">
+        &lt;%- include('../../partials/header') %&gt;
+        &lt;main&gt;
+            &lt;h1&gt;Contact Us&lt;/h1&gt;
+            &lt;p&gt;
+                Have questions or feedback? Send us a message using the form below and we'll get back to you as soon as possible.
+            &lt;/p&gt;
+            
+            &lt;form method="POST" action="/contact" class="contact-form"&gt;
+                &lt;div class="form-group"&gt;
+                    &lt;label for="subject"&gt;Subject&lt;/label&gt;
+                    &lt;input type="text" id="subject" name="subject" placeholder="What is this message about?"&gt;
+                &lt;/div&gt;
+                
+                &lt;div class="form-group"&gt;
+                    &lt;label for="message"&gt;Message&lt;/label&gt;
+                    &lt;textarea id="message" name="message" rows="6" placeholder="Please provide details about your question or feedback..."&gt;&lt;/textarea&gt;
+                &lt;/div&gt;
+                
+                &lt;button type="submit"&gt;Send Message&lt;/button&gt;
+            &lt;/form&gt;
+        &lt;/main&gt;
+        &lt;%- include('../../partials/footer') %&gt;
+    </code></pre>
+<p> A seguir, crie <code>src/views/forms/contact/responses.ejs</code> para exibir as mensagens enviadas: </p>
+<pre><code class="html">
+        &lt;%- include('../../partials/header') %&gt;
+        &lt;main&gt;
+            &lt;h1&gt;Contact Form Submissions&lt;/h1&gt;
+            
+            &lt;% if (contactForms &amp;&amp; contactForms.length &gt; 0) { %&gt;
+                &lt;div class="contact-responses"&gt;
+                    &lt;% contactForms.forEach(form =&gt; { %&gt;
+                        &lt;div class="response-item"&gt;
+                            &lt;h3 class="response-subject"&gt;&lt;%= form.subject %&gt;&lt;/h3&gt;
+                            &lt;p class="response-message"&gt;&lt;%= form.message %&gt;&lt;/p&gt;
+                            &lt;p class="response-date"&gt;Submitted: &lt;%= new Date(form.submitted).toLocaleDateString() %&gt;&lt;/p&gt;
+                        &lt;/div&gt;
+                    &lt;% }); %&gt;
+                &lt;/div&gt;
+            &lt;% } else { %&gt;
+                &lt;p class="no-responses"&gt;No contact form submissions yet.&lt;/p&gt;
+            &lt;% } %&gt;
+        &lt;/main&gt;
+        &lt;%- include('../../partials/footer') %&gt;
+    </code></pre>
+<div class="callout info">
+<div class="title">Estrutura e Nomenclatura do Formulário</div>
+<p> Observe como o formulário usa o método POST para enviar dados ao servidor no <code>/contact</code> endpoint. Os campos de entrada possuem <code>name</code> atributos que correspondem às chaves esperadas no corpo da requisição do controlador. Essa consistência de nomenclatura é crucial para que o servidor analise e processe corretamente os dados enviados. </p>
+<p> Como as views do formulário de contato estão dois níveis abaixo na estrutura de diretórios (<code>forms/contact/</code>), os caminhos relativos para as partials compartilhadas exigem subir dois níveis de diretório. O cabeçalho se torna <code>../../partials/header</code> e o rodapé se torna <code>../../partials/footer</code>. Os caminhos de inclusão devem sempre corresponder à localização real da sua view em relação ao diretório de partials. </p>
+</div>
+<p> Para facilitar o acesso ao seu formulário de contato durante o desenvolvimento e os testes, adicione links de navegação à sua partial de cabeçalho. Abra <code>src/views/partials/header.ejs</code> e localize sua lista de navegação existente. Adicione os seguintes itens de lista dentro da sua estrutura <code>&lt;nav&gt;&lt;ul&gt;</code>, ao lado dos seus outros links de navegação: </p>
+<pre><code class="html">
+        &lt;li&gt;&lt;a href="/contact"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/contact/responses"&gt;Contact Responses&lt;/a&gt;&lt;/li&gt;
+    </code></pre>
+<p> O primeiro link fornece acesso fácil ao formulário de contato para os usuários, enquanto o segundo permite que você visualize rapidamente os envios durante o desenvolvimento. Em uma aplicação em produção, você normalmente protegeria a página de respostas com autenticação para que apenas administradores pudessem ver os envios. Por enquanto, deixá-la acessível torna os testes e o desenvolvimento mais convenientes. </p>
+<h3>9. Testar a Funcionalidade do Formulário</h3>
+<p> Inicie o seu servidor e teste minuciosamente a funcionalidade do formulário de contato. Foque em verificar se a validação do lado do servidor e as operações do banco de dados funcionam corretamente. </p>
+<p> Primeiro, teste os envios bem-sucedidos: </p>
+<ol>
+<li> Visite <a href="http://127.0.0.1:3000/contact" rel="noopener noreferrer" target="_blank">http://127.0.0.1:3000/contact</a> para ver o formulário. </li>
+<li> Envie uma mensagem com os campos de assunto e mensagem devidamente preenchidos. </li>
+<li> Verifique no console do servidor se há a mensagem de sucesso. </li>
+<li> Visite <a href="http://127.0.0.1:3000/contact/responses" rel="noopener noreferrer" target="_blank">http://127.0.0.1:3000/contact/responses</a> para verificar se o seu envio aparece no banco de dados. </li>
+</ol>
+<p> A seguir, teste a validação do lado do servidor enviando intencionalmente formulários que violem as regras de validação. Acompanhe o console do servidor para ver as mensagens de erro de validação: </p>
+<ul>
+<li> Tente enviar com o campo de assunto vazio. </li>
+<li> Tente enviar com um assunto de apenas um caractere. </li>
+<li> Tente enviar com o campo de mensagem vazio. </li>
+<li> Tente enviar com uma mensagem menor que 10 caracteres. </li>
+</ul>
+<p> Em cada caso, o formulário deve redirecionar de volta para a página de contato sem salvar dados inválidos no banco de dados. Você deve ver erros de validação registrados no log do console do servidor que explicam por que o envio foi rejeitado. Verifique na página de respostas que os envios inválidos não aparecem no seu banco de dados. </p>
+<p> Verifique também se o seu CSS é carregado corretamente inspecionando o código-fonte da página ou usando as ferramentas de desenvolvedor do navegador para confirmar que <code>contact.css</code> é carregado nas páginas de contato, mas não em outras páginas, como a página inicial ou a página sobre. </p>
+<h3>10. Adicionar Validação do Lado do Cliente</h3>
+<p> Agora adicione atributos de validação do HTML5 para melhorar a experiência do usuário, capturando erros de validação antes que o formulário seja enviado. Atualize o seu arquivo <code>src/views/forms/contact/form.ejs</code> modificando os elementos de entrada para incluir atributos de validação: </p>
+<pre><code class="html">
+        &lt;input type="text" id="subject" name="subject" 
+            placeholder="What is this message about?" 
+            minlength="2" required&gt;
+    </code></pre>
+<pre><code class="html">
+        &lt;textarea id="message" name="message" rows="6" 
+            placeholder="Please provide details about your question or feedback..." 
+            minlength="10" required&gt;&lt;/textarea&gt;
+    </code></pre>
+<p> O atributo <code>required</code> impede o envio do formulário se o campo estiver vazio, e <code>minlength</code> aplica os mesmos requisitos de comprimento mínimo que a sua validação do lado do servidor. Teste a validação do lado do cliente tentando enviar o formulário com dados inválidos. O navegador deve impedir o envio e exibir mensagens de erro úteis antes que os dados do formulário sejam enviados ao servidor. </p>
+<p> Após adicionar a validação do lado do cliente, verifique se os dados válidos ainda são processados corretamente enviando um formulário devidamente preenchido e confirmando se ele aparece na sua página de respostas. A validação do lado do cliente melhora a experiência do usuário, mas a validação do lado do servidor permanece essencial para a segurança, pois a validação do lado do cliente pode ser ignorada. </p>
+<div class="callout info icon">
+<div class="title">A Abordagem de Validação em Duas Camadas</div>
+<p> Você pode se perguntar por que implementamos a validação duas vezes, tanto no cliente quanto no servidor. Cada camada serve a um propósito diferente e nenhuma pode substituir a outra. </p>
+<p>
+<strong>Validação do lado do cliente</strong> fornece feedback imediato aos usuários, capturando erros óbvios antes que eles esperem por uma resposta do servidor. Isso melhora a experiência do usuário e reduz requisições desnecessárias ao servidor. No entanto, a validação do lado do cliente pode ser burlada por usuários maliciosos ou desativada no navegador. </p>
+<p>
+<strong>Validação do lado do servidor</strong> fornece segurança e integridade dos dados. Como é executada em seu servidor, os usuários não podem burlá-la. Esta é a última linha de defesa da sua aplicação contra dados inválidos ou maliciosos. A validação do lado do servidor não é opcional, mesmo quando a validação do lado do cliente está presente. </p>
+<p> Em aplicações profissionais, você sempre implementa ambas as camadas. Pense na validação do lado do cliente como uma conveniência para usuários honestos, e na validação do lado do servidor como uma proteção contra todos os usuários, honestos ou não. </p>
+</div>
+</section>
+<section>
+<h2>Resumo dos Conceitos Principais</h2>
+<p> Esta Tarefa introduziu vários conceitos importantes para a construção de aplicações web interativas. Você aprendeu como lidar com requisições POST no Express, que são essenciais para processar envios de formulários e outras entradas do usuário. A biblioteca express-validator forneceu ferramentas de validação de nível profissional que garantem a integridade e a segurança dos dados. </p>
+<p> A arquitetura MVC que você implementou separa as responsabilidades de forma eficaz: os modelos lidam com operações do banco de dados, os controladores processam requisições e coordenam entre modelos e visualizações, e as visualizações lidam com a apresentação da interface do usuário. Essa organização torna seu código mais fácil de manter e de estender. </p>
+<p> Você também implementou a validação do lado do cliente e do lado do servidor, compreendendo que a validação do lado do cliente melhora a experiência do usuário, enquanto a validação do lado do servidor fornece segurança. A abordagem de arquivo SQL que você usou para a configuração do banco de dados segue as melhores práticas da indústria para gerenciar alterações no esquema do banco de dados e mantém o código do seu banco de dados organizado e de fácil manutenção. </p>
+<p> Mais importante ainda, você criou uma funcionalidade completa que aceita a entrada do usuário, a valida, a armazena em um banco de dados e fornece uma interface para visualizar os resultados. Esse padrão forma o fundamento para muitas funcionalidades de aplicações web, desde o registro de usuários até sistemas de gerenciamento de conteúdo. </p>
+</section>
+<section>
+<h2>Experimente e Estenda</h2>
+<p> Tente adicionar campos adicionais ao seu formulário de contato, como um campo de nome ou endereço de e-mail. Lembre-se de atualizar a estrutura da tabela do banco de dados no seu <code>practice.sql</code> arquivo usando <code>ALTER TABLE</code> instruções, adicionar regras de validação para os novos campos no seu arquivo de rotas, atualizar suas funções de modelo para lidar com as colunas adicionais e modificar suas visualizações para exibir as informações adicionais. </p>
+<p> Experimente diferentes regras de validação usando o express-validator. Tente adicionar validação de e-mail com <code>isEmail()</code>, validação de número de telefone com <code>matches()</code> e um padrão de expressão regular, ou regras de validação personalizadas que verificam requisitos de conteúdo específicos usando o <code>custom()</code> método. </p>
+<p> Considere adicionar um link de navegação simples para o seu formulário de contato na navegação principal do seu site, e adicione um link do formulário de contato para a página de respostas para que você possa visualizar facilmente os envios durante o desenvolvimento. Você também pode experimentar adicionar um botão de exclusão a cada resposta que permite remover os envios do banco de dados. </p>
+</section>
+</main>
+<footer class="full-width">
+<div class="columns two">
+<div>
+<span class="course-code">CSE 340</span>
+             • 
+            <span class="course-name">Desenvolvimento Web Back-End</span>
+</div>
+<div> © 2024–2026 BYU–Idaho <a href="https://www.byui.edu/computer-science-engineering/" rel="noopener noreferrer" target="_blank">Departamento de CSE</a>. Todos os direitos reservados. </div>
+</div>
+</footer>
+</div>
+</body>
+</html>

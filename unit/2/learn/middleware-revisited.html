@@ -1,0 +1,576 @@
+html
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../../assets/images/favicon/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../../assets/images/favicon/favicon.png" rel="icon" type="image/png"/>
+<link href="../../../assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<title>Middleware Revisitado</title>
+<meta content="BYU-I's CSE 340 course: Learn to build efficient, scalable server-side web applications with relational databases, validation strategies, and modern backend frameworks and design patterns." name="description"/>
+<script src="../../../assets/js/main.js" type="module"></script>
+<script src="../../../assets/js/theme-preference.js"></script>
+</head>
+<body>
+<div class="content-grid">
+<header class="full-width">
+<input aria-controls="site-primary-nav" class="visually-hidden" id="site-nav-toggle" type="checkbox"/>
+<label aria-hidden="true" class="site-nav-backdrop" for="site-nav-toggle"></label>
+<div class="inner">
+<div class="site-brand">
+<a aria-label="CSE 340 home" class="brand-link" href="../../../index.html">
+<img alt="BYU–Idaho" class="site-logo" decoding="async" src="../../../assets/images/logos/byui-logo.png"/>
+</a>
+</div>
+<div class="site-course-info">
+<a href="../../../index.html">
+<span class="course-code">CSE 340</span>
+                 • 
+                <span class="course-name">Desenvolvimento Back-end Web</span>
+</a>
+</div>
+<nav aria-label="Primary" class="site-primary-nav" id="site-primary-nav">
+<ul aria-label="Course units" class="nav-list">
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<div class="site-header-tools">
+<label class="site-nav-menu-btn" for="site-nav-toggle">
+<span class="visually-hidden">Menu</span>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-open" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"></path></svg>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-close" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"></path></svg>
+</label>
+<input aria-controls="site-search-panel" class="visually-hidden" id="site-search-toggle" type="checkbox"/>
+<label class="site-search-trigger" for="site-search-toggle">
+<span class="visually-hidden">Alternar pesquisa do site</span>
+<span aria-hidden="true">🔎</span>
+<span aria-hidden="true">✕</span>
+</label>
+<details class="theme-menu">
+<summary class="theme-control">
+<span class="visually-hidden">Esquema de cores</span>
+</summary>
+<div aria-label="Choose color scheme" class="theme-extra" role="group">
+<label class="theme-control theme-pick" data-theme-pick="light">
+<input name="theme-preference" type="radio" value="light"/>
+<span aria-hidden="true">☀️</span>
+<span class="visually-hidden">Claro</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="system">
+<input name="theme-preference" type="radio" value="system"/>
+<span aria-hidden="true">⚙️</span>
+<span class="visually-hidden">Padrão do sistema</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="dark">
+<input name="theme-preference" type="radio" value="dark"/>
+<span aria-hidden="true">🌖</span>
+<span class="visually-hidden">Escuro</span>
+</label>
+</div>
+</details>
+</div>
+</div>
+<div aria-label="Site search" id="site-search-panel" role="region">
+<form action="" method="get" role="search">
+<label class="visually-hidden" for="site-search-query">Pesquisar</label>
+<input autocomplete="off" enterkeyhint="search" id="site-search-query" name="query" placeholder="Search…" type="search"/>
+</form>
+<div aria-live="polite" class="site-search-results" id="site-search-results"></div>
+</div>
+</header>
+<main>
+<nav aria-label="Course units" class="course-breadcrumbs unit">
+<ul>
+<li>
+<a aria-label="Home" href="../../../index.html">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z">
+</path></svg>
+</a>
+</li>
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<section>
+<h1>Middleware Revisitado: Entendendo o Coração do Express</h1>
+<p> À medida que suas aplicações Express se tornam mais complexas, você enfrenta desafios recorrentes: Como autenticar usuários em várias rotas? Como registrar logs de requisições de forma consistente? Como validar dados de entrada sem repetir o mesmo código em todos os lugares? Como tratar erros de forma elegante em toda a sua aplicação? </p>
+<p> Esses desafios têm uma solução comum no Express: middleware. Você já usou middleware sem perceber toda vez que chamou <code>app.use(express.static())</code> ou criou manipuladores de erros. Agora é hora de entender o middleware em profundidade, aprendendo como ele funciona e como criar suas próprias funções de middleware que tornam suas aplicações mais organizadas, fáceis de manter e poderosas. </p>
+</section>
+<section>
+<h2>O Problema que o Middleware Resolve</h2>
+<p> Imagine construir um site de e-commerce onde certas rotas exigem autenticação de usuário, outras precisam de privilégios de administrador, algumas precisam de log de requisição e todas precisam de tratamento de erros. Sem o middleware, você acabaria copiando o mesmo código de autenticação, código de log e código de tratamento de erros em cada manipulador de rota. Seu código se tornaria repetitivo, difícil de manter e propenso a inconsistências. </p>
+<p> O middleware resolve isso criando um sistema de pipeline onde cada requisição passa por uma série de funções antes de atingir seu destino final. Cada função no pipeline pode realizar tarefas específicas, como verificar a autenticação, registrar logs de requisições, validar dados ou tratar erros. Isso cria uma separação limpa de responsabilidades, onde cada parte da funcionalidade tem sua própria função dedicada. </p>
+</section>
+<section>
+<h2>O que é Exatamente Middleware?</h2>
+<p> O middleware no Express é qualquer função que tem acesso à requisição (<code>req</code>) e resposta (<code>res</code>) objetos, além da capacidade de passar o controle para a próxima função no pipeline. Pense no middleware como pontos de verificação pelos quais toda requisição deve passar em sua jornada desde a chegada ao seu servidor até o envio de uma resposta de volta ao usuário. </p>
+<p> Cada função de middleware pode examinar a requisição, modificá-la, realizar operações como consultas ao banco de dados ou chamadas de API externas e, em seguida, enviar uma resposta imediatamente ou passar o controle para a próxima função de middleware. Isso cria um sistema flexível e modular onde você pode compor comportamentos complexos da aplicação a partir de funções simples e focadas. </p>
+<div class="callout info icon">
+<div class="title">Middleware como uma Linha de Montagem de Fábrica</div>
+<p> Pense no middleware como estações em uma linha de montagem. Cada estação (função de middleware) realiza uma tarefa específica no produto (requisição HTTP) à medida que ele avança na linha. Algumas estações podem adicionar componentes, outras podem inspecionar a qualidade e a estação final empacota o produto acabado (envia a resposta). Cada estação pode continuar o processo ou interrompê-lo se algo estiver errado. </p>
+</div>
+</section>
+<section>
+<h2>Três Tipos de Funções de Middleware</h2>
+<p> O Express reconhece diferentes tipos de middleware com base em suas assinaturas de função, permitindo lidar com cada tipo adequadamente no ciclo de requisição-resposta: </p>
+<h3>Middleware Genérico</h3>
+<p>
+<strong>Assinatura:</strong> <code>(req, res, next) =&gt; { ... }</code>
+</p>
+<p> Este é o tipo mais comum de middleware, usado para qualquer lógica que precise de acesso aos objetos de requisição e resposta, mas que não seja o manipulador final. O middleware genérico normalmente realiza operações como autenticação, log, validação de dados ou modificação de requisições, e então chama <code>next()</code> para continuar o pipeline. </p>
+<h3>Manipuladores de Rota</h3>
+<p>
+<strong>Assinatura:</strong> <code>(req, res) =&gt; { ... }</code>
+</p>
+<p> Os manipuladores de rota são o destino final no pipeline de middleware para requisições bem-sucedidas. Eles normalmente enviam a resposta usando métodos como <code>res.send()</code>, <code>res.render()</code>, ou <code>res.json()</code>. Como eles encerram o ciclo de requisição-resposta, eles não precisam de acesso à função <code>next</code>. </p>
+<h3>Middleware de Tratamento de Erros</h3>
+<p>
+<strong>Assinatura:</strong> <code>(err, req, res, next) =&gt; { ... }</code>
+</p>
+<p> O middleware de tratamento de erros tem quatro parâmetros em vez de três, com o objeto de erro como primeiro parâmetro. O Express usa essa assinatura para identificar manipuladores de erro e só os invoca quando ocorre um erro. Essas funções fornecem um processamento de erros centralizado para toda a sua aplicação. </p>
+<pre><code class="javascript">
+        // Generic middleware - logs all requests
+        app.use((req, res, next) =&gt; {
+            console.log(`${req.method} ${req.url}`);
+            next(); // Continue to next middleware
+        });
+        
+        // Route handler - ends the request-response cycle
+        app.get('/home', (req, res) =&gt; {
+            res.send('Welcome home!');
+        });
+        
+        // Error handler - processes errors
+        app.use((err, req, res, next) =&gt; {
+            console.error(err.message);
+            res.status(500).send('Something went wrong!');
+        });
+    </code></pre>
+</section>
+<section>
+<h2>O Papel Crítico de <code>next()</code></h2>
+<p> A <code>next()</code> função é o que conecta os middlewares, criando o pipeline que processa requisições. Quando uma função de middleware chama <code>next()</code>, ela informa ao Express para continuar para o próximo middleware ou manipulador de rota na cadeia. Se <code>next()</code> nunca for chamada, o ciclo de requisição-resposta para prematuramente, deixando o cliente esperando indefinidamente. </p>
+<p> A <code>next()</code> função tem comportamentos diferentes dependendo do que você passa para ela: </p>
+<ul>
+<li>
+<strong><code>next()</code></strong> – Continuar para o próximo middleware que não seja de erro </li>
+<li>
+<strong><code>next(err)</code></strong> – Ignorar todos os middlewares restantes que não sejam de erro e pular para o primeiro manipulador de erro </li>
+<li>
+<strong><code>next('route')</code></strong> – Ignorar os middlewares restantes para a rota atual e tentar a próxima rota </li>
+</ul>
+<pre><code class="javascript">
+        // Middleware that conditionally continues or stops
+        app.use((req, res, next) =&gt; {
+            if (!req.headers['authorization']) {
+                // Create error and skip to error handler
+                const err = new Error('Authorization header required');
+                err.status = 401;
+                return next(err);
+            }
+            
+            // All good, continue to next middleware
+            next();
+        });
+        
+        // This only runs if authorization header exists
+        app.use((req, res, next) =&gt; {
+            console.log('User is authenticated');
+            next();
+        });
+        
+        // Error handler catches authentication failures
+        app.use((err, req, res, next) =&gt; {
+            res.status(err.status || 500).send(err.message);
+        });
+    </code></pre>
+<div class="callout warn icon">
+<div class="title">Erro Comum de Middleware</div>
+<p> Esquecer de chamar <code>next()</code> é um dos erros de middleware mais comuns. Se você não chamar <code>next()</code> e não enviar uma resposta, o cliente ficará travado esperando por uma resposta que nunca chega. Certifique-se sempre de que seu middleware chame <code>next()</code> ou envie uma resposta. </p>
+</div>
+</section>
+<section>
+<h2>Compartilhando Dados Entre Middlewares: <code>req</code> e <code>res.locals</code></h2>
+<p> Os <code>req</code> e <code>res</code> objetos são compartilhados entre todas as funções de middleware no pipeline, tornando-os perfeitos para passar dados entre middlewares. Embora você possa anexar propriedades diretamente ao objeto <code>req</code>, o Express fornece <code>res.locals</code> como uma abordagem mais organizada e convencional para armazenar dados que devem estar disponíveis para outros middlewares e modelos. </p>
+<pre><code class="javascript">
+        // Middleware to determine user role
+        app.use((req, res, next) =&gt; {
+            // Set user role based on query parameter or default to guest
+            res.locals.userRole = req.query.role || 'guest';
+            res.locals.timestamp = new Date().toISOString();
+            next();
+        });
+        
+        // Middleware that uses the role data
+        app.use((req, res, next) =&gt; {
+            console.log(`User role: ${res.locals.userRole}`);
+            next();
+        });
+        
+        // Route handler that uses the data
+        app.get('/dashboard', (req, res) =&gt; {
+            res.send(`
+                &lt;h1&gt;Dashboard&lt;/h1&gt;
+                &lt;p&gt;Role: ${res.locals.userRole}&lt;/p&gt;
+                &lt;p&gt;Time: ${res.locals.timestamp}&lt;/p&gt;
+            `);
+        });
+    </code></pre>
+<div class="callout info icon">
+<div class="title">Por que o <code>res.locals</code> é Especial</div>
+<p> Os dados armazenados em <code>res.locals</code> são automaticamente acessíveis por motores de modelos como o EJS sem a necessidade de passá-los explicitamente na chamada de <code>res.render()</code>. Isso o torna perfeito para dados de que múltiplos modelos precisam, como informações do usuário ou configuração do site. No entanto, esteja ciente de que todos os modelos podem acessar esses dados, portanto, evite armazenar informações confidenciais neles. </p>
+</div>
+</section>
+<section>
+<h2>Middleware Global: Afetando Cada Requisição</h2>
+<p> O middleware global se aplica a cada requisição de entrada e é normalmente usado para funcionalidades em todo o aplicativo, como registro de log, cabeçalhos de segurança ou configuração de dados comuns. O middleware global deve ser definido logo no início da sua aplicação, antes da lógica específica da rota, para que possa afetar todas as requisições subsequentes. </p>
+<pre><code class="javascript">
+        // Global request logging
+        app.use((req, res, next) =&gt; {
+            const timestamp = new Date().toISOString();
+            console.log(`[${timestamp}] ${req.method} ${req.url}`);
+            next();
+        });
+        
+        // Global security headers
+        app.use((req, res, next) =&gt; {
+            res.setHeader('X-Frame-Options', 'DENY');
+            res.setHeader('X-Content-Type-Options', 'nosniff');
+            next();
+        });
+        
+        // Global user context setup
+        app.use((req, res, next) =&gt; {
+            // Set default user context
+            res.locals.isLoggedIn = false;
+            res.locals.userName = 'Guest';
+            // In a real app, you'd check authentication here
+            next();
+        });
+        
+        // All routes defined after this point will have these middleware applied
+        app.get('/', (req, res) =&gt; {
+            res.send(`Hello, ${res.locals.userName}!`);
+        });
+    </code></pre>
+</section>
+<section>
+<h2>Middleware Específico de Rota: Aplicação Seletiva</h2>
+<p> O middleware específico de rota é executado apenas para rotas específicas, permitindo aplicar a lógica de forma seletiva em vez de global. Isso é particularmente útil para funcionalidades como verificações de autenticação, validação de entrada ou registro de log especializado que se aplica apenas a determinados endpoints. </p>
+<p> Você pode aplicar middleware a rotas específicas passando funções de middleware como argumentos para métodos de rota antes do manipulador de rota final. O Express as executará em ordem, e cada uma deve chamar <code>next()</code> para continuar para a próxima função. </p>
+<pre><code class="javascript">
+        // Define reusable middleware functions
+        const logAccess = (req, res, next) =&gt; {
+            console.log(`Access attempt to ${req.url}`);
+            next();
+        };
+        
+        const requireAdmin = (req, res, next) =&gt; {
+            // In a real app, you'd check actual authentication
+            if (req.headers.role !== 'admin') {
+                return res.status(403).send('Admin access required');
+            }
+            next();
+        };
+        
+        const requireAuth = (req, res, next) =&gt; {
+            if (!req.headers.authorization) {
+                return res.status(401).send('Authentication required');
+            }
+            next();
+        };
+        
+        // Public route - no middleware needed
+        app.get('/', (req, res) =&gt; {
+            res.send('Welcome to our site!');
+        });
+        
+        // Protected route - requires authentication
+        app.get('/profile', requireAuth, (req, res) =&gt; {
+            res.send('Your profile information');
+        });
+        
+        // Admin route - requires both logging and admin check
+        app.get('/admin', logAccess, requireAdmin, (req, res) =&gt; {
+            res.send('Admin dashboard');
+        });
+        
+        // Multiple middleware functions in sequence
+        app.get('/secure-admin', logAccess, requireAuth, requireAdmin, (req, res) =&gt; {
+            res.send('Super secure admin area');
+        });
+    </code></pre>
+<div class="callout success icon">
+<div class="title">A Magia da Composição de Middleware</div>
+<p> Você pode passar quantas funções de middleware quiser para uma rota, e o Express as executará em ordem. Cada uma atua como um ponto de verificação que deve aprovar a requisição antes que ela continue. Isso permite compor lógicas complexas de autorização e validação a partir de funções simples e reutilizáveis. Pense nisso como construir com blocos de LEGO – cada middleware é um bloco simples que você pode combinar para criar estruturas complexas. </p>
+</div>
+</section>
+<section>
+<h2>Middleware de Tratamento de Erros: Processamento Centralizado de Erros</h2>
+<p> O middleware de tratamento de erros fornece um local centralizado para processar todos os erros em sua aplicação. Essas funções especiais de middleware possuem quatro parâmetros e só são invocadas quando ocorre um erro, seja por meio de chamadas de <code>next(err)</code> ou exceções não capturadas em código síncrono. </p>
+<pre><code class="javascript">
+        // Regular middleware that might generate errors
+        app.get('/risky-operation', (req, res, next) =&gt; {
+            try {
+                // Simulate an operation that might fail
+                if (Math.random() &lt; 0.5) {
+                    throw new Error('Random failure occurred');
+                }
+                res.send('Operation succeeded!');
+            } catch (error) {
+                // Forward error to error handler
+                next(error);
+            }
+        });
+        
+        // Error-handling middleware (must come after regular routes)
+        app.use((err, req, res, next) =&gt; {
+            // Log error details for developers
+            console.error('Error occurred:', err.message);
+            console.error('Stack trace:', err.stack);
+            
+            // Send appropriate response to user
+            const status = err.status || 500;
+            const message = status === 500 
+                ? 'Internal server error' 
+                : err.message;
+                
+            res.status(status).send(message);
+        });
+    </code></pre>
+</section>
+<section>
+<h2>Entendendo o Fluxo do Middleware: A Ordem Importa</h2>
+<p> A ordem em que você define o middleware é crucial porque o Express os executa sequencialmente. O middleware definido anteriormente em seu código é executado antes do middleware definido posteriormente. Isso significa que o middleware global deve vir primeiro, seguido pelo middleware específico de rota, depois as rotas e, finalmente, o middleware de tratamento de erros. </p>
+<pre><code class="javascript">
+        // 1. Global middleware (runs for all requests)
+        app.use((req, res, next) =&gt; {
+            console.log('Global middleware executed');
+            next();
+        });
+        
+        // 2. Route with specific middleware
+        app.get('/example', 
+            (req, res, next) =&gt; {
+                console.log('Route-specific middleware executed');
+                next();
+            },
+            (req, res) =&gt; {
+                console.log('Route handler executed');
+                res.send('Response sent');
+            }
+        );
+        
+        // 3. Catch-all for 404 errors (after all real routes)
+        app.use((req, res, next) =&gt; {
+            const err = new Error('Page not found');
+            err.status = 404;
+            next(err);
+        });
+        
+        // 4. Error handler (must come last)
+        app.use((err, req, res, next) =&gt; {
+            console.log('Error handler executed');
+            res.status(err.status || 500).send(err.message);
+        });
+    </code></pre>
+<p> Quando uma requisição chega a <code>/example</code>, você verá esta saída no console: </p>
+<pre><code>
+        Global middleware executed
+        Route-specific middleware executed  
+        Route handler executed
+    </code></pre>
+</section>
+<section>
+<h2>Melhores Práticas de Middleware</h2>
+<p> Seguir padrões estabelecidos torna seu middleware mais fácil de manter e de entender: </p>
+<ul>
+<li>
+<strong>Use nomes descritivos</strong>: Nomeie suas funções de middleware de forma clara para indicar seu propósito (ex.: <code>authenticateUser</code>, <code>logRequest</code>, <code>validateInput</code>).
+        </li>
+<li>
+<strong>Mantenha o middleware focado</strong>: Cada função de middleware deve ter uma responsabilidade única e clara, em vez de tentar fazer várias coisas. </li>
+<li>
+<strong>Use <code>res.locals</code> para dados compartilhados</strong>: Armazene dados de que múltiplos middlewares ou modelos precisam em <code>res.locals</code> em vez de modificar <code>req</code> diretamente. </li>
+<li>
+<strong>Ordene os middlewares com atenção</strong>: Coloque o middleware global primeiro, o middleware específico de rota antes das rotas e os manipuladores de erro por último. </li>
+<li>
+<strong>Sempre controle o fluxo</strong>: Todo middleware deve chamar <code>next()</code>, enviar uma resposta ou encaminhar um erro. Nunca deixe requisições pendentes. </li>
+<li>
+<strong>Torne o middleware reutilizável</strong>: Escreva middlewares que possam ser aplicados a múltiplas rotas em vez de duplicar a lógica. </li>
+<li>
+<strong>Trate erros com elegância</strong>: Use blocos try-catch para operações que possam falhar e encaminhe erros para manipuladores de erro usando <code>next(err)</code>.
+        </li>
+</ul>
+</section>
+<section>
+<h2>Exemplo Prático de Middleware</h2>
+<p> Aqui está um exemplo completo mostrando como partes do middleware funcionam juntas em uma aplicação realista: </p>
+<pre><code class="javascript">
+        import express from 'express';
+        const app = express();
+        
+        // Global logging middleware
+        app.use((req, res, next) =&gt; {
+            const timestamp = new Date().toISOString();
+            console.log(`[${timestamp}] ${req.method} ${req.url}`);
+            next();
+        });
+        
+        // Global user context setup
+        app.use((req, res, next) =&gt; {
+            res.locals.currentYear = new Date().getFullYear();
+            res.locals.siteName = 'My Awesome App';
+            next();
+        });
+        
+        // Authentication middleware
+        const authenticate = (req, res, next) =&gt; {
+            const authHeader = req.headers.authorization;
+            if (!authHeader) {
+                const err = new Error('Authentication required');
+                err.status = 401;
+                return next(err);
+            }
+            
+            // In a real app, you'd verify the token
+            res.locals.user = { name: 'John Doe', role: 'user' };
+            next();
+        };
+        
+        // Admin check middleware
+        const requireAdmin = (req, res, next) =&gt; {
+            if (res.locals.user.role !== 'admin') {
+                const err = new Error('Admin access required');
+                err.status = 403;
+                return next(err);
+            }
+            next();
+        };
+        
+        // Public routes
+        app.get('/', (req, res) =&gt; {
+            res.send(`Welcome to ${res.locals.siteName}!`);
+        });
+        
+        // Protected routes
+        app.get('/dashboard', authenticate, (req, res) =&gt; {
+            res.send(`Hello, ${res.locals.user.name}!`);
+        });
+        
+        // Admin routes
+        app.get('/admin', authenticate, requireAdmin, (req, res) =&gt; {
+            res.send('Admin dashboard');
+        });
+        
+        // 404 handler
+        app.use((req, res, next) =&gt; {
+            const err = new Error('Page not found');
+            err.status = 404;
+            next(err);
+        });
+        
+        // Error handler
+        app.use((err, req, res, next) =&gt; {
+            console.error('Error:', err.message);
+            res.status(err.status || 500).send(err.message);
+        });
+        
+        app.listen(3000, () =&gt; {
+            console.log('Server running on port 3000');
+        });
+    </code></pre>
+</section>
+<section>
+<h2>Resumo dos Principais Conceitos</h2>
+<p> O middleware é o fundamento que torna as aplicações Express modulares, de fácil manutenção e poderosas. Ao entender como as funções de middleware funcionam juntas para criar um pipeline de processamento de requisições, você pode construir aplicações sofisticadas e organizadas. </p>
+<p> As principais ideias que você aprendeu servirá ao longo de sua jornada de desenvolvimento com Express: funções de middleware processam requisições em sequência, a <code>next()</code> função controla o fluxo através do pipeline, <code>res.locals</code> fornece uma maneira limpa de compartilhar dados entre middlewares, e a ordenação adequada garante que sua aplicação se comporte de forma previsível. </p>
+<p> Com esse profundo entendimento sobre middleware, você pode criar funções reutilizáveis que lidam com autenticação, registros de log, validação, processamento de erros e quaisquer outras preocupações transversais de que suas aplicações precisem. Essa abordagem modular torna seu código mais fácil de testar, de manter e de compreender à medida que suas aplicações aumentam em complexidade. </p>
+</section>
+<section>
+<h2>Avalie Seu Conhecimento</h2>
+<div class="callout message ai icon">
+<p> Pratique os conceitos de middleware criando um sistema simples que utiliza middleware global e middleware específico de rota juntos. Este desafio foca nos conceitos principais que você acabou de aprender: assinaturas de middleware, o uso de <code>next()</code>, compartilhamento de dados com <code>res.locals</code>, e aplicação de middleware de diferentes maneiras. </p>
+</div>
+<template> Um estudante acabou de aprender sobre middleware no Express. Ele aprendeu a criar funções de middleware com parâmetros (req, res, next), usar next() para continuar para o próximo middleware, compartilhar dados entre middlewares usando res.locals, aplicar middleware globalmente com app.use() e aplicar middleware a rotas específicas passando funções de middleware como argumentos antes do manipulador de rota.\n
+        Ele está trabalhando em um exercício simples de middleware que combina middleware global e específico de rota. Revise o código dele e dê um feedback direto. Diga o que ele fez bem e onde precisa melhorar. Verifique se usou a assinatura de middleware correta com três parâmetros, se chamou next() para continuar o pipeline, se usou res.locals para armazenar e acessar dados compartilhados e se aplicou o middleware nos lugares certos. Fique atento a erros comuns como esquecer de chamar next(), usar o número incorreto de parâmetros ou não acessar os dados compartilhados corretamente. Oriente-o de volta aos conceitos de middleware em vez de fornecer soluções completas. </template>
+<pre class="hljsl editor"><code class="js locked">
+        /**
+         * Create two middleware functions and one route:
+         * 
+         * 1. Global middleware that adds the current time to res.locals.timestamp
+         *    Hint: Use new Date().toISOString() for the timestamp
+         * 
+         * 2. Route-specific middleware that adds a visitor count to res.locals.visitCount
+         *    Hint: Just use a simple number like 42 for this exercise
+         *    Remember: middleware functions need (req, res, next) and must call next()
+         * 
+         * 3. A route at '/welcome' that uses the route-specific middleware and 
+         *    displays both the timestamp and visit count in the response
+         *    Hint: Pass the middleware function as an argument before the route handler
+         * 
+         * The response should show both pieces of data that were added by the middleware
+         */
+
+        // Global middleware - runs for all requests
+        app.use((req, res, next) =&gt; {
+            // Add timestamp to res.locals
+            
+            // Don't forget to call next()!
+            
+        });
+
+        // Route-specific middleware function
+        const addVisitCount = (req, res, next) =&gt; {
+            // Add visitCount to res.locals (use any number like 42)
+            
+            // Don't forget to call next()!
+            
+        };
+
+        // Route that uses the route-specific middleware
+        // Pattern: app.get('/path', middlewareFunction, (req, res) =&gt; { ... })
+        app.get('/welcome', ..., (req, res) =&gt; {
+            // Send response showing both res.locals.timestamp and res.locals.visitCount
+            ...
+        });
+    </code></pre>
+</section>
+<section>
+<h2>Explore Mais</h2>
+<p> Para aprofundar seu entendimento sobre middleware, tente criar suas próprias funções de middleware. Comece com ideias simples e avance gradualmente para funcionalidades mais complexas: </p>
+<ul>
+<li> Crie um middleware de tempo de requisição que registra logs indicando quanto tempo cada requisição leva para ser processada </li>
+<li> Construa um middleware simples de limitação de taxa (rate limiting) que rastreia requisições por endereço IP </li>
+<li> Escreva um middleware de validação de tipo de conteúdo que garanta que requisições POST contenham o formato de dados esperado </li>
+<li> Desenvolva um middleware personalizado de autenticação que verifique cabeçalhos ou parâmetros de consulta específicos </li>
+</ul>
+<p> Estes exercícios ajudarão você a entender como funcionam os fluxos de middleware e como diferentes funções de middleware podem cooperar para criar comportamentos de aplicação sofisticados. A <a href="https://expressjs.com/en/guide/writing-middleware.html" rel="noopener noreferrer" target="_blank">documentação do Express sobre como escrever middlewares</a> fornece exemplos adicionais e padrões avançados para explorar. </p>
+</section>
+</main>
+<footer class="full-width">
+<div class="columns two">
+<div>
+<span class="course-code">CSE 340</span>
+             • 
+            <span class="course-name">Desenvolvimento Web Back-end</span>
+</div>
+<div> © 2024–2026 BYU–Idaho <a href="https://www.byui.edu/computer-science-engineering/" rel="noopener noreferrer" target="_blank">Departamento de CSE</a>. Todos os direitos reservados. </div>
+</div>
+</footer>
+</div>
+</body>
+</html>

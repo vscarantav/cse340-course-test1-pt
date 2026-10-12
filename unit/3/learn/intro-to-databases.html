@@ -1,0 +1,454 @@
+html
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../../assets/images/favicon/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../../assets/images/favicon/favicon.png" rel="icon" type="image/png"/>
+<link href="../../../assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<title>Introdução aos Bancos de Dados Relacionais</title>
+<meta content="Learn the fundamentals of relational databases, SQL, and how they integrate with web applications using Express and the MVC architecture." name="description"/>
+<script src="../../../assets/js/main.js" type="module"></script>
+<script src="../../../assets/js/theme-preference.js"></script>
+</head>
+<body>
+<div class="content-grid">
+<header class="full-width">
+<input aria-controls="site-primary-nav" class="visually-hidden" id="site-nav-toggle" type="checkbox"/>
+<label aria-hidden="true" class="site-nav-backdrop" for="site-nav-toggle"></label>
+<div class="inner">
+<div class="site-brand">
+<a aria-label="CSE 340 home" class="brand-link" href="../../../index.html">
+<img alt="BYU–Idaho" class="site-logo" decoding="async" src="../../../assets/images/logos/byui-logo.png"/>
+</a>
+</div>
+<div class="site-course-info">
+<a href="../../../index.html">
+<span class="course-code">CSE 340</span>
+                 • 
+                <span class="course-name">Desenvolvimento Web Back-end</span>
+</a>
+</div>
+<nav aria-label="Primary" class="site-primary-nav" id="site-primary-nav">
+<ul aria-label="Course units" class="nav-list">
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<div class="site-header-tools">
+<label class="site-nav-menu-btn" for="site-nav-toggle">
+<span class="visually-hidden">Menu</span>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-open" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"></path></svg>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-close" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"></path></svg>
+</label>
+<input aria-controls="site-search-panel" class="visually-hidden" id="site-search-toggle" type="checkbox"/>
+<label class="site-search-trigger" for="site-search-toggle">
+<span class="visually-hidden">Alternar pesquisa do site</span>
+<span aria-hidden="true">🔎</span>
+<span aria-hidden="true">✕</span>
+</label>
+<details class="theme-menu">
+<summary class="theme-control">
+<span class="visually-hidden">Esquema de cores</span>
+</summary>
+<div aria-label="Choose color scheme" class="theme-extra" role="group">
+<label class="theme-control theme-pick" data-theme-pick="light">
+<input name="theme-preference" type="radio" value="light"/>
+<span aria-hidden="true">☀️</span>
+<span class="visually-hidden">Claro</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="system">
+<input name="theme-preference" type="radio" value="system"/>
+<span aria-hidden="true">⚙️</span>
+<span class="visually-hidden">Padrão do sistema</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="dark">
+<input name="theme-preference" type="radio" value="dark"/>
+<span aria-hidden="true">🌖</span>
+<span class="visually-hidden">Escuro</span>
+</label>
+</div>
+</details>
+</div>
+</div>
+<div aria-label="Site search" id="site-search-panel" role="region">
+<form action="" method="get" role="search">
+<label class="visually-hidden" for="site-search-query">Pesquisar</label>
+<input autocomplete="off" enterkeyhint="search" id="site-search-query" name="query" placeholder="Search…" type="search"/>
+</form>
+<div aria-live="polite" class="site-search-results" id="site-search-results"></div>
+</div>
+</header>
+<main>
+<nav aria-label="Course units" class="course-breadcrumbs unit">
+<ul>
+<li>
+<a aria-label="Home" href="../../../index.html">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z">
+</path></svg>
+</a>
+</li>
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<section>
+<h1>Introdução aos Bancos de Dados Relacionais</h1>
+<p> À medida que você continua a construir aplicações web com Express e a arquitetura MVC, logo encontrará uma limitação fundamental: a persistência de dados. Embora suas aplicações possam processar informações e renderizar visualizações dinâmicas, elas carecem de uma maneira confiável de armazenar e recuperar dados além da sessão atual do servidor. É aqui que entram os bancos de dados. </p>
+<p> Neste recurso de aprendizagem, você aprenderá sobre bancos de dados relacionais, entenderá por que eles são essenciais para aplicações web e explorará as diferenças entre SQL, MySQL e PostgreSQL. Este fundamento o preparará para integrar a funcionalidade do banco de dados em suas aplicações Express. </p>
+</section>
+<section>
+<h2>O que é um Banco de Dados?</h2>
+<p> Um banco de dados é uma coleção organizada de informações ou dados estruturados, normalmente armazenados eletronicamente em um sistema de computador. Os bancos de dados são projetados para armazenar, recuperar, atualizar e gerenciar dados de forma eficiente. Eles fornecem uma maneira de persistir informações além da vida de uma única execução de programa. </p>
+<p> Pense em um banco de dados como um sistema de arquivo digital onde as informações são armazenadas de maneira organizada, tornando fácil encontrar partes específicas de dados quando necessário. Essa organização permite operações eficientes com dados, mesmo ao lidar com grandes volumes de informações. </p>
+<h3>Por que precisamos de Bancos de Dados?</h3>
+<p> No contexto do desenvolvimento web, os bancos de dados resolvem vários problemas críticos: </p>
+<ul>
+<li>
+<strong>Persistência de Dados</strong>: As informações permanecem disponíveis mesmo após reinicializações do servidor ou falhas na aplicação </li>
+<li>
+<strong>Integridade dos Dados</strong>: Regras podem ser aplicadas para garantir que os dados permanecem precisos e consistentes </li>
+<li>
+<strong>Recuperação Eficiente</strong>: Consultas complexas podem ser realizadas para encontrar exatamente os dados de que você precisa </li>
+<li>
+<strong>Acesso Concorrente</strong>: Múltiplos usuários podem acessar e modificar dados simultaneamente </li>
+<li>
+<strong>Escalabilidade</strong>: Bancos de dados bem projetados podem lidar com volumes crescentes de dados e usuários </li>
+</ul>
+<div class="callout info icon">
+<p> Sem um banco de dados, suas aplicações Express perderiam todos os seus dados sempre que o servidor fosse reiniciado. Contas de usuário, estado da aplicação e quaisquer informações inseridas pelos usuários desapareceriam, limitando severamente o que suas aplicações podem fazer. Arquivos e imagens <strong>não</strong> estão armazenados no banco de dados, mas podem ser referenciados e gerenciados por meio de registros do banco de dados. Abordaremos o armazenamento de arquivos em um momento posterior do curso. </p>
+</div>
+</section>
+<section>
+<h2>Bancos de Dados Relacionais</h2>
+<p> Bancos de dados relacionais organizam dados em tabelas com linhas e colunas, semelhante a planilhas. Cada tabela representa um tipo específico de entidade (como usuários, produtos ou pedidos), e as linhas representam instâncias dessa entidade. As colunas definem os atributos ou propriedades que cada instância possui. </p>
+<p> O que torna os bancos de dados relacionais poderosos é a sua capacidade de estabelecer relacionamentos entre diferentes tabelas. Isso permite modelar cenários complexos do mundo real onde diferentes entidades interagem entre si. </p>
+<h3>Conceitos-Chave em Bancos de Dados Relacionais</h3>
+<p> Vamos explorar alguns conceitos fundamentais que formam o fundamento dos bancos de dados relacionais: </p>
+<h3>Tabelas, Linhas e Colunas</h3>
+<p> Um banco de dados relacional armazena dados em tabelas (também chamadas de relações). Cada tabela tem um nome e consiste em linhas e colunas: </p>
+<ul>
+<li>
+<strong>Tabelas</strong>: Representam entidades ou conceitos (ex.: usuários, produtos, pedidos) </li>
+<li>
+<strong>Linhas</strong>: Representam registros ou instâncias individuais (ex.: um usuário específico) </li>
+<li>
+<strong>Colunas</strong>: Representam atributos ou propriedades (ex.: user_id, username, email) </li>
+</ul>
+<p> Aqui está um exemplo simples de como uma tabela "users" pode parecer: </p>
+<pre><code>
+        | user_id | username  | email               | join_date  |
+        |---------|-----------|---------------------|------------|
+        | 1       | johndoe   | john@example.com    | 2023-01-15 |
+        | 2       | janedoe   | jane@example.com    | 2023-02-20 |
+        | 3       | bobsmith  | bob@example.com     | 2023-03-05 |
+    </code></pre>
+<h3>Chaves Primárias</h3>
+<p> Uma chave primária é uma coluna (ou uma combinação de colunas) que identifica de forma única cada linha em uma tabela. No exemplo acima, a coluna "user_id" serve como a chave primária, garantindo que cada registro de usuário possa ser identificado de forma única. </p>
+<p> As chaves primárias são essenciais porque elas: </p>
+<ul>
+<li>Garantem que cada registro seja único dentro de uma tabela</li>
+<li>Fornecem uma maneira de referenciar registros específicos</li>
+<li>Permitem relacionamentos entre tabelas diferentes</li>
+</ul>
+<h3>Chaves Estrangeiras e Relacionamentos</h3>
+<p> Uma chave estrangeira é uma coluna em uma tabela que se refere à chave primária de outra tabela. Isso cria um relacionamento entre as duas tabelas, permitindo modelar conexões entre diferentes tipos de dados. Por exemplo, se tivermos uma tabela "posts" em uma aplicação de blog, podemos incluir uma coluna "user_id" que referencia o "user_id" na tabela "users": </p>
+<pre><code>
+        | post_id | title           | content                   | user_id |
+        |---------|-----------------|---------------------------|---------|
+        | 1       | First Post      | This is my first post!    | 1       |
+        | 2       | Hello World     | Hello to everyone!        | 2       |
+        | 3       | Database Intro  | Databases are important...| 1       |
+    </code></pre>
+<p> Neste exemplo, a coluna "user_id" na tabela "posts" é uma chave estrangeira que referencia a chave primária "user_id" na tabela "users". Esse relacionamento vincula cada postagem ao usuário que a criou, permitindo recuperar facilmente todas as postagens de um usuário específico ou identificar o autor de qualquer postagem. Ao projetar tabelas, é comum definir a chave estrangeira imediatamente após a chave primária na definição da tabela ou ao final da lista de colunas. Isso ajuda a esclarecer a estrutura e os relacionamentos dentro do esquema de banco de dados. </p>
+<div class="callout info icon">
+<div class="title">Relacionamentos na Prática</div>
+<p> Ao modelar dados para uma aplicação web, você frequentemente precisará expressar conexões entre entidades diferentes. Por exemplo, em uma aplicação de e-commerce, você pode ter clientes que fazem pedidos de produtos. Esses relacionamentos podem ser modelados com chaves estrangeiras conectando tabelas para clientes, pedidos e produtos. </p>
+</div>
+</section>
+<section>
+<h2>Introdução ao SQL</h2>
+<p> O SQL (Structured Query Language) é a linguagem padrão para interagir com bancos de dados relacionais. Ele fornece um conjunto de comandos para criar, modificar, consultar e gerenciar dados em um sistema de banco de dados relacional. </p>
+<p> O SQL foi desenvolvido na década de 1970 por pesquisadores da IBM e, desde então, tornou-se a linguagem universal para gerenciamento de banco de dados relacional. Ele foi projetado para ser legível por humanos e poderoso o suficiente para lidar com operações de dados complexas. </p>
+<h3>Operações Básicas de SQL</h3>
+<p> As operações de SQL podem ser categorizadas em vários tipos: </p>
+<ul>
+<li>
+<strong>Linguagem de Definição de Dados (DDL)</strong>: Comandos para criar e modificar estruturas de banco de dados </li>
+<li>
+<strong>Linguagem de Manipulação de Dados (DML)</strong>: Comandos para inserir, atualizar e consultar dados </li>
+<li>
+<strong>Linguagem de Controle de Dados (DCL)</strong>: Comandos para controlar o acesso aos dados </li>
+</ul>
+<p> Aqui estão alguns exemplos de comandos SQL comuns que demonstram esses tipos de operações: </p>
+<h3>Criando uma Tabela</h3>
+<p> O seguinte comando SQL cria uma tabela "users" simples: </p>
+<pre><code class="sql">
+        CREATE TABLE users (
+            user_id INT PRIMARY KEY,
+            username VARCHAR(50) NOT NULL,
+            email VARCHAR(100) UNIQUE NOT NULL,
+            join_date DATE
+        );
+    </code></pre>
+<p> Este comando define uma tabela com quatro colunas, especificando o tipo de dado para cada coluna e adicionando restrições como PRIMARY KEY, NOT NULL e UNIQUE para garantir a integridade dos dados. Neste caso, a coluna "user_id" é a chave primária, que identifica de forma única cada usuário, portanto não há necessidade de adicionar uma restrição UNIQUE separada. As colunas "username" e "email" estão marcadas como NOT NULL, o que significa que elas devem ter um valor ao inserir um novo registro. A coluna "email" também está marcada como UNIQUE, garantindo que dois usuários não possam ter o mesmo endereço de e-mail. </p>
+<h3>Inserindo Dados</h3>
+<p> Para adicionar dados a uma tabela, você usa o comando INSERT: </p>
+<pre><code class="sql">
+        INSERT INTO users (user_id, username, email, join_date)
+        VALUES (1, 'johndoe', 'john@example.com', '2023-01-15');
+    </code></pre>
+<h3>Consultando Dados</h3>
+<p> O comando SELECT recupera dados de uma ou mais tabelas: </p>
+<pre><code class="sql">
+        SELECT username, email
+        FROM users
+        WHERE join_date &gt; '2023-01-01'
+        ORDER BY username;
+    </code></pre>
+<p> Esta consulta seleciona o nome de usuário (username) e e-mail de todos os usuários que se cadastraram após 1º de janeiro de 2023 e ordena os resultados em ordem alfabética pelo nome de usuário. </p>
+</section>
+<section>
+<h2>Comparando MySQL e PostgreSQL</h2>
+<p> Embora o SQL seja a linguagem padrão para bancos de dados relacionais, diferentes sistemas de gerenciamento de banco de dados (SGBD) implementam o SQL de maneiras ligeiramente diferentes, com variadas funcionalidades e otimizações. Dois sistemas de banco de dados relacionais populares são o MySQL e o PostgreSQL. </p>
+<h3>MySQL</h3>
+<p> O MySQL foi lançado pela primeira vez em 1995 e hoje pertence à Oracle Corporation. É um dos sistemas de banco de dados mais amplamente utilizados, particularmente para aplicações web. </p>
+<p> As principais características do MySQL incluem: </p>
+<ul>
+<li>
+<strong>Facilidade de Uso</strong>: Conhecido por ser relativamente fácil de configurar e administrar </li>
+<li>
+<strong>Desempenho</strong>: Otimizado para operações intensivas de leitura, tornando-o adequado para muitas aplicações web </li>
+<li>
+<strong>Adoção Ampla</strong>: Usado por muitas plataformas populares e sistemas de gerenciamento de conteúdo </li>
+<li>
+<strong>Mecanismos de Armazenamento</strong>: Suporta múltiplos mecanismos de armazenamento com diferentes capacidades (InnoDB, MyISAM, etc.) </li>
+</ul>
+<p> O MySQL é tradicionalmente popular na pilha LAMP (Linux, Apache, MySQL, PHP/Python/Perl), que tem sido uma configuração comum para desenvolvimento web por muitos anos. </p>
+<h3>PostgreSQL</h3>
+<p> O PostgreSQL (frequentemente chamado de "Postgres") foi iniciado em 1986 como o projeto POSTGRES e evoluiu para um sistema de banco de dados open-source avançado. </p>
+<p> As principais características do PostgreSQL incluem: </p>
+<ul>
+<li>
+<strong>Funcionalidades Avançadas</strong>: Suporta um amplo array de tipos de dados e funcionalidades avançadas, como herança de tabelas </li>
+<li>
+<strong>Conformidade com SQL</strong>: Adere mais estritamente aos padrões SQL em comparação com muitos outros sistemas de banco de dados </li>
+<li>
+<strong>Extensibilidade</strong>: Pode ser estendido com funções, operadores e tipos de dados personalizados </li>
+<li>
+<strong>Concorrência e Transações</strong>: Excelente suporte para operações concorrentes e transações complexas </li>
+</ul>
+<p> O PostgreSQL é frequentemente escolhido para aplicações que exigem consultas complexas, integridade de dados e escalabilidade. </p>
+<h3>Principais Diferenças</h3>
+<p> Embora tanto o MySQL quanto o PostgreSQL sejam sistemas de banco de dados poderosos que suportam a linguagem SQL, eles diferem em vários aspectos importantes: </p>
+<div class="callout info">
+<div class="title">MySQL vs. PostgreSQL: Principais Distinções</div>
+<p>
+<strong>Dialeto SQL:</strong> Embora ambos usem SQL, existem diferenças sutis de sintaxe. Por exemplo, o PostgreSQL usa aspas duplas para identificadores, enquanto o MySQL tradicionalmente usa crases. </p>
+<p>
+<strong>Tipos de Dados:</strong> O PostgreSQL suporta uma gama mais ampla de tipos de dados nativos, incluindo tipos numéricos mais precisos, arrays, JSON e tipos personalizados. </p>
+<p>
+<strong>Modelo de Concorrência:</strong> O PostgreSQL usa MVCC (Multi-Version Concurrency Control) que manipula operações concorrentes de forma diferente da abordagem do MySQL. </p>
+<p>
+<strong>Ecossistema:</strong> O MySQL tradicionalmente tem sido mais amplamente utilizado no desenvolvimento web, enquanto o PostgreSQL tem sido favorecido para aplicações que exigem operações de dados complexas e rigorosa integridade de dados. </p>
+</div>
+<p> Apesar dessas diferenças, ambos os sistemas são excelentes escolhas para aplicações web. Para este curso, usaremos o PostgreSQL por causa do seu conjunto robusto de funcionalidades, forte adesão aos padrões SQL e capacidades poderosas que servirão bem a você conforme desenvolve aplicações mais complexas. </p>
+</section>
+<section>
+<h2>Bancos de Dados na Arquitetura MVC</h2>
+<p> Como você vem aprendendo, a arquitetura Model-View-Controller (MVC) separa sua aplicação em três componentes interconectados: Model (responsável pelos dados e lógica de negócios), View (manipula a interface do usuário e a apresentação) e Controller (processa requisições e coordena entre Model e View). </p>
+<p> Nesta arquitetura, o banco de dados interage principalmente com a camada Model. O Model representa as estruturas de dados da sua aplicação e contém a lógica para acessar e manipular esses dados. Ao implementar um banco de dados em sua aplicação Express, você criará arquivos de Model que manipulam operações de banco de dados. Esses arquivos conterão funções para criar, ler, atualizar e excluir dados (frequentemente chamadas de operações CRUD). </p>
+<h3>Organizando Operações do Banco de Dados</h3>
+<p> Uma abordagem comum é agrupar operações do banco de dados relacionadas em um único objeto. Por exemplo, em um sistema de gerenciamento de usuários, você pode ter um modelo User com métodos como: </p>
+<pre><code class="javascript">
+        // User model (simplified example)
+        import db from '../database.js'; // Connection to the database
+        
+        // Create a User object with all user-related database operations
+        const User = {
+            // Get all users
+            getAllUsers: async () =&gt; {
+                const result = await db.query('SELECT * FROM users');
+                return result.rows;
+            },
+            
+            // Get user by ID
+            getUserById: async (id) =&gt; {
+                const result = await db.query('SELECT * FROM users WHERE user_id = $1', [id]);
+                return result.rows[0];
+            },
+            
+            // Create new user
+            createUser: async (userData) =&gt; {
+                const result = await db.query(
+                    'INSERT INTO users (username, email, join_date) VALUES ($1, $2, $3) RETURNING *',
+                    [userData.username, userData.email, new Date()]
+                );
+                return result.rows[0];
+            },
+            
+            // Update user
+            updateUser: async (id, userData) =&gt; {
+                const result = await db.query(
+                    'UPDATE users SET username = $1, email = $2 WHERE user_id = $3 RETURNING *',
+                    [userData.username, userData.email, id]
+                );
+                return result.rows[0];
+            },
+            
+            // Delete user
+            deleteUser: async (id) =&gt; {
+                await db.query('DELETE FROM users WHERE user_id = $1', [id]);
+                return { success: true };
+            }
+        };
+        
+        export default User;
+    </code></pre>
+<p> Esta abordagem cria um namespace claro para todas as operações relacionadas ao usuário. Os controllers importariam e usariam este objeto assim: </p>
+<pre><code class="javascript">
+        // In a controller file
+        import User from '../models/user.js';
+        
+        // Route handler for getting a user profile
+        const getUserProfile = async (req, res) =&gt; {
+            const userId = req.params.id;
+            const user = await User.getUserById(userId);
+            // ...
+        };
+    </code></pre>
+<h3>Abordagens Alternativas</h3>
+<p> No entanto, nem sempre é necessário agrupar todas as funções do banco de dados em um único objeto, especialmente quando as operações lidam com tipos de dados não relacionados ou funções utilitárias simples. Nesses casos, é comum definir e exportar funções independentes diretamente. Esta abordagem melhora a modularidade e mantém a base de código flexível: </p>
+<pre><code class="javascript">
+        // Standalone functions for analytics events
+        import db from '../database.js';
+
+        // Log a page visit with arrow function syntax
+        const logPageVisit = async (url, userId) =&gt; {
+            const result = await db.query(
+                'INSERT INTO page_visits (url, user_id, visited_at) VALUES ($1, $2, NOW()) RETURNING id',
+                [url, userId]
+            );
+            return result.rows[0].id; // Return the ID of the new visit record
+        };
+
+        // Get visit statistics for a specific page
+        const getPageVisitStats = async (url) =&gt; {
+            const result = await db.query(
+                `SELECT 
+                    COUNT(*) as total_visits,
+                    COUNT(DISTINCT user_id) as unique_visitors,
+                    MAX(visited_at) as last_visit
+                FROM page_visits 
+                WHERE url = $1`,
+                [url]
+            );
+            return result.rows[0];
+        };
+
+        // Export the functions individually
+        export {
+            logPageVisit,
+            getPageVisitStats
+        };
+    </code></pre>
+<p> Neste exemplo, o <code>analytics.js</code> exporta funções individuais em vez de um objeto unificado. Esta abordagem funciona bem quando as funções realizam operações simples e focadas, as funções podem ser usadas independentemente em diferentes partes da aplicação, ou não há uma forte necessidade de agrupar as funções sob um objeto comum. </p>
+<p> Os controllers importariam e usariam essas funções assim: </p>
+<pre><code class="javascript">
+        // In a controller file
+        import { logPageVisit, getPageVisitStats } from '../db/analytics.js';
+        
+        // Middleware to log page visits
+        const visitLogger = async (req, res, next) =&gt; {
+            const userId = req.session.userId || null;
+            await logPageVisit(req.originalUrl, userId);
+            // ...
+        };
+        
+        // Route handler for admin dashboard
+        const getAnalyticsDashboard = async (req, res) =&gt; {
+            const homepageStats = await getPageVisitStats('/');
+            const aboutPageStats = await getPageVisitStats('/about');
+            // ...
+        };
+    </code></pre>
+<div class="callout info">
+<div class="title">Escolhendo a Abordagem Correta</div>
+<p> Não existe uma regra única para estruturar o código do seu banco de dados. Para entidades primárias em sua aplicação (usuários, produtos, pedidos, etc.), a abordagem de objeto oferece uma organização clara. Para funções utilitárias ou funcionalidades menores, exportações individuais de funções podem ser mais apropriadas. Escolha a abordagem que melhor se adapte às necessidades específicas da sua aplicação. </p>
+</div>
+<div class="callout message">
+<div class="title">Olhando para o Futuro</div>
+<p> Em Tarefas futuras, você aprenderá a configurar uma conexão com o banco de dados em sua aplicação Express e a criar modelos que interagem com o banco de dados. Essa separação de responsabilidades tornará seu código mais organizado, legível e escalável. </p>
+</div>
+</section>
+<section>
+<h2>O Poder dos Bancos de Dados em Aplicações Web</h2>
+<p> Integrar um banco de dados à sua aplicação Express libera inúmeras possibilidades que seriam difíceis ou impossíveis de alcançar de outra forma. Compreender essas capacidades ajuda a ilustrar por que os bancos de dados são uma parte tão fundamental do desenvolvimento web moderno. </p>
+<h3>Contas de Usuário e Autenticação</h3>
+<p> Os bancos de dados permitem armazenar informações do usuário com segurança, tornando possíveis funcionalidades como cadastro de usuários, login e experiências personalizadas. Sem um banco de dados, as credenciais do usuário seriam perdidas quando o servidor reiniciasse, forçando os usuários a se cadastrar novamente toda vez que sua aplicação fosse iniciada. </p>
+<h3>Gerenciamento de Conteúdo</h3>
+<p> Para aplicações que gerenciam conteúdo, como postagens de blog, listas de produtos ou conteúdo gerado pelo usuário, os bancos de dados oferecem uma maneira estruturada de armazenar, organizar e recuperar esse conteúdo. Isso habilita funcionalidades como busca, categorização e relacionamentos de conteúdo. </p>
+<h3>Análise de Dados e Relatórios</h3>
+<p> Com os dados armazenados em um formato estruturado, você pode executar consultas complexas para analisar tendências, gerar relatórios e obter insights sobre o comportamento dos usuários ou o uso da aplicação. Essa capacidade torna-se cada vez mais valiosa à medida que sua aplicação cresce e acumula dados ao longo do tempo. </p>
+<h3>Estado e Histórico da Aplicação</h3>
+<p> Os bancos de dados permitem que sua aplicação mantenha o estado entre sessões e rastreie o histórico, permitindo funcionalidades como histórico de pedidos, logs de atividade e recuperação de dados. Essa persistência cria uma experiência do usuário muito mais rica e habilita funcionalidades críticas para o negócio. </p>
+<h3>Escalando Além de um Único Servidor</h3>
+<p> À medida que sua aplicação cresce, pode ser necessário executá-la em vários servidores para lidar com o aumento do tráfego. Um banco de dados fornece um local central para dados que podem ser acessados por várias instâncias de servidor, permitindo o dimensionamento horizontal da arquitetura da sua aplicação. </p>
+</section>
+<section>
+<h2>Resumo dos Conceitos-Chave</h2>
+<p> Os bancos de dados relacionais são um componente fundamental das aplicações web modernas. Eles fornecem uma maneira estruturada, eficiente e confiável de armazenar e recuperar dados, permitindo funcionalidades que, de outra forma, seriam impossíveis de implementar. </p>
+<p> Você aprendeu que os bancos de dados resolvem o problema crítico da persistência de dados em aplicações web, permitindo que as informações sobrevivam a reinicializações do servidor e habilitando funcionalidades como contas de usuário, gerenciamento de conteúdo e análise de dados. Os bancos de dados relacionais organizam os dados em tabelas com relacionamentos estabelecidos, criando um fundamento flexível para modelar cenários do mundo real. </p>
+<p> O SQL serve como a linguagem universal para operações de banco de dados, fornecendo comandos padronizados para criar estruturas e manipular dados. Embora tanto o MySQL quanto o PostgreSQL implementem SQL, cada um oferece pontos fortes diferentes, com o PostgreSQL oferecendo funcionalidades mais avançadas e conformidade mais rígida com o SQL. </p>
+<p> Por fim, você viu como os bancos de dados se integram à arquitetura MVC por meio da camada Model, onde as operações do banco de dados são organizadas em módulos lógicos que os controllers podem usar para servir conteúdo dinâmico para as views. </p>
+<div class="callout success">
+<div class="title">O Que Você Aprendeu</div>
+<p>
+<strong>Os bancos de dados fornecem persistência</strong> — Eles permitem que sua aplicação armazene e recupere dados mesmo após a reinicialização do servidor. </p>
+<p>
+<strong>Os bancos de dados relacionais organizam dados em tabelas</strong> — As tabelas têm linhas (registros) e colunas (atributos), com relacionamentos entre tabelas estabelecidos por meio de chaves. </p>
+<p>
+<strong>O SQL é a linguagem para operações de banco de dados</strong> — Ele fornece comandos para criar estruturas, manipular dados e controlar o acesso. </p>
+<p>
+<strong>O MySQL e o PostgreSQL são sistemas de banco de dados populares</strong> — Eles implementam o SQL com diferentes conjuntos de funcionalidades e otimizações. </p>
+<p>
+<strong>No MVC, os bancos de dados interagem com a camada Model</strong> — Os modelos encapsulam a lógica para operações de banco de dados, mantendo seu código organizado e fácil de manter. </p>
+</div>
+</section>
+<section>
+<h2>Aprofunde-se Mais</h2>
+<p> Agora que você entende os conceitos fundamentais dos bancos de dados relacionais, talvez queira explorar alguns desses tópicos de forma independente: </p>
+<ul>
+<li> Pesquise diferentes tipos de relacionamentos em bancos de dados relacionais (um para um, um para muitos, muitos para muitos) </li>
+<li> Explore conceitos de normalização de banco de dados e por que eles são importantes para a organização de dados </li>
+<li> Pesquise sobre bancos de dados NoSQL e entenda quando eles podem ser usados em vez de bancos de dados relacionais </li>
+<li> Investigue a indexação de banco de dados e como ela melhora o desempenho das consultas </li>
+</ul>
+<p> À medida que avança neste curso, você aprenderá a configurar um banco de dados PostgreSQL, conectá-lo à sua aplicação Express e realizar operações CRUD para criar aplicações web completas com armazenamento de dados persistente. </p>
+</section>
+</main>
+<footer class="full-width">
+<div class="columns two">
+<div>
+<span class="course-code">CSE 340</span>
+             • 
+            <span class="course-name">Desenvolvimento Web Back-end</span>
+</div>
+<div> © 2024–2026 BYU–Idaho <a href="https://www.byui.edu/computer-science-engineering/" rel="noopener noreferrer" target="_blank">Departamento de CSE</a>. Todos os direitos reservados. </div>
+</div>
+</footer>
+</div>
+</body>
+</html>

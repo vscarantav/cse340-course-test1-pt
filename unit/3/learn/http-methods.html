@@ -1,0 +1,308 @@
+html
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../../assets/images/favicon/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../../assets/images/favicon/favicon.png" rel="icon" type="image/png"/>
+<link href="../../../assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<title>Métodos HTTP</title>
+<meta content="Learn the difference between GET and POST HTTP methods and how to use them in Express applications." name="description"/>
+<script src="../../../assets/js/main.js" type="module"></script>
+<script src="../../../assets/js/theme-preference.js"></script>
+</head>
+<body>
+<div class="content-grid">
+<header class="full-width">
+<input aria-controls="site-primary-nav" class="visually-hidden" id="site-nav-toggle" type="checkbox"/>
+<label aria-hidden="true" class="site-nav-backdrop" for="site-nav-toggle"></label>
+<div class="inner">
+<div class="site-brand">
+<a aria-label="CSE 340 home" class="brand-link" href="../../../index.html">
+<img alt="BYU–Idaho" class="site-logo" decoding="async" src="../../../assets/images/logos/byui-logo.png"/>
+</a>
+</div>
+<div class="site-course-info">
+<a href="../../../index.html">
+<span class="course-code">CSE 340</span>
+                 • 
+                <span class="course-name">Desenvolvimento de Back-end Web</span>
+</a>
+</div>
+<nav aria-label="Primary" class="site-primary-nav" id="site-primary-nav">
+<ul aria-label="Course units" class="nav-list">
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<div class="site-header-tools">
+<label class="site-nav-menu-btn" for="site-nav-toggle">
+<span class="visually-hidden">Menu</span>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-open" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"></path></svg>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-close" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"></path></svg>
+</label>
+<input aria-controls="site-search-panel" class="visually-hidden" id="site-search-toggle" type="checkbox"/>
+<label class="site-search-trigger" for="site-search-toggle">
+<span class="visually-hidden">Alternar pesquisa no site</span>
+<span aria-hidden="true">🔎</span>
+<span aria-hidden="true">✕</span>
+</label>
+<details class="theme-menu">
+<summary class="theme-control">
+<span class="visually-hidden">Esquema de cores</span>
+</summary>
+<div aria-label="Choose color scheme" class="theme-extra" role="group">
+<label class="theme-control theme-pick" data-theme-pick="light">
+<input name="theme-preference" type="radio" value="light"/>
+<span aria-hidden="true">☀️</span>
+<span class="visually-hidden">Claro</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="system">
+<input name="theme-preference" type="radio" value="system"/>
+<span aria-hidden="true">⚙️</span>
+<span class="visually-hidden">Padrão do sistema</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="dark">
+<input name="theme-preference" type="radio" value="dark"/>
+<span aria-hidden="true">🌖</span>
+<span class="visually-hidden">Escuro</span>
+</label>
+</div>
+</details>
+</div>
+</div>
+<div aria-label="Site search" id="site-search-panel" role="region">
+<form action="" method="get" role="search">
+<label class="visually-hidden" for="site-search-query">Pesquisar</label>
+<input autocomplete="off" enterkeyhint="search" id="site-search-query" name="query" placeholder="Search…" type="search"/>
+</form>
+<div aria-live="polite" class="site-search-results" id="site-search-results"></div>
+</div>
+</header>
+<main>
+<nav aria-label="Course units" class="course-breadcrumbs unit">
+<ul>
+<li>
+<a aria-label="Home" href="../../../index.html">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z">
+</path></svg>
+</a>
+</li>
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<section>
+<h1>Compreendendo os Métodos HTTP</h1>
+<p> Agora que você tem um banco de dados PostgreSQL configurado e conectado à sua aplicação Express, está pronto para começar a construir funcionalidades reais de aplicação, como formulários de contato, registro de usuários e sistemas de login. No entanto, antes de nos aprofundarmos nessas funcionalidades empolgantes, você precisa entender um conceito fundamental que impulsiona todas as interações da web: métodos HTTP. </p>
+<p> Toda vez que um usuário clica em um link, envia um formulário ou interage com seu site, seu navegador envia uma requisição para seu servidor usando um método HTTP específico. Compreender esses métodos e como o Express os manipula é fundamental para construir aplicações que possam exibir informações e processar a entrada do usuário. </p>
+</section>
+<section>
+<h2>O que são métodos HTTP?</h2>
+<p> Os métodos HTTP (também chamados de verbos HTTP) dizem ao servidor que tipo de ação o cliente deseja realizar. Pense neles como diferentes tipos de conversas que você pode ter com um bibliotecário. Você pode pedir para ver um livro (recuperando informações), solicitar o empréstimo de um livro (enviando informações) ou pedir para atualizar suas informações de contato (modificando dados existentes). </p>
+<p> A especificação HTTP define vários métodos, cada um com um propósito específico e um comportamento esperado. Embora existam muitos métodos HTTP disponíveis, as aplicações web dependem principalmente de dois métodos principais para a maioria das interações: GET e POST. Compreender esses dois métodos lhe dará o fundamento necessário para construir aplicações web funcionais. </p>
+<p> A escolha entre GET e POST não é arbitrária — cada método tem características específicas que o tornam adequado para diferentes tipos de operações. Navegadores, servidores e até mesmo mecanismos de busca tratam esses métodos de maneira diferente, portanto, usar o método correto para o propósito certo é essencial para construir aplicações que funcionem de forma correta e segura. </p>
+</section>
+<section>
+<h2>O método GET: Recuperando informações</h2>
+<p> O método GET é projetado para recuperar informações do servidor. Quando você digita uma URL na barra de endereços do seu navegador ou clica em um link, seu navegador envia uma requisição GET para o servidor. O servidor então responde enviando de volta as informações solicitadas, normalmente na forma de uma página HTML, imagem ou outro recurso. </p>
+<p> As requisições GET possuem várias características importantes que as tornam perfeitas para exibir informações. Elas são consideradas operações "seguras", o que significa que não devem modificar dados no servidor. Quando você visita uma página de produto em um site de e-commerce, por exemplo, visualizar essa página não deve alterar seu carrinho de compras nem atualizar as informações da sua conta. </p>
+<p> As requisições GET também são "idempotentes", o que significa que fazer a mesma requisição várias vezes deve produzir o mesmo resultado. Você pode atualizar uma página de produto dezenas de vezes e, a cada vez, deverá ver a mesma informação (a menos que os dados tenham sido atualizados por alguma outra ação). </p>
+<div class="callout info icon">
+<div class="title">Parâmetros de URL e requisições GET</div>
+<p> Você já trabalhou com requisições GET quando criou rotas com parâmetros de URL como <code>/explore/:category/:id</code>. Você também usou parâmetros de consulta como <code>?sort=name&amp;filter=active</code>. Todas essas são requisições GET porque estão recuperando e exibindo informações com base nos parâmetros fornecidos. </p>
+</div>
+<p> No Express, você manipula requisições GET usando o <code>app.get()</code> método com o qual você já está familiarizado. Cada rota que você criou até agora foi uma rota GET, projetada para exibir informações aos usuários. </p>
+<pre><code class="javascript">
+        // GET route for displaying a user profile
+        app.get('/user/:id', (req, res) =&gt; {
+            const userId = req.params.id;
+            // Retrieve user information from database
+            // Render template with user data
+            res.render('user-profile', { user: userData });
+        });
+    </code></pre>
+</section>
+<section>
+<h2>O método POST: Enviando informações</h2>
+<p> Embora as requisições GET sejam perfeitas para recuperar informações, elas têm limitações quando se trata de enviar dados para o servidor. As requisições POST resolvem esse problema permitindo que os clientes enviem informações para o servidor de maneira segura e eficiente. </p>
+<p> As requisições POST são projetadas para operações que modificam dados no servidor. Quando você preenche um formulário de contato, cria uma nova conta ou atualiza suas informações de perfil, seu navegador geralmente envia uma requisição POST contendo os dados do formulário para o servidor. O servidor então processa essas informações, muitas vezes armazenando-as em um banco de dados ou realizando alguma outra ação. </p>
+<p> Ao contrário das requisições GET, as requisições POST não são consideradas seguras ou idempotentes. Enviar o mesmo formulário de contato várias vezes pode resultar em várias entradas no banco de dados ou no envio de vários e-mails. É por isso que os navegadores frequentemente o alertam quando você tenta atualizar uma página após enviar um formulário — eles querem ter certeza de que você realmente pretende enviar as mesmas informações novamente. </p>
+<p> As requisições POST também manipulam dados de forma diferente das requisições GET. Enquanto as requisições GET colocam quaisquer dados adicionais na URL como parâmetros de consulta (que você pode ver na barra de endereços), as requisições POST enviam dados no corpo da requisição, onde não ficam visíveis na URL. Isso torna as requisições POST mais adequadas para informações confidenciais, como senhas ou grandes quantidades de dados. </p>
+<pre><code class="javascript">
+        // POST route for processing a contact form
+        app.post('/contact', (req, res) =&gt; {
+            const { name, email, message } = req.body;
+            // Process the form data (save to database, send email, etc.)
+            // Redirect to a success page or render a confirmation
+            res.render('contact-success', { name });
+        });
+    </code></pre>
+<div class="callout warn icon">
+<div class="title">Análise do Corpo da Requisição</div>
+<p> Para acessar dados de formulários em requisições POST através do <code>req.body</code>, você precisa de middleware para analisar o corpo da requisição. O Express fornece middleware integrado para isso: <code>express.urlencoded({ extended: true })</code> para dados de formulário e <code>express.json()</code> para dados JSON. </p>
+</div>
+</section>
+<section>
+<h2>Usando a Mesma Rota para Métodos Diferentes</h2>
+<p> Um conceito que frequentemente surpreende novos desenvolvedores é que você pode usar o mesmo caminho de URL para requisições GET e POST. O Express (e servidores web em geral) diferenciam requisições não apenas pela URL, mas pela combinação da URL e do método HTTP. </p>
+<p> Esse padrão é extremamente comum e útil. Por exemplo, você pode ter um formulário de contato onde a requisição GET exibe o formulário vazio para o usuário, e a requisição POST processa os dados do formulário enviados. Ambos usam a mesma URL, mas realizam funções completamente diferentes. </p>
+<pre><code class="javascript">
+        // GET route to display the contact form
+        app.get('/contact', (req, res) =&gt; {
+            res.render('contact-form', { title: 'Contact Us' });
+        });
+
+        // POST route to process the submitted contact form
+        app.post('/contact', (req, res) =&gt; {
+            const { name, email, message } = req.body;
+            
+            // Save the message to the database
+            // Send confirmation email
+            // Log the contact attempt
+            
+            res.render('contact-success', { 
+                title: 'Message Sent',
+                name: name
+            });
+        });
+    </code></pre>
+<p> Esse padrão torna suas URLs limpas e intuitivas. Os usuários não precisam se lembrar de URLs diferentes para visualizar um formulário versus enviá-lo. O mesmo recurso lógico (<code>/contact</code>) lida tanto com a exibição da interface quanto com o processamento da interação. </p>
+<p> Você verá esse padrão em todos os lugares no desenvolvimento web. O registro de usuário pode usar GET <code>/register</code> para mostrar o formulário de registro e POST <code>/register</code> para criar a nova conta. Sistemas de login usam GET <code>/login</code> para o formulário de login e POST <code>/login</code> para autenticar o usuário. </p>
+</section>
+<section>
+<h2>Outros Métodos HTTP que Você Encontrará</h2>
+<p> Embora GET e POST sejam os principais métodos que você usará neste curso, é importante saber que existem outros métodos HTTP. À medida que continua aprendendo desenvolvimento web e explorando outros recursos, você frequentemente encontrará código que usa esses métodos adicionais. </p>
+<p> A especificação HTTP define vários outros métodos, cada um projetado para tipos específicos de operações. O PUT é usado para atualizar recursos existentes, o DELETE para remover recursos, o PATCH para atualizações parciais e o HEAD para recuperar cabeçalhos sem o corpo da resposta. Esses métodos são particularmente importantes no desenvolvimento de APIs, onde diferentes operações no mesmo recurso são distinguidas pelo método HTTP usado. </p>
+<p> No entanto, os formulários web tradicionais em HTML suportam apenas os métodos GET e POST. Essa limitação significa que, embora esses outros métodos existam e sejam úteis, eles são usados principalmente no desenvolvimento de APIs ou com frameworks JavaScript que podem enviar requisições de forma programática. </p>
+<div class="callout info">
+<div class="title">Desenvolvimento de APIs vs. Formulários Web Tradicionais</div>
+<p> Este curso se concentra em aplicações web tradicionais que usam principalmente GET e POST. Se você seguir o desenvolvimento de APIs ou trabalhar com frameworks JavaScript modernos como React ou Vue.js, encontrará esses outros métodos HTTP com mais frequência. Por enquanto, entender GET e POST lhe dará tudo o que você precisa para construir aplicações web funcionais. </p>
+</div>
+<pre><code class="javascript">
+        // Examples you might see in API-focused code (not used in this course)
+        app.put('/api/user/:id', (req, res) =&gt; {
+            // Update entire user record
+        });
+
+        app.delete('/api/user/:id', (req, res) =&gt; {
+            // Delete user record
+        });
+
+        app.patch('/api/user/:id', (req, res) =&gt; {
+            // Update specific user fields
+        });
+    </code></pre>
+<p> Quando você ver exemplos de código online ou na documentação que usam esses outros métodos, não se preocupar — os conceitos que você está aprendendo com GET e POST se aplicam a todos os métodos HTTP. A principal diferença é a finalidade pretendida e como o servidor deve manipular a requisição. </p>
+</section>
+<section>
+<h2>Formulários HTML e Especificação de Método</h2>
+<p> Entender como os formulários HTML funcionam com os métodos HTTP é fundamental para construir aplicações web interativas. Quando você cria um formulário em HTML, especifica qual método HTTP o navegador deve usar ao enviar o formulário. </p>
+<p> Por padrão, os formulários HTML usam o método GET. Isso significa que, se você não especificar um método na sua tag de formulário, o navegador enviará uma requisição GET quando o usuário enviar o formulário. Isso pode ser apropriado para formulários de busca ou filtros, onde os dados do formulário representam parâmetros para recuperar informações. </p>
+<pre><code class="html">
+        &lt;!-- This form uses GET method (default) --&gt;
+        &lt;form action="/search"&gt;
+            &lt;input type="text" name="query" placeholder="Search products..."&gt;
+            &lt;button type="submit"&gt;Search&lt;/button&gt;
+        &lt;/form&gt;
+        
+        &lt;!-- Results in URL: /search?query=user+input --&gt;
+    </code></pre>
+<p> No entanto, para a maioria dos formulários que coletam informações do usuário, você desejará usar o método POST. Isso mantém os dados do formulário fora da URL e é mais apropriado para operações que modificam dados no servidor. </p>
+<pre><code class="html">
+        &lt;!-- This form uses POST method --&gt;
+        &lt;form action="/contact" method="post"&gt;
+            &lt;input type="text" name="name" placeholder="Your name" required&gt;
+            &lt;input type="email" name="email" placeholder="Your email" required&gt;
+            &lt;textarea name="message" placeholder="Your message" required&gt;&lt;/textarea&gt;
+            &lt;button type="submit"&gt;Send Message&lt;/button&gt;
+        &lt;/form&gt;
+    </code></pre>
+<p> O <code>action</code> atributo diz ao navegador para onde enviar os dados do formulário, e o <code>method</code> atributo especifica qual método HTTP usar. Quando os usuários enviarem esse formulário, o navegador enviará uma requisição POST para <code>/contact</code> com os dados do formulário no corpo da requisição. </p>
+<div class="callout warn">
+<div class="title">Considerações de Segurança</div>
+<p> Sempre use POST para formulários que contêm informações sensíveis, como senhas ou dados pessoais. Requisições GET colocam dados na URL, que aparece no histórico do navegador, nos logs do servidor e pode ser compartilhada acidentalmente quando os usuários copiam e colam URLs. </p>
+</div>
+</section>
+<section>
+<h2>Aplicações Práticas no Desenvolvimento Web</h2>
+<p> A compreensão dos métodos GET e POST torna-se imediatamente prática quando você começa a construir funcionalidades reais de aplicação. Formulários de contato, registro de usuário, sistemas de login e formulários de entrada de dados dependem do uso adequado desses métodos HTTP. </p>
+<p> Considere um fluxo típico de registro de usuário. A requisição GET exibe o formulário de registro com campos vazios e instruções úteis. Quando os usuários preenchem o formulário e clicam em enviar, a requisição POST processa suas informações, as valida, armazena a nova conta de usuário no banco de dados e exibe uma mensagem de sucesso ou os redireciona para uma página de boas-vindas. </p>
+<p> Esse mesmo padrão se aplica a quase todas as funcionalidades interativas que você criar. Formulários de comentários de blog, avaliações de produtos, atualizações de configurações e envios de arquivos seguem o padrão GET-para-exibir, POST-para-processar. Entender esse padrão ajudará você a estruturar suas aplicações de forma lógica e previsível. </p>
+<p> A combinação de GET e POST também possibilita um melhor design de experiência do usuário. Você pode validar os dados do formulário no servidor e, se houver erros, reexibir o formulário com a entrada do usuário preservada e mensagens de erro úteis. Isso requer uma coordenação cuidadosa entre suas rotas GET e POST, mas resulta em aplicações que parecem profissionais e fáceis de usar. </p>
+<pre><code class="javascript">
+        /**
+         * GET route renders form with any existing data and errors
+         * Used for initial display and redisplay after validation errors
+         */
+        app.get('/register', (req, res) =&gt; {
+            res.render('register-form', { 
+                title: 'Create Account',
+                formData: {},
+                errors: []
+            });
+        });
+
+        /**
+         * POST route processes form and handles validation
+         * Creates user account or redisplays form with errors
+         */
+        app.post('/register', (req, res) =&gt; {
+            const { username, email, password } = req.body;
+            const errors = validateRegistrationData(req.body);
+            
+            if (errors.length &gt; 0) {
+                // Redisplay form with errors and preserved input
+                res.render('register-form', {
+                    title: 'Create Account',
+                    formData: req.body,
+                    errors: errors
+                });
+            } else {
+                // Save new user and redirect to success page
+                createUser(username, email, password);
+                res.redirect('/welcome');
+            }
+        });
+    </code></pre>
+</section>
+<section>
+<h2>Olhando para o Futuro: Construindo Funcionalidades Interativas</h2>
+<p> Com a sua compreensão dos métodos HTTP e a conexão com o banco de dados PostgreSQL estabelecida, você está pronto para começar a construir as funcionalidades interativas que transformam sites estáticos em aplicações web dinâmicas. Os conceitos que você aprendeu sobre requisições GET e POST fornecem o fundamento para tudo, desde formulários de contato simples até processos complexos de várias etapas. </p>
+<p> Suas próximas tarefas colocarão esses conceitos em prática. Você criará formulários de contato que armazenam envios no seu banco de dados, construirá sistemas de registro de usuários que fazem o hash de senhas de forma segura e implementará funcionalidades de login que rastreiam as sessões dos usuários. Cada uma dessas funcionalidades se baseia no padrão GET e POST que você aprendeu. </p>
+<p> À medida que constrói essas funcionalidades, você também aprenderá sobre conceitos relacionados, como validação de formulários, tratamento de erros e melhores práticas de segurança. Você descobrirá como o middleware pode ajudá-lo a processar requisições de forma consistente em toda a sua aplicação e como um design de banco de dados adequado oferece suporte às funcionalidades que você está construindo. </p>
+<p> Lembre-se de que, embora este curso se concentre nos métodos GET e POST, os princípios que você está aprendendo se aplicam a todos os tipos de desenvolvimento web. Quer você venha a trabalhar com APIs, aplicações de página única ou back-ends móveis, entender como os métodos HTTP funcionam e quando usar cada um servirá para você ao longo de toda a sua carreira de desenvolvimento. </p>
+</section>
+<section>
+<h2>Resumo dos Conceitos-Chave</h2>
+<p> Os métodos HTTP definem o tipo de ação que um cliente deseja realizar ao fazer uma requisição a um servidor. As requisições GET são projetadas para recuperar informações e não devem modificar os dados do servidor, enquanto as requisições POST destinam-se a enviar informações que modificarão o estado do servidor. </p>
+<p> A mesma URL pode manipular requisições GET e POST, com o Express roteando-as para diferentes funções manipuladoras com base no método HTTP usado. Esse padrão é comum e útil para funcionalidades como formulários, onde o GET exibe a interface do formulário e o POST processa os dados enviados. </p>
+<p> Embora outros métodos HTTP como PUT, DELETE e PATCH existam e sejam importantes no desenvolvimento de APIs, as aplicações web tradicionais usam principalmente os métodos GET e POST. Formulários HTML só podem usar os métodos GET e POST nativamente, tornando esses dois métodos suficientes para construir aplicações web completas. </p>
+<p> Entender quando usar GET versus POST é fundamental para construir aplicações seguras e fáceis de usar. Requisições GET são apropriadas para recuperar e exibir informações, enquanto requisições POST devem ser usadas para qualquer operação que modifique dados ou manuseie informações sensíveis. </p>
+</section>
+</main>
+<footer class="full-width">
+<div class="columns two">
+<div>
+<span class="course-code">CSE 340</span>
+             • 
+            <span class="course-name">Desenvolvimento Web Back-end</span>
+</div>
+<div> © 2024–2026 BYU–Idaho <a href="https://www.byui.edu/computer-science-engineering/" rel="noopener noreferrer" target="_blank">Departamento de CSE</a>. Todos os direitos reservados. </div>
+</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,391 @@
+html
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../../assets/images/favicon/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../../assets/images/favicon/favicon.png" rel="icon" type="image/png"/>
+<link href="../../../assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<title>Promises do JS, Código Assíncrono e Await</title>
+<meta content="A crash course on JavaScript Promises, async code, and the await keyword." name="description"/>
+<script src="../../../assets/js/main.js" type="module"></script>
+<script src="../../../assets/js/theme-preference.js"></script>
+</head>
+<body>
+<div class="content-grid">
+<header class="full-width">
+<input aria-controls="site-primary-nav" class="visually-hidden" id="site-nav-toggle" type="checkbox"/>
+<label aria-hidden="true" class="site-nav-backdrop" for="site-nav-toggle"></label>
+<div class="inner">
+<div class="site-brand">
+<a aria-label="CSE 340 home" class="brand-link" href="../../../index.html">
+<img alt="BYU–Idaho" class="site-logo" decoding="async" src="../../../assets/images/logos/byui-logo.png"/>
+</a>
+</div>
+<div class="site-course-info">
+<a href="../../../index.html">
+<span class="course-code">CSE 340</span>
+                 • 
+                <span class="course-name">Desenvolvimento Back-end Web</span>
+</a>
+</div>
+<nav aria-label="Primary" class="site-primary-nav" id="site-primary-nav">
+<ul aria-label="Course units" class="nav-list">
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<div class="site-header-tools">
+<label class="site-nav-menu-btn" for="site-nav-toggle">
+<span class="visually-hidden">Menu</span>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-open" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"></path></svg>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-close" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"></path></svg>
+</label>
+<input aria-controls="site-search-panel" class="visually-hidden" id="site-search-toggle" type="checkbox"/>
+<label class="site-search-trigger" for="site-search-toggle">
+<span class="visually-hidden">Alternar busca do site</span>
+<span aria-hidden="true">🔎</span>
+<span aria-hidden="true">✕</span>
+</label>
+<details class="theme-menu">
+<summary class="theme-control">
+<span class="visually-hidden">Esquema de cores</span>
+</summary>
+<div aria-label="Choose color scheme" class="theme-extra" role="group">
+<label class="theme-control theme-pick" data-theme-pick="light">
+<input name="theme-preference" type="radio" value="light"/>
+<span aria-hidden="true">☀️</span>
+<span class="visually-hidden">Claro</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="system">
+<input name="theme-preference" type="radio" value="system"/>
+<span aria-hidden="true">⚙️</span>
+<span class="visually-hidden">Padrão do sistema</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="dark">
+<input name="theme-preference" type="radio" value="dark"/>
+<span aria-hidden="true">🌖</span>
+<span class="visually-hidden">Escuro</span>
+</label>
+</div>
+</details>
+</div>
+</div>
+<div aria-label="Site search" id="site-search-panel" role="region">
+<form action="" method="get" role="search">
+<label class="visually-hidden" for="site-search-query">Buscar</label>
+<input autocomplete="off" enterkeyhint="search" id="site-search-query" name="query" placeholder="Search…" type="search"/>
+</form>
+<div aria-live="polite" class="site-search-results" id="site-search-results"></div>
+</div>
+</header>
+<main>
+<nav aria-label="Course units" class="course-breadcrumbs unit">
+<ul>
+<li>
+<a aria-label="Home" href="../../../index.html">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z">
+</path></svg>
+</a>
+</li>
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<section>
+<h1>Explorando Promises, Código Assíncrono e Await no JavaScript</h1>
+<p> A capacidade do JavaScript de lidar com código assíncrono é uma funcionalidade poderosa, mas pode ser desafiadora de entender no início. Nesta Tarefa, você explorará Promises, <code>then()</code>, <code>catch()</code>, <code>finally()</code>, e <code>async/await</code>. Ao final, você terá uma compreensão sólida desses conceitos e poderá usá-los com confiança em seus projetos. </p>
+</section>
+<section>
+<h2>Entendendo Promises</h2>
+<p> Uma Promise é um objeto que representa a eventual conclusão (ou falha) de uma operação assíncrona. As Promises têm três estados: </p>
+<ul>
+<li><strong>Pendente:</strong> O estado inicial, nem cumprida nem rejeitada.</li>
+<li><strong>Cumprida:</strong> A operação foi concluída com sucesso.</li>
+<li><strong>Rejeitada:</strong> A operação falhou.</li>
+</ul>
+<p> Aqui está um exemplo simples de uma Promise: </p>
+<pre><code>
+        const promise = new Promise((resolve, reject) =&gt; {
+            const success = true; // Change to false to test rejection.
+
+            if (success) {
+                resolve("The operation was successful!");
+            } else {
+                reject("The operation failed.");
+            }
+        });
+
+        promise
+            .then((message) =&gt; {
+                console.log("Fulfilled:", message);
+            })
+            .catch((error) =&gt; {
+                console.error("Rejected:", error);
+            })
+            .finally(() =&gt; {
+                console.log("Promise has settled.");
+            });
+    </code></pre>
+<div class="callout message">
+<div class="title">Tente Você Mesmo</div>
+<p> Salve o código acima em um arquivo JavaScript, <code>practice.js</code> por exemplo, e execute o arquivo com este comando <code>node practice.js</code> ou copie e cole o código acima no console do seu navegador e observe a saída. Experimente alterar a <code>success</code> variável. </p>
+</div>
+</section>
+<section>
+<h2>Relacionando Promises a Try/Catch/Finally</h2>
+<p> As Promises funcionam de maneira semelhante ao <code>try/catch/finally</code> bloco que você pode ter usado para código síncrono. O exemplo a seguir demonstra a similaridade com um código funcional; apenas os blocos <code>try</code> e <code>finally</code> serão executados. Altere o código dentro do <code>try</code> bloco para JavaScript incorreto para ver como isso afeta a saída: </p>
+<pre><code>
+        try {
+            // Synchronous code that might throw an error
+            const result = "Success!";
+            console.log("Result:", result);
+        } catch (error) {
+            // "Catch" (handle) any errors that occur
+            console.error("Error:", error);
+        } finally {
+            // Code that runs "finally", regardless of success or failure
+            console.log("Operation complete.");
+        }
+    </code></pre>
+</section>
+<section>
+<h2>Encadeando Promises com then()</h2>
+<p> As Promises podem ser encadeadas usando <code>then()</code> para lidar com sequências de tarefas assíncronas: </p>
+<pre><code>
+        const step1 = () =&gt; {
+            return new Promise((resolve) =&gt; {
+                console.log("Step 1 completed.");
+                resolve("Step 1 result");
+            });
+        };
+
+        const step2 = (prevResult) =&gt; {
+            return new Promise((resolve) =&gt; {
+                console.log("Step 2 completed with:", prevResult);
+                resolve("Step 2 result");
+            });
+        };
+
+        step1()
+            .then(step2)
+            .then((finalResult) =&gt; {
+                console.log("All steps completed. Final result:", finalResult);
+            });
+    </code></pre>
+<h3>Tente</h3>
+<p> Salve o código acima em um arquivo JavaScript, <code>practice.js</code> por exemplo, e execute o arquivo com este comando <code>node practice.js</code> ou copie e cole o código acima no console do seu navegador e observe a saída. Observe como cada etapa depende da anterior. </p>
+</section>
+<section>
+<h2>Tratando Erros com catch()</h2>
+<p> As Promises permitem tratar erros usando <code>catch()</code>. No exemplo abaixo, observe o parâmetro adicional em nossa função de promise, <code>reject</code>. Uma função de promise completa deve incluir tanto <code>resolve()</code> quanto <code>reject()</code>, chamando o apropriado para indicar sucesso ou falha. É uma prática comum declarar promises com nomes de parâmetros abreviados como este: <code>new Promise((res, rej) =&gt; { ... })</code>. Se você executar o seguinte código, ele deve registrar no log a mensagem de erro da nossa <code>reject(...)</code> e depois a mensagem de log do <code>finally()</code> bloco: </p>
+<pre><code>
+        const failingStep = () =&gt; {
+            return new Promise((resolve, reject) =&gt; {
+                reject("Something went wrong!");
+            });
+        };
+
+        failingStep()
+            .then((result) =&gt; {
+                console.log("This will not run:", result);
+            })
+            .catch((error) =&gt; {
+                console.error("Caught an error:", error);
+            })
+            .finally(() =&gt; {
+                console.log("Execution finished.");
+            });
+    </code></pre>
+</section>
+<section>
+<h2>Entendendo Async/Await</h2>
+<p> Considere a programação assíncrona semelhante a assistir à Netflix por streaming enquanto baixa um videogame grande. Você quer garantir que a transmissão da Netflix continue sem problemas e sem interrupções do download do jogo. É aqui que o código assíncrono se torna essencial. </p>
+<p> A <code>async</code> palavra-chave cria uma função que lida com essas tarefas paralelas, envolvendo tudo automaticamente em Promises. A <code>await</code> palavra-chave permite pausar e esperar que essas Promises sejam resolvidas, assim como você aprendeu anteriormente.
+        Aqui está como as Promises eram antes: </p>
+<pre><code>
+        // Old way with Promises
+        fetchUserData()
+            .then(user =&gt; fetchUserPosts(user))
+            .then(posts =&gt; {
+                console.log(posts);
+            })
+            .catch(error =&gt; {
+                console.log("Error:", error);
+            });
+    </code></pre>
+<p> Agora aqui está o mesmo código com <code>async/await</code> em vez disso: </p>
+<pre><code>
+        // New way with async/await
+        async function getUserPosts() {
+            try {
+                const user = await fetchUserData();
+                const posts = await fetchUserPosts(user);
+                console.log(posts);
+            } catch (error) {
+                console.log("Error:", error);
+            }
+        }
+    </code></pre>
+<h3>Exemplo do Mundo Real: Chamada de API do Spotify</h3>
+<p> Vamos ver algo prático, como buscar uma lista de reprodução do Spotify: </p>
+<pre><code>
+        const getPlaylist = async () =&gt; {
+            try {
+                console.log("Loading playlist...");
+                const playlist = await spotifyAPI.getPlaylist('top_hits');
+                const tracks = await spotifyAPI.getPlaylistTracks(playlist.id);
+                return tracks;
+            } catch (error) {
+                console.log("Couldn't load playlist:", error);
+            }
+        };
+
+        // Using it is simple:
+        getPlaylist().then((tracks) =&gt; {
+            console.log(`Here are the playlist tracks!\\n${tracks}`);
+        });
+    </code></pre>
+<h3>Pontos-chave</h3>
+<ul>
+<li><code>async</code> funções sempre retornam uma Promise</li>
+<li><code>await</code> funciona apenas dentro de <code>async</code> funções</li>
+<li>Você terá que usar <code>try/catch</code> para tratamento de erros dentro de <code>async</code> funções</li>
+</ul>
+</section>
+<section>
+<h2>Exercício Prático</h2>
+<p> Vamos criar um sistema simulado de pedidos de comida para praticar o trabalho com Promises e async/await. Crie um novo arquivo JavaScript chamado <code>food-court.js</code> e adicione o seguinte código a ele: </p>
+<pre><code>
+        // Simulates getting menu data
+        function getMenu() {
+            return new Promise((resolve) =&gt; {
+                setTimeout(() =&gt; {
+                    resolve([
+                        'Burger',
+                        'Pizza',
+                        'Tacos',
+                        'Sushi'
+                    ]);
+                }, 1500);
+            });
+        }
+
+        // Simulates placing an order
+        function placeOrder(food) {
+            return new Promise((resolve, reject) =&gt; {
+                setTimeout(() =&gt; {
+                    if (food) {
+                        resolve(`Your ${food} order has been placed!`);
+                    } else {
+                        reject('Please select a food item!');
+                    }
+                }, 2000);
+            });
+        }
+
+        // Simulates order preparation
+        function prepareOrder(order) {
+            return new Promise((resolve, reject) =&gt; {
+                setTimeout(() =&gt; {
+                    if (order.includes('placed')) {
+                        resolve('Your food is ready for pickup! 🍔');
+                    } else {
+                        reject('Something went wrong with your order!');
+                    }
+                }, 3000);
+            });
+        }
+
+        // Using Promises (the traditional way)
+        function orderFoodWithPromises() {
+            console.log('Starting your order (Promise version)...');
+            
+            getMenu()
+                .then(menu =&gt; {
+                    console.log('Menu items:', menu);
+                    return placeOrder(menu[0]);
+                })
+                .then(orderMessage =&gt; {
+                    console.log(orderMessage);
+                    return prepareOrder(orderMessage);
+                })
+                .then(ready =&gt; {
+                    console.log(ready);
+                })
+                .catch(error =&gt; {
+                    console.log('Error:', error);
+                })
+                .finally(() =&gt; {
+                    console.log('Order process complete. (Simulation Competed)');
+                });
+        }
+
+        // Using async/await (the modern way)
+        async function orderFoodWithAsync() {
+            try {
+                console.log('Starting your order (async/await version)...');
+                
+                const menu = await getMenu();
+                console.log('Menu items:', menu);
+                
+                const orderMessage = await placeOrder(menu[0]);
+                console.log(orderMessage);
+                
+                const ready = await prepareOrder(orderMessage);
+                console.log(ready);
+                
+            } catch (error) {
+                console.log('Error:', error);
+            } finally {
+                console.log('Order process complete. (Simulation Competed)');
+            }
+        }
+
+        // Try both versions!
+        orderFoodWithPromises();
+        // orderFoodWithAsync();
+    </code></pre>
+<p> Agora execute este código usando o comando do Node.js <code>node food-court.js</code> ou, se quiser, copie e cole o código no console do seu navegador. Você pode comentar uma das chamadas de função para comparar a versão baseada em Promise com a versão <code>async/await</code>. </p>
+<p> Este exemplo demonstra operações assíncronas do mundo real usando timeouts para simular requisições de rede. Cada função retorna uma Promise, e você pode ver o quão mais limpa a versão async/await fica em comparação com as cadeias de Promises. </p>
+<h3>Ideias para Experimentação</h3>
+<ul>
+<li>Tente alterar o item de comida sendo pedido (use diferentes índices do array)</li>
+<li>Passe <code>null</code> para <code>placeOrder()</code> para ver o tratamento de erros em ação</li>
+<li>Modifique os timeouts para ver como o tempo afeta o processo</li>
+<li>Adicione uma nova etapa ao processo (como entrega ou pagamento)</li>
+<li>Se você for realmente aventureiro, faça desta uma aplicação interativa!</li>
+</ul>
+</section>
+<section>
+<h2>Olhando para o Futuro: Construindo com Express</h2>
+<p> Os padrões assíncronos que abordamos hoje formam o fundamento do desenvolvimento web moderno. Em nossas próximas Tarefas, aplicaremos esses conceitos à medida que nos aprofundarmos no Express, um poderoso framework Node.js para construir aplicações web. </p>
+<p>
+<strong>A conexão é direta</strong>: Ao construir servidores web com o Express, você lidará com múltiplas requisições concorrentes usando os mesmos padrões assíncronos que acabamos de aprender. Seu servidor precisará processar múltiplas interações de usuários simultaneamente enquanto mantém um desempenho fluido. Por exemplo, assim como esperamos que nossos pedidos de comida simulados fossem processados, suas rotas do Express lidarão com interações de usuários e operações de banco de dados. A <code>async/await</code> sintaxe que você aprendeu hoje ajudará você a gerenciar essas operações de forma limpa e eficaz, garantindo que suas aplicações web permaneçam responsivas mesmo sob alta carga de usuários. </p>
+</section>
+</main>
+<footer class="full-width">
+<div class="columns two">
+<div>
+<span class="course-code">CSE 340</span>
+             • 
+            <span class="course-name">Desenvolvimento Web Back-End</span>
+</div>
+<div> © 2024–2026 BYU–Idaho <a href="https://www.byui.edu/computer-science-engineering/" rel="noopener noreferrer" target="_blank">Departamento de CSE</a>. Todos os direitos reservados. </div>
+</div>
+</footer>
+</div>
+</body>
+</html>

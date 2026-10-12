@@ -1,0 +1,360 @@
+html
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../../assets/images/favicon/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../../assets/images/favicon/favicon.png" rel="icon" type="image/png"/>
+<link href="../../../assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<title>Tratamento de Erros no Express</title>
+<meta content="BYU-I's CSE 340 course: Learn to build efficient, scalable server-side web applications with relational databases, validation strategies, and modern backend frameworks and design patterns." name="description"/>
+<script src="../../../assets/js/main.js" type="module"></script>
+<script src="../../../assets/js/theme-preference.js"></script>
+</head>
+<body>
+<div class="content-grid">
+<header class="full-width">
+<input aria-controls="site-primary-nav" class="visually-hidden" id="site-nav-toggle" type="checkbox"/>
+<label aria-hidden="true" class="site-nav-backdrop" for="site-nav-toggle"></label>
+<div class="inner">
+<div class="site-brand">
+<a aria-label="CSE 340 home" class="brand-link" href="../../../index.html">
+<img alt="BYU–Idaho" class="site-logo" decoding="async" src="../../../assets/images/logos/byui-logo.png"/>
+</a>
+</div>
+<div class="site-course-info">
+<a href="../../../index.html">
+<span class="course-code">CSE 340</span>
+                 • 
+                <span class="course-name">Desenvolvimento Web Back-end</span>
+</a>
+</div>
+<nav aria-label="Primary" class="site-primary-nav" id="site-primary-nav">
+<ul aria-label="Course units" class="nav-list">
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<div class="site-header-tools">
+<label class="site-nav-menu-btn" for="site-nav-toggle">
+<span class="visually-hidden">Menu</span>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-open" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"></path></svg>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-close" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"></path></svg>
+</label>
+<input aria-controls="site-search-panel" class="visually-hidden" id="site-search-toggle" type="checkbox"/>
+<label class="site-search-trigger" for="site-search-toggle">
+<span class="visually-hidden">Alternar pesquisa no site</span>
+<span aria-hidden="true">🔎</span>
+<span aria-hidden="true">✕</span>
+</label>
+<details class="theme-menu">
+<summary class="theme-control">
+<span class="visually-hidden">Esquema de cores</span>
+</summary>
+<div aria-label="Choose color scheme" class="theme-extra" role="group">
+<label class="theme-control theme-pick" data-theme-pick="light">
+<input name="theme-preference" type="radio" value="light"/>
+<span aria-hidden="true">☀️</span>
+<span class="visually-hidden">Claro</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="system">
+<input name="theme-preference" type="radio" value="system"/>
+<span aria-hidden="true">⚙️</span>
+<span class="visually-hidden">Padrão do sistema</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="dark">
+<input name="theme-preference" type="radio" value="dark"/>
+<span aria-hidden="true">🌖</span>
+<span class="visually-hidden">Escuro</span>
+</label>
+</div>
+</details>
+</div>
+</div>
+<div aria-label="Site search" id="site-search-panel" role="region">
+<form action="" method="get" role="search">
+<label class="visually-hidden" for="site-search-query">Pesquisar</label>
+<input autocomplete="off" enterkeyhint="search" id="site-search-query" name="query" placeholder="Search…" type="search"/>
+</form>
+<div aria-live="polite" class="site-search-results" id="site-search-results"></div>
+</div>
+</header>
+<main>
+<nav aria-label="Course units" class="course-breadcrumbs unit">
+<ul>
+<li>
+<a aria-label="Home" href="../../../index.html">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z">
+</path></svg>
+</a>
+</li>
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<section>
+<h1>Entendendo o Tratamento de Erros no Express</h1>
+<p> Toda aplicação web enfrenta problemas: usuários solicitam páginas que não existem, servidores passam por falhas inesperadas ou serviços externos ficam indisponíveis. Sem o tratamento de erros adequado, essas situações levam a aplicações com falhas, mensagens de erro confusas ou telas em branco que frustram os usuários e tornam a depuração quase impossível para os desenvolvedores. </p>
+<p> Aplicações Express profissionais tratam erros de forma elegante usando padrões centralizados de tratamento de erros que fornecem experiências de usuário consistentes e informações detalhadas de depuração. Nesta leitura, você aprenderá os conceitos fundamentais do tratamento de erros no Express que formam o fundamento para a construção de aplicações web robustas. </p>
+</section>
+<section>
+<h2>O Problema com o Comportamento de Erro Padrão</h2>
+<p> Quando o Express encontra um erro sem o tratamento adequado, os resultados são imprevisíveis e pouco amigáveis ao usuário. Considere o que acontece quando um usuário visita uma página inexistente ou quando o código da sua aplicação lança uma exceção. Por padrão, o Express pode interromper toda a aplicação, expor informações confidenciais de depuração aos usuários ou simplesmente travar sem responder. </p>
+<p> Esses comportamentos padrão criam vários problemas graves: os usuários recebem mensagens técnicas de erro confusas em vez de orientações úteis, os desenvolvedores têm dificuldade para diagnosticar problemas sem o log de erros adequado, e as aplicações se tornam não confiáveis, pois erros não tratados podem derrubar todo o processo do servidor. </p>
+<div class="callout warn icon">
+<div class="title">Riscos de Segurança e Experiência do Usuário</div>
+<p> Erros não tratados geralmente expõem detalhes internos da aplicação, como caminhos de arquivos, strings de conexão de banco de dados ou rastreamentos de pilha que invasores podem explorar. Além disso, os usuários que se deparam com essas mensagens de erro brutas perdem a confiança em sua aplicação e podem abandonar suas tarefas completamente. </p>
+</div>
+</section>
+<section>
+<h2>O que é Tratamento de Erros?</h2>
+<p> O tratamento de erros no Express garante que sua aplicação responda graciosamente a problemas ao capturar exceções, registrar informações de diagnóstico em log e enviar respostas apropriadas aos usuários. Em vez de permitir que erros derrubem sua aplicação ou confundam os usuários, o tratamento de erros adequado transforma essas situações em experiências gerenciáveis e amigáveis ao usuário. </p>
+<p> O Express fornece mecanismos integrados para tratamento de erros por meio de funções middleware especiais que possuem quatro parâmetros em vez dos três habituais. Isso cria um sistema centralizado onde todos os erros fluem para manipuladores designados que podem registrar detalhes em log, determinar respostas apropriadas e manter a estabilidade da aplicação. </p>
+</section>
+<section>
+<h2>Entendendo os Tipos de Erro</h2>
+<p> Os erros em aplicações Express geralmente se enquadram em duas categorias principais que exigem abordagens de tratamento diferentes: </p>
+<h3>Erros Operacionais</h3>
+<p> Esses erros resultam de condições externas e não de bugs no código, devendo ser tratados adequadamente para manter a estabilidade da aplicação. Os exemplos incluem usuários solicitando recursos inexistentes (erros 404), entrada inválida disparando falhas de validação (erros 400) ou serviços externos ficando indisponíveis (erros 503). Essas situações são esperadas e partes normais da operação de uma aplicação web. </p>
+<h3>Erros de Programação</h3>
+<p> Estes são bugs reais em seu código: erros de sintaxe, exceções de referência nula ou erros de lógica. Embora estes devam ser corrigidos durante o desenvolvimento, seu sistema de tratamento de erros ainda deve capturá-los com elegância para evitar falhas na aplicação e fornecer informações de depuração. </p>
+</section>
+<section>
+<h2>O Padrão de Manipulador de Erros Global</h2>
+<p> Um manipulador de erros global é uma função middleware especial que o Express invoca sempre que um erro é passado usando next(err) ou quando uma exceção é lançada na lógica de rota síncrona. Esse middleware deve definir quatro parâmetros: <code>(err, req, res, next)</code>, o que o distingue do middleware regular. </p>
+<pre><code class="javascript">
+        // Global error handler - note the four parameters
+        app.use((err, req, res, next) =&gt; {
+            // Log error details for developers
+            console.error('Error occurred:', err.message);
+            console.error('Stack trace:', err.stack);
+            
+            // Determine response based on error type
+            const status = err.status || 500;
+            const message = status === 404 
+                ? 'The page you requested could not be found.' 
+                : 'An unexpected error occurred. Please try again later.';
+            
+            // Send appropriate response to user
+            res.status(status).send(message);
+        });
+    </code></pre>
+<p> Essa abordagem centralizada garante que todos os erros em sua aplicação sejam tratados de forma consistente, registrados em log adequadamente e apresentados aos usuários de maneira profissional. O manipulador de erros global atua como uma rede de segurança que captura qualquer erro que ocorra em qualquer lugar da sua aplicação. </p>
+<div class="callout info icon">
+<div class="title">Por que quatro parâmetros são importantes</div>
+<p> O Express identifica middleware de manipulação de erros pelo número de parâmetros. Middlewares comuns usam três parâmetros <code>(req, res, next)</code>, enquanto o middleware de erro usa quatro <code>(err, req, res, next)</code>. Esta assinatura diz ao Express para só invocar este middleware quando ocorrer um erro. </p>
+</div>
+</section>
+<section>
+<h2>Como os erros se propagam pela sua aplicação</h2>
+<p> Erros em aplicações Express são passados usando a função next(err), que pode ser disparada a partir de qualquer rota ou middleware. Quando você chama <code>next(err)</code>, o Express ignora todos os middlewares restantes que não são de erro e pula diretamente para o primeiro manipulador de erros que encontrar. Tenha em mente que o <code>err</code> parâmetro deve ser uma instância de <code>Error</code> ou um objeto de erro personalizado com uma <code>status</code> propriedade para indicar o código de status HTTP. </p>
+<pre><code class="javascript">
+        // Route that triggers an error
+        app.get('/example-error', (req, res, next) =&gt; {
+            // Simulate a problem - perhaps database connection failed
+            const err = new Error('Database connection failed');
+            err.status = 500;
+            
+            // Forward error to global error handler
+            next(err);
+        });
+        
+        // This middleware won't run if the error above occurs
+        app.use((req, res, next) =&gt; {
+            console.log('This will be skipped when errors occur');
+            next();
+        });
+        
+        // Global error handler catches the error
+        app.use((err, req, res, next) =&gt; {
+            res.status(err.status || 500).send(err.message);
+        });
+    </code></pre>
+<p> O Express também trata exceções lançadas da mesma forma, desde que ocorram em código síncrono. Isso significa que você pode chamar explicitamente <code>next(err)</code> ou simplesmente lançar um erro, e o Express irá direcioná-lo para o seu manipulador de erros. </p>
+</section>
+<section>
+<h2>Tratando erros 404: A rota pega-tudo</h2>
+<p> Um usuário solicita um recurso que não existe (404 Not Found) quando nenhuma rota definida corresponde à sua requisição. No Express, respostas 404 não são o resultado de um erro, portanto, o middleware manipulador de erros não as capturará, a menos que você crie e encaminhe explicitamente um erro 404. </p>
+<p> A abordagem profissional é adicionar um middleware "catch-all" (pega-tudo) após todas as suas rotas reais que cria um erro 404 e o encaminha para o seu manipulador de erros global: </p>
+<pre><code class="javascript">
+        // All your real routes go above this point
+        app.get('/', (req, res) =&gt; {
+            res.send('Home page');
+        });
+        
+        app.get('/about', (req, res) =&gt; {
+            res.send('About page');
+        });
+        
+        // Catch-all middleware for unmatched routes
+        app.use((req, res, next) =&gt; {
+            const err = new Error('Page Not Found');
+            err.status = 404;
+            next(err); // Forward to global error handler
+        });
+        
+        // Global error handler processes both 404s and 500s
+        app.use((err, req, res, next) =&gt; {
+            console.error(err.stack);
+            
+            const status = err.status || 500;
+            const message = status === 404
+                ? 'The page you requested does not exist.'
+                : 'An unexpected server error occurred.';
+            
+            res.status(status).send(message);
+        });
+    </code></pre>
+<p> Este padrão é crucial porque garante que os erros 404 fluam pelo mesmo sistema centralizado de manipulação que todos os outros erros. <strong>A percepção-chave é definir o código de status no objeto de erro antes de chamar <code>next(err)</code></strong> – isso permite que o seu manipulador de erros global distinga entre diferentes tipos de erro e responda adequadamente. </p>
+<div class="callout info">
+<div class="title">A ordem importa no Express</div>
+<p> A rota catch-all deve vir depois de todas as suas rotas reais, mas antes do seu manipulador de erros. O Express processa os middlewares na ordem em que você os define, portanto, colocar o catch-all muito cedo impediria que suas rotas reais fossem alcançadas. </p>
+</div>
+</section>
+<section>
+<h2>Páginas de erro profissionais: uma prévia</h2>
+<p> Embora esta leitura se concentre nos conceitos fundamentais, aplicações profissionais não enviam mensagens de erro em texto simples para os usuários. Em vez disso, elas renderizam páginas de erro atraentes e úteis que mantêm o design do site e fornecem opções de navegação úteis. </p>
+<p> Nas próximas Tarefas, você aprenderá a criar um sistema profissional de manipulação de erros usando modelos EJS dedicados e organizados de forma estruturada: </p>
+<pre><code>
+        src/views/errors/
+            ├── 404.ejs   // Page not found
+            ├── 500.ejs   // Server errors  
+            ├── 403.ejs   // Access denied
+            └── error.ejs // Generic error template
+    </code></pre>
+<p> Seu manipulador de erros global renderizará o modelo apropriado com base no código de status do erro, criando uma experiência do usuário fluida que se ajusta ao design da sua aplicação. Por exemplo, em vez de enviar texto simples, você pode renderizar: </p>
+<pre><code class="javascript">
+        // Future professional approach (preview)
+        app.use((err, req, res, next) =&gt; {
+            const status = err.status || 500;
+            
+            // Render appropriate error template
+            res.status(status).render(`errors/${status}`, {
+                title: 'Error',
+                message: err.message,
+                // Additional template data...
+            });
+        });
+    </code></pre>
+<p> Esta abordagem transforma a manipulação de erros de uma necessidade técnica em uma funcionalidade de experiência do usuário que mantém sua marca e ajuda os usuários a se recuperarem de problemas de forma elegante. </p>
+<div class="callout success icon">
+<div class="title">Além das páginas de erro estáticas</div>
+<p> Eventualmente, você aprenderá a exibir informações de erro dinamicamente dentro dos seus modelos de página regulares, permitindo que os usuários vejam mensagens de erro sem sair do seu contexto atual. Isso cria uma experiência do usuário ainda mais refinada e profissional. </p>
+</div>
+</section>
+<section>
+<h2>Exemplo completo e funcional</h2>
+<p> Aqui está uma aplicação Express completa demonstrando o padrão centralizado de manipulação de erros que você aprendeu: </p>
+<pre><code class="javascript">
+        import express from 'express';
+        const app = express();
+        
+        // Regular routes
+        app.get('/', (req, res) =&gt; {
+            res.send('Welcome to the home page!');
+        });
+        
+        // Route that demonstrates error handling
+        app.get('/demo-error', (req, res, next) =&gt; {
+            // Simulate a server error
+            const err = new Error('Something went wrong in the demo');
+            err.status = 500;
+            next(err);
+        });
+        
+        // Route that throws an exception
+        app.get('/demo-exception', (req, res) =&gt; {
+            // This will be caught by Express and sent to error handler
+            throw new Error('Intentional exception for demonstration');
+        });
+        
+        // Catch-all route for 404 errors (must come after real routes)
+        app.use((req, res, next) =&gt; {
+            const err = new Error('Page Not Found');
+            err.status = 404;
+            next(err);
+        });
+        
+        // Global error handler (must come last)
+        app.use((err, req, res, next) =&gt; {
+            // Log error details for developers
+            console.error('Error occurred:', err.message);
+            console.error('Stack trace:', err.stack);
+            
+            // Determine appropriate response
+            const status = err.status || 500;
+            const message = status === 404
+                ? 'The page you requested could not be found.'
+                : 'An unexpected error occurred. Please try again later.';
+            
+            // Send response to user
+            res.status(status).send(message);
+        });
+        
+        app.listen(3000, () =&gt; {
+            console.log('Server running on port 3000');
+            console.log('Try visiting /demo-error or /nonexistent-page');
+        });
+    </code></pre>
+<p> Este exemplo demonstra todos os conceitos-chave: rotas normais lidam com requisições comuns, a rota catch-all cria erros 404 para requisições não correspondidas, e o manipulador de erros global processa todos os erros de forma consistente, fornecendo logs apropriados e respostas ao usuário. </p>
+</section>
+<section>
+<h2>Melhores práticas de manipulação de erros</h2>
+<p> Seguir as melhores práticas estabelecidas garante que seu sistema de manipulação de erros seja seguro, fácil de manter e amigável ao usuário: </p>
+<ul>
+<li>
+<strong>Sempre faça log dos erros para os desenvolvedores</strong>: Inclua mensagens de erro, rastreamentos de pilha (stack traces), detalhes da requisição e carimbos de data/hora para facilitar a depuração e o monitoramento. </li>
+<li>
+<strong>Nunca exponha informações sensíveis</strong>: Não envie rastreamentos de pilha de erro ou detalhes internos aos usuários, pois isso representa riscos de segurança. </li>
+<li>
+<strong>Use mensagens descritivas e amigáveis ao usuário</strong>: Forneça mensagens de erro que descrevam adequadamente o que aconteceu e como os usuários podem prosseguir. </li>
+<li>
+<strong>Defina códigos de status HTTP apropriados</strong>: Use 404 para não encontrado, 400 para erros do cliente, 500 para erros do servidor e outros códigos padrão conforme apropriado. </li>
+<li>
+<strong>Trate erros síncronos e assíncronos</strong>: Use <code>next(err)</code> para encaminhar erros e garantir que funções assíncronas capturem e encaminhem adequadamente suas exceções. </li>
+<li>
+<strong>Coloque os manipuladores de erro no final</strong>: Mantenha seu manipulador de erro global no final da cadeia de middleware para que ele possa capturar erros de todos os middlewares anteriores. </li>
+<li>
+<strong>Crie erros com códigos de status</strong>: Sempre defina <code>err.status</code> antes de chamar <code>next(err)</code> para ajudar seu manipulador de erro a responder adequadamente. </li>
+</ul>
+</section>
+<section>
+<h2>Resumo dos Conceitos-Chave</h2>
+<p> O tratamento de erros transforma sua aplicação Express de um protótipo frágil em um serviço web robusto e profissional. O padrão de manipulador de erro global centraliza todo o processamento de erros, garantindo logs consistentes, respostas apropriadas ao usuário e uma estrutura de código sustentável. </p>
+<p> As principais ideias que você aprendeu formam o fundamento para todo tratamento de erros profissional em Express: os erros se propagam através de <code>next(err)</code>, a rota geral lida com erros 404 criando e encaminhando erros com códigos de status, e o manipulador de erro global processa todos os erros por meio de um único sistema consistente. </p>
+<p> Esses conceitos preparam você para as técnicas avançadas de tratamento de erros que você aprenderá nas próximas Tarefas, incluindo modelos de erro personalizados que mantêm o design da sua aplicação, exibições dinâmicas de erro em páginas normais e sistemas sofisticados de categorização de erros. Com este fundamento, você pode construir aplicações Express que lidam com problemas de forma elegante e fornecem experiências excepcionais ao usuário, mesmo quando algo dá errado. </p>
+<div class="callout info icon">
+<div class="title">Próximos Passos</div>
+<p> Na sua próxima Tarefa, você implementará este sistema de tratamento de erros na sua própria aplicação Express e aprenderá a criar modelos de erro profissionais que tornam suas páginas de erro tão bem acabadas quanto o restante do seu site. Você também explorará padrões mais avançados de tratamento de erros e aprenderá a integrar o tratamento de erros a sistemas de log para aplicações em produção. </p>
+</div>
+</section>
+<section>
+<h2>Leituras Adicionais</h2>
+<p> Para aprofundar seu entendimento sobre o tratamento de erros no Express, explore o <a href="https://expressjs.com/en/guide/error-handling.html" rel="noopener noreferrer" target="_blank">Guia Oficial de Tratamento de Erros do Express</a> e experimente diferentes condições de erro em suas próprias aplicações. Entender como os erros se propagam através dos middlewares e como estruturar adequadamente os sistemas de tratamento de erros é essencial para construir aplicações Express seguras e estáveis. </p>
+</section>
+</main>
+<footer class="full-width">
+<div class="columns two">
+<div>
+<span class="course-code">CSE 340</span>
+             • 
+            <span class="course-name">Desenvolvimento Web Back-end</span>
+</div>
+<div> © 2024–2026 BYU–Idaho <a href="https://www.byui.edu/computer-science-engineering/" rel="noopener noreferrer" target="_blank">Departamento de CSE</a>. Todos os direitos reservados. </div>
+</div>
+</footer>
+</div>
+</body>
+</html>

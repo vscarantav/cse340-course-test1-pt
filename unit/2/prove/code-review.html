@@ -1,0 +1,545 @@
+html
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../../assets/images/favicon/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../../assets/images/favicon/favicon.png" rel="icon" type="image/png"/>
+<link href="../../../assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<title>Instruções da Tarefa</title>
+<meta content="Learn to conduct effective code reviews for Express.js applications, focusing on structure, implementation, and code quality." name="description"/>
+<script src="../../../assets/js/main.js" type="module"></script>
+<script src="../../../assets/js/theme-preference.js"></script>
+</head>
+<body>
+<div class="content-grid">
+<header class="full-width">
+<input aria-controls="site-primary-nav" class="visually-hidden" id="site-nav-toggle" type="checkbox"/>
+<label aria-hidden="true" class="site-nav-backdrop" for="site-nav-toggle"></label>
+<div class="inner">
+<div class="site-brand">
+<a aria-label="CSE 340 home" class="brand-link" href="../../../index.html">
+<img alt="BYU–Idaho" class="site-logo" decoding="async" src="../../../assets/images/logos/byui-logo.png"/>
+</a>
+</div>
+<div class="site-course-info">
+<a href="../../../index.html">
+<span class="course-code">CSE 340</span>
+                 • 
+                <span class="course-name">Desenvolvimento Web Back-End</span>
+</a>
+</div>
+<nav aria-label="Primary" class="site-primary-nav" id="site-primary-nav">
+<ul aria-label="Course units" class="nav-list">
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<div class="site-header-tools">
+<label class="site-nav-menu-btn" for="site-nav-toggle">
+<span class="visually-hidden">Menu</span>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-open" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"></path></svg>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-close" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"></path></svg>
+</label>
+<input aria-controls="site-search-panel" class="visually-hidden" id="site-search-toggle" type="checkbox"/>
+<label class="site-search-trigger" for="site-search-toggle">
+<span class="visually-hidden">Alternar pesquisa no site</span>
+<span aria-hidden="true">🔎</span>
+<span aria-hidden="true">✕</span>
+</label>
+<details class="theme-menu">
+<summary class="theme-control">
+<span class="visually-hidden">Esquema de cores</span>
+</summary>
+<div aria-label="Choose color scheme" class="theme-extra" role="group">
+<label class="theme-control theme-pick" data-theme-pick="light">
+<input name="theme-preference" type="radio" value="light"/>
+<span aria-hidden="true">☀️</span>
+<span class="visually-hidden">Claro</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="system">
+<input name="theme-preference" type="radio" value="system"/>
+<span aria-hidden="true">⚙️</span>
+<span class="visually-hidden">Padrão do sistema</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="dark">
+<input name="theme-preference" type="radio" value="dark"/>
+<span aria-hidden="true">🌖</span>
+<span class="visually-hidden">Escuro</span>
+</label>
+</div>
+</details>
+</div>
+</div>
+<div aria-label="Site search" id="site-search-panel" role="region">
+<form action="" method="get" role="search">
+<label class="visually-hidden" for="site-search-query">Pesquisar</label>
+<input autocomplete="off" enterkeyhint="search" id="site-search-query" name="query" placeholder="Search…" type="search"/>
+</form>
+<div aria-live="polite" class="site-search-results" id="site-search-results"></div>
+</div>
+</header>
+<main>
+<nav aria-label="Course units" class="course-breadcrumbs unit">
+<ul>
+<li>
+<a aria-label="Home" href="../../../index.html">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z">
+</path></svg>
+</a>
+</li>
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<section>
+<h1>Revisão de Código da Unidade 2</h1>
+<p> Nesta Tarefa, você aprenderá a realizar revisões de código eficazes examinando os sites de prática Express.js de seus colegas de equipe diretamente no GitHub. A revisão de código é uma habilidade fundamental no desenvolvimento profissional que ajuda as equipes a manter a qualidade, identificar problemas precocemente e compartilhar conhecimento. </p>
+<p> Você aprenderá o que procurar no código Express.js, praticará o uso das ferramentas de revisão do GitHub e fornecerá feedbacks construtivos para ajudar seus colegas de equipe a melhorar seus projetos. Como seus colegas de equipe podem estar em diferentes estágios da refatoração para MVC, você aprenderá a avaliar o código em vários níveis de organização. </p>
+</section>
+<section>
+<h2>Entendendo o que Procurar</h2>
+<p> Antes de revisar o código, você precisa saber o que constitui um código Express.js bom versus um problemático. Aqui estão as principais áreas e problemas comuns, organizados se o código foi refatorado para a arquitetura MVC ou não. </p>
+<h3>Problemas de Remoção de Funcionalidades (Todos os Projetos Devem Tratar)</h3>
+<p> Independentemente do progresso da refatoração, todos os projetos devem ter removido a funcionalidade de produtos como parte da Tarefa de MVC. Verifique: </p>
+<h4>❌ Funcionalidade de Produtos Não Removida Adequadamente</h4>
+<ul>
+<li>
+<strong>Manipuladores de rota ainda existem</strong>: Procure em <code>server.js</code> ou arquivos de controlador para quaisquer rotas como <code>/products</code>
+</li>
+<li>
+<strong>Links de navegação permanecem</strong>: Verifique <code>views/partials/header.ejs</code> para links de páginas de produtos </li>
+<li>
+<strong>Arquivos de exibição não excluídos</strong>: Procure por <code>products.ejs</code> ou arquivos semelhantes no diretório views </li>
+<li>
+<strong>Código comentado</strong>: Código de produtos que foi comentado em vez de excluído </li>
+</ul>
+<h4>✅ Funcionalidade de Produtos Removida Adequadamente</h4>
+<ul>
+<li>Nenhuma rota relacionada a produtos em qualquer lugar da base de código</li>
+<li>Menus de navegação atualizados para remover links de produtos</li>
+<li>Todos os arquivos de modelo relacionados a produtos excluídos</li>
+<li>Nenhum código de produto comentado restante</li>
+</ul>
+<h3>Problemas de Código Pré-Refatoração</h3>
+<p> Se seu colega de equipe ainda não começou a refatoração MVC, fique atento a estes problemas tradicionais do Express.js: </p>
+<h4>❌ Estrutura Ruim (Monolítica)</h4>
+<pre><code class="bash">
+        [project-root]
+        ├── server.js        # Everything in one file
+        ├── style.css        # Should be in public/css/
+        ├── home.ejs         # Should be in views/
+        └── logo.png         # Should be in public/images/
+    </code></pre>
+<h4>❌ Problemas Comuns no server.js</h4>
+<pre><code class="javascript">
+        // Unnecessary 'next' parameter
+        app.get('/catalog', (req, res, next) =&gt; {
+            res.render('catalog'); // next is never used
+        });
+
+        // Poor variable names
+        const x = req.params.cat;
+        const y = req.query.sort || 'def';
+        
+        // Missing validation
+        app.get('/catalog/:id', (req, res) =&gt; {
+            const courseId = req.params.id; // What if this is invalid?
+            res.render('course-detail', { id: courseId });
+        });
+    </code></pre>
+<h3>Problemas de Código Pós-Refatoração (Arquitetura MVC)</h3>
+<p> Se seu colega de equipe iniciou ou concluiu a refatoração MVC, procure por estes problemas de organização e arquitetura: </p>
+<h4>❌ Organização MVC Ruim</h4>
+<pre><code class="bash">
+        [project-root]
+        ├── src/
+        │   ├── controllers/
+        │   │   └── everything.js    # All controllers in one file
+        │   ├── models/
+        │   │   └── data.js          # Generic naming
+        │   └── middleware/
+        │       └── stuff.js         # Unclear purpose
+        └── server.js
+    </code></pre>
+<h4>✅ Boa Estrutura MVC</h4>
+<pre><code class="bash">
+        [project-root]
+        ├── src/
+        │   ├── controllers/
+        │   │   ├── catalog/
+        │   │   │   └── catalog.js
+        │   │   ├── index.js
+        │   │   └── routes.js
+        │   ├── models/
+        │   │   └── catalog/
+        │   │       └── catalog.js
+        │   ├── middleware/
+        │   │   └── global.js
+        │   └── views/
+        └── server.js
+    </code></pre>
+<h4>❌ Controladores com Preocupações Mistas</h4>
+<pre><code class="javascript">
+        // Controller doing too much
+        export const catalogPage = (req, res) =&gt; {
+            // Data should be in models, not controllers
+            const courses = {
+                'CS121': { title: 'Intro Programming' },
+                'CS162': { title: 'Intro CS' }
+            };
+            
+            // Business logic should be in models too
+            const sortedCourses = Object.values(courses).sort((a, b) =&gt; 
+                a.title.localeCompare(b.title)
+            );
+            
+            res.render('catalog', { courses: sortedCourses });
+        };
+    </code></pre>
+<h4>✅ Implementação Limpa de Controlador</h4>
+<pre><code class="javascript">
+        import { getAllCourses } from '../../models/catalog/catalog.js';
+
+        export const catalogPage = (req, res) =&gt; {
+            const courses = getAllCourses(); // Data comes from model
+            
+            res.render('catalog', {
+                title: 'Course Catalog',
+                courses: courses
+            });
+        };
+    </code></pre>
+<h4>❌ Middleware Dividido Desnecessariamente</h4>
+<pre><code class="javascript">
+        // Multiple middleware functions doing similar things
+        app.use(addImportantLocalVariables);
+        app.use(addOptionalLocalVariables);
+        app.use(addMoreStuff);
+    </code></pre>
+<h4>✅ Middleware Consolidado</h4>
+<pre><code class="javascript">
+        // Single middleware that handles all res.locals setup
+        app.use(addLocalVariables);
+    </code></pre>
+</section>
+<section>
+<h2>Prática Rápida</h2>
+<p> Olhe para este código e identifique os problemas (isso pode ser encontrado em um server.js monolítico ou em um arquivo de controlador): </p>
+<pre><code class="javascript">
+        app.get('/catalog/:cat/:id', (req, res, next) =&gt; {
+            const c = req.params.cat;
+            const i = req.params.id;
+            
+            if(c==='courses'){
+            res.render('course-detail',{category:c,id:i});
+            }else{
+            res.send('Not found');
+            }
+        });
+    </code></pre>
+<details class="info">
+<summary>Clique para ver os problemas</summary>
+<ul>
+<li>Não utilizado <code>next</code> parâmetro → Remova do cabeçalho da função</li>
+<li>Nomes de variáveis ruins (<code>c</code>, <code>i</code>) → Use nomes completos como <code>category</code> e <code>id</code></li>
+<li>Formatação inconsistente → Adicione linhas em branco e recuo de forma consistente</li>
+<li>Usando <code>res.send()</code> → Use <code>res.render()</code> e realmente renderize uma página de erro ou modelo</li>
+<li>Nenhuma validação para <code>req.params.id</code> → Adicione validação ou falhe de forma elegante</li>
+</ul>
+</details>
+</section>
+<section>
+<h2>Diretrizes de Comunicação</h2>
+<p> Escreva issues e feedbacks como se estivesse ajudando um colega de equipe, não dando nota a ele. Lembre-se de que o código em diferentes estágios de refatoração exige diferentes tipos de feedback: </p>
+<h3>Seja Útil e Adaptável</h3>
+<ul>
+<li><strong>Explique o porquê:</strong> "Isso pode causar erros se os usuários inserirem dados inválidos" ou "A separação do MVC torna o código mais fácil de manter"</li>
+<li><strong>Sugira soluções:</strong> Mostre a correção, não apenas aponte os problemas</li>
+<li>
+<strong>Seja específico:</strong> "Linha 23 no server.js" ou "função catalogPage em src/controllers/catalog/catalog.js" <ul>
+<li> Você pode referenciar uma linha de código específica nesta issue vinculando-a diretamente. Passe o mouse sobre o número da linha, clique nas <strong>…</strong> (reticências) e selecione "Reference in new issue". O GitHub criará automaticamente uma issue com um link direto para essa linha de código. </li>
+</ul>
+</li>
+<li><strong>Seja positivo:</strong> Aponte o que funciona bem, juntamente com o que precisa ser melhorado</li>
+<li><strong>Seja compreensivo:</strong> Se alguém estiver no meio de uma refatoração, reconheça seu progresso enquanto sugere melhorias</li>
+</ul>
+<h3>Mantenha Simples</h3>
+<ul>
+<li>Foque nas issues mais importantes que os ajudarão a aprender</li>
+<li>Não crie issues para preferências secundárias de formatação</li>
+<li>Se você não tiver certeza sobre a abordagem de refatoração usada, faça perguntas em vez de fazer suposições</li>
+<li>Priorize issues funcionais em relação às estilísticas</li>
+</ul>
+<h3>Exemplos de um Bom Tom de Feedback</h3>
+<ul>
+<li><strong>Encorajador:</strong> "Ótimo trabalho ao iniciar a refatoração do MVC! Notei um pequeno problema com a estrutura do controller..."</li>
+<li><strong>Educativo:</strong> "Isso funciona, mas mover os dados para um arquivo de model seguiria melhor os princípios do MVC porque..."</li>
+<li><strong>Construtivo:</strong> "Vejo que você ainda não começou a refatoração do MVC. Aqui estão algumas áreas nas quais se concentrar quando o fizer..."</li>
+</ul>
+</section>
+<section>
+<h2>Instruções da Tarefa</h2>
+<h3>1. Obter links do repositório</h3>
+<p> Compartilhe o link do seu repositório do GitHub com seus colegas de equipe e obtenha pelo menos dois links de repositório para revisar. Você revisará esses projetos inteiramente por meio da interface web do GitHub. </p>
+<h3>2. Revisar usando o GitHub</h3>
+<p> Para cada repositório, navegue pelos arquivos usando a interface web do GitHub. Como os colegas de equipe podem estar em diferentes estágios de refatoração do MVC, adapte sua abordagem de revisão: </p>
+<h4>Para todos os Projetos (independentemente do status de refatoração):</h4>
+<ul>
+<li><strong>Estrutura do Projeto:</strong> Verifique a visualização principal do repositório para garantir uma organização adequada</li>
+<li><strong>Remoção da funcionalidade de produtos:</strong> Verifique se a funcionalidade de produtos foi completamente removida</li>
+<li><strong>Navegação:</strong> Verifique se o cabeçalho/navegação não aponta para páginas inexistentes</li>
+</ul>
+<h4>Se o Projeto ainda não foi refatorado:</h4>
+<ul>
+<li><strong>server.js:</strong> Revise as implementações de rotas e a configuração de middlewares</li>
+<li><strong>Diretório views/:</strong> Verifique a organização dos modelos EJS e das partials</li>
+<li><strong>Diretório public/:</strong> Verifique se os arquivos estáticos estão devidamente organizados</li>
+</ul>
+<h4>Se o Projeto iniciou/concluiu a refatoração do MVC:</h4>
+<ul>
+<li><strong>src/controllers/:</strong> Revise a organização dos controllers e a separação de responsabilidades</li>
+<li><strong>src/models/:</strong> Verifique se os dados e a lógica de negócios estão devidamente separados</li>
+<li><strong>src/middleware/global.js:</strong> Verifique se o middleware consolidado está implementado corretamente</li>
+<li><strong>src/views/:</strong> Verifique a organização dos modelos</li>
+<li><strong>server.js:</strong> Deve estar limpo e focado apenas na configuração</li>
+<li><strong>Instruções de import/export:</strong> Verifique caminhos de arquivo corretos e padrões consistentes</li>
+</ul>
+<h3>3. Criar issues no GitHub</h3>
+<p> Quando encontrar problemas significativos, crie issues no GitHub. Veja como: </p>
+<ol>
+<li>Navegue até o arquivo com o problema</li>
+<li>Clique no número da linha onde ocorre o problema</li>
+<li>Clique nos três pontos (…) que aparecem</li>
+<li>Selecione "Reference in new issue"</li>
+<li>Escreva um título e uma descrição claros</li>
+</ol>
+<h3>4. Escrevendo boas issues no GitHub</h3>
+<p> Mantenha as issues do GitHub simples e úteis. Aqui estão exemplos de issues bem escritas para ambos os tipos de projetos: </p>
+<h4>Exemplo 1: Funcionalidade de produtos não removida</h4>
+<pre><code>
+        Products route still exists after refactoring
+
+        Found a products route that should have been removed as part of the MVC assignment cleanup:
+
+        ```javascript
+        app.get('/products', (req, res) =&gt; {
+            // This entire route should be deleted
+        });
+        ```
+
+        Please remove this route completely, along with:
+        - Any products link in your navigation
+        - The products.ejs template file if it exists
+        - Any products-related variables or data
+    </code></pre>
+<h4>Exemplo 2: Problema de organização do MVC</h4>
+<pre><code>
+        Controller contains data that should be in models
+
+        The catalogPage controller is storing course data directly instead of using the model layer:
+
+        ```javascript
+        // This data should be moved to src/models/catalog/catalog.js
+        const courses = { 'CS121': { title: 'Intro' } };
+        ```
+
+        Consider moving this data to your catalog model and importing it:
+        ```javascript
+        import { getAllCourses } from '../../models/catalog/catalog.js';
+        const courses = getAllCourses();
+        ```
+    </code></pre>
+<h4>Exemplo 3: Problema de qualidade de código tradicional</h4>
+<pre><code>
+        Unused next parameter in catalog route
+
+        The catalog route includes a `next` parameter but never uses it:
+
+        ```javascript
+        // Change this:
+        app.get('/catalog', (req, res, next) =&gt; {
+        
+        // To this:
+        app.get('/catalog', (req, res) =&gt; {
+        ```
+
+        This follows Express best practices and makes the code cleaner.
+    </code></pre>
+<h4>Exemplo 4: Problema no caminho de importação (Projetos MVC)</h4>
+<pre><code>
+        Incorrect import path in routes.js
+
+        The import statement for the catalog controller appears to have an incorrect path:
+
+        ```javascript
+        // Check if this path is correct
+        import { catalogPage } from './catalog.js';
+        ```
+
+        Based on your directory structure, it should probably be:
+        ```javascript
+        import { catalogPage } from './catalog/catalog.js';
+        ```
+    </code></pre>
+<p> Crie 2 a 3 issues significativas por repositório revisado. Foque em issues que realmente melhorariam o código, quer estejam relacionadas à organização do MVC ou à qualidade geral do código. </p>
+<div class="callout message icon">
+<div class="title">Dedique o tempo necessário para fazer isso da maneira certa</div>
+<p> A revisão de código não consiste apenas em encontrar problemas — trata-se de entender como o código funciona, aprender com diferentes abordagens e ajudar seus colegas de equipe a escrever softwares melhores. Cada issue criada deve ensinar algo valioso, seja para quem recebe o feedback ou para você como revisor. Esse processo aprimora sua capacidade de ler código criticamente, reconhecer padrões que levam a aplicações de fácil manutenção e comunicar conceitos técnicos com clareza. Lembre-se de que, no desenvolvimento profissional, a qualidade das suas revisões de código impacta diretamente a produtividade da equipe e a qualidade do código, portanto, desenvolver essa habilidade agora beneficiará toda a sua carreira. </p>
+</div>
+</section>
+<section>
+<h2>Lista de verificação de revisão</h2>
+<p> Como você pode ter experiência limitada na realização de revisões de código, use esta lista de verificação abrangente como um guia para conduzir uma revisão minuciosa. Essas orientações detalhadas ajudarão você a identificar problemas que poderiam passar despercebidos e a desenvolver a abordagem sistemática que desenvolvedores profissionais usam. Marque apenas os itens que forem relevantes para o progresso atual de refatoração do seu colega de equipe: </p>
+<h3>Limpeza de funcionalidade (Todos os projetos)</h3>
+<ul>
+<li>Rotas de produtos completamente removidas do server.js ou dos controladores</li>
+<li>Links de navegação de produtos removidos do header.ejs</li>
+<li>Arquivos de modelo de produtos excluídos</li>
+<li>Nenhum código de produtos comentado restante</li>
+</ul>
+<h3>Código tradicional do Express.js (se ainda não refatorado)</h3>
+<ul>
+<li>Manipuladores de rota usam parâmetros corretos (sem não utilizados <code>next</code>)</li>
+<li>Middleware estático configurado: <code>app.use(express.static('public'))</code></li>
+<li>Parâmetros acessados via <code>req.params</code> e <code>req.query</code></li>
+<li>Modelos renderizados com <code>res.render()</code></li>
+<li>Tratamento de erros presente</li>
+<li>Arquivos CSS em <code>public/css/</code></li>
+<li>Imagens em <code>public/images/</code></li>
+<li>Arquivos EJS em <code>views/</code></li>
+<li>Parciais em <code>views/partials/</code></li>
+</ul>
+<h3>Arquitetura MVC (se a refatoração foi iniciada/concluída)</h3>
+<ul>
+<li>Controladores separados em arquivos lógicos em <code>src/controllers/</code></li>
+<li>Modelos contêm dados e lógica de negócios em <code>src/models/</code></li>
+<li>Middleware organizado em <code>src/middleware/global.js</code></li>
+<li>Função de middleware consolidada (não dividida desnecessariamente)</li>
+<li>Visualizações movidas para <code>src/views/</code></li>
+<li>Arquivo de rotas importa corretamente controladores e middleware</li>
+<li>Server.js focado em configuração, não em lógica de negócios</li>
+<li>Instruções de importação/exportação usam caminhos de arquivo corretos</li>
+<li>Controladores não contêm dados codificados diretamente (em vez disso, use modelos)</li>
+<li>Manipulador de erros mostra informações diferentes em produção vs. desenvolvimento</li>
+</ul>
+<h3>Qualidade do código (Todos os projetos)</h3>
+<ul>
+<li>Nomes de variáveis são claros (não <code>x</code>, <code>y</code>, <code>data</code>)</li>
+<li>Formatação e recuo consistentes</li>
+<li>Sem código duplicado óbvio</li>
+<li>Tratamento de erros adequado</li>
+</ul>
+<h3>Modelos EJS (Todos os projetos)</h3>
+<ul>
+<li>Sintaxe EJS correta (<code>&lt;%= %&gt;</code>, <code>&lt;%- include() %&gt;</code>)</li>
+<li>Parciais incluídos corretamente</li>
+<li>Variáveis usadas corretamente</li>
+<li>Nenhum link quebrado ou referências a modelos ausentes</li>
+</ul>
+</section>
+<section>
+<h2>Modelo de Envio da Tarefa</h2>
+<p> Preencha o formulário abaixo e clique no botão de download na parte inferior. Uma nova página será aberta e solicitará automaticamente a impressão como PDF. Envie esse PDF ao seu instrutor. Tenha o cuidado de fornecer respostas profissionais e bem escritas que expliquem claramente os conceitos técnicos. Esta tarefa demonstra sua capacidade de articular conceitos técnicos com clareza de forma escrita: </p>
+<div class="document">
+<div class="title">Revisão de código da Unidade 2</div>
+<div class="header">
+<div><input placeholder="Your Name" type="text"/></div>
+<div><input type="date"/></div>
+</div>
+<div class="section">Repositórios revisados</div>
+<div class="subsection">
+<input placeholder="Teammates Name" prompt="Share the name of your teammate and the link to their repository here" type="url"/>
+<p class="instructions inline"> Status da refatoração MVC: </p>
+<span class="print">   (</span><select class="inline">
+<option value="MVC: ❌ Not Started">Não iniciada</option>
+<option value="MVC: ⚠️ In Progress">Em andamento</option>
+<option value="MVC: ✅ Completed">Refatoração MVC concluída</option>
+</select><span class="print">)</span>
+</div>
+<div class="subsection">Issues do GitHub criadas:</div>
+<ul>
+<li><input placeholder="Issue Title" prompt="Share the title of the issue and its link here" type="url"/></li>
+<template>
+<li><input placeholder="Issue Title" prompt="Share the title of the issue and its link here" type="url"/></li>
+</template>
+<button class="template">Adicionar outra issue</button>
+</ul>
+<template>
+<div class="spacer"></div>
+<div class="subsection">
+<input placeholder="Teammates Name" prompt="Share the name of your teammate and the link to their repository here" type="url"/>
+<p class="instructions inline"> Status da refatoração MVC: </p>
+<span class="print">   (</span><select class="inline">
+<option value="MVC: ❌ Not Started">Não iniciada</option>
+<option value="MVC: ⚠️ In Progress">Em andamento</option>
+<option value="MVC: ✅ Completed">Refatoração MVC Concluída</option>
+</select><span class="print">)</span>
+</div>
+<div class="subsection">Issues do GitHub Criadas:</div>
+<ul>
+<li><input placeholder="Issue Title" prompt="Share the title of the issue and its link here" type="url"/></li>
+<template>
+<li><input placeholder="Issue Title" prompt="Share the title of the issue and its link here" type="url"/></li>
+</template>
+<button class="template">Adicionar Outra Issue</button>
+</ul>
+</template>
+<button class="template">Revisar Membro Adicional da Equipe</button>
+<div class="section">Reflexão</div>
+<div class="instructions"> Escreva de 2 a 3 <strong>parágrafos</strong>, e não em tópicos, refletindo sobre: <ul>
+<li>O que você aprendeu sobre a qualidade do código ao revisar o trabalho de outras pessoas</li>
+<li>Como revisar tanto o código tradicional quanto o estruturado em MVC afetou sua compreensão</li>
+<li>O que você descobriu sobre os benefícios e desafios da organização do código</li>
+<li>Como essa experiência ajudará você a escrever um código melhor</li>
+<li>Como você abordou o fornecimento de feedback construtivo a membros da equipe em diferentes estágios de refatoração</li>
+</ul>
+</div>
+<p class="instructions"> Tenha em mente que sua capacidade de escrever com clareza e se comunicar profissionalmente será avaliada nesta Tarefa. É importante expressar suas ideias de maneira articulada e abrangente. </p>
+<textarea class="rich" placeholder="Write your reflection here..."></textarea>
+<div class="section">Confirmação de Conclusão</div>
+<div> Notifiquei ambos os membros da equipe de que suas revisões de código foram concluídas e que eles podem ver as issues do GitHub que criei. Eu os notifiquei via <input placeholder="Contact Method" type="text"/> em <input type="date"/>.
+        </div>
+</div>
+</section>
+<section>
+<h2>Etapas Finais</h2>
+<ol>
+<li><strong>Conclua suas revisões</strong> e crie issues no GitHub conforme descrito acima</li>
+<li><strong>Crie seu documento de Envio</strong> usando o formulário acima como diretriz</li>
+<li><strong>Envie o PDF para o Canvas</strong></li>
+<li><strong>Notifique os membros da sua equipe</strong> de que você terminou de revisar o código deles e que eles podem verificar suas issues no GitHub</li>
+</ol>
+</section>
+<section>
+<h2>Resumo dos Conceitos-Chave</h2>
+<p> Esta Tarefa ensinou você a avaliar sistematicamente o código Express.js em diferentes estágios de organização, usar as ferramentas de colaboração do GitHub e fornecer feedback técnico construtivo. Você aprendeu a adaptar sua abordagem de revisão com base no fato de o código seguir uma estrutura monolítica tradicional ou uma arquitetura MVC moderna. </p>
+<p> A experiência de revisar código em diferentes estágios de refatoração ajuda você a entender a evolução da organização do código e os benefícios que uma arquitetura adequada proporciona. Essas habilidades são essenciais no desenvolvimento profissional, onde a revisão de código ajuda a manter a qualidade e a compartilhar conhecimento entre os membros da equipe. </p>
+<p> Você também praticou identificar quando as funcionalidades devem ser removidas durante a refatoração, o que é uma habilidade importante para manter bases de código limpas e objetivas à medida que os requisitos evoluem. </p>
+</section>
+</main>
+<footer class="full-width">
+<div class="columns two">
+<div>
+<span class="course-code">CSE 340</span>
+             • 
+            <span class="course-name">Desenvolvimento Web Back-end</span>
+</div>
+<div> © 2024–2026 BYU–Idaho <a href="https://www.byui.edu/computer-science-engineering/" rel="noopener noreferrer" target="_blank">Departamento de CSE</a>. Todos os direitos reservados. </div>
+</div>
+</footer>
+</div>
+</body>
+</html>

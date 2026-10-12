@@ -1,0 +1,560 @@
+html
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../../assets/images/favicon/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../../assets/images/favicon/favicon.png" rel="icon" type="image/png"/>
+<link href="../../../assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<title>Instruções da Tarefa</title>
+<meta content="BYU-I's CSE 340 course: Learn to build efficient, scalable server-side web applications with relational databases, validation strategies, and modern backend frameworks and design patterns." name="description"/>
+<script src="../../../assets/js/main.js" type="module"></script>
+<script src="../../../assets/js/theme-preference.js"></script>
+</head>
+<body>
+<div class="content-grid">
+<header class="full-width">
+<input aria-controls="site-primary-nav" class="visually-hidden" id="site-nav-toggle" type="checkbox"/>
+<label aria-hidden="true" class="site-nav-backdrop" for="site-nav-toggle"></label>
+<div class="inner">
+<div class="site-brand">
+<a aria-label="CSE 340 home" class="brand-link" href="../../../index.html">
+<img alt="BYU–Idaho" class="site-logo" decoding="async" src="../../../assets/images/logos/byui-logo.png"/>
+</a>
+</div>
+<div class="site-course-info">
+<a href="../../../index.html">
+<span class="course-code">CSE 340</span>
+                 • 
+                <span class="course-name">Desenvolvimento Web Back-end</span>
+</a>
+</div>
+<nav aria-label="Primary" class="site-primary-nav" id="site-primary-nav">
+<ul aria-label="Course units" class="nav-list">
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<div class="site-header-tools">
+<label class="site-nav-menu-btn" for="site-nav-toggle">
+<span class="visually-hidden">Menu</span>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-open" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"></path></svg>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-close" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"></path></svg>
+</label>
+<input aria-controls="site-search-panel" class="visually-hidden" id="site-search-toggle" type="checkbox"/>
+<label class="site-search-trigger" for="site-search-toggle">
+<span class="visually-hidden">Alternar busca do site</span>
+<span aria-hidden="true">🔎</span>
+<span aria-hidden="true">✕</span>
+</label>
+<details class="theme-menu">
+<summary class="theme-control">
+<span class="visually-hidden">Esquema de cores</span>
+</summary>
+<div aria-label="Choose color scheme" class="theme-extra" role="group">
+<label class="theme-control theme-pick" data-theme-pick="light">
+<input name="theme-preference" type="radio" value="light"/>
+<span aria-hidden="true">☀️</span>
+<span class="visually-hidden">Claro</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="system">
+<input name="theme-preference" type="radio" value="system"/>
+<span aria-hidden="true">⚙️</span>
+<span class="visually-hidden">Padrão do sistema</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="dark">
+<input name="theme-preference" type="radio" value="dark"/>
+<span aria-hidden="true">🌖</span>
+<span class="visually-hidden">Escuro</span>
+</label>
+</div>
+</details>
+</div>
+</div>
+<div aria-label="Site search" id="site-search-panel" role="region">
+<form action="" method="get" role="search">
+<label class="visually-hidden" for="site-search-query">Buscar</label>
+<input autocomplete="off" enterkeyhint="search" id="site-search-query" name="query" placeholder="Search…" type="search"/>
+</form>
+<div aria-live="polite" class="site-search-results" id="site-search-results"></div>
+</div>
+</header>
+<main>
+<nav aria-label="Course units" class="course-breadcrumbs unit">
+<ul>
+<li>
+<a aria-label="Home" href="../../../index.html">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z">
+</path></svg>
+</a>
+</li>
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<section>
+<h1>Construindo um Catálogo de Cursos com Parâmetros de Rota</h1>
+<p> Nesta Tarefa, você criará um sistema simples de catálogo de cursos que demonstra como os parâmetros de rota funcionam no Express. Você construirá duas páginas conectadas: uma lista de catálogo que mostra os cursos disponíveis e páginas de detalhes de cursos individuais que exibem informações específicas com base no ID do curso capturado da URL. </p>
+<p> Esta prática mão na massa ajudará você a entender como os parâmetros de rota capturam valores dinâmicos de URLs e os usam para exibir conteúdos diferentes, desenvolvendo diretamente os conceitos que você aprendeu na atividade de leitura. </p>
+</section>
+<section>
+<h2>Configurando os Dados do Seu Curso</h2>
+<p> Como ainda não cobrimos bancos de dados ou fontes de dados externas, você trabalhará com um objeto JavaScript codificado diretamente que representa as informações do curso. Copie e cole esta estrutura de dados do curso em seu <code>server.js</code> arquivo, colocando-o perto do topo, após suas importações, mas antes de suas rotas: </p>
+<pre><code class="javascript">
+        // Course data - place this after imports, before routes
+        const courses = {
+            'CS121': {
+                id: 'CS121',
+                title: 'Introduction to Programming',
+                description: 'Learn programming fundamentals using JavaScript and basic web development concepts.',
+                credits: 3,
+                sections: [
+                    { time: '9:00 AM', room: 'STC 392', professor: 'Brother Jack' },
+                    { time: '2:00 PM', room: 'STC 394', professor: 'Sister Enkey' },
+                    { time: '11:00 AM', room: 'STC 390', professor: 'Brother Keers' }
+                ]
+            },
+            'MATH110': {
+                id: 'MATH110',
+                title: 'College Algebra',
+                description: 'Fundamental algebraic concepts including functions, graphing, and problem solving.',
+                credits: 4,
+                sections: [
+                    { time: '8:00 AM', room: 'MC 301', professor: 'Sister Anderson' },
+                    { time: '1:00 PM', room: 'MC 305', professor: 'Brother Miller' },
+                    { time: '3:00 PM', room: 'MC 307', professor: 'Brother Thompson' }
+                ]
+            },
+            'ENG101': {
+                id: 'ENG101',
+                title: 'Academic Writing',
+                description: 'Develop writing skills for academic and professional communication.',
+                credits: 3,
+                sections: [
+                    { time: '10:00 AM', room: 'GEB 201', professor: 'Sister Anderson' },
+                    { time: '12:00 PM', room: 'GEB 205', professor: 'Brother Davis' },
+                    { time: '4:00 PM', room: 'GEB 203', professor: 'Sister Enkey' }
+                ]
+            }
+        };
+    </code></pre>
+<p> Esta estrutura de objeto permite consultar informações do curso usando notação de colchetes como <code>courses['CS121']</code>, que é exatamente o que você fará quando os usuários visitarem URLs como <code>/catalog/CS121</code>.
+    </p>
+</section>
+<section>
+<h2>Instruções da Tarefa</h2>
+<h3>1. Crie a Página da Lista do Catálogo de Cursos</h3>
+<p> Comece criando uma rota que exiba todos os cursos disponíveis em uma lista simples. Adicione esta rota ao seu <code>server.js</code> arquivo antes do seu middleware de tratamento de erros: </p>
+<pre><code class="javascript">
+        // Course catalog list page
+        app.get('/catalog', (req, res) =&gt; {
+            res.render('catalog', {
+                title: 'Course Catalog',
+                courses: courses
+            });
+        });
+    </code></pre>
+<p> Crie o modelo correspondente <code>catalog.ejs</code> em seu <code>views</code> diretório: </p>
+<pre><code class="html">
+        &lt;%- include('partials/header') %&gt;
+        &lt;main&gt;
+            &lt;h1&gt;Course Catalog&lt;/h1&gt;
+            &lt;p&gt;Browse our available courses and click on any course to see detailed information including available sections and instructors.&lt;/p&gt;
+            
+            &lt;div class="course-list"&gt;
+                &lt;% Object.values(courses).forEach(course =&gt; { %&gt;
+                    &lt;div class="course-card"&gt;
+                        &lt;h3&gt;&lt;a href="/catalog/&lt;%= course.id %&gt;"&gt;&lt;%= course.title %&gt;&lt;/a&gt;&lt;/h3&gt;
+                        &lt;p class="course-id"&gt;&lt;%= course.id %&gt; • &lt;%= course.credits %&gt; credits&lt;/p&gt;
+                        &lt;p class="course-description"&gt;&lt;%= course.description %&gt;&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;% }); %&gt;
+            &lt;/div&gt;
+        &lt;/main&gt;
+        &lt;%- include('partials/footer') %&gt;
+    </code></pre>
+<p> Adicione um link para o catálogo em sua navegação. Atualize seu <code>header.ejs</code> partial: </p>
+<pre><code class="html">
+        &lt;nav&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/about"&gt;About&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/catalog"&gt;Course Catalog&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/products"&gt;Products&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    </code></pre>
+<p> Teste sua página de catálogo visitando <code>http://127.0.0.1:3000/catalog</code>. Você deve ver uma lista de três cursos, cada um com um link clicável. </p>
+<h3>2. Crie a Rota de Detalhes do Curso com Parâmetros</h3>
+<p> Agora implemente a rota que captura um ID de curso da URL e exibe informações detalhadas sobre esse curso específico. Adicione esta rota após a rota do seu catálogo: </p>
+<pre><code class="javascript">
+        // Course detail page with route parameter
+        app.get('/catalog/:courseId', (req, res) =&gt; {
+            // Extract the course ID from the URL
+            const courseId = req.params.courseId;
+            
+            // Look up the course in our data
+            const course = courses[courseId];
+            
+            // Handle course not found
+            if (!course) {
+                const err = new Error(`Course ${courseId} not found`);
+                err.status = 404;
+                return next(err);
+            }
+            
+            // Log the parameter for debugging
+            console.log('Viewing course:', courseId);
+            
+            // Render the course detail template
+            res.render('course-detail', {
+                title: `${course.id} - ${course.title}`,
+                course: course
+            });
+        });
+    </code></pre>
+<p> Crie o modelo de detalhes do curso <code>course-detail.ejs</code> em seu <code>views</code> diretório: </p>
+<pre><code class="html">
+        &lt;%- include('partials/header') %&gt;
+        &lt;main&gt;
+            &lt;div class="course-header"&gt;
+                &lt;h1&gt;&lt;%= course.title %&gt;&lt;/h1&gt;
+                &lt;p class="course-meta"&gt;&lt;%= course.id %&gt; • &lt;%= course.credits %&gt; credits&lt;/p&gt;
+                &lt;p class="course-description"&gt;&lt;%= course.description %&gt;&lt;/p&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="sections"&gt;
+                &lt;h2&gt;Available Sections&lt;/h2&gt;
+                &lt;div class="section-list"&gt;
+                    &lt;% course.sections.forEach(section =&gt; { %&gt;
+                        &lt;div class="section-card"&gt;
+                            &lt;div class="section-time"&gt;&lt;%= section.time %&gt;&lt;/div&gt;
+                            &lt;div class="section-room"&gt;Room: &lt;%= section.room %&gt;&lt;/div&gt;
+                            &lt;div class="section-professor"&gt;Instructor: &lt;%= section.professor %&gt;&lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;% }); %&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="navigation"&gt;
+                &lt;p&gt;&lt;a href="/catalog"&gt;&amp;larr; Back to Course Catalog&lt;/a&gt;&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/main&gt;
+        &lt;%- include('partials/footer') %&gt;
+    </code></pre>
+<p> Teste seu parâmetro de rota clicando em links de cursos da página do catálogo. Tente visitar URLs diretamente como <code>/catalog/CS121</code>, <code>/catalog/MATH110</code>, e <code>/catalog/ENG101</code>. Verifique o console do seu servidor para ver o ID do curso registrado. </p>
+<div class="callout info icon">
+<div class="title">Como os Parâmetros de Rota Funcionam</div>
+<p> O <code>:courseId</code> no padrão da sua rota diz ao Express para capturar qualquer coisa que venha depois de <code>/catalog/</code> e torná-la disponível como <code>req.params.courseId</code>. Quando alguém visita <code>/catalog/CS121</code>, o Express captura "CS121" e permite que você o use para procurar os dados específicos do curso. </p>
+</div>
+<h3>3. Adicione Ordenação por Parâmetros de Consulta</h3>
+<p> Aprimore sua página de detalhes do curso adicionando a capacidade de ordenar seções usando parâmetros de consulta. Substitua sua rota de detalhes do curso pelo seguinte código: </p>
+<pre><code class="javascript">
+        // Enhanced course detail route with sorting
+        app.get('/catalog/:courseId', (req, res, next) =&gt; {
+            const courseId = req.params.courseId;
+            const course = courses[courseId];
+            
+            if (!course) {
+                const err = new Error(`Course ${courseId} not found`);
+                err.status = 404;
+                return next(err);
+            }
+            
+            // Get sort parameter (default to 'time')
+            const sortBy = req.query.sort || 'time';
+            
+            // Create a copy of sections to sort
+            let sortedSections = [...course.sections];
+            
+            // Sort based on the parameter
+            switch (sortBy) {
+                case 'professor':
+                    sortedSections.sort((a, b) =&gt; a.professor.localeCompare(b.professor));
+                    break;
+                case 'room':
+                    sortedSections.sort((a, b) =&gt; a.room.localeCompare(b.room));
+                    break;
+                case 'time':
+                default:
+                    // Keep original time order as default
+                    break;
+            }
+            
+            console.log(`Viewing course: ${courseId}, sorted by: ${sortBy}`);
+            
+            res.render('course-detail', {
+                title: `${course.id} - ${course.title}`,
+                course: { ...course, sections: sortedSections },
+                currentSort: sortBy
+            });
+        });
+    </code></pre>
+<p> E substitua seu <code>course-detail.ejs</code> modelo por esta versão atualizada que inclui links de ordenação: </p>
+<pre><code class="html">
+        &lt;%- include('partials/header') %&gt;
+        &lt;main&gt;
+            &lt;div class="course-header"&gt;
+                &lt;h1&gt;&lt;%= course.title %&gt;&lt;/h1&gt;
+                &lt;p class="course-meta"&gt;&lt;%= course.id %&gt; • &lt;%= course.credits %&gt; credits&lt;/p&gt;
+                &lt;p class="course-description"&gt;&lt;%= course.description %&gt;&lt;/p&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="sections"&gt;
+                &lt;div class="sections-header"&gt;
+                    &lt;h2&gt;Available Sections&lt;/h2&gt;
+                    &lt;div class="sort-options"&gt;
+                        &lt;span&gt;Sort by: &lt;/span&gt;
+                        &lt;a href="/catalog/&lt;%= course.id %&gt;" class="&lt;%= currentSort === 'time' ? 'active' : '' %&gt;"&gt;Time&lt;/a&gt;
+                        &lt;a href="/catalog/&lt;%= course.id %&gt;?sort=professor" class="&lt;%= currentSort === 'professor' ? 'active' : '' %&gt;"&gt;Professor&lt;/a&gt;
+                        &lt;a href="/catalog/&lt;%= course.id %&gt;?sort=room" class="&lt;%= currentSort === 'room' ? 'active' : '' %&gt;"&gt;Room&lt;/a&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                
+                &lt;div class="section-list"&gt;
+                    &lt;% course.sections.forEach(section =&gt; { %&gt;
+                        &lt;div class="section-card"&gt;
+                            &lt;div class="section-time"&gt;&lt;%= section.time %&gt;&lt;/div&gt;
+                            &lt;div class="section-room"&gt;Room: &lt;%= section.room %&gt;&lt;/div&gt;
+                            &lt;div class="section-professor"&gt;Instructor: &lt;%= section.professor %&gt;&lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;% }); %&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="navigation"&gt;
+                &lt;p&gt;&lt;a href="/catalog"&gt;&amp;larr; Back to Course Catalog&lt;/a&gt;&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/main&gt;
+        &lt;%- include('partials/footer') %&gt;
+    </code></pre>
+<p> Teste a funcionalidade de ordenação clicando nos links de ordenação em qualquer página de detalhes do curso. Tente URLs como: </p>
+<ul>
+<li><code>/catalog/CS121?sort=professor</code></li>
+<li><code>/catalog/MATH110?sort=room</code></li>
+<li><code>/catalog/ENG101?sort=time</code></li>
+</ul>
+<div class="callout info icon"> Para ajudar você a entender como os parâmetros de rota e de consulta funcionam juntos, adicionamos uma instrução de log no console que mostra tanto o ID do curso capturado quanto a opção de ordenação selecionada toda vez que você visita uma página de detalhes do curso. Sinta-se à vontade para removê-la assim que estiver confortável com a funcionalidade. </div>
+<h3>4. Adicione Estilização com Aninhamento Nativo do CSS</h3>
+<p> Crie um novo arquivo CSS <code>catalog.css</code> em seu <code>public/css/</code> diretório e adicione estes estilos CSS modernos usando aninhamento nativo: </p>
+<pre><code class="css">
+        /* Course catalog styles using native CSS nesting */
+        .course-list {
+            display: grid;
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+            
+            .course-card {
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                padding: 1.5rem;
+                background: #fff;
+                transition: box-shadow 0.2s ease;
+                
+                &amp;:hover {
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                }
+                
+                h3 {
+                    margin: 0 0 0.5rem 0;
+                    
+                    a {
+                        color: #2c5aa0;
+                        text-decoration: none;
+                        
+                        &amp;:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+                
+                .course-id {
+                    color: #666;
+                    font-weight: 500;
+                    margin: 0 0 1rem 0;
+                }
+                
+                .course-description {
+                    color: #444;
+                    line-height: 1.5;
+                    margin: 0;
+                }
+            }
+        }
+
+        .course-header {
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+            text-align: center;
+            
+            h1 {
+                color: #2c5aa0;
+                margin-bottom: 0.5rem;
+            }
+            
+            .course-meta {
+                color: #666;
+                font-weight: 500;
+                margin: 0 0 1rem 0;
+            }
+            
+            .course-description {
+                color: #444;
+                line-height: 1.6;
+                font-size: 1.1rem;
+            }
+        }
+
+        .sections {
+            max-width: 800px;
+            margin: 0 auto;
+            
+            .sections-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1.5rem;
+                border-bottom: 2px solid #2c5aa0;
+                padding-bottom: 0.5rem;
+                
+                h2 {
+                    margin: 0;
+                    color: #2c5aa0;
+                }
+                
+                .sort-options {
+                    display: flex;
+                    gap: 1rem;
+                    align-items: center;
+                    
+                    span {
+                        color: #666;
+                        font-weight: 500;
+                    }
+                    
+                    a {
+                        color: #2c5aa0;
+                        text-decoration: none;
+                        padding: 0.25rem 0.5rem;
+                        border-radius: 4px;
+                        
+                        &amp;:hover {
+                            background: #f0f4f8;
+                        }
+                        
+                        &amp;.active {
+                            background: #2c5aa0;
+                            color: white;
+                        }
+                    }
+                }
+            }
+            
+            .section-list {
+                display: grid;
+                gap: 1rem;
+                
+                .section-card {
+                    border: 1px solid #ddd;
+                    border-radius: 6px;
+                    padding: 1rem;
+                    background: #f9f9f9;
+                    
+                    .section-time {
+                        font-weight: bold;
+                        color: #2c5aa0;
+                        font-size: 1.1rem;
+                        margin-bottom: 0.5rem;
+                    }
+                    
+                    .section-room,
+                    .section-professor {
+                        color: #555;
+                        margin-bottom: 0.25rem;
+                    }
+                }
+            }
+        }
+
+        .navigation {
+            max-width: 800px;
+            margin: 2rem auto 0 auto;
+            text-align: center;
+            
+            a {
+                color: #2c5aa0;
+                text-decoration: none;
+                font-weight: 500;
+                
+                &amp;:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    </code></pre>
+<p> Vincule seu novo arquivo CSS no seu <code>header.ejs</code> partial adicionando esta linha na seção head: </p>
+<pre><code class="html">
+        &lt;link rel="stylesheet" href="/css/catalog.css"&gt;
+    </code></pre>
+<p> Atualize suas páginas do catálogo para ver a estilização aprimorada com o aninhamento moderno do CSS em ação. </p>
+<div class="callout success icon">
+<div class="title">Aninhamento Nativo do CSS</div>
+<p> O CSS que você acabou de adicionar usa suporte nativo do navegador para aninhamento de seletores, eliminando a necessidade de pré-processadores como Sass ou Less. Essa abordagem moderna mantém seus estilos organizados e de fácil manutenção, enquanto trabalha diretamente no CSS padrão. </p>
+</div>
+<h3>5. Teste IDs de Cursos Inválidos</h3>
+<p> Sua rota já inclui tratamento de erros para IDs de cursos inválidos. Teste isso visitando um curso não existente como <code>/catalog/INVALID123</code>. Você deve ver sua página de erro 404 personalizada, demonstrando como a validação de parâmetros de rota se conecta com seu sistema existente de tratamento de erros. </p>
+<p> Tente estas URLs inválidas para confirmar que seu tratamento de erros funciona adequadamente: </p>
+<ul>
+<li><code>/catalog/FAKE101</code></li>
+<li><code>/catalog/12345</code></li>
+<li><code>/catalog/not-a-course</code></li>
+</ul>
+</section>
+<section>
+<h2>Resumo dos Conceitos-Chave</h2>
+<p> Você construiu com sucesso um sistema funcional de catálogo de cursos que demonstra os conceitos fundamentais de parâmetros de rota no Express. Sua aplicação captura IDs de cursos a partir da estrutura da URL, utiliza-os para buscar e exibir informações específicas do curso, e trata requisições inválidas de forma adequada por meio do seu sistema de erros existente. </p>
+<p> A funcionalidade de ordenação mostra como parâmetros de rota e parâmetros de consulta funcionam juntos: o parâmetro de rota identifica qual curso exibir, enquanto o parâmetro de consulta modifica como as seções desse curso são apresentadas. Essa combinação cria URLs flexíveis e fáceis de usar que mantêm seu significado ao mesmo tempo em que fornecem opções de personalização. </p>
+<p> Estes conceitos formam o fundamento para construir aplicações web dinâmicas que respondem à navegação do usuário enquanto mantêm estruturas de URL limpas e compreensíveis. </p>
+</section>
+<section>
+<h2>Experimente e Estenda</h2>
+<p> Pratique os conceitos de parâmetros de rota que você acabou de aprender com estas melhorias: </p>
+<ol>
+<li>
+<strong>Adicione Mais Cursos</strong>: Expanda o objeto courses com disciplinas adicionais como "HIST101" ou "BIOL150" e teste suas rotas com os novos dados. </li>
+<li>
+<strong>Crie uma Funcionalidade de Curso Aleatório</strong>: Adicione uma rota como <code>/catalog/random</code> que redireciona para uma página de detalhes do curso selecionado aleatoriamente. </li>
+<li>
+<strong>Validação Aprimorada</strong>: Adicione validação para garantir que os IDs dos cursos sigam o padrão esperado (letras seguidas por números) antes de buscá-los. </li>
+</ol>
+<div class="callout message icon">
+<p> Estes experimentos foram projetados para aprofundar sua compreensão sobre como os parâmetros de rota se comportam em diferentes cenários, enquanto oferecem prática para desenvolver sobre os padrões que você acabou de implementar. Sua <strong>nota final</strong> depende de quão bem você aplica esses conceitos nos trabalhos do projeto do curso posteriormente, então dedique um tempo para explorar e fortalecer seu entendimento. </p>
+</div>
+</section>
+</main>
+<footer class="full-width">
+<div class="columns two">
+<div>
+<span class="course-code">CSE 340</span>
+             • 
+            <span class="course-name">Desenvolvimento Web Back-end</span>
+</div>
+<div> © 2024–2026 BYU–Idaho <a href="https://www.byui.edu/computer-science-engineering/" rel="noopener noreferrer" target="_blank">Departamento de CSE</a>. Todos os direitos reservados. </div>
+</div>
+</footer>
+</div>
+</body>
+</html>

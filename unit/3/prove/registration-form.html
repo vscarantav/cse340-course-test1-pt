@@ -1,0 +1,689 @@
+html
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../../assets/images/favicon/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../../assets/images/favicon/favicon.png" rel="icon" type="image/png"/>
+<link href="../../../assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<title>Instruções da Tarefa</title>
+<meta content="Build a user registration system with password hashing, comprehensive validation, and user management using Express, PostgreSQL, and bcrypt." name="description"/>
+<script src="../../../assets/js/main.js" type="module"></script>
+<script src="../../../assets/js/theme-preference.js"></script>
+</head>
+<body>
+<div class="content-grid">
+<header class="full-width">
+<input aria-controls="site-primary-nav" class="visually-hidden" id="site-nav-toggle" type="checkbox"/>
+<label aria-hidden="true" class="site-nav-backdrop" for="site-nav-toggle"></label>
+<div class="inner">
+<div class="site-brand">
+<a aria-label="CSE 340 home" class="brand-link" href="../../../index.html">
+<img alt="BYU–Idaho" class="site-logo" decoding="async" src="../../../assets/images/logos/byui-logo.png"/>
+</a>
+</div>
+<div class="site-course-info">
+<a href="../../../index.html">
+<span class="course-code">CSE 340</span>
+                 • 
+                <span class="course-name">Desenvolvimento Back-End para Web</span>
+</a>
+</div>
+<nav aria-label="Primary" class="site-primary-nav" id="site-primary-nav">
+<ul aria-label="Course units" class="nav-list">
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<div class="site-header-tools">
+<label class="site-nav-menu-btn" for="site-nav-toggle">
+<span class="visually-hidden">Menu</span>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-open" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"></path></svg>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-close" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"></path></svg>
+</label>
+<input aria-controls="site-search-panel" class="visually-hidden" id="site-search-toggle" type="checkbox"/>
+<label class="site-search-trigger" for="site-search-toggle">
+<span class="visually-hidden">Alternar pesquisa do site</span>
+<span aria-hidden="true">🔎</span>
+<span aria-hidden="true">✕</span>
+</label>
+<details class="theme-menu">
+<summary class="theme-control">
+<span class="visually-hidden">Esquema de cores</span>
+</summary>
+<div aria-label="Choose color scheme" class="theme-extra" role="group">
+<label class="theme-control theme-pick" data-theme-pick="light">
+<input name="theme-preference" type="radio" value="light"/>
+<span aria-hidden="true">☀️</span>
+<span class="visually-hidden">Claro</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="system">
+<input name="theme-preference" type="radio" value="system"/>
+<span aria-hidden="true">⚙️</span>
+<span class="visually-hidden">Padrão do sistema</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="dark">
+<input name="theme-preference" type="radio" value="dark"/>
+<span aria-hidden="true">🌖</span>
+<span class="visually-hidden">Escuro</span>
+</label>
+</div>
+</details>
+</div>
+</div>
+<div aria-label="Site search" id="site-search-panel" role="region">
+<form action="" method="get" role="search">
+<label class="visually-hidden" for="site-search-query">Pesquisar</label>
+<input autocomplete="off" enterkeyhint="search" id="site-search-query" name="query" placeholder="Search…" type="search"/>
+</form>
+<div aria-live="polite" class="site-search-results" id="site-search-results"></div>
+</div>
+</header>
+<main>
+<nav aria-label="Course units" class="course-breadcrumbs unit">
+<ul>
+<li>
+<a aria-label="Home" href="../../../index.html">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z">
+</path></svg>
+</a>
+</li>
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<section>
+<h1>Construindo um Sistema de Registro de Usuários</h1>
+<p> Nesta tarefa, você criará um sistema de registro de usuários que armazena contas de usuários com senhas com hash com segurança. Isso se baseia diretamente na tarefa do formulário de contato, aplicando os mesmos padrões MVC enquanto introduz conceitos críticos de segurança, como hash de senha e regras de validação mais sofisticadas. </p>
+<p> Você implementará o registro de usuários com confirmação de e-mail e senha, validação abrangente de formulário e uma interface administrativa para visualizar usuários registrados. Esta tarefa enfatiza as melhores práticas de segurança usando bcrypt para hash de senha e implementando uma validação robusta nos lados do cliente e do servidor. </p>
+<div class="callout warn">
+<p> Ferramentas de IA poderiam concluir esta tarefa para você em apenas alguns minutos. <strong>Não ceda a essa tentação.</strong> Muitas indústrias já estão preocupadas com o fato de que novos desenvolvedores, especialmente recém-formados e contratados juniores, têm dificuldade para programar de forma independente ou pensar criticamente sobre seu trabalho. Esta tarefa foi projetada para ajudá-lo a desenvolver as habilidades essenciais de que você precisará como desenvolvedor. Se você deixar a IA fazer o trabalho por você, perderá o aprendizado de habilidades críticas e colocará sua futura carreira em risco. </p>
+</div>
+</section>
+<section>
+<h2>Entendendo a Segurança de Senhas</h2>
+<p> Armazenar senhas de usuários exige considerações especiais de segurança que o conteúdo estático nunca enfrenta. Senhas em texto puro criam vulnerabilidades graves de segurança: se o seu banco de dados for comprometido, todas as senhas dos usuários serão imediatamente expostas. Mesmo ter senhas em texto puro durante o desenvolvimento cria maus hábitos e abre espaço para erros em sistemas de produção. </p>
+<p> O hashing de senhas resolve esse problema por meio de criptografia unidirecional. Quando um usuário se registra, sua senha é processada por um algoritmo de hashing que cria uma string única e irreversível. A senha original não pode ser recuperada a partir do hash, mas a mesma senha sempre produzirá o mesmo hash, permitindo que sua aplicação verifique as tentativas de login. </p>
+<p> A biblioteca bcrypt fornece hashing de senhas no padrão da indústria, que inclui geração de salt integrada e níveis de dificuldade configuráveis. Esta tarefa implementa o bcrypt desde o início porque é muito mais seguro começar com a segurança adequada de senhas do que adaptá-la posteriormente em um sistema projetado para texto puro. </p>
+<div class="callout info">
+<div class="title">Como o bcrypt Funciona</div>
+<p> Quando você chama <code>bcrypt.hash(password, 10)</code>, a biblioteca gera automaticamente um salt aleatório, combina-o com a senha e aplica o algoritmo de hashing 2^10 (1.024) vezes. Esse processo é intencionalmente lento para tornar os ataques de força bruta impraticáveis. O hash resultante contém tanto o salt quanto o hash final, permitindo que a mesma função verifique as senhas mais tarde. </p>
+<p> Salt é um valor aleatório adicionado à senha antes do hashing para garantir que até mesmo senhas idênticas produzam hashes diferentes. Isso impede que atacantes usem tabelas pré-computadas (rainbow tables) para reverter senhas a partir de seus hashes. Nenhum par de usuários com a mesma senha terá o mesmo hash armazenado no banco de dados. </p>
+</div>
+</section>
+<section>
+<h2>Preparação</h2>
+<p> Antes de construir o sistema de registro, você precisa criar uma tabela no banco de dados para armazenar contas de usuários e instalar a biblioteca bcrypt para o hashing de senhas. Você adicionará essa tabela ao mesmo <code>practice.sql</code> arquivo que você criou na tarefa do formulário de contato. </p>
+<p> Abra o seu arquivo <code>src/models/sql/practice.sql</code> existente e adicione o seguinte SQL ao final do arquivo, após a tabela do formulário de contato: </p>
+<pre><code class="sql">
+        -- Users table for registration system
+        CREATE TABLE IF NOT EXISTS users (
+            id SERIAL PRIMARY KEY,
+            name VARCHAR(255) NOT NULL,
+            email VARCHAR(255) UNIQUE NOT NULL,
+            password VARCHAR(255) NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+    </code></pre>
+<div class="callout message">
+<p> Observe que você está adicionando ao mesmo <code>practice.sql</code> arquivo que você criou na tarefa do formulário de contato. Este arquivo foi projetado para acumular alterações no banco de dados de várias tarefas ao longo do curso. Toda vez que seu banco de dados for propagado novamente (quando a tabela faculty estiver vazia), tanto a tabela do formulário de contato quanto a tabela users serão criadas. Essa abordagem mantém seu trabalho prático organizado e separado da estrutura principal do banco de dados do curso. </p>
+</div>
+<div class="callout info icon">
+<p> Tenha em mente que, para re-povoar o banco de dados e executar o SQL de prática novamente, você precisa excluir todos os dados da tabela faculty. Isso dispara o processo de povoamento, que agora inclui seu arquivo SQL de prática. </p>
+</div>
+<p> Em seguida, instale a biblioteca bcrypt para o hashing de senhas: </p>
+<pre><code class="bash">
+        pnpm install bcrypt
+    </code></pre>
+<p> Após a instalação, o pnpm exibirá um aviso sobre scripts de compilação ignorados para o bcrypt. Execute o seguinte comando para aprovar a compilação: </p>
+<pre><code class="bash">
+        pnpm approve-builds
+    </code></pre>
+<p> Quando solicitado, aprove a compilação do bcrypt. Isso permite que o módulo nativo do bcrypt seja compilado corretamente para o seu sistema. </p>
+<p> Reinicie seu servidor e verifique se a tabela de usuários foi criada checando o console do seu servidor. Você deve ver a mensagem "Practice database tables initialized" após "Database seeded successfully". Use o pgAdmin para examinar as tabelas do seu banco de dados e confirmar que uma nova <code>users</code> tabela existe com colunas para ID, name, email, password, created_at e updated_at. A coluna de email deve ter uma restrição UNIQUE para evitar contas duplicadas. Não prossiga até confirmar que a tabela existe e que seu servidor é iniciado sem erros. </p>
+</section>
+<section>
+<h2>Instruções da Tarefa</h2>
+<h3>1. Criar Estilos de Registro</h3>
+<p> Criar <code>public/css/registration.css</code> com estilização abrangente para o sistema de registro: </p>
+<pre><code class="css">
+        /* Registration Form Styles */
+        .registration-form {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+            .form-group {
+                margin-bottom: 1.5rem;
+
+                label {
+                    display: block;
+                    margin-bottom: 0.5rem;
+                    font-weight: 500;
+                    color: #333;
+                }
+
+                input {
+                    width: 100%;
+                    padding: 0.75rem;
+                    border: 1px solid #ddd;
+                    border-radius: 6px;
+                    font-size: 1rem;
+                    font-family: inherit;
+                    box-sizing: border-box;
+                    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+                    &amp;:focus {
+                        outline: none;
+                        border-color: #2c5aa0;
+                        box-shadow: 0 0 5px rgba(44, 90, 160, 0.3);
+                    }
+
+                    &amp;:invalid {
+                        border-color: #dc3545;
+                    }
+
+                    &amp;:valid {
+                        border-color: #28a745;
+                    }
+                }
+
+                .help-text {
+                    font-size: 0.9rem;
+                    color: #666;
+                    margin-top: 0.25rem;
+                }
+            }
+
+            button[type="submit"] {
+                width: 100%;
+                padding: 1rem;
+                background-color: #2c5aa0;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                font-size: 1rem;
+                font-weight: 500;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+
+                &amp;:hover {
+                    background-color: #1e3a6f;
+                }
+
+                &amp;:disabled {
+                    background-color: #ccc;
+                    cursor: not-allowed;
+                }
+            }
+        }
+
+        /* Users List Styles */
+        .users-list {
+            max-width: 900px;
+            margin: 2rem auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+
+            .user-card {
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                padding: 1.5rem;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                transition: box-shadow 0.2s ease;
+
+                &amp;:hover {
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+                }
+
+                .user-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 1rem;
+                    padding-bottom: 1rem;
+                    border-bottom: 2px solid #2c5aa0;
+
+                    h3 {
+                        margin: 0;
+                        color: #2c5aa0;
+                        font-size: 1.25rem;
+                    }
+
+                    .user-id {
+                        background-color: #e9ecef;
+                        padding: 0.25rem 0.75rem;
+                        border-radius: 12px;
+                        font-size: 0.875rem;
+                        color: #666;
+                        font-weight: 500;
+                    }
+                }
+
+                .user-details {
+                    .detail-item {
+                        margin-bottom: 0.75rem;
+
+                        &amp;:last-child {
+                            margin-bottom: 0;
+                        }
+
+                        .label {
+                            font-weight: 500;
+                            color: #666;
+                            font-size: 0.875rem;
+                            margin-bottom: 0.25rem;
+                        }
+
+                        .value {
+                            color: #333;
+                            font-size: 1rem;
+                        }
+                    }
+                }
+            }
+
+            .no-users {
+                grid-column: 1 / -1;
+                text-align: center;
+                padding: 3rem;
+                color: #666;
+                font-style: italic;
+            }
+        }
+    </code></pre>
+<h3>2. Configurar o Carregamento Dinâmico de CSS</h3>
+<p> Adicione um middleware à sua configuração de rotas para carregar o CSS de registro. Abra <code>src/controllers/routes.js</code> e adicione o seguinte middleware junto com seus outros middlewares específicos de rota: </p>
+<pre><code class="javascript">
+        // Add registration-specific styles to all registration routes
+        router.use('/register', (req, res, next) =&gt; {
+            res.addStyle('&lt;link rel="stylesheet" href="/css/registration.css"&gt;');
+            next();
+        });
+    </code></pre>
+<p> Isso segue o mesmo padrão que você usou na tarefa do formulário de contato, garantindo que o CSS de registro seja carregado para todas as rotas sob <code>/register</code>.
+    </p>
+<h3>3. Criar o Modelo de Registro</h3>
+<p> Crie o arquivo de modelo que lida com as operações do banco de dados para o registro de usuário. Crie <code>src/models/forms/registration.js</code> com o seguinte conteúdo: </p>
+<pre><code class="javascript">
+        import db from '../db.js';
+
+        /**
+         * Checks if an email address is already registered in the database.
+         * 
+         * @param {string} email - The email address to check
+         * @returns {Promise&lt;boolean&gt;} True if email exists, false otherwise
+         */
+        const emailExists = async (email) =&gt; {
+            const query = `
+                SELECT EXISTS(SELECT 1 FROM users WHERE email = $1) as exists
+            `;
+            const result = await db.query(query, [email]);
+            return result.rows[0].exists;
+        };
+
+        /**
+         * Saves a new user to the database with a hashed password.
+         * 
+         * @param {string} name - The user's full name
+         * @param {string} email - The user's email address
+         * @param {string} hashedPassword - The bcrypt-hashed password
+         * @returns {Promise&lt;Object&gt;} The newly created user record (without password)
+         */
+        const saveUser = async (name, email, hashedPassword) =&gt; {
+            const query = `
+                INSERT INTO users (name, email, password)
+                VALUES ($1, $2, $3)
+                RETURNING id, name, email, created_at
+            `;
+            const result = await db.query(query, [name, email, hashedPassword]);
+            return result.rows[0];
+        };
+
+        /**
+         * Retrieves all registered users from the database.
+         * 
+         * @returns {Promise&lt;Array&gt;} Array of user records (without passwords)
+         */
+        const getAllUsers = async () =&gt; {
+            const query = `
+                SELECT id, name, email, created_at
+                FROM users
+                ORDER BY created_at DESC
+            `;
+            const result = await db.query(query);
+            return result.rows;
+        };
+
+        export { emailExists, saveUser, getAllUsers };
+    </code></pre>
+<div class="callout info icon">
+<div class="title">Nota de Segurança: Nunca Retorne Senhas</div>
+<p> Observe que nenhuma das funções do modelo retorna o campo da senha, mesmo que ele esteja armazenado como um hash. Esta é uma boa prática de segurança: senhas (mesmo em formato de hash) nunca devem ser incluídas em resultados de consultas, a menos que seja absolutamente necessário para a autenticação. A <code>RETURNING</code> cláusula e <code>SELECT</code> instruções listam explicitamente apenas os campos que devem ser retornados, omitindo completamente o campo de senha. </p>
+</div>
+<h3>4. Entendendo o Hashing de Senhas com o bcrypt</h3>
+<p> Antes de implementar o controlador, você precisa entender como usar o bcrypt para hashing de senhas. A biblioteca bcrypt fornece duas funções principais: <code>hash()</code> para criar hashes de senha e <code>compare()</code> para verificar senhas (que você usará em uma futura tarefa de login). </p>
+<p> Para gerar o hash de uma senha, você chama <code>bcrypt.hash(password, saltRounds)</code>. O parâmetro de rodadas de salt (geralmente 10) determina quantas vezes o algoritmo de hashing é executado. Números mais altos são mais seguros, mas mais lentos. A função retorna uma promise que resolve para a string da senha em hash. </p>
+<p> Aqui está um exemplo de uso básico: </p>
+<pre><code class="javascript">
+        import bcrypt from 'bcrypt';
+
+        // Hash a password with 10 salt rounds
+        const password = 'userPassword123!';
+        const hashedPassword = await bcrypt.hash(password, 10);
+        
+        // The hash looks like: $2b$10$N9qo8uLOickgx2ZMRZoMye...
+        console.log(hashedPassword);
+    </code></pre>
+<p> Em seu controlador de registro, você usará esse padrão para gerar o hash das senhas antes de salvá-las no banco de dados. O hashing ocorre no controlador (não no modelo) porque faz parte da lógica de negócios para processar o registro, enquanto o modelo se concentra puramente nas operações do banco de dados. </p>
+<div class="callout message">
+<p> Você pode se perguntar por que geramos o hash das senhas no controlador em vez de no modelo. Essa separação segue os princípios do MVC: o modelo deve lidar com operações de banco de dados com quaisquer dados que receber, enquanto o controlador lida com a lógica de negócios de preparação desses dados. Isso torna o modelo mais reutilizável (ele poderia salvar usuários de diferentes fontes, não apenas do registro) e mantém as transformações de segurança explícitas no controlador, onde são fáceis de auditar e manter. </p>
+</div>
+<h3>5. Criar o Controlador de Registro</h3>
+<p> Crie o arquivo de controlador para a sua funcionalidade de registro. Crie <code>src/controllers/forms/registration.js</code>. Este arquivo conterá suas funções de controlador, regras de validação e definições de rota, tudo junto, seguindo o mesmo padrão que você usou na tarefa do formulário de contato. </p>
+<p> Comece adicionando as importações e o array de regras de validação. Esta parte é fornecida completa porque as regras de validação exigem uma sintaxe específica: </p>
+<pre><code class="javascript">
+        import { Router } from 'express';
+        import { body, validationResult } from 'express-validator';
+        import bcrypt from 'bcrypt';
+        import { emailExists, saveUser, getAllUsers } from '../../models/forms/registration.js';
+
+        const router = Router();
+
+        /**
+         * Validation rules for user registration
+         */
+        const registrationValidation = [
+            body('name')
+                .trim()
+                .isLength({ min: 2 })
+                .withMessage('Name must be at least 2 characters'),
+            body('email')
+                .trim()
+                .isEmail()
+                .normalizeEmail()
+                .withMessage('Must be a valid email address'),
+            body('emailConfirm')
+                .trim()
+                .custom((value, { req }) =&gt; value === req.body.email)
+                .withMessage('Email addresses must match'),
+            body('password')
+                .isLength({ min: 8 })
+                .matches(/[0-9]/)
+                .withMessage('Password must contain at least one number')
+                .matches(/[!@#$%^&amp;*]/)
+                .withMessage('Password must contain at least one special character'),
+            body('passwordConfirm')
+                .custom((value, { req }) =&gt; value === req.body.password)
+                .withMessage('Passwords must match')
+        ];
+    </code></pre>
+<p> Agora adicione as funções do controlador. Elas estão estruturadas com comentários TODO e orientações estruturais para ajudar você a implementá-las. Siga os padrões que você aprendeu na tarefa do formulário de contato: </p>
+<pre><code class="javascript">
+        /**
+         * Display the registration form page.
+         */
+        const showRegistrationForm = (req, res) =&gt; {
+            // TODO: Render the registration form view (forms/registration/form)
+            // TODO: Pass title: 'User Registration' in the data object
+        };
+
+        /**
+         * Handle user registration with validation and password hashing.
+         */
+        const processRegistration = async (req, res) =&gt; {
+            // Check for validation errors
+            const errors = validationResult(req);
+            
+            if (!errors.isEmpty()) {
+                // TODO: Log validation errors to console for debugging
+                // TODO: Redirect back to /register
+                return;
+            }
+
+            // Extract validated data from request body
+            // TODO: Destructure name, email, password from req.body
+            
+            try {
+                // Check if email already exists in database
+                // TODO: Call emailExists(email) and store the result in a variable
+                
+                if (/* TODO: check if email exists */) {
+                    // TODO: Log message: 'Email already registered'
+                    // TODO: Redirect back to /register
+                    return;
+                }
+                
+                // Hash the password before saving to database
+                // TODO: Use bcrypt.hash(password, 10) to hash the password
+                // TODO: Store the result in a variable called hashedPassword
+                
+                // Save user to database with hashed password
+                // TODO: Call saveUser(name, email, hashedPassword)
+                
+                // TODO: Log success message to console
+                // TODO: Redirect to /register/list to show successful registration
+                // NOTE: Later when we add authentication, we'll change this to require login first
+            } catch (error) {
+                // TODO: Log the error to console
+                // TODO: Redirect back to /register
+            }
+        };
+
+        /**
+         * Display all registered users.
+         */
+        const showAllUsers = async (req, res) =&gt; {
+            // Initialize users as empty array
+            let users = [];
+            
+            try {
+                // TODO: Call getAllUsers() and assign to users variable
+            } catch (error) {
+                // TODO: Log the error to console
+                // users remains empty array on error
+            }
+            
+            // TODO: Render the users list view (forms/registration/list)
+            // TODO: Pass title: 'Registered Users' and the users variable in the data object
+        };
+    </code></pre>
+<p> Por fim, adicione as definições de rota ao final do arquivo: </p>
+<pre><code class="javascript">
+        /**
+         * GET /register - Display the registration form
+         */
+        router.get('/', showRegistrationForm);
+
+        /**
+         * POST /register - Handle registration form submission with validation
+         */
+        router.post('/', registrationValidation, processRegistration);
+
+        /**
+         * GET /register/list - Display all registered users
+         */
+        router.get('/list', showAllUsers);
+
+        export default router;
+    </code></pre>
+<p> Agora integre essas rotas ao seu arquivo de rotas principal. Abra <code>src/controllers/routes.js</code> e importe as rotas de registro no topo junto com suas outras importações: </p>
+<pre><code class="javascript">
+        import registrationRoutes from './forms/registration.js';
+    </code></pre>
+<p> Em seguida, adicione as rotas de registro ao seu roteador após as suas outras definições de rota: </p>
+<pre><code class="javascript">
+        // Registration routes
+        router.use('/register', registrationRoutes);
+    </code></pre>
+<p> Isso se alinha ao mesmo padrão do seu formulário de contato: o controlador usa caminhos relativos (<code>/</code> e <code>/list</code>), e elas são montadas sob o <code>/register</code> prefixo no arquivo de rotas principal. As URLs finais serão <code>/register</code> para o formulário, <code>/register</code> para o POST, e <code>/register/list</code> para a lista de usuários. </p>
+<div class="callout message">
+<p> Conclua cada TODO nas funções do controlador seguindo os padrões da sua Tarefa de formulário de contato. A estrutura é fornecida para guiá-lo, mas você precisa escrever a implementação real. Preste atenção especial à etapa de hash de senha, pois esta é uma nova funcionalidade que você não implementou antes. Certifique-se de usar <code>await</code> ao chamar funções assíncronas como <code>bcrypt.hash()</code>, <code>emailExists()</code>, e <code>saveUser()</code>.
+        </p>
+</div>
+<h3>6. Criar Views de Registro</h3>
+<p> Construa a interface do usuário para o registro. Crie o diretório <code>src/views/forms/registration/</code> e crie <code>form.ejs</code> nesse diretório. A estrutura está descrita com comentários para guiá-lo: </p>
+<pre><code class="html">
+        &lt;%- include('../../partials/header') %&gt;
+        &lt;main&gt;
+            &lt;h1&gt;&lt;%= title %&gt;&lt;/h1&gt;
+            &lt;p&gt;
+                Register for a new account by providing your information below. All fields are required and passwords must meet security requirements.
+            &lt;/p&gt;
+            
+            &lt;form method="POST" action="/register" class="registration-form"&gt;
+                &lt;!-- Name field --&gt;
+                &lt;div class="form-group"&gt;
+                    &lt;!-- TODO: Add label for="name" --&gt;
+                    &lt;!-- TODO: Add input type="text" id="name" name="name" --&gt;
+                    &lt;!-- TODO: Add minlength="2" and required attributes --&gt;
+                    &lt;!-- TODO: Add appropriate placeholder text --&gt;
+                &lt;/div&gt;
+                
+                &lt;!-- Email field --&gt;
+                &lt;!-- TODO: Create form-group div --&gt;
+                &lt;!-- TODO: Add label for email --&gt;
+                &lt;!-- TODO: Add input type="email" with id, name, and required --&gt;
+                
+                &lt;!-- Email confirmation field --&gt;
+                &lt;!-- TODO: Create form-group div for emailConfirm --&gt;
+                &lt;!-- TODO: Should match email field structure --&gt;
+                &lt;!-- TODO: Use name="emailConfirm" --&gt;
+                
+                &lt;!-- Password field --&gt;
+                &lt;!-- TODO: Create form-group div --&gt;
+                &lt;!-- TODO: Add label for password --&gt;
+                &lt;!-- TODO: Add input type="password" --&gt;
+                &lt;!-- TODO: Add minlength="8" and required attributes --&gt;
+                &lt;!-- TODO: Add pattern="(?=.*[0-9])(?=.*[!@#$%^&amp;*]).*" for validation --&gt;
+                &lt;!-- TODO: Add a div with class="help-text" explaining requirements --&gt;
+                &lt;!-- HINT: "Must be at least 8 characters with a number and special character" --&gt;
+                
+                &lt;!-- Password confirmation field --&gt;
+                &lt;!-- TODO: Similar to password field but for passwordConfirm --&gt;
+                &lt;!-- TODO: Use name="passwordConfirm" and appropriate label --&gt;
+                
+                &lt;!-- Submit button --&gt;
+                &lt;!-- TODO: Add button type="submit" with text like "Create Account" --&gt;
+            &lt;/form&gt;
+        &lt;/main&gt;
+        &lt;%- include('../../partials/footer') %&gt;
+    </code></pre>
+<p> Crie o formulário seguindo a mesma estrutura do seu formulário de contato, usando os tipos de entrada apropriados e atributos de validação. Os campos de senha devem usar <code>type="password"</code> e incluir o atributo pattern para validação no lado do cliente. </p>
+<p> Agora crie <code>src/views/forms/registration/list.ejs</code> para exibir todos os usuários registrados. Este arquivo usa um formato TODO mais estruturado, com dicas sobre a estrutura HTML: </p>
+<pre><code class="html">
+        &lt;%- include('../../partials/header') %&gt;
+        &lt;main&gt;
+            &lt;h1&gt;&lt;%= title %&gt;&lt;/h1&gt;
+            
+            &lt;!-- TODO: Check if users array exists and has content using: if (users &amp;&amp; users.length &gt; 0) --&gt;
+            
+                &lt;div class="users-list"&gt;
+                    &lt;!-- TODO: Loop through users array with forEach --&gt;
+                    &lt;!-- For each user in the loop, create this structure: --&gt;
+                    
+                        &lt;div class="user-card"&gt;
+                            &lt;div class="user-header"&gt;
+                                &lt;!-- TODO: Add h3 with user's name --&gt;
+                                &lt;!-- TODO: Add span with class="user-id" showing: ID: user.id --&gt;
+                            &lt;/div&gt;
+                            
+                            &lt;div class="user-details"&gt;
+                                &lt;div class="detail-item"&gt;
+                                    &lt;!-- TODO: Add div with class="label" containing: Email --&gt;
+                                    &lt;!-- TODO: Add div with class="value" containing: user.email --&gt;
+                                &lt;/div&gt;
+                                
+                                &lt;div class="detail-item"&gt;
+                                    &lt;!-- TODO: Add div with class="label" containing: Registered --&gt;
+                                    &lt;!-- TODO: Add div with class="value" containing formatted date --&gt;
+                                    &lt;!-- HINT: Use new Date(user.created_at).toLocaleDateString() --&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    
+                    &lt;!-- TODO: End the forEach loop --&gt;
+                &lt;/div&gt;
+            
+            &lt;!-- TODO: Add else clause --&gt;
+                &lt;!-- TODO: Add paragraph with class="no-users" --&gt;
+                &lt;!-- TODO: Display message: "No users registered yet." --&gt;
+            &lt;!-- TODO: Close the if/else block --&gt;
+            
+        &lt;/main&gt;
+        &lt;%- include('../../partials/footer') %&gt;
+    </code></pre>
+<p> Siga o mesmo padrão da view de respostas do seu formulário de contato, mas adapte-o para exibir informações do usuário com as classes CSS específicas mostradas nos estilos de registro. A estrutura usa um layout baseado em cartões com seções de cabeçalho e detalhes do usuário. </p>
+<p> Para facilitar o acesso ao seu sistema de registro durante o desenvolvimento e os testes, adicione links de navegação ao seu partial de cabeçalho. Abra <code>src/views/partials/header.ejs</code> e localize sua lista de navegação existente. Adicione os seguintes itens de lista dentro de sua estrutura <code>&lt;nav&gt;&lt;ul&gt;</code>, ao lado de seus outros links de navegação: </p>
+<pre><code class="html">
+        &lt;li&gt;&lt;a href="/register"&gt;Register&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/register/list"&gt;Users&lt;/a&gt;&lt;/li&gt;
+    </code></pre>
+<p> O primeiro link fornece acesso ao formulário de registro, enquanto o segundo link permite que você veja todos os usuários registrados. Em uma aplicação em produção, você normalmente protegeria a página da lista de usuários com autenticação para que apenas administradores pudessem visualizar os usuários registrados. Por enquanto, deixá-la acessível torna os testes e o desenvolvimento mais convenientes. </p>
+<h3>7. Teste Seu Sistema de Registro</h3>
+<p> Teste minuciosamente seu sistema de registro para garantir que todas as funcionalidades funcionem corretamente: </p>
+<ol>
+<li> Acesse <a href="http://127.0.0.1:3000/register" rel="noopener noreferrer" target="_blank">http://127.0.0.1:3000/register</a> para ver o formulário de registro. </li>
+<li> Teste a validação no lado do cliente tentando enviar o formulário com dados inválidos (nome curto, formato de e-mail inválido, senha fraca). O navegador deve impedir o envio e exibir as mensagens de erro apropriadas. </li>
+<li> Teste a validação no lado do servidor ignorando a validação no lado do cliente. Você pode usar as ferramentas de desenvolvedor do navegador para adicionar <code>novalidate</code> à tag de abertura do formulário ou executar o seguinte JavaScript para adicioná-lo automaticamente a todos os formulários da página: <pre><code class="javascript">
+                document.querySelectorAll('form').forEach((form) =&gt; {
+                    form.setAttribute('novalidate', '');
+                });
+            </code></pre> Envie dados inválidos e verifique se o servidor redireciona de volta sem salvar nada. </li>
+<li> Teste a validação no lado do servidor enviando o formulário com e-mails e senhas incompatíveis. O servidor deve impedir o envio e exibir mensagens de erro apropriadas. </li>
+<li> Registre um usuário válido com todos os campos devidamente preenchidos. Após o envio, você deve ser redirecionado automaticamente para a página da lista de usuários, onde poderá ver seu novo registro. </li>
+<li> Use o pgAdmin para verificar se a senha está armazenada como um hash bcrypt (ela deve começar com <code>$2b$</code> e parecer caracteres aleatórios, não a senha em texto simples que você digitou). </li>
+<li> Tente se registrar novamente com o mesmo endereço de e-mail. O sistema deve impedir o registro duplicado e registrar uma mensagem apropriada no console do seu servidor. </li>
+<li> Acesse <a href="http://127.0.0.1:3000/register/list" rel="noopener noreferrer" target="_blank">http://127.0.0.1:3000/register/list</a> diretamente para verificar se consegue acessar a página da lista de usuários. </li>
+</ol>
+<p> Verifique o console do seu servidor durante os testes para confirmar que as mensagens apropriadas estão sendo registradas em log para registros bem-sucedidos, falhas de validação e tentativas de e-mail duplicado. A saída do console ajuda você a depurar problemas e confirma que seu tratamento de erros está funcionando corretamente. </p>
+<div class="callout warn">
+<p> Ao implementar funcionalidades de segurança, é fundamental testar vários cenários, incluindo casos limite. Tente enviar o formulário com campos ausentes, formatos inválidos e e-mails duplicados para garantir que sua validação e seu tratamento de erros sejam robustos. Sempre verifique se dados sensíveis, como senhas, nunca são expostos em logs ou mensagens de erro. Sempre verifique se as senhas estão realmente armazenadas com hash no banco de dados, checando no pgAdmin. Se você vir senhas em texto simples, seu hash bcrypt não está funcionando corretamente. </p>
+</div>
+</section>
+<section>
+<h2>Resumo dos Conceitos-Chave</h2>
+<p> Esta tarefa introduziu conceitos de segurança críticos para aplicações web. O hash de senha com bcrypt garante que as credenciais do usuário permaneçam seguras, mesmo que seu banco de dados seja comprometido. A natureza unidirecional do hash criptográfico significa que as senhas originais não podem ser recuperadas, apenas verificadas. </p>
+<p> O sistema abrangente de validação que você implementou protege contra vulnerabilidades de segurança comuns e melhora a experiência do usuário. A validação no lado do servidor garante a integridade e a segurança dos dados, enquanto a validação no lado do cliente fornece feedback imediato aos usuários. Os campos de confirmação de e-mail e senha ajudam a prevenir erros do usuário durante o registro. </p>
+<p> A verificação de unicidade de e-mail previne contas duplicadas e mantém a integridade dos dados. Ao implementar essa verificação tanto no nível do banco de dados (restrição UNIQUE) quanto no nível da aplicação (função emailExists), você garante que nenhum e-mail duplicado possa ser armazenado, independentemente de como a função de registro seja chamada. </p>
+<p> Sua arquitetura MVC agora inclui funcionalidade de gerenciamento de usuários que segue os mesmos padrões do seu formulário de contato. Essa consistência torna sua base de código mais fácil de manter e demonstra como o padrão MVC escala para lidar com diferentes tipos de dados e interações do usuário. A abordagem de controlador de arquivo único mantém a funcionalidade relacionada organizada e fácil de manter. </p>
+</section>
+<section>
+<h2>Experimente e Estenda</h2>
+<p> Tente adicionar campos de usuário adicionais, como número de telefone ou endereço, lembrando-se de atualizar a tabela do seu banco de dados em <code>practice.sql</code> usando <code>ALTER TABLE</code> instruções, adicione regras de validação para os novos campos, atualize suas funções de modelo para lidar com as colunas adicionais e modifique suas exibições para mostrar as informações adicionais. </p>
+<p> Experimente diferentes rodadas de salt do bcrypt para entender as implicações no desempenho de um hash mais forte. Tente alterar o <code>10</code> em <code>bcrypt.hash(password, 10)</code> para <code>12</code> ou <code>14</code> e note o quão mais lento o hash se torna. Isso demonstra o compromisso de segurança entre proteção e desempenho. </p>
+<p> Considere adicionar páginas de perfil de usuário que exibam informações individuais do usuário, ou implemente a funcionalidade de busca e filtragem de usuários na página da lista de usuários. Você também pode adicionar paginação para lidar com eficiência com grandes números de usuários registrados, ou adicionar um botão de exclusão que permita remover usuários de teste do banco de dados. </p>
+</section>
+</main>
+<footer class="full-width">
+<div class="columns two">
+<div>
+<span class="course-code">CSE 340</span>
+             • 
+            <span class="course-name">Desenvolvimento Web Back-end</span>
+</div>
+<div> © 2024–2026 BYU–Idaho <a href="https://www.byui.edu/computer-science-engineering/" rel="noopener noreferrer" target="_blank">Departamento de CSE</a>. Todos os direitos reservados. </div>
+</div>
+</footer>
+</div>
+</body>
+</html>

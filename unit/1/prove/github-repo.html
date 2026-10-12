@@ -1,0 +1,329 @@
+html
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../../assets/images/favicon/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../../assets/images/favicon/favicon.png" rel="icon" type="image/png"/>
+<link href="../../../assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<title>Instruções da Tarefa</title>
+<meta content="BYU-I's CSE 340 course: Learn to build efficient, scalable server-side web applications with relational databases, validation strategies, and modern backend frameworks and design patterns." name="description"/>
+<script src="../../../assets/js/main.js" type="module"></script>
+<script src="../../../assets/js/theme-preference.js"></script>
+</head>
+<body>
+<div class="content-grid">
+<header class="full-width">
+<input aria-controls="site-primary-nav" class="visually-hidden" id="site-nav-toggle" type="checkbox"/>
+<label aria-hidden="true" class="site-nav-backdrop" for="site-nav-toggle"></label>
+<div class="inner">
+<div class="site-brand">
+<a aria-label="CSE 340 home" class="brand-link" href="../../../index.html">
+<img alt="BYU–Idaho" class="site-logo" decoding="async" src="../../../assets/images/logos/byui-logo.png"/>
+</a>
+</div>
+<div class="site-course-info">
+<a href="../../../index.html">
+<span class="course-code">CSE 340</span>
+                 • 
+                <span class="course-name">Desenvolvimento Web Back-end</span>
+</a>
+</div>
+<nav aria-label="Primary" class="site-primary-nav" id="site-primary-nav">
+<ul aria-label="Course units" class="nav-list">
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<div class="site-header-tools">
+<label class="site-nav-menu-btn" for="site-nav-toggle">
+<span class="visually-hidden">Menu</span>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-open" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"></path></svg>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-close" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"></path></svg>
+</label>
+<input aria-controls="site-search-panel" class="visually-hidden" id="site-search-toggle" type="checkbox"/>
+<label class="site-search-trigger" for="site-search-toggle">
+<span class="visually-hidden">Alternar pesquisa do site</span>
+<span aria-hidden="true">🔎</span>
+<span aria-hidden="true">✕</span>
+</label>
+<details class="theme-menu">
+<summary class="theme-control">
+<span class="visually-hidden">Esquema de cores</span>
+</summary>
+<div aria-label="Choose color scheme" class="theme-extra" role="group">
+<label class="theme-control theme-pick" data-theme-pick="light">
+<input name="theme-preference" type="radio" value="light"/>
+<span aria-hidden="true">☀️</span>
+<span class="visually-hidden">Claro</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="system">
+<input name="theme-preference" type="radio" value="system"/>
+<span aria-hidden="true">⚙️</span>
+<span class="visually-hidden">Padrão do sistema</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="dark">
+<input name="theme-preference" type="radio" value="dark"/>
+<span aria-hidden="true">🌖</span>
+<span class="visually-hidden">Escuro</span>
+</label>
+</div>
+</details>
+</div>
+</div>
+<div aria-label="Site search" id="site-search-panel" role="region">
+<form action="" method="get" role="search">
+<label class="visually-hidden" for="site-search-query">Pesquisar</label>
+<input autocomplete="off" enterkeyhint="search" id="site-search-query" name="query" placeholder="Search…" type="search"/>
+</form>
+<div aria-live="polite" class="site-search-results" id="site-search-results"></div>
+</div>
+</header>
+<main>
+<nav aria-label="Course units" class="course-breadcrumbs unit">
+<ul>
+<li>
+<a aria-label="Home" href="../../../index.html">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z">
+</path></svg>
+</a>
+</li>
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<section>
+<h1>Criando e Gerenciando Seu Repositório Git</h1>
+<p> Gerenciar seu código com o Git é uma habilidade essencial para desenvolvedores. Nesta Tarefa, você aprenderá a criar um repositório Git no GitHub, cloná-lo para o seu computador local e adicionar os arquivos necessários para o seu Projeto prático. Essa abordagem é mais simples e intuitiva do que criar um repositório localmente primeiro, espelhando como a maioria dos desenvolvedores trabalha com o Git em ambientes profissionais e facilitando o início com o controle de versão. </p>
+<div class="callout ai icon">
+<p> Se você é iniciante no Git, a IA pode guiá-lo no processo de configuração. Certifique-se de fornecer informações sobre seu sistema operacional e seu nível de experiência com Git e GitHub para obter assistência personalizada. Além do suporte por IA, existem inúmeros recursos online, incluindo tutoriais no YouTube, que podem ajudá-lo ao longo do caminho. Se preferir manuais e documentação, recomendamos revisar o <a href="https://git-scm.com/book/en/v2" rel="noopener noreferrer" target="_blank">livro Pro Git</a>, que oferece um guia abrangente tanto sobre os fundamentos do Git quanto sobre tópicos avançados. </p>
+</div>
+</section>
+<section>
+<h2>Instruções da Tarefa</h2>
+<p> Se você é iniciante no Git, recomendamos começar com a abordagem focada no GitHub. Esse método permite criar seu repositório diretamente no GitHub, o que é mais simples e garante que seu repositório remoto seja configurado corretamente desde o início. Se você se sente confortável com o terminal e prefere aprender todo o processo de criação de um repositório local primeiro, pode seguir as <a href="#alternative-instructions">instruções alternativas</a> no final deste documento. </p>
+<h3>1. Instalar e Configurar o Git</h3>
+<p> Antes de trabalhar com repositórios, certifique-se de que o Git esteja instalado, atualizado e devidamente configurado em seu sistema. </p>
+<h4>Verificar se o Git está instalado</h4>
+<p> Execute o seguinte comando para verificar se o Git está instalado: </p>
+<pre><code>
+        git --version
+    </code></pre>
+<p> Se o Git estiver instalado, isso exibirá o número da versão. Caso contrário, prossiga para a próxima seção para instalar o Git. </p>
+<h4>Instalar o Git (se necessário)</h4>
+<p> Siga as instruções do seu sistema operacional para instalar o Git: </p>
+<ul>
+<li>
+<strong>Windows:</strong> Baixe o instalador em <a href="https://git-scm.com/" rel="noopener noreferrer" target="_blank">https://git-scm.com/</a> e siga as instruções de configuração. </li>
+<li>
+<strong>macOS:</strong> Instale o Git usando o Homebrew ou as ferramentas de linha de comando do Xcode: <pre><code>
+                brew install git
+                # or
+                xcode-select --install
+            </code></pre>
+</li>
+<li>
+<strong>Linux:</strong> Use seu gerenciador de pacotes para instalar o Git: <pre><code>
+                sudo apt update &amp;&amp; sudo apt install git
+            </code></pre>
+</li>
+</ul>
+<h4>Configurar o Git</h4>
+<p> Configure suas configurações globais do Git com seu nome e endereço de e-mail. Essas informações serão anexadas a todos os seus commits e ficarão visíveis publicamente no histórico do seu repositório. Se você se preocupa com a privacidade, pode usar um pseudônimo ou seu nome de usuário do GitHub em vez de seu nome real, e considerar o uso de um endereço de e-mail sem resposta (no-reply): </p>
+<pre><code>
+        git config --global user.name "Your Name"
+        git config --global user.email "your-email@example.com"
+    </code></pre>
+<p> Por privacidade, você pode usar o endereço de e-mail no-reply do GitHub. Substitua <code>[your-username]</code> pelo seu nome de usuário real do GitHub: </p>
+<pre><code>
+        git config --global user.email "[your-username]@users.noreply.github.com"
+    </code></pre>
+<h3>2. Criar Repositório no GitHub</h3>
+<p> Comece criando seu repositório diretamente no GitHub. Essa abordagem é mais simples e garante que seu repositório remoto seja configurado corretamente desde o início. </p>
+<ol>
+<li>
+<strong>Faça login no GitHub:</strong> Acesse <a href="https://github.com" rel="noopener noreferrer" target="_blank">github.com</a> e entre na sua conta. </li>
+<li>
+<strong>Crie um novo repositório:</strong>
+<ul>
+<li>Clique no botão verde <strong>Novo</strong> ou no ícone <strong>+</strong> no canto superior direito</li>
+<li>Selecione <strong>Novo repositório</strong></li>
+</ul>
+</li>
+<li>
+<strong>Configure seu repositório:</strong>
+<ul>
+<li><strong>Nome do repositório:</strong> <code>cse340-practice-[lastname]</code> (substitua <code>[lastname]</code> com seu sobrenome real)</li>
+<li><strong>Descrição:</strong> "Projeto de prática para o CSE 340" (opcional, mas recomendado)</li>
+<li><strong>Visibilidade:</strong> Público (está tudo bem para trabalhos de curso)</li>
+<li><strong>Inicializar repositório:</strong> Marque "Add a README file"</li>
+<li><strong>Adicionar .gitignore:</strong> Selecione "Node" no menu suspenso de modelo</li>
+</ul>
+</li>
+<li>
+<strong>Criar repositório:</strong> Clique no botão verde <strong>Criar repositório</strong>. </li>
+</ol>
+<div class="callout success icon">
+<p> Parabéns! Seu repositório agora existe no GitHub com um arquivo README e um arquivo .gitignore para Node.js criado automaticamente. Isso oferece um fundamento sólido para começar. </p>
+</div>
+<h3>3. Clonar o repositório para o seu computador</h3>
+<p> Agora você fará o download (clonar) do seu repositório do GitHub para o seu computador local para poder trabalhar nele. </p>
+<ol>
+<li>
+<strong>Copie a URL do repositório:</strong> Na página do seu repositório do GitHub, clique no botão verde <strong>Code</strong> e copie a URL HTTPS; você pode usar a URL SSH se tiver configurado chaves SSH. </li>
+<li>
+<strong>Escolha um local:</strong> Navegue até um diretório no seu computador onde deseja armazenar seu projeto. Isso não deve <strong>estar</strong> em uma pasta sincronizada com a nuvem, como o OneDrive ou o Google Drive. </li>
+<li>
+<strong>Abra o terminal:</strong> Abra o seu terminal ou prompt de comando nesse local; ou navegue até ele usando o <code>cd</code> comando. </li>
+<li>
+<strong>Clone o repositório:</strong> Execute o seguinte comando, substituindo a URL pela URL do repositório que você copiou: <pre><code>
+                git clone https://github.com/[your-username]/cse340-practice-[lastname].git
+            </code></pre>
+</li>
+<li>
+<strong>Navegue até o seu projeto:</strong> Mova para o diretório recém-criado: <pre><code>
+                cd cse340-practice-[lastname]
+            </code></pre>
+</li>
+</ol>
+<p> Agora você tem uma cópia local do seu repositório que está conectada automaticamente ao GitHub! </p>
+<h3>4. Personalizar o arquivo .gitignore</h3>
+<p> O GitHub criou um arquivo .gitignore do Node.js para você, mas você precisa adicionar mais uma entrada para garantir que os arquivos de ambiente não sejam rastreados. </p>
+<p> Abra o arquivo <code>.gitignore</code> no seu editor de texto e adicione <code>.env</code> ao início do arquivo em uma linha própria. O arquivo deve incluir essa linha juntamente com muitas outras entradas relacionadas ao Node.js que o GitHub adicionou automaticamente. Salve o arquivo quando terminar. </p>
+<div class="callout warn"> Se o seu arquivo .gitignore estiver ausente, você poderá criar um novo na raiz do seu repositório com o seguinte conteúdo: <pre><code>
+            .env
+            node_modules/
+        </code></pre>
+</div>
+<h3>5. Adicionar o arquivo restore.js</h3>
+<p> Durante o desenvolvimento, seu servidor pode ocasionalmente falhar ou parar de responder, o que pode deixar processos de servidor órfãos (tarefas em segundo plano) que continuam sendo executados mesmo após o término do processo principal. Esses processos órfãos podem consumir recursos do sistema, impedir que seu servidor reinicie adequadamente e podem fazer com que seu servidor se reconecte a um processo desatualizado em vez de iniciar um novo. </p>
+<p> Baixe o arquivo <a download="" href="../../../assets/downloads/unit-1/restore.js">restore.js</a> e salve-o no diretório raiz do repositório do seu projeto. Para usá-lo, execute: </p>
+<pre><code>
+        node restore.js 3000 3001
+    </code></pre>
+<div class="callout info icon">
+<p> O script utilitário <code>restore.js</code> ajuda você a identificar e encerrar processos de servidor órfãos que possam permanecer após falhas. Manter esse script em seu repositório garante que você possa resolver problemas rapidamente se o seu servidor parar de responder ou falhar ao reiniciar devido a processos pendentes. No futuro, se você perceber que seu servidor não está atualizando e continua mostrando conteúdo antigo, executar esse script pode ajudar a limpar quaisquer processos travados e fazer com que seu servidor volte a um estado limpo. </p>
+</div>
+<div class="callout message icon">
+<p> Se você tiver interesse em aprender mais sobre processos órfãos e como gerenciá-los, considere ler o artigo <a href="https://www.geeksforgeeks.org/operating-systems/orphan-processes/" rel="noopener noreferrer" target="_blank">O que é um processo órfão?</a> do GeeksforGeeks. </p>
+</div>
+<h3>6. Configurar as configurações do VS Code</h3>
+<p> Crie um diretório <code>.vscode</code> na raiz do seu repositório para armazenar as configurações do Visual Studio Code. Isso melhorará sua experiência de desenvolvimento personalizando como o VS Code exibe os arquivos do seu projeto. </p>
+<p> Dentro do diretório <code>.vscode</code>, crie um arquivo <code>settings.json</code> com o seguinte conteúdo: </p>
+<pre><code class="json">
+        {
+            "explorer.compactFolders": false
+        }
+    </code></pre>
+<p> Essa configuração desativa a exibição compacta de pastas no explorador de arquivos do VS Code, facilitando a navegação pela estrutura do seu projeto. </p>
+<h3>7. Fazer commit e enviar suas alterações</h3>
+<p> Agora você salvará suas alterações no repositório e as enviará para o GitHub: </p>
+<ol class="indent">
+<li>
+<strong>Verifique o status:</strong> Veja quais arquivos foram adicionados ou alterados: <pre><code>
+                git status
+            </code></pre>
+</li>
+<li>
+<strong>Adicione todas as alterações:</strong> Prepare todos os novos arquivos: <pre><code>
+                git add .
+            </code></pre>
+</li>
+<li>
+<strong>Faça commit das suas alterações:</strong> Crie um commit com uma mensagem descritiva: <pre><code>
+                git commit -m "Added project files and VS Code settings"
+            </code></pre>
+</li>
+<li>
+<strong>Envie para o GitHub:</strong> Envie suas alterações para o GitHub: <pre><code>
+                git push
+            </code></pre>
+</li>
+</ol>
+<p> Visite a página do seu repositório no GitHub para verificar se seus arquivos foram enviados com sucesso. </p>
+<div class="callout warn icon">
+<div class="title">Faça Commit Com Frequência</div>
+<p> A partir deste ponto, crie o hábito de fazer commit do seu código com frequência. Commits regulares permitem que seu instrutor e colegas de equipe analisem seu progresso e forneçam feedback em tempo útil. Uma boa regra é fazer commit após concluir cada Tarefa principal ou marco significativo em seu trabalho. Sempre escreva mensagens de commit claras e significativas que expliquem a finalidade da alteração. Para ajudá-lo a manter a consistência, considere seguir o <a href="https://www.conventionalcommits.org/en/v1.0.0/#summary" rel="noopener noreferrer" target="_blank">Conventional Commits</a> padrão. Para uma referência rápida, consulte a <a href="https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13" rel="noopener noreferrer" target="_blank">Cheatsheet do Conventional Commits</a>.
+        </p>
+</div>
+</section>
+<section>
+<h2>Benefícios do GitHub para Estudantes</h2>
+<p> Como estudante, você se qualifica para o GitHub Pro gratuitamente, que oferece funcionalidades e benefícios adicionais que podem aprimorar sua experiência de aprendizado. Esses benefícios não são obrigatórios para este curso, mas podem ser úteis para seus projetos de desenvolvimento e carreira futura. </p>
+<h3>Como Obter o GitHub Pro</h3>
+<ol>
+<li> Visite a página do <a href="https://education.github.com/benefits" rel="noopener noreferrer" target="_blank">GitHub Student Developer Pack</a>. </li>
+<li> Clique em "Get your pack" e entre com sua conta do GitHub. </li>
+<li> Verifique seu status de estudante usando seu endereço de e-mail escolar. Se necessário, você pode obter uma carta de verificação em <a href="https://web.byui.edu/verify" rel="noopener noreferrer" target="_blank">https://web.byui.edu/verify</a>.
+        </li>
+<li> Aguarde a conclusão da verificação. Assim que for aprovado, você terá acesso ao GitHub Pro e a outras ferramentas de desenvolvedor. </li>
+</ol>
+</section>
+<section id="alternative-instructions">
+<h2>Instruções de Tarefa Alternativas</h2>
+<h3>Linha de Comando Primeiro (Opcional)</h3>
+<p> Se você preferir criar seu repositório localmente primeiro e depois conectá-lo ao GitHub, poderá usar esta abordagem alternativa. Esse método requer mais etapas, mas oferece experiência com o fluxo de trabalho completo do Git. </p>
+<div class="callout info">
+<p> Esta seção é opcional. A abordagem "GitHub em primeiro lugar" descrita acima é recomendada para iniciantes e é o método usado pela maioria dos desenvolvedores profissionais. Se preferir aprender o processo completo, você pode seguir estas etapas para criar um repositório local primeiro e depois enviá-lo para o GitHub. </p>
+</div>
+<h3>Criar Repositório Local Primeiro</h3>
+<ol>
+<li> Crie um diretório para o seu projeto e navegue até ele: <pre><code>
+                mkdir cse340-practice-[lastname]
+                cd cse340-practice-[lastname]
+            </code></pre>
+</li>
+<li> Inicialize um repositório Git: <pre><code>
+                git init
+            </code></pre>
+</li>
+<li> Crie um arquivo .gitignore básico: <pre><code>
+                echo ".env" &gt; .gitignore
+                echo "node_modules/" &gt;&gt; .gitignore
+            </code></pre>
+</li>
+<li> Crie um commit inicial: <pre><code>
+                git add .gitignore
+                git commit -m "Initial commit with .gitignore"
+            </code></pre>
+</li>
+<li> Crie um repositório no GitHub (sem inicializar arquivos). </li>
+<li> Conecte seu repositório local ao GitHub: <pre><code>
+                git remote add origin https://github.com/[your-username]/cse340-practice-[lastname].git
+                git branch -M main
+                git push -u origin main
+            </code></pre>
+</li>
+</ol>
+</section>
+<section>
+<h2>Conclusão</h2>
+<p> Seu repositório Git agora está configurado e conectado ao GitHub. Você tem um fundamento sólido para controle de versão que inclui a ignoragem adequada de arquivos, utilitários de desenvolvimento e configuração do VS Code. À medida que avança no curso, continue usando o Git para gerenciar suas alterações de código, fazer backup do seu trabalho e enviar suas tarefas. </p>
+<p> Lembre-se de fazer commit de suas alterações frequentemente com mensagens descritivas e enviar para o GitHub regularmente para manter seu repositório remoto atualizado. </p>
+</section>
+</main>
+<footer class="full-width">
+<div class="columns two">
+<div>
+<span class="course-code">CSE 340</span>
+             • 
+            <span class="course-name">Desenvolvimento Web Back-end</span>
+</div>
+<div> © 2024–2026 BYU–Idaho <a href="https://www.byui.edu/computer-science-engineering/" rel="noopener noreferrer" target="_blank">Departamento de CSE</a>. Todos os direitos reservados. </div>
+</div>
+</footer>
+</div>
+</body>
+</html>

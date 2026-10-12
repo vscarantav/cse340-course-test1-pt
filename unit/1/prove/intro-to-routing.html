@@ -1,0 +1,430 @@
+html
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../../assets/images/favicon/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../../assets/images/favicon/favicon.png" rel="icon" type="image/png"/>
+<link href="../../../assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<title>Instruções da Tarefa</title>
+<meta content="BYU-I's CSE 340 course: Learn to build efficient, scalable server-side web applications with relational databases, validation strategies, and modern backend frameworks and design patterns." name="description"/>
+<script src="../../../assets/js/main.js" type="module"></script>
+<script src="../../../assets/js/theme-preference.js"></script>
+</head>
+<body>
+<div class="content-grid">
+<header class="full-width">
+<input aria-controls="site-primary-nav" class="visually-hidden" id="site-nav-toggle" type="checkbox"/>
+<label aria-hidden="true" class="site-nav-backdrop" for="site-nav-toggle"></label>
+<div class="inner">
+<div class="site-brand">
+<a aria-label="CSE 340 home" class="brand-link" href="../../../index.html">
+<img alt="BYU–Idaho" class="site-logo" decoding="async" src="../../../assets/images/logos/byui-logo.png"/>
+</a>
+</div>
+<div class="site-course-info">
+<a href="../../../index.html">
+<span class="course-code">CSE 340</span>
+                 • 
+                <span class="course-name">Desenvolvimento Web Back-end</span>
+</a>
+</div>
+<nav aria-label="Primary" class="site-primary-nav" id="site-primary-nav">
+<ul aria-label="Course units" class="nav-list">
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<div class="site-header-tools">
+<label class="site-nav-menu-btn" for="site-nav-toggle">
+<span class="visually-hidden">Menu</span>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-open" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"></path></svg>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-close" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"></path></svg>
+</label>
+<input aria-controls="site-search-panel" class="visually-hidden" id="site-search-toggle" type="checkbox"/>
+<label class="site-search-trigger" for="site-search-toggle">
+<span class="visually-hidden">Alternar pesquisa no site</span>
+<span aria-hidden="true">🔎</span>
+<span aria-hidden="true">✕</span>
+</label>
+<details class="theme-menu">
+<summary class="theme-control">
+<span class="visually-hidden">Esquema de cores</span>
+</summary>
+<div aria-label="Choose color scheme" class="theme-extra" role="group">
+<label class="theme-control theme-pick" data-theme-pick="light">
+<input name="theme-preference" type="radio" value="light"/>
+<span aria-hidden="true">☀️</span>
+<span class="visually-hidden">Claro</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="system">
+<input name="theme-preference" type="radio" value="system"/>
+<span aria-hidden="true">⚙️</span>
+<span class="visually-hidden">Padrão do sistema</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="dark">
+<input name="theme-preference" type="radio" value="dark"/>
+<span aria-hidden="true">🌖</span>
+<span class="visually-hidden">Escuro</span>
+</label>
+</div>
+</details>
+</div>
+</div>
+<div aria-label="Site search" id="site-search-panel" role="region">
+<form action="" method="get" role="search">
+<label class="visually-hidden" for="site-search-query">Pesquisar</label>
+<input autocomplete="off" enterkeyhint="search" id="site-search-query" name="query" placeholder="Search…" type="search"/>
+</form>
+<div aria-live="polite" class="site-search-results" id="site-search-results"></div>
+</div>
+</header>
+<main>
+<nav aria-label="Course units" class="course-breadcrumbs unit">
+<ul>
+<li>
+<a aria-label="Home" href="../../../index.html">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z">
+</path></svg>
+</a>
+</li>
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<section>
+<h1>Introdução ao Roteamento</h1>
+<p> Nesta tarefa, você construirá um site simples de 3 páginas usando o Express. O objetivo é apresentar conceitos de roteamento e praticar o fornecimento de arquivos estáticos como HTML e CSS. Você criará e servirá arquivos HTML estáticos para as rotas Home, About e Products, configurará e servirá um arquivo CSS estático para estilizar seu site, e aprenderá os conceitos básicos de roteamento no Express usando <code>res.sendFile()</code>.
+    </p>
+<p> Em tarefas futuras, exploraremos técnicas de roteamento mais avançadas e faremos a transição para o uso de um mecanismo de modelos como o EJS. Mecanismos de modelos simplificam o gerenciamento de exibições dinâmicas, permitindo reutilizar componentes e passar dados para nossos arquivos HTML. Por enquanto, nos concentraremos em entender os fundamentos do roteamento e da organização de arquivos. </p>
+</section>
+<section>
+<h2>Visão Geral da Estrutura do Projeto</h2>
+<p> Antes de começarmos, vamos entender como organizaremos nosso projeto e por que essa organização é importante. Trabalharemos com dois diretórios principais que atendem a propósitos fundamentalmente diferentes: </p>
+<ul>
+<li>
+<strong><code>public/</code></strong>: Contém arquivos estáticos que os navegadores podem acessar diretamente (CSS, imagens, JavaScript do lado do cliente) </li>
+<li>
+<strong><code>src/views/</code></strong>: Contém arquivos HTML que o Express serve por meio de rotas </li>
+</ul>
+<p> Esta separação reflete como as aplicações web modernas funcionam. Arquivos em <code>public/</code> são servidos exatamente como existem no seu servidor – sem processamento, sem verificações de segurança, sem lógica. Eles são perfeitos para recursos que nunca mudam: folhas de estilo, imagens, fontes e arquivos JavaScript do lado do cliente. Qualquer pessoa pode solicitá-los diretamente digitando a URL. </p>
+<p> Arquivos em <code>src/views/</code>, por outro lado, são servidos por meio da lógica da sua aplicação. O Express decide se deve servi-los, pode modificá-los antes de servir, pode aplicar verificações de segurança e pode até gerá-los dinamicamente. Isso lhe dá controle total sobre o que os usuários veem e quando veem. </p>
+<p> Ao final desta tarefa, a estrutura do seu projeto terá a seguinte aparência: </p>
+<pre><code class="bash">
+        [project-root]
+        ├── public/
+        │   └── css/
+        │       └── main.css
+        ├── src/
+        │   └── views/
+        │       ├── about.html
+        │       ├── home.html
+        │       └── products.html
+        ├── .env
+        └── server.js
+    </code></pre>
+</section>
+<section>
+<h2>Preparação</h2>
+<p> Usaremos o aplicativo Express que você configurou anteriormente em seu repositório de prática. Siga estas etapas para preparar seu projeto: </p>
+<h3>1. Atualizar a Configuração de Ambiente</h3>
+<p> Modifique seu <code>.env</code> arquivo excluindo seu conteúdo e adicionando apenas a seguinte linha: </p>
+<pre><code>PORT=3000</code></pre>
+<p> Isso define a porta na qual seu servidor será executado. Variáveis de ambiente como essa permitem que você gerencie a configuração separadamente do seu código, facilitando a implantação da sua aplicação em diferentes ambientes. Atualize seu <code>server.js</code> arquivo para usar condicionalmente este número de porta: </p>
+<pre><code class="javascript">
+        const PORT = process.env.PORT || 3000;
+    </code></pre>
+<p> Se o seu <code>.env</code> arquivo estiver ausente ou você esqueceu de definir um número de porta, isso permitirá que o servidor inicie definindo o valor padrão da porta como <code>3000</code>. Dependendo do serviço que você usará para hospedar seu site no futuro, você precisará alterar esse valor pré-definido para o número suportado por esse serviço. </p>
+<div class="callout warn icon">
+<p> Ao usar valores condicionais (padrão) em seu código, tenha cuidado! Embora definir padrões ajude sua aplicação a lidar com configurações ausentes e a falhar de maneira elegante, evite usá-los de maneiras que possam introduzir riscos de segurança ou comportamentos não intencionais. Os valores padrão só devem ser usados quando for seguro para sua aplicação se recuperar de erros. Para saber mais sobre este tópico, consulte <a href="https://medium.com/@yasin162001/understanding-graceful-and-ungraceful-error-handling-9c6b3d83b3ed" rel="noopener noreferrer" target="_blank">tratamento elegante de erros</a>.
+        </p>
+</div>
+<h3>2. Atualize Sua Estrutura</h3>
+<p> Até agora, não pensamos muito sobre como estruturamos nosso código. Agora que estamos começando a adicionar mais arquivos e declarações, é importante organizar nosso projeto de uma forma que o torne fácil de navegar e manter. Reorganize cuidadosamente a estrutura do seu projeto para corresponder ao seguinte modelo: </p>
+<pre><code class="javascript">
+        // Imports
+        ...
+
+        /**
+         * Declare Important Variables
+         */
+
+        const PORT = process.env.PORT || 3000;
+
+        /**
+         * Setup Express Server
+         */
+        const app = express();
+
+        /**
+         * Declare Routes
+         */
+
+        ...
+
+        // Start the server and listen on the specified port
+        ...
+    </code></pre>
+<p> Ao longo deste curso, você deve revisar periodicamente a estrutura e a organização do seu código. À medida que você adiciona mais arquivos, funções e funcionalidades, manter seu código organizado ajudará você e outras pessoas a entendo-lo melhor. Isso é especialmente importante em projetos maiores, onde vários desenvolvedores podem estar trabalhando juntos. </p>
+<h3>3. Criar a Estrutura de Diretórios e o Arquivo CSS</h3>
+<p> Crie os seguintes diretórios e arquivos: </p>
+<ol>
+<li> Crie os <code>public/css</code> diretórios na raiz do seu projeto </li>
+<li> Crie um arquivo chamado <code>main.css</code> dentro do <code>css</code> diretório com o seguinte conteúdo: <pre><code class="css">
+                html, body {
+                    background-color: lightblue;
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 20px;
+                }
+                
+                body {
+                    nav {
+                        ul {
+                            list-style-type: none;
+                            padding: 0;
+                        }
+                
+                        li {
+                            display: inline;
+                            margin-right: 15px;
+                        }
+                
+                        a {
+                            text-decoration: none;
+                            color: #333;
+                            font-weight: bold;
+                
+                            &amp;:hover {
+                                color: #0066cc;
+                            }
+                        }
+                    }
+                }                
+            </code></pre>
+</li>
+<li> Crie os <code>src/views</code> diretórios (adicionaremos arquivos HTML aqui na próxima seção) </li>
+</ol>
+<div class="callout info icon">
+<div class="title">Dicas de Estrutura de Diretórios</div>
+<p> Quando pedirmos para você criar arquivos ou diretórios neste curso, certifique-se de criá-los no local correto. O <code>public</code> diretório deve estar na raiz do seu projeto, no mesmo nível do seu <code>server.js</code> arquivo. O <code>src</code> diretório também deve estar no nível da raiz, separado de <code>public</code>.
+        </p>
+</div>
+</section>
+<section>
+<h2>Instruções da Tarefa</h2>
+<h3>1. Servir Arquivos Estáticos</h3>
+<p> Arquivos estáticos são recursos que não mudam quando servidos aos usuários, como arquivos CSS, imagens e JavaScript do lado do cliente. O Express oferece uma maneira simples de servir esses arquivos usando o <code>express.static</code> middleware. Esta função integrada permite servir seus arquivos estáticos diretamente ao navegador sem qualquer processamento. </p>
+<p> Antes de podermos servir arquivos, precisamos entender como o JavaScript lida com caminhos de arquivos. Em módulos CommonJS tradicionais (usando <code>require()</code>), o Node.js fornecia automaticamente duas variáveis especiais: <code>__dirname</code> e <code>__filename</code>. Essas variáveis resolviam um problema crítico em aplicações de servidor: como encontrar arquivos de forma confiável quando você não sabe onde sua aplicação estará sendo executada? </p>
+<p>
+<code>__dirname</code> contém o caminho absoluto para o diretório que contém o arquivo JavaScript atual. <code>__filename</code> contém o caminho absoluto para o próprio arquivo JavaScript atual. Elas são essenciais porque fornecem referências consistentes, independentemente de onde alguém execute sua aplicação. Sem elas, se alguém executasse seu servidor a partir de um diretório diferente, todos os seus caminhos de arquivos quebrariam. </p>
+<p> No entanto, módulos ES (que estamos usando com <code>import</code> instruções) não fornecem automaticamente essas variáveis. Em vez disso, devemos criá-las nós mesmos usando o sistema de módulos ES mais recente. Adicione essas importações ao topo do seu <code>server.js</code> arquivo: </p>
+<pre><code class="javascript">
+        import { fileURLToPath } from 'url';
+        import path from 'path';
+    </code></pre>
+<p> Em seguida, na sua seção de variáveis importantes, recrie as <code>__dirname</code> e <code>__filename</code> variáveis: </p>
+<pre><code class="javascript">
+        const __filename = fileURLToPath(import.meta.url);
+        const __dirname = path.dirname(__filename);
+    </code></pre>
+<p> Aqui está o que está acontecendo: <code>import.meta.url</code> nos dá a URL do módulo atual, <code>fileURLToPath()</code> converte essa URL para um caminho do sistema de arquivos e <code>path.dirname()</code> extrai apenas a parte do diretório. Isso recria a mesma funcionalidade que o CommonJS fornecia automaticamente. </p>
+<p> Agora, adicione o seguinte middleware ao seu <code>server.js</code> arquivo após <code>const app = express();</code> mas antes de qualquer rota: </p>
+<pre><code class="javascript">
+        /**
+         * Configure Express middleware
+         */
+
+        // Serve static files from the public directory
+        app.use(express.static(path.join(__dirname, 'public')));
+    </code></pre>
+<p> Este código diz ao Express que qualquer arquivo no seu <code>public</code> diretório deve ser acessível diretamente através do seu site. Por exemplo, seu arquivo CSS em <code>public/css/main.css</code> estará disponível em <code>http://127.0.0.1:3000/css/main.css</code>. Observe que a parte <code>public</code> não está incluída na URL. </p>
+<div class="callout info">
+<div class="title">Entendendo como Servir Arquivos Estáticos</div>
+<p> O <code>express.static</code> middleware mapeia automaticamente o conteúdo do seu <code>public</code> diretório para a raiz do seu site. Isso mantém suas URLs limpas e facilita a organização de recursos estáticos. Quando alguém requisita <code>/css/main.css</code>, o Express procura por <code>public/css/main.css</code> e o serve se for encontrado. </p>
+</div>
+<h3>2. Criar Arquivos HTML Estáticos</h3>
+<p> Agora crie três arquivos HTML no seu <code>src/views</code> diretório. Esses arquivos servirão como o conteúdo para suas diferentes páginas: </p>
+<ul>
+<li><code>home.html</code> – Sua página inicial principal</li>
+<li><code>about.html</code> – Uma página para se apresentar</li>
+<li><code>products.html</code> – Uma página para demonstrar seus produtos</li>
+</ul>
+<p> Use este modelo para cada arquivo, substituindo os espaços reservados com o conteúdo apropriado para cada página: </p>
+<pre><code class="html">
+        &lt;!DOCTYPE html&gt;
+        &lt;html lang="en"&gt;
+        &lt;head&gt;
+            &lt;meta charset="UTF-8"&gt;
+            &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+            &lt;title&gt;[PAGE TITLE]&lt;/title&gt;
+            &lt;link rel="stylesheet" href="/css/main.css"&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            &lt;h1&gt;[PAGE HEADING]&lt;/h1&gt;
+            &lt;nav&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="/about"&gt;About&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="/products"&gt;Products&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/nav&gt;
+            &lt;p&gt;[Add some content specific to this page]&lt;/p&gt;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </code></pre>
+<p> Observe como o arquivo CSS é vinculado usando um caminho relativo à raiz (<code>/css/main.css</code>). Isso funciona porque o Express serve tudo no seu <code>public</code> diretório a partir da URL raiz do seu site. </p>
+<h3>3. Configurar Rotas</h3>
+<p> Agora vamos criar rotas para que as pessoas possam realmente visitar suas páginas. Uma rota é simplesmente uma regra que diz "quando alguém visitar esta URL, envie este conteúdo a ela". É como uma recepcionista que sabe para qual sala direcionar os visitantes. </p>
+<p> Substitua toda a seção "Declarar Rotas" em <code>server.js</code>, incluindo quaisquer rotas que você possa ter adicionado, com o seguinte código: </p>
+<pre><code class="javascript">
+        /**
+         * Routes
+         */
+        app.get('/', (req, res) =&gt; {
+            res.sendFile(path.join(__dirname, 'src/views/home.html'));
+        });
+
+        app.get('/about', (req, res) =&gt; {
+            res.sendFile(path.join(__dirname, 'src/views/about.html'));
+        });
+
+        app.get('/products', (req, res) =&gt; {
+            res.sendFile(path.join(__dirname, 'src/views/products.html'));
+        });
+    </code></pre>
+<p> Aqui está uma explicação detalhada do que cada parte faz: </p>
+<ul>
+<li>
+<code>app.get('/', ...)</code> diz ao Express "quando alguém visitar a página inicial (apenas o domínio sem caminho), faça algo" </li>
+<li>
+<code>(req, res) =&gt; { ... }</code> é a função que é executada quando alguém visita essa URL. <code>req</code> contém informações sobre o que eles requisitaram, <code>res</code> permite que você envie algo de volta </li>
+<li>
+<code>res.sendFile(...)</code> envia um arquivo HTML para o navegador deles </li>
+<li>
+<code>path.join(__dirname, 'src/views/home.html')</code> cria o caminho completo para o seu arquivo HTML </li>
+</ul>
+<p> Então, quando alguém digita <code>http://127.0.0.1:3000/</code> em seu navegador, o Express encontra a primeira rota, executa a função e envia a eles o seu <code>home.html</code> arquivo. </p>
+<p> O mesmo acontece para as outras rotas: </p>
+<ul>
+<li>
+<code>http://127.0.0.1:3000/about</code> → envia <code>about.html</code>
+</li>
+<li>
+<code>http://127.0.0.1:3000/products</code> → envia <code>products.html</code>
+</li>
+</ul>
+<div class="callout info">
+<div class="title">Por que não simplesmente colocar arquivos HTML em Public?</div>
+<p> Você pode se perguntar por que não simplesmente colocamos nossos arquivos HTML no <code>public</code> diretório como o nosso CSS. O motivo é o controle. As rotas permitem que você faça coisas antes de enviar o arquivo: verificar se o usuário está logado, personalizar o conteúdo ou redirecioná-lo para outro lugar. Arquivos estáticos em <code>public</code> são enviados diretamente sem oportunidade para o seu código intervir. </p>
+</div>
+<p>
+<strong>Um Detalhe Importante</strong>: Nós usamos <code>path.join(__dirname, ...)</code> em vez de apenas escrever <code>'src/views/home.html'</code> porque precisamos do caminho absoluto completo para o arquivo. <code>__dirname</code> nos dá o diretório onde <code>server.js</code> reside, e <code>path.join()</code> o combina adequadamente com o restante do caminho. Isso garante que o arquivo seja encontrado, não importa de onde alguém execute sua aplicação. </p>
+<h3>4. Construa um "Sobre Mim" Real</h3>
+<p> Agora que você configurou suas rotas, é hora de deixar sua página <code>about.html</code> mais pessoal. Substitua qualquer conteúdo temporário por informações sobre você. No mínimo, sua página deve incluir: </p>
+<ul>
+<li> Seu nome </li>
+<li> Uma breve introdução sobre você </li>
+<li> Uma lista dos seus hobbies ou interesses </li>
+<li> Uma foto sua salva no <code>public/images</code> diretório </li>
+</ul>
+<p> Não se esqueça de atualizar seu <code>main.css</code> com estilos que tornem sua página sobre mim visualmente atraente. Você pode adicionar cores, fontes e estilos de layout para aprimorar a experiência do usuário. Todo o CSS deve seguir as convenções de <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting" rel="noopener noreferrer" target="_blank">aninhamento de CSS moderno</a>, que permitem escrever estilos mais limpos e organizados. </p>
+<h3>5. Teste o Seu Site</h3>
+<p> Inicie o seu servidor usando <code>pnpm run dev</code> e teste cada página em seu navegador: </p>
+<ul>
+<li>
+<a href="http://127.0.0.1:3000/" rel="noopener noreferrer" target="_blank">http://127.0.0.1:3000/</a> deve exibir sua página inicial </li>
+<li>
+<a href="http://127.0.0.1:3000/about" rel="noopener noreferrer" target="_blank">http://127.0.0.1:3000/about</a> deve exibir sua página sobre mim </li>
+<li>
+<a href="http://127.0.0.1:3000/products" rel="noopener noreferrer" target="_blank">http://127.0.0.1:3000/products</a> deve exibir sua página de produtos </li>
+</ul>
+<p> Verifique se cada página mostra seu conteúdo correto, se a navegação funciona e se os estilos CSS estão aplicados. Se encontrar problemas, verifique os caminhos dos arquivos e as rotas em busca de erros de digitação. As ferramentas de desenvolvedor do navegador também podem ajudar a identificar problemas com arquivos ausentes ou links quebrados. </p>
+</section>
+<section>
+<h2>Avalie Seu Conhecimento</h2>
+<div class="callout message ai icon">
+<p> É hora de colocar suas habilidades de roteamento no Express à prova! Você enfrentará dois desafios que envolvem servir arquivos HTML estáticos do <code>src/views</code> diretório. Embora este exercício seja opcional, é uma ótima maneira de consolidar o que você aprendeu sobre roteamento e serviço de arquivos no Express. </p>
+<p> Digite suas soluções no editor de código abaixo. Quando terminar, use o botão de copiar para a área de transferência no canto superior direito para copiar seu código e, em seguida, cole-o na IA de sua escolha para obter feedback. </p>
+</div>
+<template> Um estudante acabou de aprender os conceitos básicos de roteamento no Express.js servindo arquivos estáticos. Ele está trabalhando em dois desafios de código usando este modelo:\n
+        app.get(..., (req, res) =&gt; {
+            ...
+        });\n
+        Revise o código dele e dê feedback direto ao estudante. Diga a ele o que fez bem e onde precisa melhorar. A tarefa de URL relativa é uma pegadinha — tanto "/" quanto "./" funcionam, mas "../" não funciona. Se ele usou concatenação de strings, corrija-o adequadamente, template literals devem ser usados em seu lugar e "path.join" deve ser usado para caminhos. Evite ensinar novos conceitos ou escrever código para ele. Em vez disso, oriente-o a refletir sobre seus erros e sugira que tente novamente, se necessário. Se ele continuar com dificuldades, atue como um tutor e ajude-o a entender melhor os conceitos. </template>
+<pre class="hljsl editor"><code class="js locked">
+        /**
+         * Create an Express route that serves a static HTML file and meets the following requirements:
+         * 1. The route should be accessible at the URL path '/test-1'.
+         * 2. The HTML file should be named 'test-1.html' and located in the 'src/views' directory.
+         * 3. You should serve the file using an absolute path, not a relative path.
+         */
+        app.get(..., (req, res) =&gt; {
+            ...
+        });
+
+        /**
+         * Create an Express route that serves a static HTML file and meets the following requirements:
+         * 1. The route should be accessible at the URL path '/test-2'.
+         * 2. The HTML file should be named 'test-2.html' and located in the 'src/views' directory.
+         * 3. You should serve the file using a relative path, not a absolute path.
+         */
+        app.get(..., (req, res) =&gt; {
+            ...
+        });
+    </code></pre>
+</section>
+<section>
+<h2>Resumo dos Conceitos-Chave</h2>
+<p> Esta Tarefa apresentou vários conceitos fundamentais: </p>
+<ul>
+<li>
+<strong>Arquivos Estáticos</strong>: Recursos como CSS e imagens que são servidos diretamente aos usuários sem processamento </li>
+<li>
+<strong>Middleware</strong>: Funções que processam requisições antes que elas alcancem suas rotas </li>
+<li>
+<strong>Roteamento</strong>: Mapeamento de URLs para respostas ou conteúdos específicos </li>
+<li>
+<strong>Organização de Arquivos</strong>: Separando recursos estáticos (<code>public/</code>) de conteúdo renderizado pelo servidor (<code>src/views/</code>)
+        </li>
+<li>
+<strong>Manipulação de Caminhos</strong>: Usando <code>path.join()</code> para criar caminhos de arquivo confiáveis em diferentes sistemas operacionais </li>
+</ul>
+<p> Compreender esses conceitos é crucial, pois eles formam o fundamento para funcionalidades mais avançadas do Express. Na próxima Tarefa, você aprenderá sobre motores de modelos, que permitem criar conteúdo dinâmico e componentes reutilizáveis. </p>
+</section>
+<section>
+<h2>Experimente e Expanda</h2>
+<p> Agora que você tem um site de várias páginas funcional, tente estas melhorias opcionais: </p>
+<ul>
+<li> Adicione mais páginas e rotas correspondentes </li>
+<li> Aprimore seu CSS com mais estilos, cores ou melhorias de layout </li>
+<li> Experimente conteúdos e estruturas HTML diferentes </li>
+</ul>
+<p> Quanto mais você praticar com esses fundamentos, mais confortável ficará com o Express e com os conceitos de desenvolvimento web. </p>
+</section>
+</main>
+<footer class="full-width">
+<div class="columns two">
+<div>
+<span class="course-code">CSE 340</span>
+             • 
+            <span class="course-name">Desenvolvimento Web Back-end</span>
+</div>
+<div> © 2024–2026 BYU–Idaho <a href="https://www.byui.edu/computer-science-engineering/" rel="noopener noreferrer" target="_blank">Departamento de CSE</a>. Todos os direitos reservados. </div>
+</div>
+</footer>
+</div>
+</body>
+</html>

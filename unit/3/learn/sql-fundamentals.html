@@ -1,0 +1,422 @@
+html
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../../assets/images/favicon/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../../assets/images/favicon/favicon.png" rel="icon" type="image/png"/>
+<link href="../../../assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<title>Fundamentos do SQL</title>
+<meta content="BYU-I's CSE 340 course: Learn to build efficient, scalable server-side web applications with relational databases, validation strategies, and modern backend frameworks and design patterns." name="description"/>
+<script src="../../../assets/js/main.js" type="module"></script>
+<script src="../../../assets/js/theme-preference.js"></script>
+</head>
+<body>
+<div class="content-grid">
+<header class="full-width">
+<input aria-controls="site-primary-nav" class="visually-hidden" id="site-nav-toggle" type="checkbox"/>
+<label aria-hidden="true" class="site-nav-backdrop" for="site-nav-toggle"></label>
+<div class="inner">
+<div class="site-brand">
+<a aria-label="CSE 340 home" class="brand-link" href="../../../index.html">
+<img alt="BYU–Idaho" class="site-logo" decoding="async" src="../../../assets/images/logos/byui-logo.png"/>
+</a>
+</div>
+<div class="site-course-info">
+<a href="../../../index.html">
+<span class="course-code">CSE 340</span>
+                 • 
+                <span class="course-name">Desenvolvimento Web Back-end</span>
+</a>
+</div>
+<nav aria-label="Primary" class="site-primary-nav" id="site-primary-nav">
+<ul aria-label="Course units" class="nav-list">
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<div class="site-header-tools">
+<label class="site-nav-menu-btn" for="site-nav-toggle">
+<span class="visually-hidden">Menu</span>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-open" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"></path></svg>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-close" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"></path></svg>
+</label>
+<input aria-controls="site-search-panel" class="visually-hidden" id="site-search-toggle" type="checkbox"/>
+<label class="site-search-trigger" for="site-search-toggle">
+<span class="visually-hidden">Alternar pesquisa no site</span>
+<span aria-hidden="true">🔎</span>
+<span aria-hidden="true">✕</span>
+</label>
+<details class="theme-menu">
+<summary class="theme-control">
+<span class="visually-hidden">Esquema de cores</span>
+</summary>
+<div aria-label="Choose color scheme" class="theme-extra" role="group">
+<label class="theme-control theme-pick" data-theme-pick="light">
+<input name="theme-preference" type="radio" value="light"/>
+<span aria-hidden="true">☀️</span>
+<span class="visually-hidden">Claro</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="system">
+<input name="theme-preference" type="radio" value="system"/>
+<span aria-hidden="true">⚙️</span>
+<span class="visually-hidden">Padrão do sistema</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="dark">
+<input name="theme-preference" type="radio" value="dark"/>
+<span aria-hidden="true">🌖</span>
+<span class="visually-hidden">Escuro</span>
+</label>
+</div>
+</details>
+</div>
+</div>
+<div aria-label="Site search" id="site-search-panel" role="region">
+<form action="" method="get" role="search">
+<label class="visually-hidden" for="site-search-query">Pesquisar</label>
+<input autocomplete="off" enterkeyhint="search" id="site-search-query" name="query" placeholder="Search…" type="search"/>
+</form>
+<div aria-live="polite" class="site-search-results" id="site-search-results"></div>
+</div>
+</header>
+<main>
+<nav aria-label="Course units" class="course-breadcrumbs unit">
+<ul>
+<li>
+<a aria-label="Home" href="../../../index.html">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z">
+</path></svg>
+</a>
+</li>
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<section>
+<h1>Fundamentos do SQL: Chaves, Restrições e Conceitos Básicos</h1>
+<p> Antes de mergulharmos nas diversas categorias de linguagem SQL e operações CRUD, é essencial entender alguns conceitos fundamentais que formam a base do projeto de banco de dados relacional. Nesta tarefa de leitura, exploraremos conceitos-chave de banco de dados, incluindo chaves primárias, chaves estrangeiras e restrições no PostgreSQL. </p>
+</section>
+<section>
+<h2>Tabelas</h2>
+<p> Em um banco de dados relacional, os dados são organizados em tabelas (também chamadas de relações). Cada tabela consiste em linhas (registros) e colunas (campos). Pense em uma tabela como algo semelhante a uma planilha, onde cada coluna representa um atributo ou dado específico, cada linha representa um único registro ou entidade, e a interseção de uma linha e coluna contém um valor de dado específico. </p>
+<p> Aqui está um exemplo de uma simples <code>students</code> tabela no PostgreSQL: </p>
+<pre><code class="sql">
+        CREATE TABLE students (
+            student_id SERIAL,
+            first_name VARCHAR(50) NOT NULL,
+            last_name VARCHAR(50) NOT NULL,
+            email VARCHAR(100),
+            date_of_birth DATE,
+            enrollment_date DATE DEFAULT CURRENT_DATE
+        );
+    </code></pre>
+<p> Neste exemplo, <code>student_id</code>, <code>first_name</code>, <code>last_name</code>, etc. são colunas. <code>SERIAL</code>, <code>VARCHAR(50)</code>, <code>DATE</code>, etc. são tipos de dados. <code>NOT NULL</code> e <code>DEFAULT CURRENT_DATE</code> são restrições que impõem regras específicas sobre os dados. </p>
+</section>
+<section>
+<h2>Chaves</h2>
+<p> As chaves são elementos essenciais em bancos de dados relacionais que garantem que cada registro possa ser identificado de forma única e que os relacionamentos entre tabelas sejam mantidos adequadamente. Elas desempenham um papel crítico na aplicação da integridade dos dados, prevenindo registros duplicados ou órfãos e definindo como os dados em diferentes tabelas estão conectados. Compreender as chaves é fundamental para projetar bancos de dados confiáveis e eficientes. </p>
+<h3>Chaves Primárias</h3>
+<p> Uma chave primária é uma coluna ou combinação de colunas que identifica exclusivamente cada linha em uma tabela. As chaves primárias são fundamentais para o projeto de banco de dados, pois garantem que cada registro possa ser identificado de forma única, fornecem uma maneira de referenciar registros específicos e impõem a integridade dos dados, evitando entradas duplicadas. </p>
+<p> No PostgreSQL, podemos definir uma chave primária ao criar uma tabela: </p>
+<pre><code class="sql">
+        CREATE TABLE students (
+            student_id SERIAL PRIMARY KEY,
+            first_name VARCHAR(50) NOT NULL,
+            last_name VARCHAR(50) NOT NULL,
+            email VARCHAR(100)
+        );
+    </code></pre>
+<div class="callout info">
+<div class="title">Características da Chave Primária</div>
+<p> Uma chave primária deve ser <strong>única</strong> (cada valor deve ser diferente de todos os outros valores na coluna), <strong>não nula</strong> (o valor não pode ser vazio ou nulo), e <strong>imutável</strong> (uma vez atribuído, o valor não deve mudar, o que é uma boa prática, embora não seja estritamente imposto pelo banco de dados). </p>
+</div>
+<p> O <code>SERIAL</code> tipo de dado no PostgreSQL cria automaticamente uma sequência que gera valores inteiros únicos, tornando-o ideal para chaves primárias. É equivalente a: </p>
+<pre><code class="sql">
+        student_id INTEGER NOT NULL DEFAULT nextval('students_student_id_seq')
+    </code></pre>
+<p> Você também pode criar uma chave primária composta usando várias colunas: </p>
+<pre><code class="sql">
+        CREATE TABLE course_enrollments (
+            student_id INTEGER,
+            course_id INTEGER,
+            enrollment_date DATE,
+            PRIMARY KEY (student_id, course_id)
+        );
+    </code></pre>
+<h3>Chaves Estrangeiras</h3>
+<p> Uma chave estrangeira é uma coluna ou grupo de colunas em uma tabela que referencia a chave primária de outra tabela. As chaves estrangeiras criam relacionamentos entre tabelas, garantem a integridade referencial e evitam ações que destruiriam os links entre as tabelas. </p>
+<p> Veja como criar uma chave estrangeira no PostgreSQL: </p>
+<pre><code class="sql">
+        CREATE TABLE courses (
+            course_id SERIAL PRIMARY KEY,
+            course_name VARCHAR(100) NOT NULL,
+            department VARCHAR(50),
+            credits INTEGER
+        );
+
+        CREATE TABLE enrollments (
+            enrollment_id SERIAL PRIMARY KEY,
+            student_id INTEGER NOT NULL,
+            course_id INTEGER NOT NULL,
+            grade CHAR(2),
+            FOREIGN KEY (student_id) REFERENCES students (student_id),
+            FOREIGN KEY (course_id) REFERENCES courses (course_id)
+        );
+    </code></pre>
+<p> Neste exemplo, <code>student_id</code> na <code>enrollments</code> tabela é uma chave estrangeira que referencia a <code>student_id</code> chave primária na <code>students</code> tabela. Isso cria um relacionamento no qual cada matrícula deve estar associada a um aluno válido. </p>
+<div class="callout info">
+<div class="title">Integridade Referencial</div>
+<p> As chaves estrangeiras mantêm a integridade referencial garantindo que você não possa adicionar um registro à tabela filha (<code>enrollments</code>) se a chave referenciada não existir na tabela pai (<code>students</code>), e você não pode excluir um registro da tabela pai se ele for referenciado por registros na tabela filha (a menos que especifique uma ação como CASCADE). </p>
+</div>
+</section>
+<section>
+<h2>Restrições</h2>
+<p> Restrições são regras aplicadas a colunas de tabelas para impor a integridade dos dados. Elas ajudam a garantir que apenas dados válidos, consistentes e confiáveis sejam armazenados em seu banco de dados, impondo requisitos ou restrições específicas sobre os valores que podem ser inseridos. </p>
+<h3>Restrição NOT NULL</h3>
+<p> A restrição <code>NOT NULL</code> garante que uma coluna não pode ter um valor nulo, o que significa que um valor deve ser fornecido. </p>
+<pre><code class="sql">
+        CREATE TABLE students (
+            student_id SERIAL PRIMARY KEY,
+            first_name VARCHAR(50) NOT NULL,
+            last_name VARCHAR(50) NOT NULL,
+            email VARCHAR(100)
+        );
+    </code></pre>
+<p> Neste exemplo, <code>first_name</code> e <code>last_name</code> não podem ser nulos, mas <code>email</code> pode ser nulo. </p>
+<h3>Restrição UNIQUE</h3>
+<p> A restrição <code>UNIQUE</code> garante que todos os valores em uma coluna sejam diferentes. Ao contrário das chaves primárias, as restrições de unicidade podem permitir valores nulos (a menos que combinadas com NOT NULL) e podem ser aplicadas a várias colunas em uma tabela. </p>
+<pre><code class="sql">
+        CREATE TABLE students (
+            student_id SERIAL PRIMARY KEY,
+            first_name VARCHAR(50) NOT NULL,
+            last_name VARCHAR(50) NOT NULL,
+            email VARCHAR(100) UNIQUE,
+            student_number VARCHAR(10) UNIQUE NOT NULL
+        );
+    </code></pre>
+<div class="callout info">
+<div class="title">PRIMARY KEY vs. Restrição UNIQUE</div>
+<p> Uma chave primária é automaticamente única e não nula. As principais diferenças são: uma tabela pode ter apenas uma chave primária, mas várias restrições de unicidade; as restrições de unicidade podem permitir valores nulos (a menos que combinadas com NOT NULL), enquanto as chaves primárias não podem; e as chaves primárias são tipicamente usadas como o identificador principal de um registro, enquanto as restrições de unicidade impõem a unicidade para outros atributos. </p>
+</div>
+<h3>Restrição CHECK</h3>
+<p> A restrição <code>CHECK</code> garante que todos os valores em uma coluna satisfaçam uma condição específica. </p>
+<pre><code class="sql">
+        CREATE TABLE products (
+            product_id SERIAL PRIMARY KEY,
+            product_name VARCHAR(100) NOT NULL,
+            price DECIMAL(10,2) CHECK (price &gt; 0),
+            discount_percent DECIMAL(5,2) CHECK (discount_percent &gt;= 0 AND discount_percent &lt;= 100)
+        );
+    </code></pre>
+<p> Neste exemplo, as restrições CHECK garantem que <code>price</code> seja sempre maior que zero e <code>discount_percent</code> esteja entre 0 e 100. </p>
+<h3>Restrição DEFAULT</h3>
+<p> A restrição <code>DEFAULT</code> fornece um valor padrão para uma coluna quando nenhum valor é especificado durante uma inserção. </p>
+<pre><code class="sql">
+        CREATE TABLE orders (
+            order_id SERIAL PRIMARY KEY,
+            customer_id INTEGER NOT NULL,
+            order_date DATE DEFAULT CURRENT_DATE,
+            status VARCHAR(20) DEFAULT 'Pending'
+        );
+    </code></pre>
+<p> Neste exemplo, se nenhum valor for fornecido para <code>order_date</code>, o valor padrão será a data atual, e se nenhum valor for fornecido para <code>status</code>, o valor padrão será 'Pending'. </p>
+</section>
+<section>
+<h2>Relacionamentos entre tabelas</h2>
+<p> Os bancos de dados relacionais derivam seu poder da capacidade de estabelecer relacionamentos entre tabelas. Esses relacionamentos são implementados usando chaves estrangeiras e ajudam a modelar conexões do mundo real entre diferentes tipos de dados. </p>
+<h3>Um para Um (1:1)</h3>
+<p> Em um relacionamento um para um, um registro na primeira tabela está relacionado a exatamente um registro na segunda tabela. </p>
+<pre><code class="sql">
+        CREATE TABLE students (
+            student_id SERIAL PRIMARY KEY,
+            first_name VARCHAR(50) NOT NULL,
+            last_name VARCHAR(50) NOT NULL
+        );
+
+        CREATE TABLE student_details (
+            detail_id SERIAL PRIMARY KEY,
+            student_id INTEGER UNIQUE,  -- Ensures one-to-one relationship
+            address TEXT,
+            phone VARCHAR(20),
+            medical_notes TEXT,
+            FOREIGN KEY (student_id) REFERENCES students (student_id)
+        );
+    </code></pre>
+<p> A restrição UNIQUE em <code>student_id</code> na tabela <code>student_details</code> garante que cada estudante possa ter apenas um registro de detalhes. </p>
+<h3>Um para Muitos (1:N)</h3>
+<p> Em um relacionamento um para muitos, um registro na primeira tabela pode estar relacionado a vários registros na segunda tabela, mas cada registro na segunda tabela está relacionado a apenas um registro na primeira tabela. </p>
+<pre><code class="sql">
+        CREATE TABLE departments (
+            department_id SERIAL PRIMARY KEY,
+            department_name VARCHAR(100) NOT NULL
+        );
+
+        CREATE TABLE employees (
+            employee_id SERIAL PRIMARY KEY,
+            first_name VARCHAR(50) NOT NULL,
+            last_name VARCHAR(50) NOT NULL,
+            department_id INTEGER,
+            FOREIGN KEY (department_id) REFERENCES departments (department_id)
+        );
+    </code></pre>
+<p> Neste exemplo, um departamento pode ter muitos funcionários, mas cada funcionário pertence a apenas um departamento. </p>
+<h3>Muitos para Muitos (N:M)</h3>
+<p> Em um relacionamento muitos para muitos, um registro na primeira tabela pode estar relacionado a vários registros na segunda tabela e vice-versa. Isso requer uma tabela de junção (também chamada de tabela de ponte ou de ligação). </p>
+<pre><code class="sql">
+        CREATE TABLE students (
+            student_id SERIAL PRIMARY KEY,
+            first_name VARCHAR(50) NOT NULL,
+            last_name VARCHAR(50) NOT NULL
+        );
+
+        CREATE TABLE courses (
+            course_id SERIAL PRIMARY KEY,
+            course_name VARCHAR(100) NOT NULL,
+            credits INTEGER
+        );
+
+        -- Junction table for the many-to-many relationship
+        CREATE TABLE enrollments (
+            student_id INTEGER,
+            course_id INTEGER,
+            enrollment_date DATE DEFAULT CURRENT_DATE,
+            grade CHAR(2),
+            PRIMARY KEY (student_id, course_id),  -- Composite primary key
+            FOREIGN KEY (student_id) REFERENCES students (student_id),
+            FOREIGN KEY (course_id) REFERENCES courses (course_id)
+        );
+    </code></pre>
+<p> Neste exemplo, um estudante pode se matricular em muitos cursos, um curso pode ter muitos estudantes, e a <code>enrollments</code> tabela de junção resolve esse relacionamento muitos para muitos criando dois relacionamentos um para muitos. </p>
+</section>
+<section>
+<h2>Tipos de dados básicos no PostgreSQL</h2>
+<p> O PostgreSQL oferece uma grande variedade de tipos de dados para armazenar diferentes tipos de informações de forma eficiente. Escolher o tipo de dado correto é importante tanto para o desempenho quanto para a integridade dos dados. </p>
+<h3>Tipos numéricos</h3>
+<ul>
+<li>
+<code>INTEGER</code> ou <code>INT</code> - Números inteiros (sem decimais) </li>
+<li>
+<code>SERIAL</code> - Inteiro de incremento automático, tipicamente usado para IDs </li>
+<li>
+<code>DECIMAL(p,s)</code> ou <code>NUMERIC(p,s)</code> - Numérico exato com precisão (p) e escala (s) especificadas </li>
+<li>
+<code>REAL</code>, <code>DOUBLE PRECISION</code> - Números de ponto flutuante </li>
+</ul>
+<h3>Tipos de caractere</h3>
+<ul>
+<li>
+<code>CHAR(n)</code> - String de caracteres de tamanho fixo </li>
+<li>
+<code>VARCHAR(n)</code> - String de caracteres de tamanho variável com um limite </li>
+<li>
+<code>TEXT</code> - String de caracteres de tamanho variável sem um limite especificado </li>
+</ul>
+<h3>Tipos de data e hora</h3>
+<ul>
+<li>
+<code>DATE</code> - Data do calendário (ano, mês, dia) </li>
+<li>
+<code>TIME</code> - Hora do dia </li>
+<li>
+<code>TIMESTAMP</code> - Data e hora </li>
+<li>
+<code>INTERVAL</code> - Período de tempo </li>
+</ul>
+<h3>Tipos booleanos e outros tipos</h3>
+<ul>
+<li>
+<code>BOOLEAN</code> - Armazena valores verdadeiro/falso </li>
+<li>
+<code>UUID</code> - Identificadores universalmente exclusivos </li>
+<li>
+<code>JSON</code>, <code>JSONB</code> - Dados JSON </li>
+<li>
+<code>ARRAY</code> - Array de um tipo específico </li>
+</ul>
+</section>
+<section>
+<h2>Avalie Seu Conhecimento</h2>
+<div class="callout message ai icon">
+<p> Pratique o que você aprendeu concluindo estes desafios de código. Primeiro, examine a definição de uma tabela e identifique seus componentes-chave; em seguida, crie sua própria tabela preenchendo a sintaxe ausente. Conclua cada desafio separadamente e use o ícone de cópia acima de cada bloco de código para obter feedback individual do seu assistente de IA. </p>
+</div>
+<template> Um estudante acabou de ler sobre os fundamentos do SQL, incluindo chaves primárias, chaves estrangeiras, restrições (NOT NULL, UNIQUE, CHECK, DEFAULT), tipos de dados básicos (SERIAL, VARCHAR, INTEGER, DATE, etc.) e os três tipos de relacionamentos (um para um, um para muitos, muitos para muitos). Eles aprenderam que as chaves primárias identificam registros de forma única, as chaves estrangeiras criam relacionamentos entre tabelas e as restrições aplicam regras de integridade de dados.\n
+        Eles estão olhando para uma definição simples de tabela e identificando os diferentes componentes. Ajude-os a identificar o que cada parte faz e avalie o conhecimento deles sobre os conceitos básicos. Concentre-se em verificar se eles conseguem reconhecer chaves primárias, entender o que as restrições fazem e identificar os tipos de dados corretamente. Esta é a primeira vez que eles têm contato com o SQL, portanto, seja incentivador e oriente-os sobre os conceitos que precisam revisar caso cometam erros. </template>
+<pre class="hljsl editor"><code class="sql locked">
+        /**
+         * Look at this table definition and identify:
+         * 1. Which column is the primary key and why?
+         * 2. Which columns have constraints and what do they do?
+         * 3. What would happen if you tried to insert a student with no first_name?
+         */
+        CREATE TABLE students (
+            student_id SERIAL PRIMARY KEY,
+            first_name VARCHAR(50) NOT NULL,
+            last_name VARCHAR(50) NOT NULL,
+            email VARCHAR(100) UNIQUE,
+            enrollment_date DATE DEFAULT CURRENT_DATE
+        );
+    </code></pre>
+<template> Um estudante acabou de aprender sobre a criação de tabelas em SQL com chaves primárias, restrições e tipos de dados. Esta é a primeira vez que eles escrevem código SQL. Eles aprenderam que SERIAL cria números de incremento automático perfeitos para chaves primárias, VARCHAR(n) armazena texto com um comprimento máximo, NOT NULL significa que um valor é obrigatório, UNIQUE significa que não são permitidos duplicatas e DEFAULT fornece valores automáticos.\n
+        Eles estão preenchendo uma instrução CREATE TABLE parcialmente completa. Ajude-os com a sintaxe e oriente-os a escolher tipos de dados e restrições apropriados. Seja muito incentivador, já que esta é a primeira vez que eles escrevem SQL. Se eles cometerem erros de sintaxe, corrija-os gentilmente e explique o formato adequado. Concentre-se em ajudá-los a entender por que certas escolhas fazem sentido, em vez de apenas dizer o que escrever. Tenha em mente que os comentários em SQL foram nossos e não dos estudantes. </template>
+<pre class="hljsl editor"><code class="sql locked">
+        /**
+         * Complete this table definition for a simple library system. Fill in the missing parts:
+         * 1. Choose an appropriate primary key and data type
+         * 2. Add a NOT NULL constraint where it makes sense
+         * 3. Add a UNIQUE constraint where it makes sense
+         * 4. Set a default value of 'Available' for the publication status
+         */
+        CREATE TABLE books (
+            _____ _____ _____ _____,          -- Primary key column
+            title VARCHAR(200) _____,         -- Should this be required?
+            author VARCHAR(100),
+            isbn VARCHAR(20) _____,           -- Should this be unique?
+            publication_year INTEGER,
+            status VARCHAR(20) _____ '_____'  -- Default to 'Available'
+        );
+    </code></pre>
+</section>
+<section>
+<h2>Resumo dos Conceitos-Chave</h2>
+<p> Esta leitura apresentou a você conceitos fundamentais do SQL no PostgreSQL que formam o fundamento do design de banco de dados relacional. Você aprendeu que as tabelas organizam dados em linhas e colunas, com cada tabela representando uma entidade ou conceito específico em sua aplicação. </p>
+<p> As chaves primárias servem como identificadores exclusivos para cada registro e são automaticamente exclusivas e não nulas. As chaves estrangeiras estabelecem relacionamentos entre tabelas e aplicam a integridade referencial, garantindo que as conexões de dados permaneçam válidas. Restrições como NOT NULL, UNIQUE, CHECK e DEFAULT aplicam regras de integridade de dados, impedindo que dados inválidos ou inconsistentes entrem em seu banco de dados. </p>
+<p> Você também explorou os três tipos principais de relacionamentos: um para um (onde os registros correspondem diretamente), um para muitos (o tipo mais comum, onde um registro se relaciona com vários outros) e muitos para muitos (que exige tabelas de junção para resolver a complexidade). Por fim, você aprendeu sobre o rico conjunto de tipos de dados do PostgreSQL, desde inteiros e texto básicos até tipos mais avançados, como JSON e arrays. </p>
+<p> Entender esses conceitos é essencial antes de se aprofundar nas categorias da linguagem SQL (DDL, DML, DQL, etc.) e nas operações CRUD. Na próxima tarefa de leitura, usaremos esse fundamento como base para explorar como interagir com bancos de dados por meio de diferentes tipos de comandos SQL. </p>
+</section>
+<section>
+<h2>Explore Mais</h2>
+<p> Agora que você entende os blocos de construção fundamentais dos bancos de dados relacionais, talvez queira explorar alguns destes tópicos de forma independente: </p>
+<ul>
+<li> Pesquise as regras de normalização de banco de dados e por que elas ajudam a eliminar a redundância de dados </li>
+<li> Explore as opções CASCADE para chaves estrangeiras e quando elas podem ser úteis ou perigosas </li>
+<li> Examine funcionalidades específicas do PostgreSQL, como tipos ENUM, tipos de dados personalizados e restrições avançadas </li>
+<li> Investigue estratégias de indexação e como elas melhoram o desempenho das consultas </li>
+<li> Estude esquemas de banco de dados do mundo real provenientes de projetos open-source para ver esses conceitos em ação </li>
+</ul>
+</section>
+</main>
+<footer class="full-width">
+<div class="columns two">
+<div>
+<span class="course-code">CSE 340</span>
+             • 
+            <span class="course-name">Desenvolvimento Web Back-end</span>
+</div>
+<div> © 2024–2026 BYU–Idaho <a href="https://www.byui.edu/computer-science-engineering/" rel="noopener noreferrer" target="_blank">Departamento de CSE</a>. Todos os direitos reservados. </div>
+</div>
+</footer>
+</div>
+</body>
+</html>

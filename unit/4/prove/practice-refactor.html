@@ -1,0 +1,328 @@
+html
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../../assets/images/favicon/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../../assets/images/favicon/favicon.png" rel="icon" type="image/png"/>
+<link href="../../../assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<title>Refatoração Final do Projeto Prático: Organização Profissional de Código</title>
+<meta content="Refactor your application to follow professional organizational patterns, separating validation middleware and enhancing faculty pages with profile images." name="description"/>
+<script src="../../../assets/js/main.js" type="module"></script>
+<script src="../../../assets/js/theme-preference.js"></script>
+</head>
+<body>
+<div class="content-grid">
+<header class="full-width">
+<input aria-controls="site-primary-nav" class="visually-hidden" id="site-nav-toggle" type="checkbox"/>
+<label aria-hidden="true" class="site-nav-backdrop" for="site-nav-toggle"></label>
+<div class="inner">
+<div class="site-brand">
+<a aria-label="CSE 340 home" class="brand-link" href="../../../index.html">
+<img alt="BYU–Idaho" class="site-logo" decoding="async" src="../../../assets/images/logos/byui-logo.png"/>
+</a>
+</div>
+<div class="site-course-info">
+<a href="../../../index.html">
+<span class="course-code">CSE 340</span>
+                 • 
+                <span class="course-name">Desenvolvimento Web Back-end</span>
+</a>
+</div>
+<nav aria-label="Primary" class="site-primary-nav" id="site-primary-nav">
+<ul aria-label="Course units" class="nav-list">
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<div class="site-header-tools">
+<label class="site-nav-menu-btn" for="site-nav-toggle">
+<span class="visually-hidden">Menu</span>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-open" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"></path></svg>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-close" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"></path></svg>
+</label>
+<input aria-controls="site-search-panel" class="visually-hidden" id="site-search-toggle" type="checkbox"/>
+<label class="site-search-trigger" for="site-search-toggle">
+<span class="visually-hidden">Alternar pesquisa no site</span>
+<span aria-hidden="true">🔎</span>
+<span aria-hidden="true">✕</span>
+</label>
+<details class="theme-menu">
+<summary class="theme-control">
+<span class="visually-hidden">Esquema de cores</span>
+</summary>
+<div aria-label="Choose color scheme" class="theme-extra" role="group">
+<label class="theme-control theme-pick" data-theme-pick="light">
+<input name="theme-preference" type="radio" value="light"/>
+<span aria-hidden="true">☀️</span>
+<span class="visually-hidden">Claro</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="system">
+<input name="theme-preference" type="radio" value="system"/>
+<span aria-hidden="true">⚙️</span>
+<span class="visually-hidden">Padrão do sistema</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="dark">
+<input name="theme-preference" type="radio" value="dark"/>
+<span aria-hidden="true">🌖</span>
+<span class="visually-hidden">Escuro</span>
+</label>
+</div>
+</details>
+</div>
+</div>
+<div aria-label="Site search" id="site-search-panel" role="region">
+<form action="" method="get" role="search">
+<label class="visually-hidden" for="site-search-query">Pesquisar</label>
+<input autocomplete="off" enterkeyhint="search" id="site-search-query" name="query" placeholder="Search…" type="search"/>
+</form>
+<div aria-live="polite" class="site-search-results" id="site-search-results"></div>
+</div>
+</header>
+<main>
+<nav aria-label="Course units" class="course-breadcrumbs unit">
+<ul>
+<li>
+<a aria-label="Home" href="../../../index.html">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z">
+</path></svg>
+</a>
+</li>
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<section>
+<h1>Refatoração Final do Projeto Prático: Organização Profissional de Código</h1>
+<p> Nesta Tarefa, você refatorará sua aplicação para seguir padrões de organização profissionais usados em aplicações de produção. Você reorganizará o middleware de validação para manter uma separação rigorosa de responsabilidades e aprimorará suas páginas de corpo docente adicionando imagens de perfil. </p>
+<p> Esta Tarefa o desafia a aplicar tudo o que aprendeu sobre arquitetura MVC, padrões de middleware e organização de código. Você trabalhará de forma mais independente do que em tarefas anteriores, tomando decisões sobre detalhes de implementação enquanto segue diretrizes arquitetônicas. Pense nisso como preparar sua aplicação para o crescimento e demonstrar seu entendimento das práticas de desenvolvimento profissional. </p>
+</section>
+<article>
+<section>
+<h2>Parte 1: Refatorando o Middleware de Validação</h2>
+<p> Em suas tarefas anteriores (formulário de contato, registro e login), você colocou o middleware de validação diretamente nos arquivos do controlador, ao lado dos manipuladores de rota. Essa abordagem manteve o código relacionado junto e simplificou o aprendizado dos conceitos. Para aplicações pequenas com apenas alguns formulários, essa organização funciona perfeitamente bem e continua sendo uma escolha válida no desenvolvimento profissional. </p>
+<p> No entanto, à medida que as aplicações crescem e as equipes se expandem, manter uma separação rigorosa de responsabilidades torna-se cada vez mais valioso. O middleware atende a um propósito arquitetônico distinto, separado da lógica de negócios, e organizá-lo adequadamente torna as bases de código mais fáceis de navegar, testar e manter. Esta refatoração ensina você a reconhecer quando os padrões arquitetônicos devem evoluir para dar suporte ao crescimento da aplicação. </p>
+</section>
+<section>
+<h2>Entendendo os Prós e Contras</h2>
+<p> Antes de refatorar, você deve entender por que ambas as abordagens organizacionais existem em bases de código profissionais e quando cada uma faz sentido. </p>
+<h3>Abordagem Atual: Validação com Controladores</h3>
+<p> Sua estrutura atual mantém as regras de validação nos arquivos do controlador: </p>
+<pre><code class="bash">
+            src/
+            └── controllers/
+                └── forms/
+                    ├── contact.js      # route handlers + validation
+                    ├── registration.js # route handlers + validation
+                    └── login.js        # route handlers + validation
+        </code></pre>
+<p>
+<strong>Vantagens:</strong> Tudo relacionado a uma única funcionalidade fica junto. Ao trabalhar no formulário de contato, você tem os manipuladores e a validação em um único arquivo. Isso reduz a troca de contexto e torna a base de código coesa. Para aplicações com menos de 10-15 formulários, essa abordagem permanece prática e sustentável. </p>
+<p>
+<strong>Desvantagens:</strong> Os arquivos do controlador crescem à medida que a validação se torna mais complexa. O limite arquitetônico entre middleware e controladores se torna menos nítido, tornando mais difícil entender as responsabilidades de cada camada. Os testes se tornam mais complicados porque a lógica de validação é misturada com a lógica de negócios. </p>
+<h3>Abordagem Refatorada: Middleware de Validação Dedicado</h3>
+<p> A estrutura refatorada separa a validação em seu próprio diretório de middleware: </p>
+<pre><code class="bash">
+            src/
+            ├── controllers/
+            │   └── forms/
+            │       ├── contact.js      # only route handlers
+            │       ├── registration.js # only route handlers
+            │       └── login.js        # only route handlers
+            └── middleware/
+                ├── auth.js
+                └── validation/
+                    └── forms.js        # all form validation
+        </code></pre>
+<p>
+<strong>Vantagens:</strong> Limites arquitetônicos claros tornam a base de código mais fácil de entender. As responsabilidades do middleware são explícitas e separadas da lógica de negócios. Os testes se tornam mais simples porque cada camada pode ser testada de forma independente. À medida que a aplicação cresce, essa organização escala naturalmente. Novos membros da equipe podem localizar a lógica de validação de forma previsível. </p>
+<p>
+<strong>Desvantagens:</strong> Mais arquivos e diretórios para navegar. O código relacionado fica separado em locais diferentes. Para aplicações muito pequenas, essa estrutura pode parecer uma sobrecarga desnecessária. </p>
+<div class="callout info icon">
+<div class="title">Escalando a Organização da Validação</div>
+<p> Em aplicações maiores com dezenas de formulários, você criaria arquivos de validação separados para cada formulário: <code>contact.js</code>, <code>registration.js</code>, <code>login.js</code>, e assim por diante. Como sua aplicação atualmente tem apenas alguns formulários, você consolidará todas as regras de validação em um único <code>forms.js</code> arquivo. Isso equilibra a clareza arquitetônica com a simplicidade prática. </p>
+</div>
+<h3>Quando Usar Cada Abordagem</h3>
+<p> Escolha a validação com controladores ao criar protótipos, pequenas ferramentas internas ou aplicações com menos de 10 formulários. A simplicidade e a coesão superam as preocupações arquitetônicas. </p>
+<p> Escolha um middleware de validação dedicado para aplicações que devem crescer, bases de código com múltiplos desenvolvedores ou quando padrões arquitetônicos rígidos melhoram a manutenibilidade. O trabalho organizacional extra compensa à medida que a complexidade aumenta. </p>
+<p> O sistema de informações da sua universidade cresceu para incluir múltiplos formulários e continuará se expandindo. Isso o torna um candidato ideal para a refatoração para a abordagem de middleware dedicado. Você está fazendo essa alteração não porque a abordagem atual esteja errada, mas porque está preparando a base de código para um crescimento futuro. </p>
+</section>
+<section>
+<h2>Compreendendo a estrutura do middleware de validação</h2>
+<p> Antes de começar a refatorar, você precisa entender o que o middleware de validação realmente é e como ele funciona com o Express. </p>
+<p> As funções de middleware do Express são funções que têm acesso ao objeto de requisição (<code>req</code>), ao objeto de resposta (<code>res</code>) e à próxima função de middleware no ciclo de requisição-resposta da aplicação (<code>next</code>). Quando você usa o express-validator, cria middlewares de validação chamando funções como <code>body()</code> que retornam funções de middleware. </p>
+<p> Nos seus arquivos de controlador, você tem arrays de regras de validação como este: </p>
+<pre><code class="javascript">
+            const contactValidation = [
+                body('subject')
+                    .trim()
+                    .isLength({ min: 5 })
+                    .withMessage('Subject must be at least 5 characters long'),
+                body('message')
+                    .trim()
+                    .isLength({ min: 10 })
+                    .withMessage('Message must be at least 10 characters long')
+            ];
+        </code></pre>
+<p> Cada chamada para <code>body()</code> retorna uma função de middleware. O próprio array também é um middleware que o Express pode usar. Quando você passa esse array para uma rota em <code>routes.js</code>, o Express executa cada função de validação em ordem antes de chamar o manipulador de rota. </p>
+<p> Sua Tarefa de refatoração é mover esses arrays de validação para fora dos arquivos de controlador e colocá-los em um arquivo de middleware dedicado, e então atualizar suas importações para que as rotas ainda possam acessá-los. </p>
+</section>
+<section>
+<h2>Instruções de refatoração</h2>
+<h3>1. Crie o diretório e o arquivo do middleware de validação</h3>
+<p> Crie a estrutura de diretório <code>src/middleware/validation/</code> e crie um novo arquivo chamado <code>forms.js</code> dentro dele. Este arquivo conterá todo o middleware de validação para suas rotas baseadas em formulários. </p>
+<p> No topo de <code>forms.js</code>, importe a função <code>body</code> do express-validator: </p>
+<pre><code class="javascript">
+            import { body } from 'express-validator';
+        </code></pre>
+<h3>2. Mova as regras de validação para o novo arquivo</h3>
+<p> Abra cada um dos seus três arquivos de controlador: <code>contact.js</code>, <code>registration.js</code>, e <code>login.js</code>. Cada arquivo contém um ou mais arrays de validação (por exemplo, <code>contactValidation</code>, <code>registrationValidation</code>, <code>loginValidation</code>, e <code>updateAccountValidation</code>).
+        </p>
+<p> Copie todos esses arrays de validação dos arquivos de controlador para o seu novo arquivo <code>forms.js</code>. Certifique-se de preservar os nomes exatos das variáveis porque seu arquivo de rotas já importa esses nomes específicos. </p>
+<div class="callout warn icon">
+<p> Preste muita atenção aos arrays de validação que usam funções de validação personalizadas. Por exemplo, a validação de registro inclui validadores personalizados que comparam <code>confirmEmail</code> com <code>email</code> e <code>confirmPassword</code> com <code>password</code>. Eles usam <code>req.body</code> para acessar outros campos do formulário, portanto, certifique-se de copiar a lógica de validação completa, incluindo todos os métodos <code>.custom()</code>. </p>
+</div>
+<h3>3. Exporte as regras de validação</h3>
+<p> Na parte inferior de <code>forms.js</code>, exporte todos os quatro arrays de validação como exportações nomeadas: </p>
+<pre><code class="javascript">
+            export { 
+                contactValidation, 
+                registrationValidation, 
+                loginValidation,
+                updateAccountValidation
+            };
+        </code></pre>
+<p> O uso de exportações nomeadas permite importar regras de validação específicas pelo nome no seu arquivo de rotas, tornando as importações claras e explícitas. </p>
+<h3>4. Limpe os arquivos de controlador</h3>
+<p> Agora que as regras de validação estão em <code>forms.js</code>, você precisa removê-las dos arquivos de controlador. </p>
+<p> Em cada arquivo de controlador (<code>contact.js</code>, <code>registration.js</code>, e <code>login.js</code>):
+        </p>
+<ul>
+<li> Remova a instrução de importação que traz o <code>body</code> do express-validator (você não precisa mais dele no controlador) </li>
+<li> Remova todas as definições de arrays de validação (como <code>contactValidation</code>, <code>registrationValidation</code>, etc.) </li>
+<li> Remova os nomes dos arrays de validação da instrução de exportação na parte inferior do arquivo </li>
+</ul>
+<p> Após a limpeza, cada arquivo de controlador deve importar apenas <code>validationResult</code> do express-validator (porque os manipuladores de rota ainda o usam para verificar erros de validação) e deve exportar apenas as funções manipuladoras de rota. </p>
+<div class="callout info">
+<p> Por exemplo, <code>contact.js</code> deve importar <code>validationResult</code> no topo e exportar apenas <code>showContactForm</code>, <code>processContactForm</code>, e <code>showContactResponses</code> na parte inferior. O <code>contactValidation</code> o array deve ser completamente removido deste arquivo. </p>
+</div>
+<h3>5. Atualizar importações de rotas</h3>
+<p> Abra <code>src/controllers/routes.js</code>. Este arquivo atualmente importa regras de validação e manipuladores de rota juntos de cada controlador. Você precisa dividir essas importações para que as regras de validação venham do novo arquivo de middleware e os manipuladores de rota continuem vindo dos controladores: </p>
+<ol>
+<li> Remova as importações de validação das instruções de importação dos controladores. </li>
+<li> Adicione uma nova instrução de importação para trazer todas as regras de validação de <code>forms.js</code>.
+            </li>
+</ol>
+<div class="callout warn icon">
+<p> Preste muita atenção aos caminhos relativos. As importações do controlador usam <code>./forms/</code> porque <code>routes.js</code> e o <code>forms</code> diretório estão ambos no <code>controllers</code> diretório. As importações de middleware usam <code>../middleware/</code> porque você precisa subir um nível a partir de <code>controllers</code> para alcançar <code>middleware</code>.
+            </p>
+</div>
+<h3>6. Testar a refatoração</h3>
+<p> Reinicie seu servidor e teste sistematicamente cada formulário para verificar se a refatoração funcionou corretamente: </p>
+<ul>
+<li> Acesse <a href="http://127.0.0.1:3000/contact" rel="noopener noreferrer" target="_blank">http://127.0.0.1:3000/contact</a> e envie o formulário com dados válidos. Verifique se ele salva corretamente e exibe uma mensagem de sucesso. </li>
+<li> Envie o formulário de contato com dados inválidos (assunto vazio, mensagem muito curta). Verifique se as mensagens de erro de validação aparecem. </li>
+<li> Teste o formulário de registro em <a href="http://127.0.0.1:3000/register" rel="noopener noreferrer" target="_blank">http://127.0.0.1:3000/register</a> com dados válidos e inválidos (e-mails incompatíveis, senhas fracas, etc.). </li>
+<li> Teste o formulário de login em <a href="http://127.0.0.1:3000/login" rel="noopener noreferrer" target="_blank">http://127.0.0.1:3000/login</a> com credenciais corretas, credenciais incorretas e campos ausentes. </li>
+<li> Se você estiver conectado como usuário, teste a funcionalidade de edição de conta em <a href="http://127.0.0.1:3000/users" rel="noopener noreferrer" target="_blank">http://127.0.0.1:3000/users</a> clicando em editar em sua conta. </li>
+</ul>
+<p> Se alguma validação falhar ou você vir erros sobre módulos ausentes, verifique seu trabalho com cuidado: </p>
+<ul>
+<li> Verifique se <code>forms.js</code> exporta todos os quatro arrays de validação </li>
+<li> Confirme se os arquivos de controlador não definem nem exportam mais arrays de validação </li>
+<li> Verifique novamente os caminhos de importação em <code>routes.js</code> (especialmente o <code>../</code> na importação do middleware) </li>
+<li> Certifique-se de não ter alterado acidentalmente nenhuma lógica de validação ao movê-la </li>
+</ul>
+<div class="callout success icon">
+<div class="title">Melhores práticas de refatoração</div>
+<p> Uma boa refatoração mantém o comportamento externo idêntico enquanto melhora a estrutura interna. Após refatorar, seus formulários devem funcionar exatamente como funcionavam antes. Se o comportamento mudar ou a validação parar de funcionar, você introduziu um erro durante o processo de refatoração. </p>
+<p> Desenvolvedores profissionais testam minuciosamente após a refatoração. Trabalhe metodicamente: mova um array de validação, teste-o e, em seguida, mova o próximo. Essa abordagem incremental facilita identificar e corrigir problemas rapidamente. </p>
+</div>
+</section>
+</article>
+<article>
+<section>
+<h2>Parte 2: Adicionando imagens de perfil do corpo docente</h2>
+<p> Seu diretório do corpo docente atualmente exibe nomes e informações, mas carece de apelo visual. Adicionar imagens de perfil torna o diretório mais atraente e ajuda alunos e visitantes a reconhecerem os membros do corpo docente. Você adicionará imagens tanto à página de lista do corpo docente quanto às páginas de detalhes individuais do corpo docente. </p>
+</section>
+<section>
+<h2>Entendendo a convenção de nomenclatura de imagens</h2>
+<p> As imagens do corpo docente que você baixará são nomeadas para corresponder à propriedade slug de cada membro do corpo docente com <code>.jpg</code> adicionado ao final. Por exemplo, se um membro do corpo docente tiver um slug de <code>john-smith</code>, o arquivo de imagem dele será nomeado <code>john-smith.jpg</code>. Esta convenção de nomenclatura consistente permite que você construa caminhos de imagem dinamicamente em seus modelos. </p>
+<p> Como cada objeto do corpo docente já inclui uma propriedade slug, você pode construir o caminho de imagem completo combinando o caminho base <code>/images/faculty/</code> com o slug e a <code>.jpg</code> extensão. </p>
+</section>
+<section>
+<h2>Instruções de implementação</h2>
+<h3>1. Baixar e instalar imagens do corpo docente</h3>
+<p> Baixe o arquivo de imagens do corpo docente: <a download="" href="../../../assets/downloads/unit-4/faculty-images.zip" target="_blank">faculty-images.zip</a>. Extraia o arquivo e coloque todos os arquivos de imagem em <code>public/images/faculty/</code>.
+        </p>
+<h3>2. Adicionar imagens à página da lista do corpo docente</h3>
+<p> Abra <code>src/views/faculty/list.ejs</code>. Você precisa adicionar um <code>&lt;img&gt;</code> elemento para cada membro do corpo docente na lista. </p>
+<p> Cada membro do corpo docente em seu laço tem um <code>slug</code> propriedade. Use este slug para construir o caminho de origem da imagem. Lembre-se de que todas as imagens estão localizadas em <code>/images/faculty/[slug].jpg</code> onde <code>[slug]</code> é substituído pelo valor real do slug. Não se esqueça de adicionar um texto alt apropriado para acessibilidade usando o nome do membro do corpo docente. </p>
+<p> Você deve dedicar algum tempo considerando o melhor posicionamento para a imagem dentro do item da lista do corpo docente. Pense em como a imagem interagirá com o conteúdo de texto existente e garanta que ela aprimore o design geral sem sobrecarregá-lo. O seguinte é o CSS mínimo que você deve adicionar; ele inclui um truque inteligente para fazer com que imagens ausentes exibam um marcador de posição: </p>
+<pre><code class="css">
+            .faculty-card {
+                position: relative;
+            }
+
+            .faculty-photo {
+                width: 100%;
+                aspect-ratio: 1 / 1;
+                object-fit: cover;
+                display: block;
+                margin-bottom: 7px;
+                background: url('https://placehold.co/480') center / cover no-repeat;
+            }
+        </code></pre>
+<h3>3. Adicionar Imagens à Página de Detalhes do Corpo Docente</h3>
+<p> Abrir <code>src/views/faculty/detail.ejs</code>. Adicione uma imagem de perfil do corpo docente a esta página usando o mesmo padrão usado para a página de lista. Lembre-se de que a página de detalhes já recebe um <code>facultyMember</code> objeto que contém a propriedade slug. Não se esqueça de atualizar o CSS para esta página também para garantir que a imagem seja exibida adequadamente ao lado dos detalhes do membro do corpo docente. </p>
+<h3>4. Teste Sua Implementação</h3>
+<p> Reinicie seu servidor, se necessário, e teste suas páginas do corpo docente: </p>
+<ul>
+<li> Acesse <a href="http://127.0.0.1:3000/faculty" rel="noopener noreferrer" target="_blank">http://127.0.0.1:3000/faculty</a> e verifique se todos os membros do corpo docente exibem imagens de perfil </li>
+<li> Clique em membros individuais do corpo docente para visualizar suas páginas de detalhes e verifique se as imagens aparecem </li>
+<li> Teste a funcionalidade de ordenação na página de lista do corpo docente para garantir que as imagens ainda sejam exibidas corretamente quando ordenadas </li>
+</ul>
+<p> Se as imagens não carregarem, abra as ferramentas de desenvolvedor do seu navegador e verifique a aba Console em busca de erros 404. Esses erros mostrarão o caminho exato que o navegador está tentando carregar, o que ajuda a identificar se a construção do seu caminho está incorreta ou se os arquivos de imagem estão ausentes ou nomeados incorretamente. </p>
+<div class="callout warn icon">
+<p> Certifique-se de que os arquivos de imagem estejam em <code>public/images/faculty/</code> e não em um subdiretório aninhado. A pasta public é a sua raiz da web, então <code>/images/faculty/john-smith.jpg</code> no seu HTML corresponde a <code>public/images/faculty/john-smith.jpg</code> no seu sistema de arquivos. </p>
+</div>
+</section>
+<section>
+<h2>Adicionar Estilização de Imagem</h2>
+<p> Adicione regras CSS a <code>public/css/faculty.css</code> para estilizar as imagens do corpo docente adequadamente. Sem estilização, as imagens podem parecer muito grandes ou ter tamanhos inconsistentes entre diferentes membros do corpo docente. </p>
+<p> Considere como você deseja que as imagens sejam exibidas: tamanho consistente, bordas, espaçamento ou outros tratamentos visuais. Sua estilização deve garantir que as imagens pareçam profissionais tanto na página de lista quanto na de detalhes. </p>
+</section>
+</article>
+<section>
+<h2>Reflexão e Próximos Passos</h2>
+<p> Esta Tarefa de refatoração desafiou você a trabalhar com mais independência ao aplicar padrões organizacionais profissionais. Você reorganizou o código para melhorar a clareza arquitetônica, demonstrando que entende não apenas como escrever código, mas como organizá-lo para manutenibilidade e crescimento. </p>
+<p> A refatoração de validação ensinou você a reconhecer quando os padrões arquitetônicos devem evoluir. Aplicações pequenas se beneficiam de uma organização simples, mas aplicações em crescimento precisam de uma separação de conceitos mais rigorosa. Desenvolvedores profissionais tomam essas decisões com base nas necessidades do projeto, no tamanho da equipe e no crescimento esperado. </p>
+<p> Adicionar imagens do corpo docente reforçou sua compreensão do ciclo MVC completo: modelos fornecem dados, controladores coordenam entre as camadas e views renderizam esses dados em HTML. Você trabalhou com sistemas de arquivos, construção dinâmica de caminhos e a importância das convenções de nomenclatura na criação de código sustentável. </p>
+<p> Ao avançar para o seu próximo Projeto, separado, aplique estes princípios organizacionais desde o início. Estruture seu código para o crescimento, mesmo que comece pequeno. Separe as responsabilidades de forma clara. Torne as convenções de nomenclatura consistentes. Essas práticas distinguem o código profissional do código iniciante. </p>
+</section>
+</main>
+<footer class="full-width">
+<div class="columns two">
+<div>
+<span class="course-code">CSE 340</span>
+             • 
+            <span class="course-name">Desenvolvimento de Back-end Web</span>
+</div>
+<div> © 2024–2026 BYU–Idaho <a href="https://www.byui.edu/computer-science-engineering/" rel="noopener noreferrer" target="_blank">Departamento de CSE</a>. Todos os direitos reservados. </div>
+</div>
+</footer>
+</div>
+</body>
+</html>

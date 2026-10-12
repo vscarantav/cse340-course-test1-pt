@@ -1,0 +1,300 @@
+html
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../../assets/images/favicon/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../../assets/images/favicon/favicon.png" rel="icon" type="image/png"/>
+<link href="../../../assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<title>Views Dinâmicas e Modelos com EJS</title>
+<meta content="Learn how to create dynamic web pages using the EJS templating engine with your Express application." name="description"/>
+<script src="../../../assets/js/main.js" type="module"></script>
+<script src="../../../assets/js/theme-preference.js"></script>
+</head>
+<body>
+<div class="content-grid">
+<header class="full-width">
+<input aria-controls="site-primary-nav" class="visually-hidden" id="site-nav-toggle" type="checkbox"/>
+<label aria-hidden="true" class="site-nav-backdrop" for="site-nav-toggle"></label>
+<div class="inner">
+<div class="site-brand">
+<a aria-label="CSE 340 home" class="brand-link" href="../../../index.html">
+<img alt="BYU–Idaho" class="site-logo" decoding="async" src="../../../assets/images/logos/byui-logo.png"/>
+</a>
+</div>
+<div class="site-course-info">
+<a href="../../../index.html">
+<span class="course-code">CSE 340</span>
+                 • 
+                <span class="course-name">Desenvolvimento de Back-end Web</span>
+</a>
+</div>
+<nav aria-label="Primary" class="site-primary-nav" id="site-primary-nav">
+<ul aria-label="Course units" class="nav-list">
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<div class="site-header-tools">
+<label class="site-nav-menu-btn" for="site-nav-toggle">
+<span class="visually-hidden">Menu</span>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-open" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"></path></svg>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-close" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"></path></svg>
+</label>
+<input aria-controls="site-search-panel" class="visually-hidden" id="site-search-toggle" type="checkbox"/>
+<label class="site-search-trigger" for="site-search-toggle">
+<span class="visually-hidden">Alternar pesquisa do site</span>
+<span aria-hidden="true">🔎</span>
+<span aria-hidden="true">✕</span>
+</label>
+<details class="theme-menu">
+<summary class="theme-control">
+<span class="visually-hidden">Esquema de cores</span>
+</summary>
+<div aria-label="Choose color scheme" class="theme-extra" role="group">
+<label class="theme-control theme-pick" data-theme-pick="light">
+<input name="theme-preference" type="radio" value="light"/>
+<span aria-hidden="true">☀️</span>
+<span class="visually-hidden">Claro</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="system">
+<input name="theme-preference" type="radio" value="system"/>
+<span aria-hidden="true">⚙️</span>
+<span class="visually-hidden">Padrão do sistema</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="dark">
+<input name="theme-preference" type="radio" value="dark"/>
+<span aria-hidden="true">🌖</span>
+<span class="visually-hidden">Escuro</span>
+</label>
+</div>
+</details>
+</div>
+</div>
+<div aria-label="Site search" id="site-search-panel" role="region">
+<form action="" method="get" role="search">
+<label class="visually-hidden" for="site-search-query">Pesquisar</label>
+<input autocomplete="off" enterkeyhint="search" id="site-search-query" name="query" placeholder="Search…" type="search"/>
+</form>
+<div aria-live="polite" class="site-search-results" id="site-search-results"></div>
+</div>
+</header>
+<main>
+<nav aria-label="Course units" class="course-breadcrumbs unit">
+<ul>
+<li>
+<a aria-label="Home" href="../../../index.html">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z">
+</path></svg>
+</a>
+</li>
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<section>
+<h1>Views Dinâmicas e Modelos com EJS</h1>
+<p> À medida que suas aplicações crescem além do conteúdo estático, você precisará renderizar páginas web com base em dados dinâmicos, estados em mudança e interações do usuário. Em vez de escrever várias cópias de arquivos HTML com pequenas diferenças, você pode usar um mecanismo de modelos para gerar páginas dinamicamente. Mecanismos de modelos tornam sua aplicação mais flexível, mantenível e escalável, separando o layout da lógica. </p>
+<p> Neste curso, usaremos <strong>EJS (Embedded JavaScript)</strong> como nosso mecanismo de modelos. O EJS funciona perfeitamente com Node.js e Express, permitindo que você insira JavaScript diretamente em seus arquivos HTML para criar views dinâmicas e reutilizáveis. </p>
+</section>
+<section>
+<h2>O que é um mecanismo de modelos?</h2>
+<p> Um mecanismo de modelos permite definir um modelo (um arquivo HTML com marcadores de posição ou código incorporado) e renderizá-lo injetando dados da sua aplicação. A saída final é uma página HTML totalmente formada enviada para o navegador do usuário. Os mecanismos de modelos oferecem vários benefícios: </p>
+<ul>
+<li>
+<strong>Conteúdo Dinâmico:</strong> Exibir dados que mudam em tempo de execução (informações do usuário, resultados de pesquisa, etc.). </li>
+<li>
+<strong>Reutilização de Código:</strong> Usar modelos compartilhados (layouts, cabeçalhos, rodapés) em várias páginas. </li>
+<li>
+<strong>Separação de Responsabilidades:</strong> Manter a lógica do lado do servidor e a apresentação do lado do cliente organizadas e modulares. </li>
+</ul>
+</section>
+<section>
+<h2>Como o EJS funciona</h2>
+<p> O EJS permite incorporar lógica semelhante ao JavaScript diretamente no seu HTML usando tags especiais. No entanto, é importante notar que o EJS não é simplesmente adicionar JavaScript ao seu HTML. Em vez disso, ele atua como uma linguagem de modelos do lado do servidor. O código JavaScript escrito dentro dos modelos EJS é executado no servidor, e o HTML simples resultante é enviado para o cliente. </p>
+<p> Por exemplo, quando um manipulador de rota invoca <code>res.render()</code>, o Express processa o arquivo EJS, avalia o código incorporado e o substitui pela saída HTML correspondente. O cliente recebe apenas o HTML final renderizado, garantindo que a lógica do lado do servidor permaneça oculta. </p>
+<p> Os modelos EJS são normalmente armazenados em um diretório chamado <code>views</code>. Cada arquivo de modelo usa a extensão <code>.ejs</code> e combina HTML padrão com tags EJS para gerar conteúdo dinâmico de forma eficiente. </p>
+</section>
+<section>
+<h2>Sintaxe básica do EJS</h2>
+<p> O EJS fornece várias tags especiais. Cada uma serve a um propósito diferente no controle de como os dados e a lógica são renderizados no seu HTML: </p>
+<h3><code>&lt;%= %&gt;</code> Saída escapada</h3>
+<p> Exibe a saída do resultado de uma expressão JavaScript, com caracteres HTML escapados para segurança. Usado para exibir conteúdo gerado pelo usuário. </p>
+<pre><code class="html">
+        &lt;h1&gt;Hello, &lt;%= user.name %&gt;!&lt;/h1&gt;
+    </code></pre>
+<h3><code>&lt;%- %&gt;</code> Saída não escapada</h3>
+<p> Exibe a saída de HTML bruto. Use isso apenas quando tiver certeza de que o conteúdo é seguro para ser exibido. Normalmente usado para conteúdo confiável que nós (nossos desenvolvedores, nosso servidor) criamos ou geramos. </p>
+<pre><code class="html">
+        &lt;div&gt;&lt;%- user.bioHTML %&gt;&lt;/div&gt;
+    </code></pre>
+<div class="callout warning icon">
+<p> Tenha cuidado com <code>&lt;%- %&gt;</code>. Se os dados vierem de usuários ou fontes não confiáveis, eles poderão conter HTML ou scripts maliciosos. Escape ou higienize esse conteúdo antes de gerá-lo na saída. </p>
+</div>
+<h3><code>&lt;% %&gt;</code> Fluxo de Controle de Lógica</h3>
+<p> Executa JavaScript sem exibir nenhuma saída. Ideal para condicionais e laços. </p>
+<pre><code class="html">
+        &lt;% if (user.isLoggedIn) { %&gt;
+            &lt;p&gt;Welcome back!&lt;/p&gt;
+        &lt;% } else { %&gt;
+            &lt;p&gt;Please log in.&lt;/p&gt;
+        &lt;% } %&gt;
+    </code></pre>
+<h3><code>&lt;%# %&gt;</code> Comentário</h3>
+<p> Adiciona um comentário no modelo que não aparece no HTML renderizado. </p>
+<pre><code class="html">
+        &lt;%# This is an internal comment for developers %&gt;
+    </code></pre>
+<h3><code>&lt;%% %&gt;</code> Tag EJS bruta</h3>
+<p> Exibe na saída um literal <code>&lt;%</code> no HTML renderizado. </p>
+<pre><code class="html">
+        &lt;%%= This will appear as &amp;lt;%= in the HTML %&gt;
+    </code></pre>
+</section>
+<section>
+<h2>Guia de referência rápida do mecanismo de modelos EJS</h2>
+<p> Este guia de referência rápida fornece uma consulta rápida para a sintaxe comum de modelos EJS e seus usos: </p>
+<table>
+<thead>
+<tr>
+<th>Sintaxe</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;%= %&gt;</code></td>
+<td>Exibe o valor da variável, escapado para prevenir XSS (Cross-Site Scripting).</td>
+</tr>
+<tr>
+<td><code>&lt;%- %&gt;</code></td>
+<td>Exibe HTML não escapado (use com cautela para evitar XSS).</td>
+</tr>
+<tr>
+<td><code>&lt;% %&gt;</code></td>
+<td>Executa código JavaScript sem gerar nenhuma saída.</td>
+</tr>
+<tr>
+<td><code>&lt;%# %&gt;</code></td>
+<td>Tag de comentário, não gera nenhuma saída para o HTML renderizado.</td>
+</tr>
+<tr>
+<td><code>&lt;%% %&gt;</code></td>
+<td>Exibe um literal <code>&lt;%</code> no modelo renderizado.</td>
+</tr>
+<tr>
+<td><code>&lt;? ?&gt;</code></td>
+<td>Sintaxe alternativa para <code>&lt;% %&gt;</code>, frequentemente usada para compatibilidade com XML.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section>
+<h2>Juntando tudo: um modelo de exemplo</h2>
+<p> A seguir está um exemplo de <code>index.ejs</code> arquivo usando várias tags EJS: </p>
+<pre><code class="html">
+        &lt;!DOCTYPE html&gt;
+        &lt;html&gt;
+        &lt;head&gt;
+            &lt;title&gt;Welcome&lt;/title&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            &lt;!-- Display the user's name, escaped for safety --&gt;
+            &lt;h1&gt;Hello, &lt;%= user.name %&gt;!&lt;/h1&gt;
+
+            &lt;!-- Conditional logic to check if the user is logged in --&gt;
+            &lt;% if (user.isLoggedIn) { %&gt;
+                &lt;!-- Display the number of new messages --&gt;
+                &lt;p&gt;You have &lt;%= user.messages.length %&gt; new messages.&lt;/p&gt;
+            &lt;% } else { %&gt;
+                &lt;!-- Message prompting the user to log in --&gt;
+                &lt;p&gt;Please log in to see your messages.&lt;/p&gt;
+            &lt;% } %&gt;
+
+            &lt;!-- Loop through the user's messages and display each one in a list --&gt;
+            &lt;ul&gt;
+                &lt;% user.messages.forEach((msg) =&gt; { %&gt;
+                    &lt;li&gt;&lt;%= msg %&gt;&lt;/li&gt;
+                &lt;% }); %&gt;
+            &lt;/ul&gt;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </code></pre>
+</section>
+<section>
+<h2>Renderizando modelos EJS no Express</h2>
+<p> Assim que o EJS estiver instalado e configurado, você poderá renderizar modelos a partir dos seus manipuladores de rota usando <code>res.render()</code>. Aqui está um exemplo completo: </p>
+<pre><code class="javascript">
+        // Import the express module
+        import express from 'express';
+
+        // Create an instance of an Express application
+        const app = express();
+
+        // Set the view engine to EJS, so Express knows to use EJS for rendering templates
+        app.set('view engine', 'ejs');
+
+        // Define a route for the root URL ('/')
+        app.get('/', (req, res) =&gt; {
+            // Create a user object with some sample data
+            const user = {
+                name: 'Alex',
+                isLoggedIn: true,
+                messages: ['Welcome!', 'Do not forget to check your inbox.']
+            };
+
+            // Render the 'index' EJS template and pass the user object to it
+            res.render('index', { user });
+        });
+
+        // Start the server and listen on port 3000
+        app.listen(3000, () =&gt; {
+            console.log('Server is running on port 3000'); // Log a message when the server starts
+        });
+    </code></pre>
+<p> Neste exemplo, o <code>user</code> objeto é passado para a <code>index.ejs</code> view. Dentro do modelo EJS, você pode acessar os valores usando tags EJS. </p>
+</section>
+<section>
+<h2>Próximos passos</h2>
+<p> Se você tem curiosidade de se aprofundar, explore os recursos abaixo. Eles fornecem contexto adicional e exemplos para ajudar você a entender melhor como motores de modelos como o EJS funcionam dentro de aplicações Express. </p>
+<ul>
+<li>
+<a href="https://ejs.co/" rel="noopener noreferrer" target="_blank">Documentação oficial do EJS</a>
+</li>
+<li>
+<a href="https://expressjs.com/en/guide/using-template-engines.html" rel="noopener noreferrer" target="_blank">Guia do Express: Usando motores de modelos</a>
+</li>
+</ul>
+<p> Se você estiver se sentindo aventureiro, tente implementar o código de exemplo fornecido nesta página para ver como os modelos EJS funcionam na prática. A experiência prática aprofundará sua compreensão desses conceitos e aprimorará suas habilidades. </p>
+</section>
+<section>
+<h2>Conclusão</h2>
+<p> Motores de modelos, como o EJS, simplificam o processo de criação de conteúdo HTML dinâmico ao permitir que você injete dados e lógica diretamente em seus modelos. Eles desempenham um papel crítico na construção de aplicações web renderizadas no lado do servidor, preenchendo a lacuna entre os dados da sua aplicação e sua camada de apresentação. </p>
+<p> Embora existam muitos motores de modelos disponíveis – como <a href="https://handlebarsjs.com/" rel="noopener noreferrer" target="_blank">Handlebars</a>, <a href="https://mustache.github.io/" rel="noopener noreferrer" target="_blank">Mustache</a>, e <a href="https://mozilla.github.io/nunjucks/" rel="noopener noreferrer" target="_blank">Nunjucks</a> – cada um com suas próprias funcionalidades e sintaxe, usaremos o <a href="https://ejs.co/" rel="noopener noreferrer" target="_blank">EJS</a> nesta disciplina. O EJS é amplamente utilizado devido à sua simplicidade, flexibilidade e integração perfeita com o Express, tornando-o uma excelente escolha para nossos objetivos de aprendizado. </p>
+</section>
+</main>
+<footer class="full-width">
+<div class="columns two">
+<div>
+<span class="course-code">CSE 340</span>
+             • 
+            <span class="course-name">Desenvolvimento Web Back-End</span>
+</div>
+<div> © 2024–2026 BYU–Idaho <a href="https://www.byui.edu/computer-science-engineering/" rel="noopener noreferrer" target="_blank">Departamento de CSE</a>. Todos os direitos reservados. </div>
+</div>
+</footer>
+</div>
+</body>
+</html>

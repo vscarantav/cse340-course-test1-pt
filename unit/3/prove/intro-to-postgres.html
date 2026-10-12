@@ -1,0 +1,473 @@
+html
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../../assets/images/favicon/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../../assets/images/favicon/favicon.png" rel="icon" type="image/png"/>
+<link href="../../../assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<title>Instruções da Tarefa</title>
+<meta content="Learn how to connect your Express application to a PostgreSQL database and replace static data with dynamic, database-driven content." name="description"/>
+<script src="../../../assets/js/main.js" type="module"></script>
+<script src="../../../assets/js/theme-preference.js"></script>
+</head>
+<body>
+<div class="content-grid">
+<header class="full-width">
+<input aria-controls="site-primary-nav" class="visually-hidden" id="site-nav-toggle" type="checkbox"/>
+<label aria-hidden="true" class="site-nav-backdrop" for="site-nav-toggle"></label>
+<div class="inner">
+<div class="site-brand">
+<a aria-label="CSE 340 home" class="brand-link" href="../../../index.html">
+<img alt="BYU–Idaho" class="site-logo" decoding="async" src="../../../assets/images/logos/byui-logo.png"/>
+</a>
+</div>
+<div class="site-course-info">
+<a href="../../../index.html">
+<span class="course-code">CSE 340</span>
+                 • 
+                <span class="course-name">Desenvolvimento Web Back-end</span>
+</a>
+</div>
+<nav aria-label="Primary" class="site-primary-nav" id="site-primary-nav">
+<ul aria-label="Course units" class="nav-list">
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<div class="site-header-tools">
+<label class="site-nav-menu-btn" for="site-nav-toggle">
+<span class="visually-hidden">Menu</span>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-open" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"></path></svg>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-close" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"></path></svg>
+</label>
+<input aria-controls="site-search-panel" class="visually-hidden" id="site-search-toggle" type="checkbox"/>
+<label class="site-search-trigger" for="site-search-toggle">
+<span class="visually-hidden">Alternar pesquisa do site</span>
+<span aria-hidden="true">🔎</span>
+<span aria-hidden="true">✕</span>
+</label>
+<details class="theme-menu">
+<summary class="theme-control">
+<span class="visually-hidden">Esquema de cores</span>
+</summary>
+<div aria-label="Choose color scheme" class="theme-extra" role="group">
+<label class="theme-control theme-pick" data-theme-pick="light">
+<input name="theme-preference" type="radio" value="light"/>
+<span aria-hidden="true">☀️</span>
+<span class="visually-hidden">Claro</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="system">
+<input name="theme-preference" type="radio" value="system"/>
+<span aria-hidden="true">⚙️</span>
+<span class="visually-hidden">Padrão do sistema</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="dark">
+<input name="theme-preference" type="radio" value="dark"/>
+<span aria-hidden="true">🌖</span>
+<span class="visually-hidden">Escuro</span>
+</label>
+</div>
+</details>
+</div>
+</div>
+<div aria-label="Site search" id="site-search-panel" role="region">
+<form action="" method="get" role="search">
+<label class="visually-hidden" for="site-search-query">Pesquisar</label>
+<input autocomplete="off" enterkeyhint="search" id="site-search-query" name="query" placeholder="Search…" type="search"/>
+</form>
+<div aria-live="polite" class="site-search-results" id="site-search-results"></div>
+</div>
+</header>
+<main>
+<nav aria-label="Course units" class="course-breadcrumbs unit">
+<ul>
+<li>
+<a aria-label="Home" href="../../../index.html">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z">
+</path></svg>
+</a>
+</li>
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<section>
+<h1>Introdução ao PostgreSQL com Express</h1>
+<p> Nesta tarefa, você conectará sua aplicação Express a um banco de dados PostgreSQL e substituirá os dados estáticos de cursos e corpo docente por conteúdo orientado a banco de dados. Isso representa um passo importante na construção de aplicações web escaláveis que podem armazenar e recuperar dados dinamicamente em vez de ficarem limitadas por objetos codificados diretamente no código. </p>
+<p> Você instalará os pacotes necessários do PostgreSQL, estabelecerá uma conexão com o banco de dados, integrará arquivos de configuração de banco de dados pré-criados e modificará seus manipuladores de rota existentes para trabalhar com consultas reais de banco de dados. Ao final desta tarefa, o sistema de catálogo da sua universidade será alimentado por um banco de dados PostgreSQL em vez de objetos JavaScript estáticos. </p>
+</section>
+<section>
+<h2>O Problema dos Dados Estáticos</h2>
+<p> Sua aplicação atual usa objetos JavaScript estáticos para armazenar informações de cursos e do corpo docente. Embora essa abordagem funcione para aprendizado e pequenas demonstrações, ela possui limitações significativas que se tornam evidentes à medida que as aplicações crescem: </p>
+<p>
+<strong>Problemas de Escalabilidade</strong>: Imagine sua universidade oferecendo 10.000 cursos com 500 membros do corpo docente. Carregar todos esses dados na memória cada vez que o servidor é iniciado consumiria quantidades massivas de RAM e desaceleraria significativamente a inicialização do servidor. </p>
+<p>
+<strong>Problemas de Persistência de Dados</strong>: Quaisquer alterações nos horários dos cursos, informações do corpo docente ou novas ofertas de cursos exigem alterações de código e reinicializações do servidor. Não há como atualizar informações dinamicamente ou permitir que administradores modifiquem dados por meio de uma interface do usuário. </p>
+<p>
+<strong>Limitações de Acesso Concorrente</strong>: Múltiplos usuários não podem acessar ou modificar com segurança os mesmos dados simultaneamente. Objetos estáticos não fornecem mecanismos integrados para lidar com acesso concorrente, validação de dados ou manutenção da integridade dos dados. </p>
+<p> Os bancos de dados resolvem esses problemas fornecendo armazenamento persistente, recursos de consulta eficientes, controles de acesso concorrente e a capacidade de lidar com grandes conjuntos de dados sem carregar tudo na memória da aplicação. </p>
+</section>
+<section>
+<h2>Entendendo as Conexões de Banco de Dados</h2>
+<p> Antes de mergulhar na implementação, é importante entender como as aplicações web se conectam aos bancos de dados e por que precisamos de padrões especiais para gerenciar essas conexões de forma eficiente. </p>
+<h3>Pooling de Conexões</h3>
+<p> Criar uma nova conexão de banco de dados para cada consulta seria extremamente ineficiente. As conexões de banco de dados exigem handshakes de rede, autenticação e alocação de recursos, o que consome tempo e recursos do servidor. O pooling de conexões resolve isso mantendo um conjunto de conexões reutilizáveis que podem ser compartilhadas entre múltiplas requisições. </p>
+<p> Quando sua aplicação precisa executar uma consulta, ela obtém uma conexão emprestada do pool, executa a consulta e devolve a conexão ao pool para reutilização. Isso melhora drasticamente o desempenho e reduz a carga no seu servidor de banco de dados. </p>
+<h3>Scripts de Configuração de Banco de Dados</h3>
+<p> Aplicações profissionais precisam de uma maneira confiável de garantir que a estrutura do banco de dados corresponda ao que a aplicação espera. Os scripts de configuração lidam com isso criando tabelas, índices e dados iniciais automaticamente. Esses scripts são projetados para serem idempotentes, o que significa que podem ser executados várias vezes com segurança sem causar erros ou perda de dados. </p>
+<p> Nosso script de configuração usa comandos SQL como <code>CREATE TABLE IF NOT EXISTS</code> e <code>ON CONFLICT DO NOTHING</code> para evitar erros quando tabelas ou dados já existirem. Isso permite que a configuração seja executada toda vez que o servidor for iniciado, sem falhar caso o banco de dados já esteja configurado. </p>
+</section>
+<section>
+<h2>Preparação</h2>
+<div class="callout info icon"> Você precisará de credenciais do banco de dados para concluir esta tarefa. Consulte a Unidade 3 no Canvas para saber como obtê-las. Não fornecemos links para o processo de credenciais em nenhum lugar fora do Canvas por motivos de segurança. </div>
+<p> Antes de iniciar esta tarefa, siga as instruções no Canvas para recuperar suas credenciais do banco de dados PostgreSQL. Se não conseguir localizar suas credenciais, peça ajuda à sua equipe antes de entrar em contato com seu instrutor. Você receberá credenciais individuais que incluem nome de usuário, senha, host, porta e nome do banco de dados. </p>
+<p> Você usará essas credenciais para construir uma string de conexão com o banco de dados parecida com esta: </p>
+<pre><code>
+        postgresql://[username]:[password]@[host]:[port]/[database]
+    </code></pre>
+<p> Substitua as seções entre colchetes pelas suas credenciais reais. Por exemplo, se seu nome de usuário for <code>student123</code>, a senha for <code>secret456</code>, o host for <code>postgres.university.edu</code>, a porta for <code>5432</code>e o banco de dados for <code>catalog_db</code>, sua string de conexão seria: </p>
+<pre><code>
+        postgresql://student123:secret456@postgres.university.edu:5432/catalog_db
+    </code></pre>
+<h3>Baixar Certificado SSL</h3>
+<p> Quando você recuperou suas credenciais seguindo as instruções no Canvas, você foi direcionado a um site que forneceu um certificado SSL. Crie uma <code>bin</code> pasta na raiz do seu projeto e salve o certificado lá como <code>byuicse-psql-cert.pem</code>. Este certificado é necessário para que sua aplicação Node.js se conecte ao banco de dados com segurança e <strong>não é</strong> usado pelo pgAdmin ou por qualquer outra ferramenta gráfica. </p>
+</section>
+<section>
+<h2>Instruções da Tarefa</h2>
+<h3>1. Instalando Pacotes do PostgreSQL</h3>
+<p> Instale o pacote do cliente PostgreSQL que fornece conectividade Node.js a bancos de dados PostgreSQL: </p>
+<pre><code class="bash">
+        pnpm install pg
+    </code></pre>
+<p> O pacote <code>pg</code> é o cliente PostgreSQL oficial para Node.js e fornece recursos de pooling de conexões, suporte a consultas parametrizadas para evitar ataques de injeção de SQL e tratamento abrangente de erros para operações no banco de dados. </p>
+<h3>2. Adicionando Configuração do Banco de Dados</h3>
+<p> Atualize seu arquivo <code>.env</code> na raiz do seu projeto para incluir sua string de conexão com o banco de dados e a flag de log de SQL: </p>
+<pre><code class="bash">
+        DB_URL=postgresql://[username]:[password]@[host]:[port]/[database]  # new
+        ENABLE_SQL_LOGGING=true                                             # new
+        NODE_ENV=development
+        PORT=3000
+    </code></pre>
+<p> Substitua os marcadores entre colchetes pelas suas credenciais reais do banco de dados. A flag <code>ENABLE_SQL_LOGGING</code> mostrará todas as consultas executadas no console durante o desenvolvimento, o que é útil para entender o que sua aplicação está fazendo e para a depuração de problemas no banco de dados. </p>
+<div class="callout warn icon">
+<div class="title">Proteja Suas Credenciais do Banco de Dados</div>
+<p> Verifique novamente se o seu arquivo <code>.env</code> está listado no seu arquivo <code>.gitignore</code>. As credenciais do banco de dados são informações confidenciais que nunca devem ser incluídas em um commit para o controle de versão. Qualquer pessoa com acesso a essas credenciais poderia potencialmente acessar ou modificar seu banco de dados. </p>
+</div>
+<h3>3. Baixar e Integrar Arquivos do Banco de Dados</h3>
+<p> Baixe os <a download="" href="../../../assets/downloads/unit-3/sql-setup.zip" target="_blank">arquivos de configuração do banco de dados</a> e mescle todos os arquivos fornecidos na estrutura do seu projeto. Os arquivos incluem gerenciamento de conexão com o banco de dados, criação de esquema, povoamento inicial de dados e funções de modelo atualizadas que funcionam com PostgreSQL em vez de objetos estáticos. </p>
+<p> Os novos arquivos seguem esta estrutura e devem ser colocados no diretório existente do seu projeto: </p>
+<pre><code class="bash">
+        [project-root]
+        ├── src/
+        │   ├── controllers/
+        │   │   └── catalog/
+        │   │       └── catalog.js      # provided but needs fixing
+        │   └── models/
+        │       ├── catalog/
+        │       │   ├── catalog.js      # new file
+        │       │   └── courses.js      # replaces existing
+        │       ├── faculty/
+        │       │   └── faculty.js      # replaces existing
+        │       ├── sql/
+        │       │   └── seed.sql        # new file
+        │       ├── db.js               # new file
+        │       └── setup.js            # new file
+        └── bin/
+            ├── byuicse-psql-cert.pem   # SSL certificate (you downloaded this separately)
+            └── README.md               # instructions for SSL certificate (delete when done)
+    </code></pre>
+<p> Reserve um momento para revisar cada um desses arquivos para entender suas funções e como eles diferem da sua abordagem anterior de dados estáticos. Abaixo está uma breve visão geral do propósito e da funcionalidade de cada novo arquivo: </p>
+<ul>
+<li>
+<strong>db.js</strong>: Gerencia o pool de conexões do PostgreSQL e fornece logs de consultas no modo de desenvolvimento. </li>
+<li>
+<strong>setup.js</strong>: Cria tabelas no banco de dados e as popula com dados iniciais de cursos, corpo docente e catálogo. </li>
+<li>
+<strong>sql/seed.sql</strong>: Popula o banco de dados com SQL <code>INSERT</code>s; mais rápido e confiável do que carregar JSON no código da aplicação. </li>
+<li>
+<strong>catalog.js</strong>: Manipula consultas relacionadas a seções e horários de cursos. </li>
+<li>
+<strong>courses.js</strong>: Substitui seus dados estáticos de cursos por consultas ao banco de dados. </li>
+<li>
+<strong>faculty.js</strong>: Substitui seus dados estáticos do corpo docente por consultas ao banco de dados. </li>
+</ul>
+<div class="callout warn icon">
+<div class="title">Notas Importantes Sobre os Arquivos Fornecidos</div>
+<p> Um controlador de catálogo é fornecido para evitar falhas no servidor, mas precisa de correções (veja a próxima seção). O controlador do corpo docente <strong>NÃO É</strong> fornecido — você deve atualizar o seu existente. Todos os modelos precisarão de atualizações para a nova estrutura de dados. </p>
+</div>
+<div class="callout info">
+<div class="title">Entendendo Slugs</div>
+<p> A estrutura do banco de dados usa "slugs" em vez de IDs simples para o roteamento de URLs. Um slug é uma versão amigável para URL de um nome que contém apenas letras minúsculas, números e hífens. Por exemplo, "CSE 110" torna-se "cse-110" e "Brother Keers" torna-se "brother-keers". Isso cria URLs mais limpas e legíveis, mantendo a eficiência do banco de dados. </p>
+</div>
+<h3>4. Atualizar o Processo de Inicialização do Servidor</h3>
+<p> Modifique o seu <code>server.js</code> arquivo para inicializar a conexão e a configuração do banco de dados quando o servidor for iniciado. Adicione esta importação perto do topo do seu arquivo com suas outras importações: </p>
+<pre><code class="javascript">
+        import { setupDatabase, testConnection } from './src/models/setup.js';
+    </code></pre>
+<p> Em seguida, atualize seu código de inicialização do servidor existente na parte inferior do arquivo para incluir a inicialização do banco de dados: </p>
+<pre><code class="javascript">
+        app.listen(PORT, async () =&gt; {
+            await setupDatabase();
+            await testConnection();
+            console.log(`Server is running on http://127.0.0.1:${PORT}`);
+        });
+    </code></pre>
+<p> O manipulador global de erros da sua aplicação capturará quaisquer erros de conexão ou configuração do banco de dados, impedindo que o servidor inicie e exibindo mensagens de erro claras no console. </p>
+<p> O processo de configuração e povoamento (seeding) do banco de dados é executado automaticamente toda vez que o servidor é iniciado. Ele é projetado para ser seguro e não destrutivo: tabelas e dados iniciais só são criados se ainda não existirem, portanto reiniciar seu servidor não sobrescreverá nem excluirá dados existentes. Essa abordagem permite que você desenvolva com confiança sem se preocupar com perdas acidentais de dados. </p>
+<div class="callout info">
+<div class="title">Redefinindo a Configuração do Banco de Dados</div>
+<p> O script de configuração só cria tabelas e insere dados se eles ainda não existirem. Para forçar um repovoamento (re-seed) completo durante o desenvolvimento, exclua todas as linhas da tabela <code>faculty</code> executando <code>DELETE FROM faculty;</code> ou <code>TRUNCATE TABLE faculty;</code> no pgAdmin e, em seguida, reinicie o seu servidor. O script de configuração detectará os dados de corpo docente ausentes e recriará as tabelas e povoará todos os dados iniciais. </p>
+</div>
+<h3>5. Testar a Integração do Banco de Dados</h3>
+<p> Inicie seu servidor e verifique se a configuração do banco de dados é concluída com sucesso. Com <code>ENABLE_SQL_LOGGING=true</code> no seu arquivo <code>.env</code>, você verá uma saída extensa no console. Em sua primeira execução com sucesso, você deverá ver uma saída semelhante à seguinte: </p>
+<pre><code>
+        Error in query: {
+            text: 'SELECT EXISTS (SELECT 1 FROM faculty LIMIT 1) as has_data',
+            error: 'relation "faculty" does not exist'
+        }
+        Seeding database...
+        Executed query: {
+            text: "... 10044 more characters,
+            duration: '457ms',
+            rows: undefined
+        }
+        Database seeded successfully
+        Executed query: { text: 'SELECT NOW() as current_time', duration: '45ms', rows: 1 }
+        Database connection successful: 2026-01-07T19:57:17.323Z
+        Server is running on http://127.0.0.1:3000
+    </code></pre>
+<div class="callout info">
+<div class="title">Refatoração Necessária</div>
+<p> Neste ponto, seu site estará parcialmente funcional. A conexão e a configuração do banco de dados estão funcionando, mas seus controladores e modelos ainda dependem da antiga estrutura estática de dados. Você precisa atualizar seus controladores para usar as novas funções assíncronas do modelo de banco de dados e modificar seus modelos para corresponder à nova estrutura de dados (consulte as etapas 6 a 8). </p>
+</div>
+<p> Se os logs detalhados se tornarem excessivos durante o desenvolvimento, você poderá desativá-los alterando <code>ENABLE_SQL_LOGGING=false</code> no seu arquivo <code>.env</code> e reiniciando seu servidor. Se você encontrar algum erro durante o processo de conexão ou configuração, há uma seção de solução de problemas no final desta Tarefa para ajudá-lo a resolver problemas comuns. </p>
+<h3>6. Atualizar o Controlador de Catálogo</h3>
+<p> O controlador de catálogo foi fornecido para evitar falhas, mas precisa de correções. Atualmente ele usa <code>getCourseById()</code> e <code>getSectionsByCourseId()</code>, mas suas URLs contêm slugs, não IDs. Atualize as importações e chamadas de função para funcionar com o roteamento baseado em slugs. </p>
+<p> Abra <code>src/controllers/catalog/catalog.js</code> e atualize as importações no topo do arquivo: </p>
+<pre><code class="javascript">
+        // Update these imports:
+        import { getAllCourses, getCourseBySlug } from '../../models/catalog/courses.js';
+        import { getSectionsByCourseSlug } from '../../models/catalog/catalog.js';
+    </code></pre>
+<p> Em seguida, encontre a função <code>courseDetailPage</code> e atualize-a para usar funções baseadas em slug em vez de funções baseadas em ID: </p>
+<pre><code class="javascript">
+        // In courseDetailPage function, replace:
+        const courseId = req.params.courseId;
+        const course = await getCourseById(courseId);
+        const sections = await getSectionsByCourseId(courseId, sortBy);
+        
+        // With:
+        const courseSlug = req.params.slugId;
+        const course = await getCourseBySlug(courseSlug);
+        const sections = await getSectionsByCourseSlug(courseSlug, sortBy);
+    </code></pre>
+<p> Garantimos que as novas funções de modelo ainda retornem um objeto vazio (<code>{}</code>) quando nenhum dado for encontrado. Isso significa que a lógica existente de manipulação de erros no controlador funcionará corretamente com alterações mínimas. Sinta-se à vontade para adicionar mais às mensagens de erro, se desejar: </p>
+<pre><code class="javascript">
+        // Replace the existing error:
+            if (Object.keys(course).length === 0) {
+            const err = new Error(`Course ${courseId} not found`);
+            err.status = 404;
+            return next(err);
+        }
+
+        // With:
+        if (Object.keys(course).length === 0) {
+            const err = new Error(`Course ${courseSlug} not found`);
+            err.status = 404;
+            return next(err);
+        }
+    </code></pre>
+<p> Como renomeamos o parâmetro da rota para <code>:slugId</code>, as páginas de detalhes do catálogo não funcionarão até que você atualize as definições de rota dos catálogos em <code>src/controllers/routes.js</code>:
+    </p>
+<pre><code class="javascript">
+        // In your route definitions, update:
+        router.get('/catalog/:courseId', courseDetailPage);
+        
+        // To:
+        router.get('/catalog/:slugId', courseDetailPage);
+    </code></pre>
+<h3>7. Atualizar o Controlador do Corpo Docente</h3>
+<p> Um novo controlador de corpo docente <strong>não foi incluído</strong> nos arquivos baixados. Você precisará atualizar seu arquivo <code>src/controllers/faculty/faculty.js</code> existente para funcionar com as novas funções do modelo baseadas em banco de dados, seguindo a mesma abordagem usada na etapa anterior para o controlador de catálogo. </p>
+<p> Primeiro, atualize as importações no topo do seu arquivo do controlador de corpo docente para usar as funções assíncronas do modelo: </p>
+<pre><code class="javascript">
+        import { getFacultyBySlug, getSortedFaculty } from '../../models/faculty/faculty.js';
+    </code></pre>
+<p> Em seguida, atualize ambas as funções do controlador com as seguintes alterações: </p>
+<ul>
+<li> Converta ambas as funções para usar <code>async</code>
+</li>
+<li> Adicione <code>await</code> antes de todas as chamadas ao banco de dados </li>
+<li> Atualize sua lógica de verificação de erros: as funções do banco de dados retornam um objeto vazio (<code>{}</code>) quando os dados não forem encontrados, portanto, verifique com <code>Object.keys(facultyMember).length === 0</code> em vez de verificar se há <code>null</code> ou <code>undefined</code>
+</li>
+</ul>
+<details class="info icon">
+<summary>Verifique Seu Trabalho</summary>
+<p> Veja como deve ficar o seu controlador de corpo docente atualizado: </p>
+<pre><code class="javascript">
+            const facultyListPage = async (req, res) =&gt; {
+                const validSortOptions = ['name', 'department', 'title'];
+                const sortBy = validSortOptions.includes(req.query.sort) ? req.query.sort : 'department';
+                const facultyList = await getSortedFaculty(sortBy);
+                
+                res.render('faculty/list', {
+                    title: 'Faculty Directory',
+                    faculty: facultyList,
+                    currentSort: sortBy
+                });
+            };
+
+            const facultyDetailPage = async (req, res, next) =&gt; {
+                const facultySlug = req.params.facultySlug;
+                const facultyMember = await getFacultyBySlug(facultySlug);
+
+                if (Object.keys(facultyMember).length === 0) {
+                    const err = new Error(`Faculty member ${facultySlug} not found`);
+                    err.status = 404;
+                    return next(err);
+                }
+                
+                res.render('faculty/detail', {
+                    title: `${facultyMember.name} - Faculty Profile`,
+                    faculty: facultyMember
+                });
+            };
+        </code></pre>
+<p> Veja como devem ser as definições de rota de corpo docente: </p>
+<pre><code class="javascript">
+            router.get('/faculty/:facultySlug', facultyDetailPage);
+        </code></pre>
+</details>
+<h3>8. Atualizar Seus Modelos</h3>
+<p> Agora que seus controllers estão funcionando com o banco de dados, você precisa atualizar todos os seus modelos (views) para usar a nova estrutura de dados e nomes de propriedades. O banco de dados retorna dados com nomes de propriedades diferentes dos que seus objetos estáticos usavam. </p>
+<p> Use <code>console.log()</code> em seus controllers para inspecionar a estrutura de dados real sendo passada para seus modelos. Isso ajudará você a entender exatamente quais propriedades estão disponíveis. </p>
+<h4>Entendendo a Nova Estrutura de Dados</h4>
+<p> O banco de dados usa nomes de propriedades e estruturas diferentes dos seus objetos estáticos. Aqui estão as principais diferenças que você precisa saber: </p>
+<ul>
+<li>
+<strong>Cursos:</strong> Use <code>courseCode</code>, <code>name</code>, <code>creditHours</code>, <code>department</code>, <code>slug</code> em vez de propriedades antigas como <code>id</code>, <code>title</code>, <code>credits</code>
+</li>
+<li>
+<strong>Seções:</strong> As seções agora são um array separado com propriedades <code>courseCode</code>, <code>courseName</code>, <code>professor</code>, <code>professorSlug</code>, <code>time</code>, <code>room</code> (não incorporado no objeto do curso) </li>
+<li>
+<strong>Corpo docente:</strong> Use <code>firstName</code>, <code>lastName</code>, <code>name</code>, <code>slug</code>, <code>department</code>, <code>title</code>, <code>office</code>, <code>phone</code>, <code>email</code>
+</li>
+</ul>
+<p> Atualize <code>catalog.ejs</code>, <code>course-detail.ejs</code>, <code>faculty/list.ejs</code>, e <code>faculty/detail.ejs</code> para corresponder a esses novos nomes de propriedades. Sempre use <code>console.log()</code> em seus controllers para verificar a estrutura de dados real antes de fazer alterações em seus modelos, mas não se esqueça de remover esses logs posteriormente para manter seu console limpo. </p>
+<div class="callout warning icon"> Não se esqueça de que alguns cursos não têm seções! Seus modelos de detalhes do curso devem lidar com listas de seções vazias de forma adequada, mas você pode adicionar lógica condicional para exibir uma mensagem como "Nenhuma seção disponível" se o array de seções estiver vazio. Tente um curso diferente que tenha seções para testar totalmente seu modelo. </div>
+<h3>9. Teste Sua Aplicação Completa</h3>
+<p> Com seus controllers e modelos atualizados, sua aplicação agora deve estar totalmente funcional com a integração com o banco de dados. Teste todas as principais funcionalidades para verificar se tudo funciona corretamente. </p>
+<h4>Teste as Páginas Principais</h4>
+<p> Visite cada uma destas URLs para verificar se suas páginas são exibidas corretamente com o conteúdo orientado ao banco de dados: </p>
+<ul>
+<li>
+<strong>Catálogo de cursos</strong>: <a href="http://127.0.0.1:3000/catalog" rel="noopener noreferrer" target="_blank">http://127.0.0.1:3000/catalog</a> - Deve exibir todos os cursos disponíveis com a formatação adequada </li>
+<li>
+<strong>Detalhes do curso</strong>: <a href="http://127.0.0.1:3000/catalog/cse-110" rel="noopener noreferrer" target="_blank">http://127.0.0.1:3000/catalog/cse-110</a> - Deve mostrar as informações de CSE 110 e todas as seções disponíveis </li>
+<li>
+<strong>Diretório do corpo docente</strong>: <a href="http://127.0.0.1:3000/faculty" rel="noopener noreferrer" target="_blank">http://127.0.0.1:3000/faculty</a> - Deve listar todos os membros do corpo docente </li>
+<li>
+<strong>Perfil do membro do corpo docente</strong>: <a href="http://127.0.0.1:3000/faculty/nathan-jack" rel="noopener noreferrer" target="_blank">http://127.0.0.1:3000/faculty/nathan-jack</a> - Deve exibir as informações completas do perfil de Nathan Jack </li>
+</ul>
+<h4>Teste a Funcionalidade de Ordenação</h4>
+<p> Verifique se a ordenação funciona corretamente com os parâmetros de consulta: </p>
+<ul>
+<li>
+<a href="http://127.0.0.1:3000/faculty?sort=name" rel="noopener noreferrer" target="_blank">http://127.0.0.1:3000/faculty?sort=name</a> - Corpo docente ordenado alfabeticamente por nome </li>
+<li>
+<a href="http://127.0.0.1:3000/faculty?sort=department" rel="noopener noreferrer" target="_blank">http://127.0.0.1:3000/faculty?sort=department</a> - Corpo docente agrupado por departamento </li>
+<li>
+<a href="http://127.0.0.1:3000/catalog/cse-110?sort=time" rel="noopener noreferrer" target="_blank">http://127.0.0.1:3000/catalog/cse-110?sort=time</a> - Seções do curso ordenadas por horário </li>
+<li>
+<a href="http://127.0.0.1:3000/catalog/cse-110?sort=professor" rel="noopener noreferrer" target="_blank">http://127.0.0.1:3000/catalog/cse-110?sort=professor</a> - Seções do curso ordenadas por nome do professor </li>
+</ul>
+<h4>Teste o Tratamento de Erros</h4>
+<p> Verifique se sua aplicação trata erros adequadamente tentando URLs inválidas: </p>
+<ul>
+<li>
+<a href="http://127.0.0.1:3000/faculty/invalid-person" rel="noopener noreferrer" target="_blank">http://127.0.0.1:3000/faculty/invalid-person</a> - Deve exibir sua página de erro 404 </li>
+<li>
+<a href="http://127.0.0.1:3000/catalog/fake-course" rel="noopener noreferrer" target="_blank">http://127.0.0.1:3000/catalog/fake-course</a> - Deve exibir sua página de erro 404 </li>
+</ul>
+<p> Se todos os testes passarem, sua integração com o banco de dados está completa e funcionando corretamente. Se você encontrar algum problema, revise a seção de solução de problemas ao final desta Tarefa para ver problemas e soluções comuns. </p>
+</section>
+<section>
+<h2>Entendendo o Que Você Construiu</h2>
+<p> Esta Tarefa introduziu vários conceitos importantes que formam o fundamento de aplicações web orientadas a banco de dados. Vamos examinar o que você realizou e por que esses padrões são essenciais para o desenvolvimento escalável. </p>
+<h3>Gerenciamento do Pool de Conexões</h3>
+<p> Sua aplicação agora usa um pool de conexões para gerenciar as conexões com o banco de dados de forma eficiente. Em vez de criar uma nova conexão para cada consulta (o que seria lento e exigiria muitos recursos), o pool mantém um conjunto de conexões reutilizáveis. Esse padrão é essencial para aplicações que lidam com múltiplos usuários concorrentes e operações frequentes no banco de dados. </p>
+<h3>Acesso Assíncrono a Dados</h3>
+<p> Ao converter seus manipuladores de rotas para usar <code>async/await</code>, seu aplicativo agora pode lidar com consultas ao banco de dados sem bloquear outras requisições. Quando uma consulta está em execução, o Node.js pode processar outras requisições de entrada, melhorando dramaticamente a capacidade do seu aplicativo de atender a múltiplos usuários simultaneamente. </p>
+<h3>Roteamento Baseado em Slugs</h3>
+<p> A transição de IDs simples como "CS121" para slugs como "cse-110" oferece vários benefícios: as URLs são mais amigáveis ao usuário e otimizadas para SEO, o formato é consistente independentemente das convenções de nomenclatura dos cursos, e a estrutura interna do banco de dados não é exposta nas URLs. </p>
+<h3>Consistência de Dados e Relacionamentos</h3>
+<p> A estrutura do banco de dados inclui relacionamentos adequados entre cursos, corpo docente, departamentos e entradas do catálogo. Isso garante a consistência dos dados (as informações do departamento de um membro do corpo docente são armazenadas uma vez e referenciadas em todos os lugares) e permite consultas complexas que seriam difíceis com objetos estáticos. </p>
+<h3>Processo de Configuração Não Destrutivo</h3>
+<p> O script de configuração demonstra práticas profissionais de gerenciamento de banco de dados. Ele pode ser executado várias vezes com segurança, atualiza os dados existentes quando necessário e evita a perda de informações durante o desenvolvimento. Esse padrão é crucial para aplicativos que precisam evoluir seu esquema de banco de dados ao longo do tempo. </p>
+</section>
+<section>
+<h2>Resumo dos Conceitos-Chave</h2>
+<p> Esta Tarefa fez a transição bem-sucedida do seu aplicativo de dados estáticos para um sistema totalmente orientado a banco de dados. Você aprendeu a estabelecer conexões de banco de dados usando pooling de conexões, integrar scripts de configuração de banco de dados que são executados com segurança várias vezes, converter manipuladores de rotas síncronos em padrões assíncronos e implementar um tratamento de erros adequado para operações de banco de dados. </p>
+<p> Mais importante ainda, você vivenciou os benefícios práticos do desenvolvimento orientado a banco de dados: seu aplicativo agora pode lidar com conjuntos de dados muito maiores sem problemas de desempenho, os dados podem ser modificados sem alterações no código ou reinicializações do servidor, múltiplos usuários podem acessar as mesmas informações simultaneamente, e o fundamento está pronto para funcionalidades avançadas, como conteúdo gerado pelo usuário e interfaces administrativas. </p>
+<p> Os padrões que você implementou — pooling de conexões, operações assíncronas e tratamento de erros adequado — são padrões da indústria que você usará ao longo de sua carreira em desenvolvimento web. Entender como essas peças funcionam juntas prepara você para construir aplicativos de nível profissional que podem escalar para atender às demandas do mundo real. </p>
+</section>
+<section>
+<h2>Solução de Problemas Comuns</h2>
+<p> Se você encontrar problemas durante esta Tarefa, aqui estão alguns problemas comuns e suas soluções: </p>
+<h3>Erros de Conexão de Certificado SSL</h3>
+<p> Verifique se o certificado SSL foi baixado e colocado no <code>bin/</code> diretório como <code>byuicse-psql-cert.pem</code>.
+    </p>
+<h3>Erros de Conexão com o Banco de Dados</h3>
+<p> Se você vir erros como "Database connection failed", verifique se suas credenciais do banco de dados no <code>.env</code> arquivo estão corretas e correspondem exatamente ao formato. Verifique se a sua string de conexão não possui espaços extras ou caracteres especiais e confirme se o seu servidor de banco de dados está acessível a partir do seu ambiente de desenvolvimento. </p>
+<div class="callout warning">
+<div class="title">Erro Comum</div>
+<p> Usamos símbolos para as senhas do seu banco de dados que quebram as strings de conexão se não forem codificadas em URL. Se a sua senha contiver qualquer tipo de símbolo, ela precisará ser codificada em URL. Por exemplo, se a sua senha for <code>p@ssw0rd!</code>, ela deve ser codificada como <code>p%40ssw0rd%21</code> na string de conexão. Fornecemos as versões codificadas no mesmo local de onde você obtém suas credenciais do banco de dados. </p>
+</div>
+<h3>Problemas na Inicialização do Servidor</h3>
+<p> Se o seu servidor falhar ao iniciar após adicionar o código do banco de dados, certifique-se de que todos os seus caminhos de importação usem a extensão <code>.js</code> e que os caminhos dos arquivos estejam corretos em relação ao arquivo que faz a importação. Verifique se você instalou o pacote <code>pg</code> com <code>pnpm install pg</code>.
+    </p>
+<h3>Página de Detalhes do Catálogo Mostra 404 para Cursos Válidos</h3>
+<p> O controlador de catálogo fornecido usa <code>getCourseById</code> mas as URLs contêm slugs. Atualize-o para usar <code>getCourseBySlug</code> conforme mostrado na etapa 6. </p>
+<h3>Páginas do Corpo Docente Não Estão Funcionando</h3>
+<p> O controlador do corpo docente não foi fornecido. Você deve atualizar seu controlador existente para usar async/await e as novas funções do modelo (veja a etapa 7). </p>
+<h3>Modelos Mostram Dados Indefinidos ou Ausentes</h3>
+<p> Os nomes das propriedades mudaram. Use <code>console.log()</code> em seus controladores para inspecionar a estrutura de dados real e, em seguida, atualize seus modelos para usar os novos nomes de propriedades (veja a etapa 8). </p>
+<h3>Erros 404 em URLs que Funcionavam Anteriormente</h3>
+<p> Lembre-se de que o banco de dados usa slugs em vez do seu formato de ID anterior. URLs como <code>/catalog/CS121</code> agora devem ser <code>/catalog/cse-110</code>. Verifique a saída do console durante a configuração do banco de dados para ver os slugs reais sendo criados para seus dados. </p>
+<div class="callout info icon">
+<div class="title">Obtendo Ajuda</div>
+<p> Ao buscar ajuda para problemas no banco de dados, inclua a mensagem de erro específica, a seção de código relevante e o que você estava tentando realizar. Erros de banco de dados geralmente fornecem informações detalhadas que podem ajudar a identificar a causa raiz rapidamente. </p>
+</div>
+</section>
+<section>
+<h2>Conclusão</h2>
+<p> Você transformou com sucesso seu sistema estático de catálogo universitário em uma aplicação dinâmica movida a banco de dados. Isso representa um marco significativo em sua jornada de desenvolvimento, pois agora você entende como as aplicações web do mundo real armazenam e recuperam dados de forma eficiente. </p>
+<p> A integração de banco de dados que você concluiu fornece o fundamento para funcionalidades avançadas, como sistemas de gerenciamento de conteúdo, autenticação de usuários, análise de dados e interfaces administrativas. Você aprendeu padrões do mercado para gerenciamento de conexões, tratamento de erros e operações assíncronas que o servirão ao longo de sua carreira. </p>
+<p> Em Tarefas futuras, você construirá sobre este fundamento implementando consultas a bancos de dados mais complexas, adicionando validação de dados e medidas de segurança e criando interfaces do usuário que permitem o gerenciamento dinâmico de dados. As habilidades que você desenvolveu nesta Tarefa — trabalhar com bancos de dados, lidar com operações assíncronas e gerenciar o estado da aplicação — são fundamentais para o desenvolvimento web moderno. </p>
+</section>
+</main>
+<footer class="full-width">
+<div class="columns two">
+<div>
+<span class="course-code">CSE 340</span>
+             • 
+            <span class="course-name">Desenvolvimento Web Back-end</span>
+</div>
+<div> © 2024–2026 BYU–Idaho <a href="https://www.byui.edu/computer-science-engineering/" rel="noopener noreferrer" target="_blank">Departamento de CSE</a>. Todos os direitos reservados. </div>
+</div>
+</footer>
+</div>
+</body>
+</html>

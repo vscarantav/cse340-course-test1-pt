@@ -1,0 +1,498 @@
+html
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../../assets/images/favicon/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../../assets/images/favicon/favicon.png" rel="icon" type="image/png"/>
+<link href="../../../assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<title>Instruções da Tarefa</title>
+<meta content="Implementing flash messages for user feedback across redirects in web applications." name="description"/>
+<script src="../../../assets/js/main.js" type="module"></script>
+<script src="../../../assets/js/theme-preference.js"></script>
+</head>
+<body>
+<div class="content-grid">
+<header class="full-width">
+<input aria-controls="site-primary-nav" class="visually-hidden" id="site-nav-toggle" type="checkbox"/>
+<label aria-hidden="true" class="site-nav-backdrop" for="site-nav-toggle"></label>
+<div class="inner">
+<div class="site-brand">
+<a aria-label="CSE 340 home" class="brand-link" href="../../../index.html">
+<img alt="BYU–Idaho" class="site-logo" decoding="async" src="../../../assets/images/logos/byui-logo.png"/>
+</a>
+</div>
+<div class="site-course-info">
+<a href="../../../index.html">
+<span class="course-code">CSE 340</span>
+                 • 
+                <span class="course-name">Desenvolvimento Web Back-End</span>
+</a>
+</div>
+<nav aria-label="Primary" class="site-primary-nav" id="site-primary-nav">
+<ul aria-label="Course units" class="nav-list">
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<div class="site-header-tools">
+<label class="site-nav-menu-btn" for="site-nav-toggle">
+<span class="visually-hidden">Menu</span>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-open" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"></path></svg>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-close" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"></path></svg>
+</label>
+<input aria-controls="site-search-panel" class="visually-hidden" id="site-search-toggle" type="checkbox"/>
+<label class="site-search-trigger" for="site-search-toggle">
+<span class="visually-hidden">Alternar pesquisa do site</span>
+<span aria-hidden="true">🔎</span>
+<span aria-hidden="true">✕</span>
+</label>
+<details class="theme-menu">
+<summary class="theme-control">
+<span class="visually-hidden">Esquema de cores</span>
+</summary>
+<div aria-label="Choose color scheme" class="theme-extra" role="group">
+<label class="theme-control theme-pick" data-theme-pick="light">
+<input name="theme-preference" type="radio" value="light"/>
+<span aria-hidden="true">☀️</span>
+<span class="visually-hidden">Claro</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="system">
+<input name="theme-preference" type="radio" value="system"/>
+<span aria-hidden="true">⚙️</span>
+<span class="visually-hidden">Padrão do sistema</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="dark">
+<input name="theme-preference" type="radio" value="dark"/>
+<span aria-hidden="true">🌖</span>
+<span class="visually-hidden">Escuro</span>
+</label>
+</div>
+</details>
+</div>
+</div>
+<div aria-label="Site search" id="site-search-panel" role="region">
+<form action="" method="get" role="search">
+<label class="visually-hidden" for="site-search-query">Pesquisar</label>
+<input autocomplete="off" enterkeyhint="search" id="site-search-query" name="query" placeholder="Search…" type="search"/>
+</form>
+<div aria-live="polite" class="site-search-results" id="site-search-results"></div>
+</div>
+</header>
+<main>
+<nav aria-label="Course units" class="course-breadcrumbs unit">
+<ul>
+<li>
+<a aria-label="Home" href="../../../index.html">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z">
+</path></svg>
+</a>
+</li>
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<section>
+<h1>Implementando Mensagens Flash</h1>
+<p> Nesta tarefa, você implementará um sistema de mensagens flash que permite que sua aplicação exiba mensagens de feedback temporárias aos usuários após envios de formulário e redirecionamentos. Mensagens flash resolvem um problema fundamental no desenvolvimento web: como fornecer feedback ao usuário após um redirecionamento. Quando um usuário envia um formulário e seu servidor o redireciona para outra página, você precisa de uma maneira de comunicar informações de sucesso ou erro através desse redirecionamento. </p>
+<p> Você criará um middleware personalizado que gerencia o armazenamento e a recuperação de mensagens flash usando sessões, integrará esse middleware à sua aplicação e atualizará seus controladores de formulário existentes (contato, registro e login) para usar mensagens flash em vez de logs de console. Ao final desta tarefa, seus usuários verão mensagens de feedback claras e úteis exibidas diretamente no navegador em vez de ocultas em logs do servidor. </p>
+</section>
+<section>
+<h2>Entendendo o Padrão de Mensagens Flash</h2>
+<p> Antes de implementar mensagens flash, você precisa entender o problema que elas resolvem. Considere o que acontece quando um usuário envia um formulário em seu site. O navegador envia uma requisição POST para o seu servidor com os dados do formulário. Seu servidor valida os dados e os processa. Se a validação falhar, você deseja informar ao usuário o que deu errado. Se a validação for bem-sucedida, você deseja confirmar que a ação foi concluída. </p>
+<p> O desafio surge do padrão Post-Redirect-Get, uma boa prática de desenvolvimento web que evita envios duplicados de formulários. Após processar uma requisição POST, seu servidor envia uma resposta de redirecionamento (status 302 ou 303) que diz ao navegador para fazer uma nova requisição GET para uma URL diferente. Esse redirecionamento impede que os usuários reenviem acidentalmente o formulário se atualizarem a página. </p>
+<p> No entanto, redirecionamentos criam um problema para o feedback do usuário. A requisição POST e a requisição GET subsequente são requisições HTTP completamente separadas com objetos de requisição e resposta separados. Você não pode simplesmente anexar dados à resposta porque o redirecionamento a descarta. Você precisa de uma maneira de armazenar a mensagem durante a requisição POST e recuperá-la durante a requisição GET. </p>
+<p> Mensagens flash resolvem esse problema armazenando mensagens temporárias na sessão. A sessão persiste entre as requisições porque é identificada por um cookie que o navegador envia a cada requisição para o seu servidor. Durante a requisição POST, você armazena a mensagem na sessão. Durante a requisição GET do redirecionamento, você recupera a mensagem da sessão e a exibe ao usuário. Após exibir a mensagem uma vez, você a exclui da sessão para que ela não apareça novamente nos carregamentos subsequentes de página. </p>
+<div class="callout info">
+<div class="title">Por que as Sessões são Necessárias</div>
+<p> As mensagens flash dependem do armazenamento de sessão porque as sessões são o único mecanismo nativo no Express que persiste dados entre requisições HTTP separadas para o mesmo usuário. Sua aplicação já possui o middleware de sessão configurado a partir da tarefa de login, portanto as mensagens flash se integram perfeitamente ao seu sistema de autenticação existente. </p>
+</div>
+</section>
+<section>
+<h2>Instruções da Tarefa</h2>
+<h3>1. Criar o Middleware de Flash</h3>
+<p> Crie um novo arquivo em <code>src/middleware/flash.js</code>. Este middleware fornecerá a funcionalidade principal para armazenar e recuperar mensagens flash. Adicione o seguinte código: </p>
+<pre><code class="javascript">
+        /**
+         * Flash Message Middleware
+         * 
+         * Provides temporary message storage that survives redirects but is consumed on render.
+         * Messages are stored in the session and organized by type (success, error, warning, info).
+         * 
+         * Usage in controllers:
+         *   req.flash('success', 'Message text')  // Store a message
+         *   req.flash('error')                    // Get all error messages
+         *   req.flash()                           // Get all messages (all types)
+         */
+
+        /**
+         * Initialize flash message storage and provide access methods
+         */
+        const flashMiddleware = (req, res, next) =&gt; {
+            // Track if flash messages were set (need to save session before redirect)
+            let sessionNeedsSave = false;
+            
+            // Override res.redirect to save session before redirecting
+            const originalRedirect = res.redirect.bind(res);
+            res.redirect = (...args) =&gt; {
+                if (sessionNeedsSave &amp;&amp; req.session) {
+                    // Save session before redirecting
+                    req.session.save(() =&gt; {
+                        originalRedirect.apply(res, args);
+                    });
+                } else {
+                    originalRedirect.apply(res, args);
+                }
+            };
+            
+            /**
+            * The flash function handles both setting and getting messages
+            * - Called with 2 args (type, message): stores a new message
+            * - Called with 1 arg (type): retrieves and clears messages of that type
+            * - Called with 0 args: retrieves and clears all messages
+            */
+            req.flash = function(type, message) {
+                // Guard: If session doesn't exist (e.g., after session.destroy()), 
+                // return early to prevent errors. Flash messages require a session to store.
+                if (!req.session) {
+                    // If setting a message (both type and message provided), can't do without session
+                    if (type &amp;&amp; message) {
+                        return; // Silently fail - no session to store in
+                    }
+                    // If getting messages, return empty structure
+                    return { success: [], error: [], warning: [], info: [] };
+                }
+                
+                // Initialize flash storage if it doesn't exist
+                if (!req.session.flash) {
+                    req.session.flash = {
+                        success: [],
+                        error: [],
+                        warning: [],
+                        info: []
+                    };
+                }
+
+                // SETTING: Two arguments means we're storing a new message
+                if (type &amp;&amp; message) {
+                    // Ensure this message type's array exists
+                    if (!req.session.flash[type]) {
+                        req.session.flash[type] = [];
+                    }
+                    // Add the message to the appropriate type array
+                    req.session.flash[type].push(message);
+                    // Mark that session needs to be saved before redirect
+                    sessionNeedsSave = true;
+                    return;
+                }
+
+                // GETTING ONE TYPE: One argument means retrieve messages of that type
+                if (type &amp;&amp; !message) {
+                    const messages = req.session.flash[type] || [];
+                    // Clear this type's messages after retrieving
+                    req.session.flash[type] = [];
+                    return messages;
+                }
+
+                // GETTING ALL: No arguments means retrieve all message types
+                const allMessages = req.session.flash || {
+                    success: [],
+                    error: [],
+                    warning: [],
+                    info: []
+                };
+
+                // Clear all flash messages after retrieving
+                req.session.flash = {
+                    success: [],
+                    error: [],
+                    warning: [],
+                    info: []
+                };
+
+                return allMessages;
+            };
+
+            next();
+        };
+
+        /**
+        * Make flash function available to all templates via res.locals
+        * This middleware must run AFTER flashMiddleware
+        */
+        const flashLocals = (req, res, next) =&gt; {
+            // Attach the flash function to res.locals so templates can access it
+            // The function is NOT called here, just made available
+            // Messages are only consumed when a template calls flash()
+            res.locals.flash = req.flash;
+            next();
+        };
+
+        /**
+        * Combined flash middleware that runs both functions in the correct order
+        * Import and use this as a single middleware function in your application
+        */
+        const flash = (req, res, next) =&gt; {
+            flashMiddleware(req, res, () =&gt; {
+                flashLocals(req, res, next);
+            });
+        };
+
+        export default flash;
+    </code></pre>
+<p> Leia o código e os comentários com atenção. O middleware exporta uma única <code>flash</code> função que executa internamente duas funções de middleware em sequência. A <code>flashMiddleware</code> função anexa o <code>flash()</code> método ao objeto de requisição, enquanto <code>flashLocals</code> disponibiliza essa função para os modelos por meio de <code>res.locals</code>.
+    </p>
+<p> A <code>req.flash()</code> função se comporta de maneira diferente com base no número de argumentos que você passa. Com dois argumentos (tipo e mensagem), ela armazena uma nova mensagem na sessão. Com um argumento (tipo), ela recupera todas as mensagens desse tipo e as limpa. Sem argumentos, ela recupera todas as mensagens de todos os tipos e as limpa. Esse design oferece flexibilidade para diferentes casos de uso, mantendo a API simples. </p>
+<div class="callout info">
+<div class="title">Entendendo a Organização de Mensagens</div>
+<p> As mensagens flash são organizadas por tipo no armazenamento da sessão. Cada tipo (success, error, warning, info) tem seu próprio array que pode conter várias mensagens. Essa organização permite que você exiba diferentes tipos de mensagens com diferentes estilos, facilitando para os usuários distinguirem entre ações bem-sucedidas, erros, avisos e informações gerais. </p>
+</div>
+<h3>2. Integre o Middleware Flash na Sua Aplicação</h3>
+<p> Abra o seu <code>server.js</code> arquivo e importe o middleware flash perto do topo do arquivo com suas outras importações de middleware. Adicione esta linha após as importações de sessão: </p>
+<pre><code class="javascript">
+        import flash from './src/middleware/flash.js';
+    </code></pre>
+<p> Em seguida, registre o middleware flash na sua aplicação. Este middleware deve ser executado após o middleware de sessão (porque ele usa sessões), mas antes das suas rotas (para que as rotas possam usar <code>req.flash()</code>). Localize onde você registra sua função de middleware global e adicione o middleware flash imediatamente após ela: </p>
+<pre><code class="javascript">
+        // Global middleware (sets res.locals variables)
+        app.use(addLocalVariables);
+
+        // Flash message middleware (must come after session and global middleware)
+        app.use(flash);
+    </code></pre>
+<p> A ordem importa aqui. O middleware de sessão deve ser executado primeiro para criar <code>req.session</code>. O middleware flash é executado em seguida para adicionar <code>req.flash()</code> e <code>res.locals.flash</code>. Suas rotas são executadas por último para que possam usar mensagens flash. </p>
+<h3>3. Adicione a Exibição de Mensagens Flash à Sua Parcial de Cabeçalho</h3>
+<p> Abra <code>src/views/partials/header.ejs</code> e adicione o código de exibição da mensagem flash imediatamente após a tag de fechamento <code>&lt;/header&gt;</code>. Esse posicionamento garante que as mensagens flash apareçam no topo do conteúdo da página, logo abaixo da navegação, tornando-as imediatamente visíveis para os usuários. </p>
+<pre><code class="html">
+        &lt;/header&gt;
+
+        &lt;% 
+            const messages = flash();
+            const hasMessages = Object.values(messages).some(arr =&gt; arr.length &gt; 0);
+        %&gt;
+
+        &lt;% if (hasMessages) { %&gt;
+            &lt;div class="flash-messages"&gt;
+                &lt;% Object.keys(messages).forEach(type =&gt; { %&gt;
+                    &lt;% messages[type].forEach(message =&gt; { %&gt;
+                        &lt;div class="flash &lt;%= type %&gt;"&gt;
+                            &lt;%= message %&gt;
+                        &lt;/div&gt;
+                    &lt;% }); %&gt;
+                &lt;% }); %&gt;
+            &lt;/div&gt;
+        &lt;% } %&gt;
+    </code></pre>
+<p> Este código de modelo chama <code>flash()</code> para recuperar todas as mensagens, o que as limpa automaticamente da sessão. Em seguida, ele verifica se existem mensagens em todos os tipos. Se mensagens forem encontradas, ele percorre cada tipo em um laço e exibe cada mensagem em uma div com classes CSS apropriadas para estilização. </p>
+<p> A abordagem <code>Object.keys(messages)</code> itera dinamicamente por todos os tipos de mensagens, o que significa que este código funcionará mesmo se você adicionar novos tipos de mensagens no futuro. Cada div de mensagem recebe duas classes CSS: uma classe geral <code>flash</code> para estilização comum e uma classe de tipo específica (success, error, warning ou info) para estilização específica do tipo. </p>
+<h3>4. Adicione Estilos de Mensagem Flash</h3>
+<p> Abra <code>public/css/main.css</code> e adicione estilos para mensagens flash. Esses estilos devem tornar as mensagens visualmente distintas, fáceis de ler e comunicar claramente seu propósito por meio de cores e design. </p>
+<pre><code class="css">
+        /* Flash Messages */
+        .flash-messages {
+            margin: 1rem auto;
+            max-width: 1200px;
+            padding: 0 1rem;
+
+            .flash {
+                padding: 1rem 1.25rem;
+                margin-bottom: 1rem;
+                border-radius: 4px;
+                border-left: 4px solid;
+                font-size: 0.95rem;
+                line-height: 1.5;
+            
+                &amp;.success {
+                    background-color: #d4edda;
+                    border-color: #28a745;
+                    color: #155724;
+                }
+            
+                &amp;.error {
+                    background-color: #f8d7da;
+                    border-color: #dc3545;
+                    color: #721c24;
+                }
+            
+                &amp;.warning {
+                    background-color: #fff3cd;
+                    border-color: #ffc107;
+                    color: #856404;
+                }
+            
+                &amp;.info {
+                    background-color: #d1ecf1;
+                    border-color: #17a2b8;
+                    color: #0c5460;
+                }
+            }
+        }
+    </code></pre>
+<p> Esses estilos criam uma aparência consistente para todas as mensagens flash enquanto usam cores distintas para cada tipo. A borda esquerda fornece um destaque visual que torna o tipo de mensagem imediatamente reconhecível. As cores de fundo são sutis, mas perceptíveis, e as cores do texto garantem uma boa legibilidade em relação aos seus fundos. </p>
+<h3>5. Atualize o Controlador do Formulário de Contato</h3>
+<p> Abra <code>src/controllers/forms/contact.js</code> e substitua todas as instruções <code>console.log()</code> e <code>console.error()</code> por mensagens flash. Localize a função <code>handleContactSubmission</code>. Seu código atual provavelmente possui um tratamento de erro de validação que usa <code>console.error()</code> e um bloco try-catch que usa <code>console.log()</code>. Você precisa substituir estes por mensagens flash. </p>
+<p> Antes de começar, altere o redirecionamento de sucesso para usar <code>res.redirect('/contact')</code> em vez de <code>res.redirect('/contact/responses')</code>. Isso garante que todos os usuários (incluindo usuários não autenticados) possam ver a mensagem flash confirmando seu envio. A mensagem flash agora serve como confirmação, portanto, redirecionar para a página de respostas não é mais necessário. </p>
+<p>
+<strong>Para erros de validação</strong>, substitua seus registros de log no console por este código: </p>
+<pre><code class="javascript">
+        // Inside your validation error check
+        if (!errors.isEmpty()) {
+            // Store each validation error as a separate flash message
+            errors.array().forEach(error =&gt; {
+                req.flash('error', error.msg);
+            });
+            return res.redirect('/contact');
+        }
+    </code></pre>
+<p>
+<strong>Para envios bem-sucedidos</strong>, substitua seus registros de log no console por este código logo antes do redirecionamento: </p>
+<pre><code class="javascript">
+        // After successfully saving to the database
+        req.flash('success', 'Thank you for contacting us! We will respond soon.');
+        res.redirect('/contact');
+    </code></pre>
+<p>
+<strong>Para erros no bloco catch</strong>, mantenha o <code>console.error()</code> para registros de log no servidor, mas adicione uma mensagem flash para o usuário: </p>
+<pre><code class="javascript">
+        catch (error) {
+            console.error('Error saving contact form:', error);
+            req.flash('error', 'Unable to submit your message. Please try again later.');
+            res.redirect('/contact');
+        }
+    </code></pre>
+<p> Observe o padrão: os erros de validação percorrem todas as mensagens de erro em um laço e criam mensagens flash separadas, envios bem-sucedidos criam uma mensagem flash de sucesso e erros inesperados criam uma mensagem flash de erro. O <code>console.error()</code> permanece no bloco catch porque registra detalhes técnicos no servidor para depuração, enquanto a mensagem flash fornece feedback amigável ao usuário no navegador. </p>
+<details class="info icon">
+<summary>Verifique Seu Trabalho</summary>
+<p> Se você quiser verificar sua implementação, aqui está a função <code>handleContactSubmission</code> completa com mensagens flash devidamente integradas: </p>
+<pre><code class="javascript">
+            const handleContactSubmission = async (req, res) =&gt; {
+                const errors = validationResult(req);
+                
+                if (!errors.isEmpty()) {
+                    // Store each validation error as a separate flash message
+                    errors.array().forEach(error =&gt; {
+                        req.flash('error', error.msg);
+                    });
+                    return res.redirect('/contact');
+                }
+    
+                try {
+                    const { subject, message } = req.body;
+                    await createContactForm(subject, message);
+                    req.flash('success', 'Thank you for contacting us! We will respond soon.');
+                    res.redirect('/contact');
+                } catch (error) {
+                    console.error('Error saving contact form:', error);
+                    req.flash('error', 'Unable to submit your message. Please try again later.');
+                    res.redirect('/contact');
+                }
+            };
+        </code></pre>
+</details>
+<div class="callout warn">
+<p> Sempre chame <code>req.flash()</code> antes de <code>res.redirect()</code>. A mensagem flash deve ser armazenada na sessão antes que o redirecionamento ocorra. Se você redirecionar primeiro, a mensagem não estará disponível quando a próxima página for carregada. </p>
+</div>
+<h3>6. Atualize o Controlador do Formulário de Registro</h3>
+<p> Abra <code>src/controllers/forms/registration.js</code> e aplique o mesmo padrão de mensagem flash que você acabou de aprender. Assim como no formulário de contato, certifique-se de alterar o redirecionamento de sucesso para usar <code>res.redirect('/login')</code> em vez de <code>res.redirect('/register/list')</code>. Isso garante que todos os usuários (incluindo usuários não autenticados) possam ver a mensagem flash confirmando seu registro. A mensagem flash agora serve como confirmação, portanto, redirecionar para a página da lista não é mais necessário. </p>
+<p> Em seguida, localize a <code>processRegistration</code> função e atualize-a seguindo estes requisitos: </p>
+<ul>
+<li>
+<strong>Erros de validação:</strong> Use o mesmo padrão do formulário de contato (percorra os erros em um laço e crie mensagens flash) </li>
+<li>
+<strong>Verificação de e-mail duplicado:</strong> Quando <code>emailExists()</code> retornar verdadeiro, use <code>req.flash('warning', ...)</code> com uma mensagem apropriada informando ao usuário que uma conta já existe </li>
+<li>
+<strong>Registro bem-sucedido:</strong> Use <code>req.flash('success', ...)</code> com uma mensagem confirmando o registro e redirecione para <code>/login</code>
+</li>
+<li>
+<strong>Erros do bloco catch:</strong> Mantenha <code>console.error()</code> para registro de log do servidor e adicione <code>req.flash('error', ...)</code> para feedback do usuário </li>
+</ul>
+<p> Este controller demonstra três tipos de mensagens diferentes: error para falhas de validação, warning para o cenário de e-mail duplicado (que não é exatamente um erro, mas algo de que o usuário deve estar ciente) e success para registro concluído. </p>
+<h3>7. Atualizar o Controller do Formulário de Login</h3>
+<p> Abra <code>src/controllers/forms/login.js</code> e aplique o padrão de mensagem flash à <code>processLogin</code> função. Siga estes requisitos: </p>
+<ul>
+<li>
+<strong>Erros de validação:</strong> Use o mesmo padrão que você aprendeu (faça um laço e crie mensagens flash) </li>
+<li>
+<strong>Usuário não encontrado:</strong> Use <code>req.flash('error', 'Invalid email or password')</code>
+</li>
+<li>
+<strong>Senha inválida:</strong> Use <code>req.flash('error', 'Invalid email or password')</code>
+</li>
+<li>
+<strong>Login bem-sucedido:</strong> Use <code>req.flash('success', ...)</code> com uma mensagem de boas-vindas personalizada usando o nome do usuário </li>
+<li>
+<strong>Erros do bloco catch:</strong> Mantenha <code>console.error()</code> e adicione <code>req.flash('error', ...)</code>
+</li>
+</ul>
+<div class="callout warn icon">
+<div class="title">Consideração de Segurança</div>
+<p> Observe que ambos os cenários "usuário não encontrado" e "senha inválida" usam exatamente a mesma mensagem: "E-mail ou senha inválidos." Isso impede que atacantes determinem quais endereços de e-mail têm contas no seu sistema, uma vulnerabilidade de segurança chamada enumeração de contas. Nunca revele se o e-mail existe ou se a senha estava incorreta; sempre use uma mensagem genérica para falhas de autenticação. </p>
+</div>
+<h3>8. Teste suas Mensagens Flash</h3>
+<p> Reinicie seu servidor e teste exaustivamente as mensagens flash em todos os seus formulários. Os testes exigem a verificação de cenários de sucesso e de erro para garantir que as mensagens sejam exibidas corretamente em todas as situações. </p>
+<div class="callout info">
+<div class="title">Ignorando a Validação do Lado do Cliente para Testes</div>
+<p> Seus formulários possuem atributos de validação do HTML5 como <code>required</code>, <code>minlength</code>, e <code>type="email"</code> que impedem o envio do formulário quando os campos são inválidos. Essa validação do lado do cliente ocorre no navegador antes que a requisição alcance seu servidor, tornando impossível testar sua validação do lado do servidor e mensagens flash com dados incorretos. </p>
+<p> Para testar a validação do lado do servidor, você precisa ignorar a validação do lado do cliente. Adicione o atributo <code>novalidate</code> à tag de abertura do seu formulário. Por exemplo, na visualização do seu formulário de contato, altere <code>&lt;form method="POST" action="/contact"&gt;</code> para <code>&lt;form method="POST" action="/contact" novalidate&gt;</code>. Isso diz ao navegador para ignorar a validação do HTML5 e enviar o formulário diretamente para o seu servidor. </p>
+<p> Após os testes, remova o atributo <code>novalidate</code>. A validação do lado do cliente fornece feedback imediato aos usuários e reduz requisições desnecessárias ao servidor, portanto você deseja que ela esteja ativa em produção. Use <code>novalidate</code> apenas durante o desenvolvimento para testar sua lógica de validação do lado do servidor. </p>
+</div>
+<p>
+<strong>Testes do Formulário de Contato:</strong> Adicione <code>novalidate</code> ao seu formulário de contato. Envie com dados válidos e confirme se uma mensagem de sucesso é exibida. Envie com assunto ou mensagem em branco e confirme se as mensagens de erro de validação são exibidas. Envie com um assunto muito curto (menos de 2 caracteres) e verifique se a mensagem de erro é exibida. Atualize a página após ver uma mensagem e confirme se ela desaparece. </p>
+<p>
+<strong>Testes do Formulário de Registro:</strong> Adicione <code>novalidate</code> ao seu formulário de registro. Envie com credenciais válidas e exclusivas e confirme se uma mensagem de sucesso aparece na página de login (verifique se o redirecionamento funcionou e se a mensagem sobreviveu). Envie com e-mails ou senhas divergentes e confirme se as mensagens de erro aparecem para cada falha de validação. Tente se registrar com um e-mail que já existe e confirme se a mensagem de aviso aparece. Envie com uma senha muito curta e verifique se o erro de validação é exibido. </p>
+<p>
+<strong>Testes do Formulário de Login:</strong> Adicionar <code>novalidate</code> ao seu formulário de login. Faça login com credenciais válidas e confirme se a mensagem de boas-vindas personalizada aparece no painel. Tente fazer login com um e-mail que não existe no banco de dados e confirme se a mensagem "E-mail ou senha inválido" aparece. Tente fazer login com um e-mail válido, mas com a senha errada, e confirme se a mesma mensagem de erro genérica aparece. Envie com o campo de senha vazio e confirme se a mensagem de erro de validação é exibida. </p>
+<p> Preste atenção ao estilo e ao posicionamento das mensagens. As mensagens devem aparecer no topo da área de conteúdo, abaixo da navegação, estar claramente visíveis e usar cores que comuniquem sua finalidade. Mensagens de sucesso devem parecer positivas (verde), erros devem ser notáveis (vermelho), avisos devem ser de advertência (amarelo) e mensagens informativas devem ser neutras (azul). </p>
+<div class="callout info">
+<div class="title">Testes do Comportamento das Mensagens Flash</div>
+<p> As mensagens flash devem sobreviver a redirecionamentos, mas não a atualizações de página. Após enviar um formulário e ver uma mensagem, atualize a página. A mensagem deve desaparecer porque chamar <code>flash()</code> no modelo limpa automaticamente as mensagens da sessão. Esse comportamento de exibição única é o que as torna mensagens "flash". Navegue para longe da página e retorne. Nenhuma mensagem deve aparecer porque ela já foi consumida durante o primeiro carregamento da página. </p>
+</div>
+</section>
+<section>
+<h2>Resumo dos Conceitos-Chave</h2>
+<p> Esta tarefa apresentou as mensagens flash, um padrão baseado em sessão para exibir comentários temporários do usuário entre redirecionamentos. As mensagens flash resolvem o desafio fundamental do padrão Post-Redirect-Get, no qual os redirecionamentos impedem a passagem direta de dados entre requisições. </p>
+<p> Você criou um middleware personalizado que gerencia o armazenamento e a recuperação de mensagens flash por meio da sessão. O middleware fornece uma única <code>flash()</code> função que armazena e recupera mensagens, com a recuperação consumindo e excluindo automaticamente as mensagens da sessão. As mensagens são organizadas por tipo (sucesso, erro, aviso, info) em arrays, permitindo que várias mensagens do mesmo tipo sejam exibidas juntas. </p>
+<p> Você integrará a exibição de mensagens flash no seu partial do cabeçalho, criando um local consistente para o feedback do usuário em todas as páginas sem duplicação de código. A lógica dinâmica do modelo usa <code>Object.keys()</code> para iterar pelos tipos de mensagem, tornando o sistema extensível para qualquer número de tipos sem alterações de código. </p>
+<p> Em seus controladores, você substituiu os logs do console por mensagens flash, melhorando a experiência do usuário ao exibir o feedback diretamente na interface em vez de escondido nos logs do servidor. Você praticou o padrão de armazenar mensagens antes de redirecionar e confirmou que as mensagens sobrevivem aos redirecionamentos, mas são consumidas na renderização, evitando que sejam exibidas repetidamente. </p>
+</section>
+<section>
+<h2>Experimente e Estenda</h2>
+<p> Agora que você tem um sistema de mensagens flash funcional, considere estas melhorias para aprofundar seu entendimento: </p>
+<ul>
+<li> Adicione uma mensagem flash à sua rota de logout para confirmar quando os usuários tiverem saído com sucesso </li>
+<li> Adicione uma mensagem flash ao seu middleware de autenticação (<code>src/middleware/auth.js</code>) para notificar os usuários quando eles tentarem acessar uma rota protegida sem estarem logados </li>
+<li> Aprimore a exibição de mensagens flash com ícones usando uma biblioteca de ícones como Font Awesome ou Lucide </li>
+<li> Adicione um botão de fechar às mensagens flash usando JavaScript no lado do cliente para que os usuários possam fechá-las manualmente </li>
+</ul>
+</section>
+<section>
+<h2>Conclusão</h2>
+<p> As mensagens flash são um padrão fundamental em aplicações web que seguem a abordagem Post-Redirect-Get. Ao armazenar mensagens temporárias em sessões, elas preenchem a lacuna entre o processamento do formulário e o feedback do usuário, garantindo que os usuários entendam os resultados de suas ações. O padrão é simples, confiável e funciona sem exigir JavaScript, tornando-o uma ferramenta essencial para criar aplicações web responsivas e amigáveis para o usuário. </p>
+<p> A implementação baseada em middleware que você criou demonstra padrões importantes do Express: middleware personalizado para aumento de requisição, <code>res.locals</code> para dados do modelo e armazenamento em sessão para persistir o estado entre requisições. Esses padrões se aplicam além das mensagens flash a muitas outras funcionalidades que você construirá conforme continua desenvolvendo aplicações web. </p>
+</section>
+</main>
+<footer class="full-width">
+<div class="columns two">
+<div>
+<span class="course-code">CSE 340</span>
+             • 
+            <span class="course-name">Desenvolvimento Web Back-End</span>
+</div>
+<div> © 2024–2026 BYU–Idaho <a href="https://www.byui.edu/computer-science-engineering/" rel="noopener noreferrer" target="_blank">Departamento de CSE</a>. Todos os direitos reservados. </div>
+</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,641 @@
+html
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../../assets/images/favicon/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../../assets/images/favicon/favicon.png" rel="icon" type="image/png"/>
+<link href="../../../assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<title>Validação de Dados no Cliente e no Servidor</title>
+<meta content="Learn how to validate form data on both the client and server sides using HTML5 features and Express-validator." name="description"/>
+<script src="../../../assets/js/main.js" type="module"></script>
+<script src="../../../assets/js/theme-preference.js"></script>
+</head>
+<body>
+<div class="content-grid">
+<header class="full-width">
+<input aria-controls="site-primary-nav" class="visually-hidden" id="site-nav-toggle" type="checkbox"/>
+<label aria-hidden="true" class="site-nav-backdrop" for="site-nav-toggle"></label>
+<div class="inner">
+<div class="site-brand">
+<a aria-label="CSE 340 home" class="brand-link" href="../../../index.html">
+<img alt="BYU–Idaho" class="site-logo" decoding="async" src="../../../assets/images/logos/byui-logo.png"/>
+</a>
+</div>
+<div class="site-course-info">
+<a href="../../../index.html">
+<span class="course-code">CSE 340</span>
+                 • 
+                <span class="course-name">Desenvolvimento Back-end Web</span>
+</a>
+</div>
+<nav aria-label="Primary" class="site-primary-nav" id="site-primary-nav">
+<ul aria-label="Course units" class="nav-list">
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<div class="site-header-tools">
+<label class="site-nav-menu-btn" for="site-nav-toggle">
+<span class="visually-hidden">Menu</span>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-open" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"></path></svg>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-close" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"></path></svg>
+</label>
+<input aria-controls="site-search-panel" class="visually-hidden" id="site-search-toggle" type="checkbox"/>
+<label class="site-search-trigger" for="site-search-toggle">
+<span class="visually-hidden">Alternar pesquisa do site</span>
+<span aria-hidden="true">🔎</span>
+<span aria-hidden="true">✕</span>
+</label>
+<details class="theme-menu">
+<summary class="theme-control">
+<span class="visually-hidden">Esquema de cores</span>
+</summary>
+<div aria-label="Choose color scheme" class="theme-extra" role="group">
+<label class="theme-control theme-pick" data-theme-pick="light">
+<input name="theme-preference" type="radio" value="light"/>
+<span aria-hidden="true">☀️</span>
+<span class="visually-hidden">Claro</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="system">
+<input name="theme-preference" type="radio" value="system"/>
+<span aria-hidden="true">⚙️</span>
+<span class="visually-hidden">Padrão do sistema</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="dark">
+<input name="theme-preference" type="radio" value="dark"/>
+<span aria-hidden="true">🌖</span>
+<span class="visually-hidden">Escuro</span>
+</label>
+</div>
+</details>
+</div>
+</div>
+<div aria-label="Site search" id="site-search-panel" role="region">
+<form action="" method="get" role="search">
+<label class="visually-hidden" for="site-search-query">Pesquisar</label>
+<input autocomplete="off" enterkeyhint="search" id="site-search-query" name="query" placeholder="Search…" type="search"/>
+</form>
+<div aria-live="polite" class="site-search-results" id="site-search-results"></div>
+</div>
+</header>
+<main>
+<nav aria-label="Course units" class="course-breadcrumbs unit">
+<ul>
+<li>
+<a aria-label="Home" href="../../../index.html">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z">
+</path></svg>
+</a>
+</li>
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<section>
+<h1>Validação de Dados de Formulário: Do Cliente ao Servidor</h1>
+<p> Quando os usuários enviam formulários em seu site, você não pode confiar que os dados fornecidos por eles sejam válidos, completos ou seguros. A validação de formulários é o processo de verificar a entrada do usuário para garantir que ela atenda aos seus requisitos antes de processá-la. Esta leitura explora tanto a validação do lado do cliente (que melhora a experiência do usuário) quanto a validação do lado do servidor (que protege sua aplicação). </p>
+<p> Compreender a validação é crucial porque dados inválidos podem quebrar sua aplicação, corromper seu banco de dados ou até mesmo criar vulnerabilidades de segurança. Você aprenderá como a validação evoluiu do JavaScript personalizado e complexo para funcionalidades modernas do HTML5 e, o mais importante, como validar adequadamente os dados no lado do servidor, onde isso realmente importa. </p>
+</section>
+<section>
+<h2>A Evolução da Validação do Lado do Cliente</h2>
+<p> Antes de o HTML5 introduzir funcionalidades nativas de validação, os desenvolvedores tinham que escrever um código JavaScript extenso para validar formulários. Essa abordagem antiga exigia a verificação manual de cada campo, a exibição de mensagens de erro e a prevenção do envio do formulário quando a validação falhava. </p>
+<h3>A Forma Antiga: Validação com JavaScript Personalizado</h3>
+<p> Veja como os desenvolvedores costumavam validar um formulário de registro simples com JavaScript personalizado. Observe a quantidade de código necessária para uma validação básica: </p>
+<pre><code class="html">
+        &lt;form id="registrationForm"&gt;
+            &lt;div&gt;
+                &lt;label for="email"&gt;Email:&lt;/label&gt;
+                &lt;input type="text" id="email" name="email"&gt;
+                &lt;span id="emailError" class="error"&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div&gt;
+                &lt;label for="password"&gt;Password:&lt;/label&gt;
+                &lt;input type="password" id="password" name="password"&gt;
+                &lt;span id="passwordError" class="error"&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div&gt;
+                &lt;label for="age"&gt;Age:&lt;/label&gt;
+                &lt;input type="text" id="age" name="age"&gt;
+                &lt;span id="ageError" class="error"&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;button type="submit"&gt;Register&lt;/button&gt;
+        &lt;/form&gt;
+    </code></pre>
+<p> O código JavaScript de validação correspondente era longo e propenso a erros: </p>
+<pre><code class="javascript">
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            let isValid = true;
+            
+            // Clear previous errors
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('passwordError').textContent = '';
+            document.getElementById('ageError').textContent = '';
+            
+            // Validate email
+            const email = document.getElementById('email').value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email) {
+                document.getElementById('emailError').textContent = 'Email is required';
+                isValid = false;
+            } else if (!emailRegex.test(email)) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email';
+                isValid = false;
+            }
+            
+            // Validate password
+            const password = document.getElementById('password').value;
+            if (!password) {
+                document.getElementById('passwordError').textContent = 'Password is required';
+                isValid = false;
+            } else if (password.length &lt; 8) {
+                document.getElementById('passwordError').textContent = 'Password must be at least 8 characters';
+                isValid = false;
+            }
+            
+            // Validate age
+            const age = document.getElementById('age').value;
+            const ageNumber = parseInt(age);
+            if (!age) {
+                document.getElementById('ageError').textContent = 'Age is required';
+                isValid = false;
+            } else if (isNaN(ageNumber) || ageNumber &lt; 13 || ageNumber &gt; 120) {
+                document.getElementById('ageError').textContent = 'Please enter a valid age between 13 and 120';
+                isValid = false;
+            }
+            
+            // Prevent submission if validation fails
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    </code></pre>
+<p> Esta abordagem exigia dezenas de linhas de código para uma validação básica, e cada formulário precisava de sua própria lógica de validação personalizada. Manter e fazer a depuração desse código consumia muito tempo e era propenso a erros. </p>
+<h3>A Forma Moderna: Validação Nativa do HTML5</h3>
+<p> O HTML5 introduziu funcionalidades de validação nativas poderosas que atingem os mesmos objetivos com muito menos código. Os navegadores modernos lidam automaticamente com a lógica de validação, exibição de erros e prevenção do envio do formulário. </p>
+<pre><code class="html">
+        &lt;form&gt;
+            &lt;div&gt;
+                &lt;label for="email"&gt;Email:&lt;/label&gt;
+                &lt;input type="email" id="email" name="email" required&gt;
+            &lt;/div&gt;
+            &lt;div&gt;
+                &lt;label for="password"&gt;Password:&lt;/label&gt;
+                &lt;input type="password" id="password" name="password" required minlength="8"&gt;
+            &lt;/div&gt;
+            &lt;div&gt;
+                &lt;label for="age"&gt;Age:&lt;/label&gt;
+                &lt;input type="number" id="age" name="age" required min="13" max="120"&gt;
+            &lt;/div&gt;
+            &lt;button type="submit"&gt;Register&lt;/button&gt;
+        &lt;/form&gt;
+    </code></pre>
+<p> Essa abordagem moderna usa tipos de entrada e atributos do HTML5 para fornecer a mesma validação sem a necessidade de JavaScript. O navegador valida automaticamente o formato do e-mail, impõe um tamanho mínimo de senha e garante que a idade esteja dentro do intervalo especificado. </p>
+<div class="callout info icon">
+<div class="title">Atributos Comuns de Validação do HTML5</div>
+<p> O HTML5 fornece muitos atributos de validação: <code>required</code> (o campo deve ser preenchido), <code>minlength</code> e <code>maxlength</code> (limites de comprimento de texto), <code>min</code> e <code>max</code> (intervalos numéricos), <code>pattern</code> (expressões regulares personalizadas) e tipos de entrada especializados como <code>email</code>, <code>url</code>, <code>tel</code>, e <code>date</code> que fornecem validação de formato nativa. </p>
+</div>
+</section>
+<section>
+<h2>Compreendendo as Limitações da Validação do Lado do Cliente</h2>
+<p> Embora a validação do lado do cliente melhore bastante a experiência do usuário ao fornecer feedback imediato, é importante entender suas limitações. A validação do lado do cliente serve puramente para conveniência e experiência do usuário — ela nunca deve ser considerada uma medida de segurança. </p>
+<p> Os usuários podem facilmente burlar a validação do lado do cliente desativando o JavaScript, modificando o HTML nas ferramentas de desenvolvedor do navegador ou enviando requisições diretamente para o seu servidor usando ferramentas como curl ou Postman. Usuários mal-intencionados podem enviar quaisquer dados que desejarem, independentemente das suas regras de validação do lado do cliente. </p>
+<pre><code class="html">
+        &lt;!-- A user could modify this in browser dev tools --&gt;
+        &lt;input type="email" required minlength="8"&gt;
+        
+        &lt;!-- And change it to this --&gt;
+        &lt;input type="text"&gt;
+    </code></pre>
+<p> Os principais benefícios da validação do lado do cliente são melhorar a experiência do usuário ao capturar erros imediatamente, reduzir a carga do servidor ao evitar envios obviamente inválidos e fornecer um feedback útil antes que os usuários percam tempo enviando dados incorretos. No entanto, você deve sempre validar os dados no lado do servidor, onde os usuários não podem adulterar sua lógica de validação. </p>
+<div class="callout warn icon">
+<div class="title">Lembrete de Segurança</div>
+<p> A validação do lado do cliente serve apenas para a experiência do usuário. Nunca confie nela para segurança, integridade de dados ou aplicação de regras de negócios. Sempre implemente uma validação abrangente no lado do servidor para proteger sua aplicação. </p>
+</div>
+</section>
+<section>
+<h2>Introdução ao Processamento no Lado do Servidor</h2>
+<p> Quando um usuário envia um formulário, os dados precisam ser processados no seu servidor. Até agora, você trabalhou com rotas GET que respondem a requisições de página. Os envios de formulário geralmente usam rotas POST, que são projetadas para lidar com operações de envio e modificação de dados. </p>
+<p> As requisições POST funcionam de forma diferente das requisições GET. Em vez de passar dados na URL (como parâmetros de consulta), as requisições POST enviam dados no corpo da requisição. Isso permite maiores quantidades de dados e mantém informações sensíveis, como senhas, fora das URLs e do histórico do navegador. </p>
+<h3>Entendendo os corpos das requisições</h3>
+<p> O corpo da requisição é onde os dados POST são transmitidos. Quando um usuário envia um formulário, o navegador empacota os dados do formulário e os envia como o corpo da requisição HTTP. Sua aplicação Express precisa de um middleware especial para analisar esses dados do corpo e disponibilizá-los em seus manipuladores de rotas. </p>
+<pre><code class="javascript">
+        // Express middleware to parse form data from request bodies
+        app.use(express.urlencoded({ extended: true }));
+        app.use(express.json()); // For handling JSON data from API requests
+    </code></pre>
+<p> Após adicionar este middleware, os dados do formulário ficam disponíveis em seus manipuladores de rotas através do <code>req.body</code> objeto. Cada campo do formulário aparece como uma propriedade neste objeto, com o nome da propriedade correspondendo ao do campo do formulário <code>name</code> atributo. </p>
+<h3>Criando sua primeira rota POST</h3>
+<p> As rotas POST lidam com envios de formulários e processamento de dados. Veja como criar uma rota POST básica que recebe dados de registro de usuário: </p>
+<pre><code class="javascript">
+        // Handle user registration form submission
+        app.post('/register', (req, res) =&gt; {
+            // Extract data from request body
+            const { email, password, age } = req.body;
+            
+            // Log the received data for debugging
+            console.log('Registration data received:', {
+                email: email,
+                password: password,
+                age: age
+            });
+            
+            // For now, just send a simple response
+            res.send(`Registration received for ${email}`);
+        });
+    </code></pre>
+<p> Observe como esta rota usa <code>app.post()</code> em vez de <code>app.get()</code>, e acessa os dados do formulário através de <code>req.body</code> em vez de <code>req.params</code> ou <code>req.query</code>. O formulário que envia para esta rota deve especificar o método e a ação corretos: </p>
+<pre><code class="html">
+        &lt;form method="POST" action="/register"&gt;
+            &lt;input type="email" name="email" required&gt;
+            &lt;input type="password" name="password" required&gt;
+            &lt;input type="number" name="age" required&gt;
+            &lt;button type="submit"&gt;Register&lt;/button&gt;
+        &lt;/form&gt;
+    </code></pre>
+</section>
+<section>
+<h2>Implementando validação no lado do servidor</h2>
+<p> A validação no lado do servidor é onde você aplica suas regras de negócio reais e requisitos de segurança. Você deve validar cada dado que os usuários enviam, independentemente de qualquer validação no lado do cliente. Essa validação é executada em seu servidor, onde os usuários não podem modificá-la nem burlá-la. </p>
+<h3>Abordagem de validação manual</h3>
+<p> Você pode implementar uma validação básica usando uma lógica simples em JavaScript. Veja como adicionar validação à rota de registro: </p>
+<pre><code class="javascript">
+        app.post('/register', (req, res) =&gt; {
+            const { email, password, age } = req.body;
+            const errors = [];
+            
+            // Validate email
+            if (!email) {
+                errors.push('Email is required');
+            } else if (!email.includes('@') || !email.includes('.')) {
+                errors.push('Please provide a valid email address');
+            }
+            
+            // Validate password
+            if (!password) {
+                errors.push('Password is required');
+            } else if (password.length &lt; 8) {
+                errors.push('Password must be at least 8 characters long');
+            }
+            
+            // Validate age
+            const ageNumber = parseInt(age);
+            if (!age) {
+                errors.push('Age is required');
+            } else if (isNaN(ageNumber) || ageNumber &lt; 13 || ageNumber &gt; 120) {
+                errors.push('Age must be between 13 and 120');
+            }
+            
+            // Handle validation results
+            if (errors.length &gt; 0) {
+                return res.status(400).json({
+                    success: false,
+                    errors: errors
+                });
+            }
+            
+            // If validation passes, process the registration
+            console.log('Valid registration data:', { email, age: ageNumber });
+            res.json({
+                success: true,
+                message: 'Registration successful'
+            });
+        });
+    </code></pre>
+<p> Embora essa abordagem manual funcione, ela se torna verbosa e difícil de manter à medida que seus requisitos de validação se tornam mais complexos. Aplicações profissionais normalmente usam bibliotecas de validação para lidar com essa lógica de forma mais elegante. </p>
+</section>
+<section>
+<h2>Usando a biblioteca Express-Validator</h2>
+<p> A biblioteca express-validator fornece uma maneira limpa e poderosa de validar dados de requisição. Ela oferece validadores pré-construídos para requisitos comuns e permite criar regras de validação personalizadas. Esta biblioteca se integra perfeitamente com o Express e fornece um relatório de erros detalhado. </p>
+<h3>Configurando o Express-Validator</h3>
+<p> Se você quiser testar qualquer um dos exemplos de código do express-validator nesta leitura, precisará instalar a biblioteca em seu projeto e importar as funções de validação: </p>
+<pre><code class="bash">
+        pnpm install express-validator
+    </code></pre>
+<pre><code class="javascript">
+        // Import validation functions using ES modules
+        import { body, validationResult } from 'express-validator';
+    </code></pre>
+<h3>Regras básicas de validação</h3>
+<p> O express-validator usa uma abordagem de middleware em que você define regras de validação como um array de funções middleware. Veja como reescrever a validação de registro usando o express-validator: </p>
+<pre><code class="javascript">
+        // Define validation rules for registration
+        const registrationValidation = [
+            body('email')
+                .isEmail()
+                .withMessage('Please provide a valid email address')
+                .normalizeEmail(),
+            
+            body('password')
+                .isLength({ min: 8 })
+                .withMessage('Password must be at least 8 characters long'),
+            
+            body('age')
+                .isInt({ min: 13, max: 120 })
+                .withMessage('Age must be between 13 and 120')
+        ];
+        
+        // Apply validation to the route
+        app.post('/register', registrationValidation, (req, res) =&gt; {
+            // Check for validation errors
+            const results = validationResult(req);
+            
+            if (!results.isEmpty()) {
+                return res.status(400).json({
+                    success: false,
+                    errors: results.array()
+                });
+            }
+            
+            // If validation passes, process the data
+            const { email, password, age } = req.body;
+            console.log('Valid registration:', { email, age });
+            
+            res.json({
+                success: true,
+                message: 'Registration successful'
+            });
+        });
+    </code></pre>
+<p> Essa abordagem separa as regras de validação da lógica da sua rota, tornando o código mais legível e fácil de manter. A <code>normalizeEmail()</code> função limpa automaticamente a formatação do e-mail, e <code>validationResult()</code> coleta todos os erros de validação em um único objeto. À medida que sua aplicação cresce, você deve mover essas regras de validação para um arquivo separado e importá-las onde for necessário. </p>
+<h3>Exemplos avançados de validação</h3>
+<p> O express-validator oferece muitos validadores integrados para requisitos comuns. Aqui estão exemplos de regras de validação mais sofisticadas: </p>
+<pre><code class="javascript">
+        const advancedValidation = [
+            // Email validation with custom domain restrictions
+            body('email')
+                .isEmail()
+                .withMessage('Invalid email format')
+                .custom((value) =&gt; {
+                    if (value.endsWith('@tempmail.com')) {
+                        throw new Error('Temporary email addresses are not allowed');
+                    }
+                    return true;
+                })
+                .normalizeEmail(),
+            
+            // URL validation
+            body('website')
+                .optional()
+                .isURL()
+                .withMessage('Please provide a valid website URL'),
+            
+            // Phone number validation
+            body('phone')
+                .isMobilePhone()
+                .withMessage('Please provide a valid phone number'),
+            
+            // Date validation
+            body('birthdate')
+                .isISO8601()
+                .withMessage('Please provide a valid date')
+                .custom((value) =&gt; {
+                    const date = new Date(value);
+                    const eighteenYearsAgo = new Date();
+                    eighteenYearsAgo.setFullYear(eighteenYearsAgo.getFullYear() - 18);
+                    
+                    if (date &gt; eighteenYearsAgo) {
+                        throw new Error('You must be at least 18 years old');
+                    }
+                    return true;
+                })
+        ];
+    </code></pre>
+</section>
+<section>
+<h2>Criando validadores personalizados</h2>
+<p> Embora o express-validator forneça muitos validadores integrados, com frequência você precisará criar uma lógica de validação personalizada para seus requisitos de negócio específicos. Validadores personalizados permitem implementar regras complexas exclusivas da sua aplicação. </p>
+<h3>Validação de complexidade de senha</h3>
+<p> Veja como criar um validador personalizado que garante que as senhas atendam a requisitos de complexidade específicos: </p>
+<pre><code class="javascript">
+        // Custom password validator
+        const passwordValidation = body('password')
+            .isLength({ min: 8 })
+            .withMessage('Password must be at least 8 characters long')
+            .custom((value) =&gt; {
+                // Check for at least one number
+                if (!/\d/.test(value)) {
+                    throw new Error('Password must contain at least one number');
+                }
+                
+                // Check for at least one special character
+                if (!/[!@#$%^&amp;*(),.?":{}|&lt;&gt;]/.test(value)) {
+                    throw new Error('Password must contain at least one special character');
+                }
+                
+                // Check for at least one uppercase letter
+                if (!/[A-Z]/.test(value)) {
+                    throw new Error('Password must contain at least one uppercase letter');
+                }
+                
+                // Check for at least one lowercase letter
+                if (!/[a-z]/.test(value)) {
+                    throw new Error('Password must contain at least one lowercase letter');
+                }
+                
+                return true;
+            });
+    </code></pre>
+<h3>Validação de unicidade do nome de usuário</h3>
+<p> Validadores personalizados também podem realizar operações assíncronas, como verificações no banco de dados. Aqui está um exemplo que garante que os nomes de usuário sejam únicos: </p>
+<pre><code class="javascript">
+        // Simulate a database check (you would use your actual database here)
+        const existingUsernames = ['admin', 'user', 'test', 'demo'];
+        
+        const usernameValidation = body('username')
+            .isLength({ min: 3, max: 20 })
+            .withMessage('Username must be between 3 and 20 characters')
+            .matches(/^[a-zA-Z0-9_]+$/)
+            .withMessage('Username can only contain letters, numbers, and underscores')
+            .custom(async (value) =&gt; {
+                // Simulate database lookup
+                if (existingUsernames.includes(value.toLowerCase())) {
+                    throw new Error('Username is already taken');
+                }
+                return true;
+            });
+    </code></pre>
+<h3>Combinando múltiplos validadores personalizados</h3>
+<p> Você pode combinar múltiplos validadores personalizados para criar conjuntos abrangentes de validação para formulários complexos: </p>
+<pre><code class="javascript">
+        const completeRegistrationValidation = [
+            // Email validation
+            body('email')
+                .isEmail()
+                .withMessage('Invalid email format')
+                .normalizeEmail(),
+            
+            // Username validation
+            usernameValidation,
+            
+            // Password validation
+            passwordValidation,
+            
+            // Password confirmation
+            body('confirmPassword')
+                .custom((value, { req }) =&gt; {
+                    if (value !== req.body.password) {
+                        throw new Error('Passwords do not match');
+                    }
+                    return true;
+                }),
+            
+            // Terms acceptance
+            body('acceptTerms')
+                .equals('true')
+                .withMessage('You must accept the terms and conditions')
+        ];
+        
+        // Use in route
+        app.post('/register', completeRegistrationValidation, (req, res) =&gt; {
+            const results = validationResult(req);
+            
+            if (!errors.isEmpty()) {
+                return res.status(400).json({
+                    success: false,
+                    errors: results.array()
+                });
+            }
+            
+            // Process successful registration
+            const { email, username, password } = req.body;
+            console.log('New user registered:', { email, username });
+            
+            res.json({
+                success: true,
+                message: 'Registration completed successfully'
+            });
+        });
+    </code></pre>
+</section>
+<section>
+<h2>Tratamento de erros e feedback ao usuário</h2>
+<p> O tratamento adequado de erros garante que as falhas de validação sejam comunicadas de forma clara aos usuários. O express-validator fornece informações detalhadas sobre erros que você pode usar para criar mensagens de feedback úteis. </p>
+<h3>Processando erros de validação</h3>
+<p> A <code>validationResult()</code> função retorna um objeto contendo todos os erros de validação. Você pode formatar esses erros de várias maneiras, dependendo das necessidades da sua aplicação: </p>
+<pre><code class="javascript">
+        app.post('/register', registrationValidation, (req, res) =&gt; {
+            const results = validationResult(req);
+            
+            if (!results.isEmpty()) {
+                // Get all errors as an array
+                const errorArray = results.array();
+                
+                // Group errors by field
+                const errorsByField = results.mapped();
+                
+                // Format for different response types
+                if (req.headers.accept === 'application/json') {
+                    // API response format
+                    return res.status(400).json({
+                        success: false,
+                        errors: errorArray,
+                        fields: errorsByField
+                    });
+                } else {
+                    // Web form response - render page with errors
+                    return res.render('register', {
+                        title: 'Register',
+                        errors: errorArray,
+                        formData: req.body // Preserve user input
+                    });
+                }
+            }
+            
+            // Success handling
+            res.redirect('/dashboard');
+        });
+    </code></pre>
+<h3>Exibindo erros em modelos</h3>
+<p> Ao renderizar formulários com erros de validação, você deve exibir os erros de forma clara e preservar a entrada do usuário para que ele não precise inserir novamente os dados válidos: </p>
+<pre><code class="html">
+        &lt;form method="POST" action="/register"&gt;
+            &lt;% if (typeof errors !== 'undefined' &amp;&amp; errors.length &gt; 0) { %&gt;
+                &lt;div class="error-summary"&gt;
+                    &lt;h3&gt;Please correct the following errors:&lt;/h3&gt;
+                    &lt;ul&gt;
+                        &lt;% errors.forEach(error =&gt; { %&gt;
+                            &lt;li&gt;&lt;%= error.msg %&gt;&lt;/li&gt;
+                        &lt;% }); %&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;% } %&gt;
+            
+            &lt;div&gt;
+                &lt;label for="email"&gt;Email:&lt;/label&gt;
+                &lt;input type="email" id="email" name="email" 
+                       value="&lt;%= typeof formData !== 'undefined' ? formData.email || '' : '' %&gt;"&gt;
+            &lt;/div&gt;
+            
+            &lt;div&gt;
+                &lt;label for="password"&gt;Password:&lt;/label&gt;
+                &lt;input type="password" id="password" name="password"&gt;
+            &lt;/div&gt;
+            
+            &lt;button type="submit"&gt;Register&lt;/button&gt;
+        &lt;/form&gt;
+    </code></pre>
+</section>
+<section>
+<h2>Sanitização de entrada</h2>
+<p> O express-validator inclui funções de sanitização que limpam e normalizam a entrada do usuário. A sanitização ajuda a prevenir certos tipos de ataques e garante a consistência dos dados: </p>
+<pre><code class="javascript">
+        const sanitizedValidation = [
+            body('name')
+                .trim() // Remove leading/trailing whitespace
+                .escape() // Escape HTML characters
+                .isLength({ min: 2, max: 50 })
+                .withMessage('Name must be between 2 and 50 characters'),
+            
+            body('email')
+                .normalizeEmail() // Standardize email format
+                .isEmail()
+                .withMessage('Invalid email address'),
+            
+            body('bio')
+                .trim()
+                .isLength({ max: 500 })
+                .withMessage('Bio cannot exceed 500 characters')
+                .customSanitizer((value) =&gt; {
+                    // Remove potentially dangerous HTML tags
+                    return value.replace(/&lt;script&gt;.*&lt;\/script&gt;/gi, '');
+                })
+        ];
+    </code></pre>
+<div class="callout warn icon">
+<div class="title">Nunca confie na entrada do usuário</div>
+<p> Sempre valide e higienize a entrada do usuário no lado do servidor. Assuma que qualquer dado vindo dos usuários pode ser malicioso ou incorreto. Implemente a validação como sua primeira linha de defesa, mas também use outras medidas de segurança, como limitação de taxa, autenticação e tratamento adequado de erros. </p>
+</div>
+</section>
+<section>
+<h2>Resumo dos conceitos-chave</h2>
+<p> A validação de formulários serve a dois propósitos distintos: melhorar a experiência do usuário por meio da validação no lado do cliente e proteger sua aplicação por meio da validação no lado do servidor. A validação no lado do cliente usando funcionalidades do HTML5 fornece feedback imediato e reduz a carga do servidor, mas não se pode confiar nela para fins de segurança, pois os usuários podem burlá-la facilmente. </p>
+<p> A validação no lado do servidor é onde está sua proteção real. Ao processar requisições POST e validar os dados no corpo da requisição, você garante que apenas dados válidos e seguros entrem na sua aplicação. Ferramentas como o express-validator tornam mais fácil implementar regras de validação abrangentes, incluindo validadores personalizados para requisitos de negócios complexos. </p>
+<p> Entender a diferença entre requisições GET e POST é fundamental para o desenvolvimento web. Enquanto as requisições GET passam dados por meio de URLs e parâmetros, as requisições POST transmitem dados pelo corpo da requisição, tornando-as adequadas para envios de formulários e informações sensíveis. Validação, sanitização e tratamento de erros adequados criam aplicações que são fáceis de usar e seguras. </p>
+</section>
+</main>
+<footer class="full-width">
+<div class="columns two">
+<div>
+<span class="course-code">CSE 340</span>
+             • 
+            <span class="course-name">Desenvolvimento Web Back-End</span>
+</div>
+<div> © 2024–2026 BYU–Idaho <a href="https://www.byui.edu/computer-science-engineering/" rel="noopener noreferrer" target="_blank">Departamento de CSE</a>. Todos os direitos reservados. </div>
+</div>
+</footer>
+</div>
+</body>
+</html>

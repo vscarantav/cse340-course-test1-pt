@@ -1,0 +1,215 @@
+html
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../../assets/images/favicon/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../../assets/images/favicon/favicon.png" rel="icon" type="image/png"/>
+<link href="../../../assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<title>Hashing vs. Criptografia</title>
+<meta content="Understanding the fundamental difference between hashing and encryption, and when to use each for data security." name="description"/>
+<script src="../../../assets/js/main.js" type="module"></script>
+<script src="../../../assets/js/theme-preference.js"></script>
+</head>
+<body>
+<div class="content-grid">
+<header class="full-width">
+<input aria-controls="site-primary-nav" class="visually-hidden" id="site-nav-toggle" type="checkbox"/>
+<label aria-hidden="true" class="site-nav-backdrop" for="site-nav-toggle"></label>
+<div class="inner">
+<div class="site-brand">
+<a aria-label="CSE 340 home" class="brand-link" href="../../../index.html">
+<img alt="BYU–Idaho" class="site-logo" decoding="async" src="../../../assets/images/logos/byui-logo.png"/>
+</a>
+</div>
+<div class="site-course-info">
+<a href="../../../index.html">
+<span class="course-code">CSE 340</span>
+                 • 
+                <span class="course-name">Desenvolvimento Web Back-end</span>
+</a>
+</div>
+<nav aria-label="Primary" class="site-primary-nav" id="site-primary-nav">
+<ul aria-label="Course units" class="nav-list">
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<div class="site-header-tools">
+<label class="site-nav-menu-btn" for="site-nav-toggle">
+<span class="visually-hidden">Menu</span>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-open" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"></path></svg>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-close" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"></path></svg>
+</label>
+<input aria-controls="site-search-panel" class="visually-hidden" id="site-search-toggle" type="checkbox"/>
+<label class="site-search-trigger" for="site-search-toggle">
+<span class="visually-hidden">Alternar pesquisa no site</span>
+<span aria-hidden="true">🔎</span>
+<span aria-hidden="true">✕</span>
+</label>
+<details class="theme-menu">
+<summary class="theme-control">
+<span class="visually-hidden">Esquema de cores</span>
+</summary>
+<div aria-label="Choose color scheme" class="theme-extra" role="group">
+<label class="theme-control theme-pick" data-theme-pick="light">
+<input name="theme-preference" type="radio" value="light"/>
+<span aria-hidden="true">☀️</span>
+<span class="visually-hidden">Claro</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="system">
+<input name="theme-preference" type="radio" value="system"/>
+<span aria-hidden="true">⚙️</span>
+<span class="visually-hidden">Padrão do sistema</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="dark">
+<input name="theme-preference" type="radio" value="dark"/>
+<span aria-hidden="true">🌖</span>
+<span class="visually-hidden">Escuro</span>
+</label>
+</div>
+</details>
+</div>
+</div>
+<div aria-label="Site search" id="site-search-panel" role="region">
+<form action="" method="get" role="search">
+<label class="visually-hidden" for="site-search-query">Pesquisar</label>
+<input autocomplete="off" enterkeyhint="search" id="site-search-query" name="query" placeholder="Search…" type="search"/>
+</form>
+<div aria-live="polite" class="site-search-results" id="site-search-results"></div>
+</div>
+</header>
+<main>
+<nav aria-label="Course units" class="course-breadcrumbs unit">
+<ul>
+<li>
+<a aria-label="Home" href="../../../index.html">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z">
+</path></svg>
+</a>
+</li>
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<section>
+<h1>Hashing vs. Criptografia: Entendendo a Diferença Fundamental</h1>
+<p> Na cibersegurança e na proteção de dados, dois processos críticos são frequentemente confundidos: hashing e criptografia. Embora ambos transformem dados em formatos diferentes, eles servem a propósitos completamente diferentes e possuem características fundamentalmente distintas. Compreender essa diferença é essencial para tomar decisões informadas sobre a segurança dos dados. </p>
+<p> Esta leitura explora esses conceitos por meio de analogias práticas e exemplos do mundo real, ajudando você a entender quando usar cada abordagem e por que a distinção é importante no desenvolvimento de software e na segurança. </p>
+</section>
+<section>
+<h2>A Analogia do Cofre</h2>
+<p> Imagine que você tem duas maneiras diferentes de proteger um documento valioso: </p>
+<h3>Criptografia: O Cofre Seguro</h3>
+<p> A criptografia é como colocar seu documento em um cofre de alta segurança. Você usa uma chave para trancá-lo, e qualquer pessoa com a chave correta pode destrancá-lo e recuperar o documento original, completamente inalterado. O documento entra inteiro, fica embaralhado enquanto está trancado, mas sai exatamente como entrou quando destrancado. </p>
+<p> O ponto crucial: <strong>o processo é reversível</strong>. Com a chave certa, você sempre pode obter seu documento original de volta em perfeitas condições. </p>
+<h3>Hashing: O Triturador de Papel com um Número de Série Único</h3>
+<p> O hashing é como passar seu documento por um triturador de papel especial que cria um número de série único com base no conteúdo do documento. Não importa o tamanho do seu documento — seja uma única página ou um livro de mil páginas —, o triturador sempre produz um número de série de exato mesmo comprimento. </p>
+<p> O ponto crucial: <strong>o processo é irreversível</strong>. Uma vez triturado, você não pode reconstruir o documento original a partir do número de série. No entanto, se você triturar o mesmo documento novamente, sempre obterá o número de série idêntico. </p>
+</section>
+<section>
+<h2>A Impossibilidade Matemática</h2>
+<p> Considere este exemplo: Um arquivo de 1 GB (aproximadamente 8 bilhões de bits de informação) sendo submetido a um hash para produzir um hash de 256 bits. Isso demonstra um princípio matemático fundamental chamado <strong>princípio da casa dos pombos</strong>.
+    </p>
+<p> Pense desta forma: você está tentando encaixar o conteúdo de uma biblioteca inteira em uma única frase. Essa frase pode identificar de forma exclusiva o conteúdo da biblioteca, mas você não pode reconstruir milhares de livros a partir de uma única frase. A informação simplesmente não está lá. </p>
+<p> Um hash de 256 bits pode representar apenas 2<sup>256</sup> valores possíveis, enquanto os dados originais podem ter muito mais combinações possíveis. Múltiplas entradas diferentes produzirão inevitavelmente o mesmo valor de hash — estas são chamadas de <strong>colisões de hash</strong>. No entanto, bons algoritmos de hashing tornam a busca por essas colisões computacionalmente inviável. </p>
+<div class="callout info icon">
+<div class="title">Por Que Isso É Importante na Prática</div>
+<p> Esta irreversibilidade não é uma limitação — é uma funcionalidade. O hashing permite verificar a integridade dos dados e autenticar informações sem nunca armazenar ou transmitir os dados sensíveis originais. </p>
+</div>
+</section>
+<section>
+<h2>Aplicações no Mundo Real</h2>
+<h3>Armazenamento de Senhas: Por Que o Hashing Vence</h3>
+<p> Quando você cria uma conta em um site, esse site nunca deve armazenar sua senha real. Em vez disso, ele armazena um hash da sua senha. Aqui está o porquê dessa abordagem ser superior: </p>
+<p> Se o banco de dados do site for violado, os atacantes encontrarão apenas valores de hash, e não as senhas reais. Eles não podem reverter o hash para descobrir sua senha. Quando você faz login, o site gera o hash da senha inserida e o compara com o hash armazenado. Se eles coincidirem, você é autenticado. </p>
+<p> Considere o que aconteceria se as senhas fossem criptografadas em vez disso: se os atacantes obtivessem tanto as senhas criptografadas quanto a chave de criptografia (que deve ser armazenada em algum lugar para o sistema descriptografar as senhas), eles poderiam descriptografar as senhas de todos. É por isso que o armazenamento adequado de senhas sempre usa hash, nunca criptografia. </p>
+<h3>Verificação de Transferência de Arquivos</h3>
+<p> Ao baixar arquivos grandes, você frequentemente vê um valor de hash fornecido ao lado do link de download. Esse hash serve como uma "impressão digital" do arquivo. Após o download, você pode gerar o hash da sua cópia e compará-lo com o hash fornecido. Se eles coincidirem, você sabe que seu download está completo e não corrompido. </p>
+<p> Esse processo de verificação funciona porque o hashing é determinístico — a mesma entrada sempre produz a mesma saída — e porque até mesmo a menor alteração na entrada produz um hash completamente diferente. </p>
+<h3>Criptografia de Dados para Transmissão</h3>
+<p> Quando você faz compras online, as informações do seu cartão de crédito são criptografadas durante a transmissão. O site precisa descriptografar essas informações para processar seu pagamento, portanto, a criptografia (que é reversível) é a escolha adequada. O site precisa do número real do seu cartão de crédito, não apenas de um hash dele. </p>
+</section>
+<section>
+<h2>Comparação das Principais Características</h2>
+<h3>Características da Criptografia</h3>
+<ul>
+<li>
+<strong>Reversível</strong>: Com a chave correta, você sempre pode recuperar os dados originais </li>
+<li>
+<strong>Tamanho de Saída Variável</strong>: Os dados criptografados geralmente têm tamanho semelhante ao dos dados originais </li>
+<li>
+<strong>Dependente de Chave</strong>: Requer chaves para os processos de criptografia e descriptografia </li>
+<li>
+<strong>Propósito</strong>: Protege a confidencialidade dos dados durante o armazenamento ou a transmissão </li>
+</ul>
+<h3>Características do Hashing</h3>
+<ul>
+<li>
+<strong>Irreversível</strong>: Não é possível recuperar os dados originais a partir do valor do hash </li>
+<li>
+<strong>Tamanho de Saída Fixo</strong>: Sempre produz uma saída de mesmo comprimento, independentemente do tamanho da entrada </li>
+<li>
+<strong>Nenhuma Chave Necessária</strong>: A mesma entrada sempre produz o mesmo hash </li>
+<li>
+<strong>Propósito</strong>: Verifica a integridade dos dados e permite uma autenticação segura </li>
+</ul>
+</section>
+<section>
+<h2>Algoritmos Comuns na Prática</h2>
+<h3>Algoritmos Populares de Hashing</h3>
+<p> O SHA-256 (Secure Hash Algorithm) é amplamente utilizado e produz valores de hash de 256 bits. O MD5, embora mais rápido, é considerado criptograficamente vulnerável para fins de segurança, mas ainda pode ser usado para aplicações que não envolvem segurança, como checksums. </p>
+<p> Especificamente para hashing de senhas, algoritmos como bcrypt, scrypt e Argon2 são preferidos porque foram projetados para serem lentos, tornando os ataques de força bruta mais difíceis. </p>
+<h3>Algoritmos Populares de Criptografia</h3>
+<p> O AES (Advanced Encryption Standard) é o padrão atual para criptografia simétrica, em que a mesma chave criptografa e descriptografa os dados. O RSA é comumente usado para criptografia assimétrica, em que chaves diferentes lidam com a criptografia e a descriptografia. </p>
+</section>
+<section>
+<h2>Escolhendo a Ferramenta Certa</h2>
+<p> A escolha entre hashing e criptografia depende inteiramente do seu objetivo: </p>
+<p>
+<strong>Use hashing quando:</strong> Você precisa verificar a integridade dos dados, armazenar senhas com segurança, criar impressões digitais ou confirmar que os dados não foram adulterados. Lembre-se: você nunca deve precisar recuperar os dados originais. </p>
+<p>
+<strong>Use criptografia quando:</strong> Você precisa proteger a confidencialidade dos dados, mas ainda precisa acessar os dados originais posteriormente. Isso inclui comunicação segura, proteção de banco de dados e armazenamento de arquivos nos quais você precisa recuperar o conteúdo real. </p>
+<div class="callout warn icon">
+<div class="title">Um Princípio Crítico de Segurança</div>
+<p> Nunca use criptografia onde o hashing seja apropriado. Se o seu sistema criptografa senhas, isso significa que alguém poderia, potencialmente, descriptografá-las. Se o seu sistema gera o hash das senhas adequadamente, mesmo um vazamento completo do banco de dados não poderá expor as senhas reais. </p>
+</div>
+</section>
+<section>
+<h2>Compreendendo as Compensações</h2>
+<p> Ambas as técnicas envolvem compensações que as tornam adequadas para diferentes cenários: </p>
+<p> O hashing troca a reversibilidade por segurança e eficiência. Você perde a capacidade de recuperar os dados originais, mas ganha a capacidade de verificar a integridade dos dados sem armazenar informações confidenciais. A verificação do hash também é, normalmente, muito mais rápida do que os ciclos de criptografia/descriptografia. </p>
+<p> A criptografia troca a simplicidade e a velocidade pela capacidade de recuperar os dados originais. Gerenciar chaves de criptografia com segurança adiciona complexidade, e as operações de criptografia/descriptografia exigem mais recursos computacionais do que o hashing. </p>
+</section>
+<section>
+<h2>Conclusão</h2>
+<p> Entender a diferença fundamental entre hashing e criptografia é crucial para construir sistemas seguros. O hashing cria impressões digitais irreversíveis perfeitas para verificação e autenticação, enquanto a criptografia fornece proteção reversível para dados que devem ser acessados posteriormente. </p>
+<p> A natureza irreversível do hashing não é uma limitação, mas sim uma poderosa funcionalidade de segurança. Quando você entende que um arquivo de 1 GB com hash gerado para 256 bits nunca pode ser restaurado à sua forma original, você entende por que o hashing é perfeito para armazenamento de senhas e verificação de dados, e por que tentar "desfazer o hash" dos dados é fundamentalmente impossível. </p>
+<p> À medida que você continua desenvolvendo software, lembre-se deste princípio: Gere o hash do que você precisa verificar, criptografe o que você precisa proteger e recuperar. Esta distinção irá guiá-lo na construção de soluções mais seguras e adequadas. </p>
+</section>
+</main>
+<footer class="full-width">
+<div class="columns two">
+<div>
+<span class="course-code">CSE 340</span>
+             • 
+            <span class="course-name">Desenvolvimento Web Back-end</span>
+</div>
+<div> © 2024–2026 BYU–Idaho <a href="https://www.byui.edu/computer-science-engineering/" rel="noopener noreferrer" target="_blank">Departamento de CSE</a>. Todos os direitos reservados. </div>
+</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,336 @@
+html
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../../assets/images/favicon/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../../assets/images/favicon/favicon.png" rel="icon" type="image/png"/>
+<link href="../../../assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<title>Frameworks vs. Bibliotecas</title>
+<meta content="Learn about the differences between frameworks and libraries in web development, focusing on their roles, characteristics, and how they apply to Node.js development." name="description"/>
+<script src="../../../assets/js/main.js" type="module"></script>
+<script src="../../../assets/js/theme-preference.js"></script>
+</head>
+<body>
+<div class="content-grid">
+<header class="full-width">
+<input aria-controls="site-primary-nav" class="visually-hidden" id="site-nav-toggle" type="checkbox"/>
+<label aria-hidden="true" class="site-nav-backdrop" for="site-nav-toggle"></label>
+<div class="inner">
+<div class="site-brand">
+<a aria-label="CSE 340 home" class="brand-link" href="../../../index.html">
+<img alt="BYU–Idaho" class="site-logo" decoding="async" src="../../../assets/images/logos/byui-logo.png"/>
+</a>
+</div>
+<div class="site-course-info">
+<a href="../../../index.html">
+<span class="course-code">CSE 340</span>
+                 • 
+                <span class="course-name">Desenvolvimento de Back-end Web</span>
+</a>
+</div>
+<nav aria-label="Primary" class="site-primary-nav" id="site-primary-nav">
+<ul aria-label="Course units" class="nav-list">
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<div class="site-header-tools">
+<label class="site-nav-menu-btn" for="site-nav-toggle">
+<span class="visually-hidden">Menu</span>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-open" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"></path></svg>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-close" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"></path></svg>
+</label>
+<input aria-controls="site-search-panel" class="visually-hidden" id="site-search-toggle" type="checkbox"/>
+<label class="site-search-trigger" for="site-search-toggle">
+<span class="visually-hidden">Alternar pesquisa do site</span>
+<span aria-hidden="true">🔎</span>
+<span aria-hidden="true">✕</span>
+</label>
+<details class="theme-menu">
+<summary class="theme-control">
+<span class="visually-hidden">Esquema de cores</span>
+</summary>
+<div aria-label="Choose color scheme" class="theme-extra" role="group">
+<label class="theme-control theme-pick" data-theme-pick="light">
+<input name="theme-preference" type="radio" value="light"/>
+<span aria-hidden="true">☀️</span>
+<span class="visually-hidden">Claro</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="system">
+<input name="theme-preference" type="radio" value="system"/>
+<span aria-hidden="true">⚙️</span>
+<span class="visually-hidden">Padrão do sistema</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="dark">
+<input name="theme-preference" type="radio" value="dark"/>
+<span aria-hidden="true">🌖</span>
+<span class="visually-hidden">Escuro</span>
+</label>
+</div>
+</details>
+</div>
+</div>
+<div aria-label="Site search" id="site-search-panel" role="region">
+<form action="" method="get" role="search">
+<label class="visually-hidden" for="site-search-query">Pesquisar</label>
+<input autocomplete="off" enterkeyhint="search" id="site-search-query" name="query" placeholder="Search…" type="search"/>
+</form>
+<div aria-live="polite" class="site-search-results" id="site-search-results"></div>
+</div>
+</header>
+<main>
+<nav aria-label="Course units" class="course-breadcrumbs unit">
+<ul>
+<li>
+<a aria-label="Home" href="../../../index.html">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z">
+</path></svg>
+</a>
+</li>
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<section>
+<h1>Entendendo Frameworks e Bibliotecas</h1>
+<p> À medida que avança no desenvolvimento de software, você encontrará dois conceitos fundamentais que frequentemente confundem os desenvolvedores: frameworks e bibliotecas. Entender a distinção entre essas duas abordagens de organização de código ajudará você a tomar melhores decisões sobre quais ferramentas usar e como estruturar suas aplicações. </p>
+<p> Muitos desenvolvedores usam esses termos de forma intercambiável, mas eles representam filosofias fundamentalmente diferentes sobre quem controla o quê na sua aplicação. A diferença afeta como você escreve o código, quanto controle você tem sobre a estrutura da sua aplicação e como você aborda a solução de problemas. </p>
+</section>
+<section>
+<h2>O Problema do Reuso de Código</h2>
+<p> Imagine que você precisa construir uma casa. Você tem duas opções: construir tudo do zero usando matérias-primas ou usar componentes pré-existentes para acelerar o processo. A maioria dos desenvolvedores escolhe a segunda opção porque reinventar soluções comuns desperdiça tempo e frequentemente produz resultados inferiores. </p>
+<p> No entanto, existem duas maneiras muito diferentes de usar componentes de código pré-existentes. Você pode usar uma coleção de ferramentas individuais (bibliotecas) ou trabalhar dentro de uma estrutura pré-projetada (frameworks). Cada abordagem oferece diferentes ponderações entre controle e conveniência. </p>
+</section>
+<section>
+<h2>O que é uma Biblioteca?</h2>
+<p> Uma biblioteca é uma coleção de funções, módulos ou recursos reutilizáveis que você pode integrar em suas aplicações para executar tarefas específicas. Pense em uma biblioteca como uma caixa de ferramentas: você recorre a ela quando precisa de uma ferramenta específica, usa essa ferramenta para realizar uma tarefa e depois a guarda de volta. Você permanece no controle total do processo geral. </p>
+<p> As bibliotecas seguem um princípio simples: você as chama quando precisa delas. Seu código inicia cada interação com a biblioteca. A biblioteca fornece funcionalidade, mas você decide quando, como e onde usá-la. </p>
+<h3>Características das Bibliotecas</h3>
+<p> As bibliotecas compartilham várias características comuns que as distinguem dos frameworks. Você controla o fluxo porque sua aplicação decide quando e como usar a funcionalidade da biblioteca. As bibliotecas fornecem funcionalidade focada, normalmente resolvendo problemas específicos e restritos em vez de preocupações arquitetônicas amplas. Elas não impõem restrições arquitetônicas, o que significa que as bibliotecas não ditam como você estrutura sua aplicação como um todo. Você pode facilmente adicionar ou remover bibliotecas sem reestruturar toda a sua aplicação, tornando a integração opcional e flexível. Por fim, as bibliotecas são ferramentas passivas que esperam você chamá-las em vez de serem executadas por conta própria. </p>
+<h3>Exemplo do Mundo Real de uma Biblioteca</h3>
+<p> Considere uma biblioteca de matemática em qualquer linguagem de programação. Quando você precisa calcular a raiz quadrada de um número, você chama a função de raiz quadrada da biblioteca: </p>
+<pre><code class="javascript">
+        // You decide when to call the library function
+        const result = Math.sqrt(25);
+        console.log(result); // 5
+        
+        // You control what happens next
+        if (result &gt; 3) {
+            // Your application logic continues
+        }
+    </code></pre>
+<p> Observe como você iniciou a chamada para <code>Math.sqrt()</code>, usou seu resultado e depois continuou com a lógica da sua própria aplicação. A biblioteca forneceu uma capacidade específica quando você precisou dela, mas você permaneceu no controle do fluxo geral do programa. </p>
+</section>
+<section>
+<h2>O que é um Framework?</h2>
+<p> Um framework é uma plataforma estruturada que fornece ferramentas, diretrizes e componentes reutilizáveis, mas também estabelece a arquitetura geral e o fluxo de trabalho para sua aplicação. Pense em um framework como construir uma casa a partir de uma planta em que o fundamento e o layout dos cômodos já estão projetados. A estrutura básica já está decidida e você trabalha dentro dessa estrutura para personalizar suas necessidades específicas. </p>
+<p> A principal diferença é algo chamado inversão de controle. Com bibliotecas, seu código está no comando e chama funções da biblioteca quando precisa delas. Com frameworks, o framework está no comando e chama seu código quando precisa dele. Isso inverte a relação normal, e é por isso que é chamado de inversão de controle. </p>
+<p> Os programadores às vezes descrevem isso usando o Princípio de Hollywood de filmes antigos, onde os agentes diziam aos atores: "Não nos ligue, nós ligaremos para você". Os frameworks funcionam da mesma maneira. Em vez de você chamar o framework, o framework chama seu código nos momentos certos. </p>
+<h3>Características dos Frameworks</h3>
+<p> Os frameworks possuem características distintas que os diferenciam das bibliotecas. O framework controla o fluxo, decidindo quando executar seu código, e não o contrário. Os frameworks tomam decisões arquiteturais, estabelecendo padrões sobre como você organiza e estrutura seu código. Eles seguem a convenção sobre configuração, fornecendo padrões sensatos e esperando que você siga padrões estabelecidos. Os frameworks oferecem soluções abrangentes, lidando com preocupações mais amplas da aplicação, em vez de apenas tarefas específicas. Por fim, os frameworks fornecem orquestração ativa, executando continuamente e gerenciando o ciclo de vida da aplicação enquanto chamam seu código conforme necessário. </p>
+<h3>Exemplo de Framework no Mundo Real</h3>
+<p> Considere um framework de aplicação desktop. Você não escreve o laço principal de eventos nem manipula o gerenciamento de janelas diretamente. Em vez disso, você define o que deve acontecer quando eventos específicos ocorrem: </p>
+<pre><code class="javascript">
+        // Framework pseudocode example
+        framework.onButtonClick('saveButton', () =&gt; {
+            // Framework calls this when the button is clicked
+            saveUserData();
+        });
+        
+        framework.onWindowClose(() =&gt; {
+            // Framework calls this when user closes window
+            cleanupResources();
+        });
+        
+        // Framework starts and manages the application
+        framework.run();
+    </code></pre>
+<p> Observe como você não controla quando essas funções são executadas. O framework gerencia a interface do usuário, detecta eventos e chama suas funções nos momentos apropriados. Você trabalha dentro da estrutura do framework e responde às suas chamadas. </p>
+<div class="callout info icon">
+<div class="title">Entendendo a Inversão de Controle</div>
+<p> A inversão de controle é a diferença fundamental entre bibliotecas e frameworks. Com uma biblioteca, você escreve o programa principal e chama as funções da biblioteca quando precisa delas. Com um framework, o framework escreve o programa principal e chama suas funções quando precisa delas. Pense nisso como a diferença entre usar uma calculadora (biblioteca) e trabalhar para uma empresa (framework). Você usa a calculadora quando precisa dela, mas a empresa diz a você quando trabalhar. </p>
+</div>
+</section>
+<section>
+<h2>Principais Diferenças e Trade-offs</h2>
+<p> Entender as diferenças práticas entre frameworks e bibliotecas ajuda você a tomar melhores decisões de desenvolvimento: </p>
+<h3>Controle e Flexibilidade</h3>
+<p> As bibliotecas oferecem controle máximo sobre a arquitetura da sua aplicação. Você pode combinar e mesclar diferentes bibliotecas, organizar seu código como preferir e mudar de abordagem sem grandes reestruturações. Você constrói sua aplicação e usa bibliotecas como ferramentas dentro do seu design. </p>
+<p> Os frameworks oferecem produtividade e consistência, mas exigem que você trabalhe dentro de seus padrões estabelecidos. O framework fornece uma estrutura comprovada e lida com tarefas de orquestração complexas, mas você deve adaptar seu código para atender às expectativas do framework. </p>
+<h3>Velocidade de Aprendizado e Desenvolvimento</h3>
+<p> As bibliotecas normalmente têm uma curva de aprendizado mais suave porque você aprende funções individuais conforme necessário. Você pode dominar uma função por vez e integrá-las à sua abordagem existente. </p>
+<p> Os frameworks geralmente têm uma curva de aprendizado inicial mais acentuada porque você precisa entender a filosofia e as convenções gerais do framework antes de ser produtivo. No entanto, uma vez aprendidos, os frameworks podem acelerar significativamente o desenvolvimento para os tipos de aplicações para os quais foram projetados. </p>
+<h3>Filosofia de Resolução de Problemas</h3>
+<p> As bibliotecas resolvem problemas específicos e focados. Precisa formatar uma data? Use uma biblioteca de formatação de data. Precisa validar um endereço de e-mail? Use uma biblioteca de validação. Cada biblioteca atende a uma necessidade particular sem impor decisões arquiteturais mais amplas. </p>
+<p> Os frameworks resolvem problemas arquiteturais abrangentes. Eles não fornecem apenas recursos individuais; eles fornecem uma abordagem completa para construir categorias inteiras de aplicações, estabelecendo padrões de organização, controle de fluxo e tarefas comuns. </p>
+<div class="callout info">
+<div class="title">A Maioria das Aplicações Usa Ambos Juntos</div>
+<p> Esta não é uma escolha exclusiva! A grande maioria das aplicações reais usa frameworks e bibliotecas juntos. Você normalmente escolhe um framework para a estrutura geral e, em seguida, adiciona bibliotecas para funcionalidades específicas dentro dessa estrutura. Por exemplo, você pode usar o Express como seu framework web enquanto adiciona bibliotecas para hash de senha, validação de dados e formatação de data. </p>
+</div>
+</section>
+<section>
+<h2>Aplicação ao Desenvolvimento em Node.js</h2>
+<p> Agora que você entende os conceitos gerais, vamos ver como os frameworks e as bibliotecas se aplicam especificamente ao desenvolvimento em Node.js. No ecossistema Node.js, tanto os frameworks quanto as bibliotecas são distribuídos como "pacotes" por meio do NPM (Node Package Manager), mas seus papéis em suas aplicações permanecem fundamentalmente diferentes. </p>
+<h3>Módulos Nativos do Node.js vs. Pacotes do NPM</h3>
+<p> O Node.js vem com módulos nativos que funcionam como bibliotecas. Eles estão disponíveis sem a necessidade de instalar nada por meio do NPM: </p>
+<pre><code class="javascript">
+        // Built-in Node.js modules (no installation required)
+        import fs from 'fs';           // File system operations
+        import path from 'path';       // File path utilities
+        import http from 'http';       // HTTP server and client
+        import url from 'url';         // URL parsing utilities
+    </code></pre>
+<p> Esses módulos nativos seguem o padrão de biblioteca: você chama suas funções quando precisa de uma funcionalidade específica e permanece no controle da estrutura geral da sua aplicação. </p>
+<h3>Exemplos de Pacotes do NPM</h3>
+<p> Quando você instala pacotes pelo NPM, você encontra tanto bibliotecas quanto frameworks. Aqui estão exemplos de bibliotecas do NPM (pacotes que você chama quando necessário): </p>
+<pre><code class="javascript">
+        // Library examples (installed via NPM)
+        import bcrypt from 'bcrypt';           // Password hashing
+        import validator from 'validator';     // Data validation
+        import moment from 'moment';           // Date manipulation
+        
+        // You call these when you need their functionality
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const isValidEmail = validator.isEmail(userInput);
+        const formattedDate = moment().format('YYYY-MM-DD');
+    </code></pre>
+<p> Note como você decide quando usar estas bibliotecas. Elas fornecem funcionalidades específicas quando chamadas, mas não controlam a estrutura geral ou o fluxo da sua aplicação. </p>
+</section>
+<section>
+<h2>Express como um Exemplo de Framework</h2>
+<p> O Express demonstra o padrão de framework perfeitamente. Quando você usa o Express, ele controla a estrutura fundamental da sua aplicação e chama o seu código em resposta a requisições HTTP: </p>
+<pre><code class="javascript">
+        import express from 'express';
+        const app = express();
+
+        // You define what should happen, Express decides when to call it
+        app.get('/', (req, res) =&gt; {
+            res.send('Hello World');
+        });
+
+        app.post('/users', (req, res) =&gt; {
+            // Express calls this when POST requests arrive
+            res.json({ message: 'User created' });
+        });
+
+        // Express controls the server lifecycle and request handling
+        app.listen(3000, () =&gt; {
+            console.log('Server running on port 3000');
+        });
+    </code></pre>
+<p> O Express exemplifica o comportamento de um framework: você não controla diretamente quando suas funções manipuladoras de rota são executadas. O Express gerencia o servidor HTTP, processa requisições de entrada, faz a correspondência com as rotas e chama suas funções nos momentos apropriados. Você trabalha dentro da estrutura do Express e responde às suas chamadas. </p>
+<h3>Combinando Frameworks e Bibliotecas</h3>
+<p> Aplicações reais normalmente usam frameworks para a estrutura geral e bibliotecas para funcionalidades específicas dentro dessa estrutura: </p>
+<pre><code class="javascript">
+        import express from 'express';      // Framework: controls application flow
+        import bcrypt from 'bcrypt';        // Library: provides password hashing
+        import validator from 'validator';  // Library: provides validation
+
+        const app = express();
+
+        // Framework behavior: Express calls this when requests arrive
+        app.post('/register', async (req, res) =&gt; {
+            const { email, password } = req.body;
+            
+            // Library behavior: You call these when you need them
+            if (!validator.isEmail(email)) {
+                return res.status(400).json({ error: 'Invalid email' });
+            }
+            
+            const hashedPassword = await bcrypt.hash(password, 10);
+            
+            // Your application logic continues...
+            res.json({ message: 'User registered successfully' });
+        });
+    </code></pre>
+<p> O Express (framework) controla quando o seu manipulador de rota é executado, enquanto o bcrypt e o validator (bibliotecas) fornecem funcionalidades específicas quando o seu código os chama. </p>
+</section>
+<section>
+<h2>Entendendo o package.json Neste Contexto</h2>
+<p> Todo projeto Node.js usa um <code>package.json</code> arquivo para gerenciar seus pacotes NPM (tanto frameworks quanto bibliotecas). Este arquivo serve como o registro central para as dependências, scripts e configurações do seu projeto. </p>
+<h3>Por Que o package.json É Necessário</h3>
+<p> O Node.js requer <code>package.json</code> por vários motivos importantes. Ele rastreia dependências registrando de quais pacotes NPM sua aplicação precisa e suas versões. Ele configura o sistema de módulos, dizendo ao Node.js como lidar com instruções de import/export. Ele fornece automação de scripts com atalhos para tarefas comuns de desenvolvimento. Por fim, estabelece a identificação do projeto, marcando seu projeto como uma aplicação Node.js. </p>
+<h3>Campos Essenciais para Aplicações</h3>
+<p> Como você está construindo aplicações para seu próprio uso (e não pacotes para que outros instalem via NPM), você só precisa dos campos essenciais: </p>
+<pre><code class="json">
+        {
+            "name": "my-express-app",
+            "version": "1.0.0",
+            "type": "module",
+            "scripts": {
+                "start": "node server.js",
+                "dev": "node --watch server.js"
+            },
+            "dependencies": {
+                "express": "^4.18.0",
+                "bcrypt": "^5.1.0",
+                "validator": "^13.9.0"
+            }
+        }
+    </code></pre>
+<h3>Campos Que Você Pode Omitir</h3>
+<p> Muitos <code>package.json</code> exemplos incluem campos destinados a pacotes que serão publicados no NPM. Como você não está publicando sua aplicação como um pacote NPM, pode omitir: </p>
+<ul>
+<li>
+<code>description</code>, <code>keywords</code>, <code>author</code> – metadados para pacotes publicados </li>
+<li>
+<code>main</code> – necessário apenas se outros forem importar seu pacote </li>
+<li>
+<code>repository</code>, <code>bugs</code>, <code>homepage</code> – links para pacotes públicos </li>
+<li>
+<code>license</code> – informações legais para pacotes publicados </li>
+</ul>
+<div class="callout info">
+<div class="title">Módulos Integrados Não Aparecem no package.json</div>
+<p> Observe que módulos integrados do Node.js como <code>fs</code>, <code>path</code>, e <code>http</code> não aparecem em suas dependências. Eles fazem parte do próprio Node.js, não de pacotes NPM separados. Apenas pacotes externos que você instala via <code>npm install</code> aparecem em <code>package.json</code>.
+        </p>
+</div>
+</section>
+<section>
+<h2>Implicações Práticas para o Desenvolvimento</h2>
+<p> Entender a distinção entre framework e biblioteca afeta suas decisões diárias de desenvolvimento: </p>
+<h3>Seleção de Ferramentas</h3>
+<p> Quando você precisa de uma estrutura de aplicação abrangente, como gerenciamento de servidor web, roteamento e manipulação de requisições, escolha um framework como o Express. Quando você precisa de uma funcionalidade específica, como hash de senha ou validação de dados, escolha bibliotecas focadas como o bcrypt ou o validator. A maioria das aplicações usa ambos juntos. </p>
+<h3>Estratégia de Aprendizado</h3>
+<p> Para frameworks, foque em entender os padrões gerais, convenções e a filosofia arquitetural. Para bibliotecas, foque em entender funções específicas, seus parâmetros e valores de retorno. As abordagens de aprendizado diferem porque as ferramentas servem a propósitos diferentes. </p>
+<h3>Depuração e Resolução de Problemas</h3>
+<p> Problemas com frameworks frequentemente envolvem entender o controle de fluxo e convenções. Problemas com bibliotecas normalmente envolvem parâmetros de funções e integração. Saber com qual tipo de ferramenta você está trabalhando ajuda a fazer perguntas melhores e encontrar soluções relevantes. </p>
+</section>
+<section>
+<h2>Resumo dos Conceitos-Chave</h2>
+<p> A distinção entre frameworks e bibliotecas reflete duas abordagens diferentes para o reuso de código e arquitetura de aplicações. As bibliotecas fornecem funcionalidades específicas que você chama quando necessário, mantendo seu controle sobre o fluxo e a estrutura da aplicação. Os frameworks fornecem plataformas abrangentes que controlam o fluxo da aplicação e estabelecem padrões arquiteturais, chamando seu código quando apropriado. No entanto, essa não é uma decisão de escolha única. A vasta maioria das aplicações reais usa tanto frameworks quanto bibliotecas juntos, aproveitando os frameworks para a estrutura geral e as bibliotecas para funcionalidades específicas dentro dessa estrutura. </p>
+<p> No desenvolvimento em Node.js, essa distinção permanece importante, embora ambos sejam distribuídos como pacotes NPM. Os módulos integrados do Node.js funcionam como bibliotecas, fornecendo recursos específicos quando chamados. Os pacotes NPM podem ser bibliotecas como bcrypt e validator, ou frameworks como o Express. O Express exemplifica um framework ao controlar a estrutura da sua aplicação web e chamar seus manipuladores de rota em resposta a requisições HTTP, enquanto as bibliotecas fornecem ferramentas focadas que você chama quando necessário. </p>
+<p> Entender essa distinção ajuda você a tomar melhores decisões arquiteturais, aprender novas ferramentas de forma mais eficaz e depurar problemas com mais eficiência. A maioria das aplicações bem-sucedidas combina ambas as abordagens, usando frameworks para lidar com orquestrações complexas e bibliotecas para resolver problemas específicos dentro dessa estrutura orquestrada. </p>
+</section>
+<section>
+<h2>Explore mais</h2>
+<p> Pesquise outros frameworks web populares em diferentes linguagens de programação (Django para Python, Ruby on Rails, Laravel para PHP) para ver como diferentes frameworks abordam problemas semelhantes. Compare suas filosofias e convenções para aprofundar sua compreensão dos padrões de projeto de frameworks. </p>
+<p> Explore o registro do NPM para descobrir bibliotecas que resolvem problemas específicos que você encontrar. Pratique a distinção entre pacotes que oferecem funcionalidades focadas (bibliotecas) e aqueles que estabelecem abordagens abrangentes de desenvolvimento (frameworks). </p>
+</section>
+</main>
+<footer class="full-width">
+<div class="columns two">
+<div>
+<span class="course-code">CSE 340</span>
+             • 
+            <span class="course-name">Desenvolvimento Web Back-end</span>
+</div>
+<div> © 2024–2026 BYU–Idaho <a href="https://www.byui.edu/computer-science-engineering/" rel="noopener noreferrer" target="_blank">Departamento de CSE</a>. Todos os direitos reservados. </div>
+</div>
+</footer>
+</div>
+</body>
+</html>

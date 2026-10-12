@@ -1,0 +1,641 @@
+html
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../../assets/images/favicon/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../../assets/images/favicon/favicon.png" rel="icon" type="image/png"/>
+<link href="../../../assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<title>Instruções da Tarefa</title>
+<meta content="Implement role-based access control (RBAC) to manage user permissions based on assigned roles, enhancing security and functionality in your application." name="description"/>
+<script src="../../../assets/js/main.js" type="module"></script>
+<script src="../../../assets/js/theme-preference.js"></script>
+</head>
+<body>
+<div class="content-grid">
+<header class="full-width">
+<input aria-controls="site-primary-nav" class="visually-hidden" id="site-nav-toggle" type="checkbox"/>
+<label aria-hidden="true" class="site-nav-backdrop" for="site-nav-toggle"></label>
+<div class="inner">
+<div class="site-brand">
+<a aria-label="CSE 340 home" class="brand-link" href="../../../index.html">
+<img alt="BYU–Idaho" class="site-logo" decoding="async" src="../../../assets/images/logos/byui-logo.png"/>
+</a>
+</div>
+<div class="site-course-info">
+<a href="../../../index.html">
+<span class="course-code">CSE 340</span>
+                 • 
+                <span class="course-name">Desenvolvimento Web Back-end</span>
+</a>
+</div>
+<nav aria-label="Primary" class="site-primary-nav" id="site-primary-nav">
+<ul aria-label="Course units" class="nav-list">
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<div class="site-header-tools">
+<label class="site-nav-menu-btn" for="site-nav-toggle">
+<span class="visually-hidden">Menu</span>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-open" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"></path></svg>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-close" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"></path></svg>
+</label>
+<input aria-controls="site-search-panel" class="visually-hidden" id="site-search-toggle" type="checkbox"/>
+<label class="site-search-trigger" for="site-search-toggle">
+<span class="visually-hidden">Alternar busca no site</span>
+<span aria-hidden="true">🔎</span>
+<span aria-hidden="true">✕</span>
+</label>
+<details class="theme-menu">
+<summary class="theme-control">
+<span class="visually-hidden">Esquema de cores</span>
+</summary>
+<div aria-label="Choose color scheme" class="theme-extra" role="group">
+<label class="theme-control theme-pick" data-theme-pick="light">
+<input name="theme-preference" type="radio" value="light"/>
+<span aria-hidden="true">☀️</span>
+<span class="visually-hidden">Claro</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="system">
+<input name="theme-preference" type="radio" value="system"/>
+<span aria-hidden="true">⚙️</span>
+<span class="visually-hidden">Padrão do sistema</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="dark">
+<input name="theme-preference" type="radio" value="dark"/>
+<span aria-hidden="true">🌖</span>
+<span class="visually-hidden">Escuro</span>
+</label>
+</div>
+</details>
+</div>
+</div>
+<div aria-label="Site search" id="site-search-panel" role="region">
+<form action="" method="get" role="search">
+<label class="visually-hidden" for="site-search-query">Buscar</label>
+<input autocomplete="off" enterkeyhint="search" id="site-search-query" name="query" placeholder="Search…" type="search"/>
+</form>
+<div aria-live="polite" class="site-search-results" id="site-search-results"></div>
+</div>
+</header>
+<main>
+<nav aria-label="Course units" class="course-breadcrumbs unit">
+<ul>
+<li>
+<a aria-label="Home" href="../../../index.html">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z">
+</path></svg>
+</a>
+</li>
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<section>
+<h1>Gerenciamento de Contas e Controle de Acesso Baseado em Papéis</h1>
+<p> Nesta tarefa, você implementará o controle de acesso baseado em papéis em sua aplicação, transformando-a de um sistema onde todos os usuários autenticados têm permissões idênticas para um onde diferentes usuários podem realizar diferentes ações com base em seus papéis atribuídos. Você criará a estrutura do banco de dados para suportar papéis, modificará seu sistema de autenticação para incluir informações sobre papéis, construirá middleware de autorização para proteger rotas e criará funcionalidades de gerenciamento de contas que respeitem os limites de permissão. </p>
+<p> Ao final desta tarefa, você terá um sistema funcional onde usuários padrão podem editar suas próprias informações de conta, enquanto administradores podem gerenciar todas as contas de usuário. Você usará o sistema de mensagens flash que implementou anteriormente para fornecer um feedback claro quando as verificações de autorização forem bem-sucedidas ou falharem. </p>
+</section>
+<section>
+<h2>Instruções da Tarefa</h2>
+<h3>1. Criar Estrutura de Banco de Dados para Papéis</h3>
+<p> Abra o seu <code>src/models/sql/practice.sql</code> arquivo e adicione as seguintes instruções SQL ao final. Essas instruções criam uma tabela de papéis (roles), adicionam uma referência de papel à sua tabela de usuários, povoam os papéis iniciais e atribuem os usuários existentes ao papel padrão. </p>
+<pre><code class="sql">
+        -- Roles table for role-based access control
+        CREATE TABLE IF NOT EXISTS roles (
+            id SERIAL PRIMARY KEY,
+            role_name VARCHAR(50) UNIQUE NOT NULL,
+            role_description TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+
+        -- Add role_id column to users table if it doesn't exist
+        DO $$
+        BEGIN
+            IF NOT EXISTS (
+                SELECT 1 FROM information_schema.columns 
+                WHERE table_name = 'users' AND column_name = 'role_id'
+            ) THEN
+                ALTER TABLE users 
+                ADD COLUMN role_id INTEGER REFERENCES roles(id);
+            END IF;
+        END $$;
+
+        -- Seed roles (idempotent - safe to run multiple times)
+        INSERT INTO roles (role_name, role_description) 
+        VALUES 
+            ('user', 'Standard user with basic access'),
+            ('admin', 'Administrator with full system access')
+        ON CONFLICT (role_name) DO NOTHING;
+
+        -- Set the default value of role_id to the 'user' role so new inserts without role_id are handled automatically
+        DO $$
+        DECLARE
+            user_role_id INTEGER;
+        BEGIN
+            SELECT id INTO user_role_id FROM roles WHERE role_name = 'user';
+            IF user_role_id IS NOT NULL THEN
+                EXECUTE format(
+                    'ALTER TABLE users ALTER COLUMN role_id SET DEFAULT %s',
+                    user_role_id
+                );
+            END IF;
+        END $$;
+
+        -- Update existing users without a role to default 'user' role
+        DO $$
+        DECLARE
+            user_role_id INTEGER;
+        BEGIN
+            SELECT id INTO user_role_id FROM roles WHERE role_name = 'user';
+            IF user_role_id IS NOT NULL THEN
+                UPDATE users 
+                SET role_id = user_role_id 
+                WHERE role_id IS NULL;
+            END IF;
+        END $$;
+    </code></pre>
+<p> Reinicie o seu servidor e verifique as alterações no pgAdmin. Você deve ver uma tabela roles com dois papéis, e sua tabela de usuários deve ter uma <code>role_id</code> coluna com todos os usuários existentes atribuídos ao papel "user". </p>
+<div class="callout info">
+<div class="title">Entendendo Chaves Estrangeiras</div>
+<p> A restrição de chave estrangeira (<code>REFERENCES roles(id)</code>) cria um relacionamento entre as tabelas users e roles. O PostgreSQL garante que qualquer <code>role_id</code> valor na tabela users deve corresponder a um <code>id</code> que exista na tabela roles. Você não pode atribuir um usuário a um papel que não existe, e não pode excluir um papel ao qual usuários estejam atribuídos atualmente. </p>
+</div>
+<h3>2. Criar Contas de Teste</h3>
+<p> Você precisa de contas de teste para verificar se o controle de acesso baseado em papéis funciona corretamente. A abordagem mais simples é registrar contas através da sua aplicação e, em seguida, promover uma delas para admin usando o pgAdmin. </p>
+<p> Use o seu formulário de registro para criar três contas de teste com esta senha: <code>Test1234!</code>
+</p>
+<ul>
+<li>admin@example.com</li>
+<li>user1@example.com</li>
+<li>user2@example.com</li>
+</ul>
+<p> Após registrar essas contas, abra o pgAdmin e execute este SQL para promover a primeira conta a admin: </p>
+<pre><code class="sql">
+        -- Promote admin@example.com to admin role
+        UPDATE users 
+        SET role_id = (SELECT id FROM roles WHERE role_name = 'admin')
+        WHERE email = 'admin@example.com';
+    </code></pre>
+<p> Agora você tem uma conta de admin e duas contas de usuário padrão, todas com a mesma senha para facilitar os testes. </p>
+<h3>3. Incluir Informações de Papel em Sessões</h3>
+<p> Quando os usuários fazem login, sua aplicação precisa recuperar as informações do papel deles e armazená-las na sessão. Abra <code>src/models/forms/login.js</code> e atualize a <code>findUserByEmail</code> função para fazer a junção (join) com a tabela roles: </p>
+<pre><code class="javascript">
+        const findUserByEmail = async (email) =&gt; {
+            const query = `
+                SELECT 
+                    users.id, 
+                    users.name, 
+                    users.email, 
+                    users.password, 
+                    users.created_at,
+                    roles.role_name AS "roleName"
+                FROM users
+                INNER JOIN roles ON users.role_id = roles.id
+                WHERE LOWER(users.email) = LOWER($1)
+                LIMIT 1
+            `;
+            const result = await db.query(query, [email]);
+            return result.rows[0] || null;
+        };
+    </code></pre>
+<p> O controlador de login já remove a senha antes de armazenar o usuário na sessão, então <code>roleName</code> será incluído automaticamente em <code>req.session.user</code>. Reinicie o seu servidor, faça login e verifique se o papel está na sessão adicionando o seguinte à sua exibição do painel entre as linhas de e-mail e data de criação: </p>
+<pre><code class="html">
+        &lt;div class="user-detail"&gt;
+            &lt;span class="label"&gt;Role:&lt;/span&gt;
+            &lt;span class="value"&gt;&lt;%= user.roleName %&gt;&lt;/span&gt;
+        &lt;/div&gt;
+    </code></pre>
+<p> Você deve ver "user" ou "admin" dependendo da conta com a qual fez login. Em uma aplicação de produção, você normalmente não exibiria informações de papel na interface do usuário, mas isso é útil para testes. </p>
+<h3>4. Criar Middleware de Autorização</h3>
+<p> Abra <code>src/middleware/auth.js</code>. Atualmente, este arquivo possui <code>requireLogin</code> middleware que verifica a autenticação. Adicione uma nova função fábrica de middleware que verifica a autorização (permissões baseadas em papéis). </p>
+<p> Adicione esta função após <code>requireLogin</code>:
+    </p>
+<pre><code class="javascript">
+        /**
+         * Middleware factory to require specific role for route access
+         * Returns middleware that checks if user has the required role
+         * 
+         * @param {string} roleName - The role name required (e.g., 'admin', 'user')
+         * @returns {Function} Express middleware function
+         */
+        const requireRole = (roleName) =&gt; {
+            return (req, res, next) =&gt; {
+                // Check if user is logged in first
+                if (!req.session || !req.session.user) {
+                    req.flash('error', 'You must be logged in to access this page.');
+                    return res.redirect('/login');
+                }
+
+                // Check if user's role matches the required role
+                if (req.session.user.roleName !== roleName) {
+                    req.flash('error', 'You do not have permission to access this page.');
+                    return res.redirect('/');
+                }
+
+                // User has required role, continue
+                next();
+            };
+        };
+    </code></pre>
+<p> Atualize a instrução de exportação: </p>
+<pre><code class="javascript">
+        export { requireLogin, requireRole };
+    </code></pre>
+<p> Esta fábrica de middleware retorna uma função que verifica se o usuário autenticado possui a função necessária. O comentário em seu atual <code>requireLogin</code> mencionou "podemos aprimorar isso mais tarde com funções e permissões" - esta é essa melhoria. </p>
+<h3>5. Adicionar modelos de gerenciamento de conta</h3>
+<p> Abrir <code>src/models/forms/registration.js</code> e adicione três novas funções para o gerenciamento de contas. Adicione estas funções antes da instrução de exportação: </p>
+<pre><code class="javascript">
+        /**
+         * Retrieve a single user by ID with role information
+         */
+        const getUserById = async (id) =&gt; {
+            const query = `
+                SELECT 
+                    users.id,
+                    users.name,
+                    users.email,
+                    users.created_at,
+                    roles.role_name AS "roleName"
+                FROM users
+                INNER JOIN roles ON users.role_id = roles.id
+                WHERE users.id = $1
+            `;
+            const result = await db.query(query, [id]);
+            return result.rows[0] || null;
+        };
+
+        /**
+         * Update a user's name and email
+         */
+        const updateUser = async (id, name, email) =&gt; {
+            const query = `
+                UPDATE users 
+                SET name = $1, email = $2, updated_at = CURRENT_TIMESTAMP
+                WHERE id = $3
+                RETURNING id, name, email, updated_at
+            `;
+            const result = await db.query(query, [name, email, id]);
+            return result.rows[0] || null;
+        };
+
+        /**
+         * Delete a user account
+         */
+        const deleteUser = async (id) =&gt; {
+            const query = 'DELETE FROM users WHERE id = $1';
+            const result = await db.query(query, [id]);
+            return result.rowCount &gt; 0;
+        };
+    </code></pre>
+<p> Atualize a instrução de exportação para incluir estas novas funções: </p>
+<pre><code class="javascript">
+        export { 
+            emailExists, 
+            saveUser, 
+            getAllUsers, 
+            getUserById, 
+            updateUser, 
+            deleteUser 
+        };
+    </code></pre>
+<h3>6. Criar controladores de edição de conta</h3>
+<p> Abrir <code>src/controllers/forms/registration.js</code>. Primeiro, atualize a instrução de importação para incluir suas novas funções de modelo: </p>
+<pre><code class="javascript">
+        import { 
+            emailExists, 
+            saveUser, 
+            getAllUsers,
+            getUserById,
+            updateUser,
+            deleteUser
+        } from '../../models/forms/registration.js';
+    </code></pre>
+<p> Adicione regras de validação para editar contas. Coloque isso após o seu <code>registrationValidation</code> array: </p>
+<pre><code class="javascript">
+        /**
+         * Validation rules for editing user accounts
+         */
+        const editValidation = [
+            body('name')
+                .trim()
+                .isLength({ min: 2, max: 100 })
+                .withMessage('Name must be between 2 and 100 characters')
+                .matches(/^[a-zA-Z\s'-]+$/)
+                .withMessage('Name can only contain letters, spaces, hyphens, and apostrophes'),
+            body('email')
+                .trim()
+                .isEmail()
+                .normalizeEmail()
+                .withMessage('Must be a valid email address')
+                .isLength({ max: 255 })
+                .withMessage('Email address is too long')
+        ];
+    </code></pre>
+<p> Adicione estas duas funções de controlador antes das definições de rota: </p>
+<pre><code class="javascript">
+        /**
+         * Display the edit account form
+         * Users can edit their own account, admins can edit any account
+         */
+        const showEditAccountForm = async (req, res) =&gt; {
+            const targetUserId = parseInt(req.params.id);
+            const currentUser = req.session.user;
+
+            const targetUser = await getUserById(targetUserId);
+            
+            if (!targetUser) {
+                req.flash('error', 'User not found.');
+                return res.redirect('/register/list');
+            }
+
+            // Check permissions: users can edit themselves, admins can edit anyone
+            const canEdit = currentUser.id === targetUserId || currentUser.roleName === 'admin';
+            
+            if (!canEdit) {
+                req.flash('error', 'You do not have permission to edit this account.');
+                return res.redirect('/register/list');
+            }
+
+            res.render('forms/registration/edit', {
+                title: 'Edit Account',
+                user: targetUser
+            });
+        };
+
+        /**
+         * Process account edit form submission
+         */
+        const processEditAccount = async (req, res) =&gt; {
+            const errors = validationResult(req);
+
+            if (!errors.isEmpty()) {
+                errors.array().forEach(error =&gt; {
+                    req.flash('error', error.msg);
+                });
+                return res.redirect(`/register/${req.params.id}/edit`);
+            }
+
+            const targetUserId = parseInt(req.params.id);
+            const currentUser = req.session.user;
+            const { name, email } = req.body;
+
+            try {
+                const targetUser = await getUserById(targetUserId);
+                
+                if (!targetUser) {
+                    req.flash('error', 'User not found.');
+                    return res.redirect('/register/list');
+                }
+
+                // Check permissions
+                const canEdit = currentUser.id === targetUserId || currentUser.roleName === 'admin';
+                
+                if (!canEdit) {
+                    req.flash('error', 'You do not have permission to edit this account.');
+                    return res.redirect('/register/list');
+                }
+
+                // Check if new email already exists (and belongs to different user)
+                const emailTaken = await emailExists(email);
+                if (emailTaken &amp;&amp; targetUser.email !== email) {
+                    req.flash('error', 'An account with this email already exists.');
+                    return res.redirect(`/register/${targetUserId}/edit`);
+                }
+
+                // Update the user
+                await updateUser(targetUserId, name, email);
+
+                // If user edited their own account, update session
+                if (currentUser.id === targetUserId) {
+                    req.session.user.name = name;
+                    req.session.user.email = email;
+                }
+
+                req.flash('success', 'Account updated successfully.');
+                res.redirect('/register/list');
+            } catch (error) {
+                console.error('Error updating account:', error);
+                req.flash('error', 'An error occurred while updating the account.');
+                res.redirect(`/register/${targetUserId}/edit`);
+            }
+        };
+    </code></pre>
+<p> Adicione estas rotas antes da instrução de exportação: </p>
+<pre><code class="javascript">
+        /**
+         * GET /register/:id/edit - Display edit account form
+         */
+        router.get('/:id/edit', requireLogin, showEditAccountForm);
+
+        /**
+         * POST /register/:id/edit - Process account edit
+         */
+        router.post('/:id/edit', requireLogin, editValidation, processEditAccount);
+    </code></pre>
+<p> Adicione o <code>requireLogin</code> import no topo do arquivo: </p>
+<pre><code class="javascript">
+        import { requireLogin } from '../../middleware/auth.js';
+    </code></pre>
+<h3>7. Criar controlador de exclusão de conta</h3>
+<p> No mesmo <code>src/controllers/forms/registration.js</code> arquivo, adicione a função de controlador de exclusão: </p>
+<pre><code class="javascript">
+        /**
+         * Process account deletion
+         * Only admins can delete accounts, and they cannot delete themselves
+         */
+        const processDeleteAccount = async (req, res) =&gt; {
+            const targetUserId = parseInt(req.params.id);
+            const currentUser = req.session.user;
+
+            // Only admins can delete accounts
+            if (currentUser.roleName !== 'admin') {
+                req.flash('error', 'You do not have permission to delete accounts.');
+                return res.redirect('/register/list');
+            }
+
+            // Prevent admins from deleting their own account
+            if (currentUser.id === targetUserId) {
+                req.flash('error', 'You cannot delete your own account.');
+                return res.redirect('/register/list');
+            }
+
+            try {
+                const deleted = await deleteUser(targetUserId);
+                
+                if (deleted) {
+                    req.flash('success', 'User account deleted successfully.');
+                } else {
+                    req.flash('error', 'User not found or already deleted.');
+                }
+            } catch (error) {
+                console.error('Error deleting user:', error);
+                req.flash('error', 'An error occurred while deleting the account.');
+            }
+
+            res.redirect('/register/list');
+        };
+    </code></pre>
+<p> Adicione a rota de exclusão: </p>
+<pre><code class="javascript">
+        /**
+         * POST /register/:id/delete - Delete user account
+         */
+        router.post('/:id/delete', requireLogin, processDeleteAccount);
+    </code></pre>
+<h3>8. Criar a visualização de edição de conta</h3>
+<p> Crie um novo arquivo em <code>src/views/forms/registration/edit.ejs</code> com este conteúdo: </p>
+<pre><code class="html">
+        &lt;%- include('../../partials/header') %&gt;
+
+        &lt;main&gt;
+            &lt;h1&gt;&lt;%= title %&gt;&lt;/h1&gt;
+            
+            &lt;form method="POST" action="/register/&lt;%= user.id %&gt;/edit"&gt;
+                &lt;div&gt;
+                    &lt;label for="name"&gt;Name:&lt;/label&gt;
+                    &lt;input type="text" id="name" name="name" value="&lt;%= user.name %&gt;" required&gt;
+                &lt;/div&gt;
+                
+                &lt;div&gt;
+                    &lt;label for="email"&gt;Email:&lt;/label&gt;
+                    &lt;input type="email" id="email" name="email" value="&lt;%= user.email %&gt;" required&gt;
+                &lt;/div&gt;
+                
+                &lt;button type="submit"&gt;Update Account&lt;/button&gt;
+                &lt;a href="/register/list"&gt;Cancel&lt;/a&gt;
+            &lt;/form&gt;
+        &lt;/main&gt;
+
+        &lt;%- include('../../partials/footer') %&gt;
+    </code></pre>
+<h3>9. Atualizar o controlador da lista de usuários</h3>
+<p> Antes de adicionar botões à visualização da lista de usuários, você precisa garantir que os dados do usuário atual conectado estejam disponíveis para a visualização. Abra <code>src/controllers/forms/registration.js</code> e atualize a <code>showAllUsers</code> função: </p>
+<pre><code class="javascript">
+        const showAllUsers = async (req, res) =&gt; {
+            let users = [];
+            
+            try {
+                users = await getAllUsers();
+            } catch (error) {
+                console.error('Error retrieving users:', error);
+            }
+
+            res.render('forms/registration/list', {
+                title: 'Registered Users',
+                users,
+                user: req.session &amp;&amp; req.session.user ? req.session.user : null
+            });
+        };
+    </code></pre>
+<p> Isso passa o usuário conectado atual para a visualização como <code>user</code>, que é separado do <code>users</code> array. A visualização usará isso para determinar quais permissões o usuário atual possui. </p>
+<h3>10. Adicionar botões de editar e excluir à lista de usuários</h3>
+<p> Abrir <code>src/views/forms/registration/list.ejs</code>. Localize onde você exibe cada cartão de usuário e atualize-o para incluir verificações de permissão e botões: </p>
+<pre><code class="html">
+        &lt;% if (users &amp;&amp; users.length &gt; 0) { %&gt;
+            &lt;div class="users-list"&gt;
+                &lt;% users.forEach(listUser =&gt; { %&gt;
+                    &lt;% 
+                        // Calculate permissions for this user card
+                        // 'user' variable contains the current logged-in user (from session)
+                        // 'listUser' is the user from the users array we're currently rendering
+                        const currentUser = typeof isLoggedIn !== 'undefined' &amp;&amp; isLoggedIn ? user : null;
+                        const canEdit = currentUser &amp;&amp; (currentUser.id === listUser.id || currentUser.roleName === 'admin');
+                        const canDelete = currentUser &amp;&amp; currentUser.roleName === 'admin' &amp;&amp; currentUser.id !== listUser.id;
+                    %&gt;
+                    &lt;div class="user-card"&gt;
+                        &lt;h3&gt;&lt;%= listUser.name %&gt;&lt;/h3&gt;
+                        &lt;p&gt;&lt;%= listUser.email %&gt;&lt;/p&gt;
+                        
+                        &lt;% if (canEdit || canDelete) { %&gt;
+                            &lt;div class="user-actions"&gt;
+                                &lt;% if (canEdit) { %&gt;
+                                    &lt;a href="/register/&lt;%= listUser.id %&gt;/edit"&gt;Edit&lt;/a&gt;
+                                &lt;% } %&gt;
+                                
+                                &lt;% if (canDelete) { %&gt;
+                                    &lt;form method="POST" action="/register/&lt;%= listUser.id %&gt;/delete" style="display: inline;"&gt;
+                                        &lt;button type="submit" onclick="return confirm('Are you sure you want to delete this user?')"&gt;Delete&lt;/button&gt;
+                                    &lt;/form&gt;
+                                &lt;% } %&gt;
+                            &lt;/div&gt;
+                        &lt;% } %&gt;
+                    &lt;/div&gt;
+                &lt;% }); %&gt;
+            &lt;/div&gt;
+        &lt;% } else { %&gt;
+    </code></pre>
+<p> Este código calcula as permissões uma vez por cartão e, em seguida, renderiza condicionalmente o link Editar e o botão Excluir. O botão Excluir inclui uma caixa de diálogo de confirmação para evitar exclusões acidentais. </p>
+<div class="callout warn">
+<p> Ocultar botões na interface do usuário é uma questão de experiência do usuário, não de segurança. Um atacante determinado ainda poderia enviar requisições POST para a sua rota de exclusão, mesmo se nunca vir um botão Excluir. É por isso que seus controladores impõem autorização no servidor. A interface do usuário simplesmente evita confusões ao não mostrar aos usuários botões para ações que eles não podem realizar. </p>
+</div>
+<h3>11. Testar sua implementação</h3>
+<p> Teste minuciosamente seu sistema de controle de acesso baseado em funções com diferentes tipos de usuários: </p>
+<p>
+<strong>Como um usuário padrão (user1@example.com / Test1234!):</strong>
+</p>
+<ul>
+<li> Acesse <code>/register/list</code> e verifique se você vê um botão Editar apenas no seu próprio cartão de usuário </li>
+<li> Clique em Editar no seu cartão e altere seu nome ou e-mail </li>
+<li> Tente acessar <code>/register/2/edit</code> (a página de edição de outro usuário) e verifique se você é redirecionado com uma mensagem de erro </li>
+</ul>
+<p>
+<strong>Como administrador (admin@example.com / Test1234!):</strong>
+</p>
+<ul>
+<li> Acesse <code>/register/list</code> e verifique se você vê botões Editar em todos os cartões e botões Excluir em todos os cartões, exceto no seu próprio </li>
+<li> Edite a conta de outro usuário e verifique se as alterações são salvas </li>
+<li> Exclua uma das contas de usuário de teste e verifique se ela desaparece da lista </li>
+<li> Verifique se você não pode excluir sua própria conta (nenhum botão Excluir aparece no seu cartão) </li>
+</ul>
+<p>
+<strong>Como um visitante não autenticado:</strong>
+</p>
+<ul>
+<li> Acesse <code>/register/list</code> e verifique se você vê a lista, mas nenhum botão Editar ou Excluir </li>
+<li> Tente acessar <code>/register/1/edit</code> diretamente e verifique se você é redirecionado para o login </li>
+</ul>
+</section>
+<section>
+<h2>Resumo dos conceitos-chave</h2>
+<p> Esta Tarefa demonstrou o controle de acesso baseado em funções em uma aplicação funcional. Você criou estruturas de banco de dados para armazenar funções e associá-las aos usuários usando relacionamentos de chave estrangeira. Sua lógica de configuração é idempotente, o que significa que pode ser executada com segurança várias vezes sem criar dados duplicados. </p>
+<p> Você modificou seu sistema de autenticação para recuperar e armazenar informações de função em sessões, tornando as decisões de autorização eficientes. O padrão de fábrica de middleware de autorização (<code>requireRole</code>) fornece verificação de função reutilizável para rotas. A autorização no nível do controlador lida com verificações de permissão específicas de recursos, como permitir que os usuários editem apenas suas próprias contas. </p>
+<p> Suas exibições agora mostram diferentes capacidades com base no contexto do usuário. Isso melhora a experiência do usuário ao ocultar ações que os usuários não podem realizar, enquanto a autorização no lado do servidor garante a segurança real. A combinação de proteção por middleware, lógica de controlador e interface do usuário condicional cria um sistema de controle de acesso robusto. </p>
+</section>
+<section>
+<h2>Princípios de Segurança Aplicados</h2>
+<p>
+<strong>A Autorização no Lado do Servidor É Obrigatória:</strong> Toda rota que modifica dados deve verificar permissões no servidor. Sua lógica de middleware e controlador impõe quem pode editar e excluir contas. Ocultar botões na interface do usuário evita confusão, mas não fornece segurança. </p>
+<p>
+<strong>Defesa em Profundidade:</strong> Sua aplicação verifica permissões em vários lugares. O middleware bloqueia rotas para usuários não autorizados. Os controladores verificam as permissões antes das operações. As exibições ocultam botões para ações indisponíveis. Se uma camada falhar, outras camadas ainda fornecerão proteção. </p>
+<p>
+<strong>Prevenção de Danos Próprios:</strong> Seu controlador de exclusão impede que administradores excluam suas próprias contas. Sem essa verificação, um administrador poderia acidentalmente ficar sem acesso ao sistema. </p>
+<p>
+<strong>Restrições de Chave Estrangeira:</strong> O relacionamento de chave estrangeira entre usuários e funções impede dados órfãos. Você não pode atribuir um usuário a uma função que não existe e não pode excluir uma função que os usuários possuem atualmente. Essa proteção em nível de banco de dados evita inconsistências de dados. </p>
+</section>
+</main>
+<footer class="full-width">
+<div class="columns two">
+<div>
+<span class="course-code">CSE 340</span>
+             • 
+            <span class="course-name">Desenvolvimento Back-end Web</span>
+</div>
+<div> © 2024–2026 BYU–Idaho <a href="https://www.byui.edu/computer-science-engineering/" rel="noopener noreferrer" target="_blank">Departamento de CSE</a>. Todos os direitos reservados. </div>
+</div>
+</footer>
+</div>
+</body>
+</html>

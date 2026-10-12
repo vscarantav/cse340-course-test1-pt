@@ -1,0 +1,413 @@
+html
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../../assets/images/favicon/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../../assets/images/favicon/favicon.png" rel="icon" type="image/png"/>
+<link href="../../../assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<title>A Distinção Crítica: Atribuição vs Modificação</title>
+<meta content="Understanding the difference between passing by value and passing by reference in programming." name="description"/>
+<script src="../../../assets/js/main.js" type="module"></script>
+<script src="../../../assets/js/theme-preference.js"></script>
+</head>
+<body>
+<div class="content-grid">
+<header class="full-width">
+<input aria-controls="site-primary-nav" class="visually-hidden" id="site-nav-toggle" type="checkbox"/>
+<label aria-hidden="true" class="site-nav-backdrop" for="site-nav-toggle"></label>
+<div class="inner">
+<div class="site-brand">
+<a aria-label="CSE 340 home" class="brand-link" href="../../../index.html">
+<img alt="BYU–Idaho" class="site-logo" decoding="async" src="../../../assets/images/logos/byui-logo.png"/>
+</a>
+</div>
+<div class="site-course-info">
+<a href="../../../index.html">
+<span class="course-code">CSE 340</span>
+                 • 
+                <span class="course-name">Desenvolvimento Web Back-end</span>
+</a>
+</div>
+<nav aria-label="Primary" class="site-primary-nav" id="site-primary-nav">
+<ul aria-label="Course units" class="nav-list">
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<div class="site-header-tools">
+<label class="site-nav-menu-btn" for="site-nav-toggle">
+<span class="visually-hidden">Menu</span>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-open" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"></path></svg>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-close" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"></path></svg>
+</label>
+<input aria-controls="site-search-panel" class="visually-hidden" id="site-search-toggle" type="checkbox"/>
+<label class="site-search-trigger" for="site-search-toggle">
+<span class="visually-hidden">Alternar pesquisa do site</span>
+<span aria-hidden="true">🔎</span>
+<span aria-hidden="true">✕</span>
+</label>
+<details class="theme-menu">
+<summary class="theme-control">
+<span class="visually-hidden">Esquema de cores</span>
+</summary>
+<div aria-label="Choose color scheme" class="theme-extra" role="group">
+<label class="theme-control theme-pick" data-theme-pick="light">
+<input name="theme-preference" type="radio" value="light"/>
+<span aria-hidden="true">☀️</span>
+<span class="visually-hidden">Claro</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="system">
+<input name="theme-preference" type="radio" value="system"/>
+<span aria-hidden="true">⚙️</span>
+<span class="visually-hidden">Padrão do sistema</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="dark">
+<input name="theme-preference" type="radio" value="dark"/>
+<span aria-hidden="true">🌖</span>
+<span class="visually-hidden">Escuro</span>
+</label>
+</div>
+</details>
+</div>
+</div>
+<div aria-label="Site search" id="site-search-panel" role="region">
+<form action="" method="get" role="search">
+<label class="visually-hidden" for="site-search-query">Pesquisar</label>
+<input autocomplete="off" enterkeyhint="search" id="site-search-query" name="query" placeholder="Search…" type="search"/>
+</form>
+<div aria-live="polite" class="site-search-results" id="site-search-results"></div>
+</div>
+</header>
+<main>
+<nav aria-label="Course units" class="course-breadcrumbs unit">
+<ul>
+<li>
+<a aria-label="Home" href="../../../index.html">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z">
+</path></svg>
+</a>
+</li>
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<section>
+<h1>Passagem por Valor vs Passagem por Referência no JavaScript</h1>
+<p> Compreender como o JavaScript lida com dados ao passá-los para funções é fundamental para escrever código previsível e livre de bugs. A distinção entre passagem por valor e passagem por referência afeta como suas funções interagem com os dados e pode levar a comportamentos inesperados se não for devidamente compreendida. </p>
+<p> Este conceito fundamental determina se as alterações feitas dentro de uma função afetam os dados originais fora da função. O comportamento depende inteiramente do tipo de dado com o qual você está trabalhando. </p>
+</section>
+<section>
+<h2>Compreendendo a Passagem por Valor</h2>
+<p> Passagem por valor significa que, quando você passa uma variável para uma função, o JavaScript cria uma cópia do valor dessa variável. Qualquer alteração feita no parâmetro dentro da função afeta apenas a cópia, não a variável original. </p>
+<p> No JavaScript, todos os tipos de dados primitivos são passados por valor. Estes incluem números, strings, booleanos, nulo, undefined e symbols. Quando você passa um valor primitivo para uma função, está essencialmente entregando à função uma fotocópia dos seus dados. </p>
+<pre><code class="javascript">
+        function modifyNumber(num) {
+            num = num + 10;
+            console.log("Inside function:", num); // 25
+        }
+
+        let originalNumber = 15;
+        modifyNumber(originalNumber);
+        console.log("Outside function:", originalNumber); // Still 15
+    </code></pre>
+<p> Neste exemplo, a <code>originalNumber</code> permanece inalterada porque o JavaScript criou uma cópia do seu valor (15) e passou essa cópia para a função. A função modificou a cópia, não o original. </p>
+<h3>Exemplo de String</h3>
+<p> As strings se comportam da mesma maneira, embora possam parecer estruturas de dados complexas: </p>
+<pre><code class="javascript">
+        function modifyString(str) {
+            str = str + " - modified";
+            console.log("Inside function:", str); // "Hello - modified"
+        }
+
+        let originalString = "Hello";
+        modifyString(originalString);
+        console.log("Outside function:", originalString); // Still "Hello"
+    </code></pre>
+</section>
+<section>
+<h2>Compreendendo a Passagem por Referência</h2>
+<p> Passagem por referência significa que, quando você passa uma variável para uma função, o JavaScript passa uma referência (ou ponteiro) para os dados originais na memória. Isso significa que a função pode modificar diretamente a estrutura de dados original. </p>
+<p> No JavaScript, objetos (incluindo arrays, funções e datas) são passados por referência. Quando você passa um objeto para uma função, está dando à função acesso ao objeto real na memória, não a uma cópia. </p>
+<pre><code class="javascript">
+        function modifyObject(obj) {
+            obj.name = "Jane";
+            obj.age = 30;
+            console.log("Inside function:", obj); // { name: "Jane", age: 30 }
+        }
+
+        let person = { name: "John", age: 25 };
+        modifyObject(person);
+        console.log("Outside function:", person); // { name: "Jane", age: 30 }
+    </code></pre>
+<p> Observe como o <code>person</code> objeto original foi modificado pela função. Isso acontece porque tanto a <code>person</code> variável quanto o <code>obj</code> parâmetro apontam para o mesmo objeto na memória. </p>
+<h3>Exemplo de Array</h3>
+<p> Os arrays se comportam da mesma maneira, pois são objetos no JavaScript: </p>
+<pre><code class="javascript">
+        function modifyArray(arr) {
+            arr.push("new item");
+            arr[0] = "modified";
+            console.log("Inside function:", arr); // ["modified", "b", "c", "new item"]
+        }
+
+        let originalArray = ["a", "b", "c"];
+        modifyArray(originalArray);
+        console.log("Outside function:", originalArray); // ["modified", "b", "c", "new item"]
+    </code></pre>
+</section>
+<section>
+<h2>A Distinção Crítica: Atribuição vs Modificação</h2>
+<p> Existe uma nuance importante ao trabalhar com objetos e referências. Embora você possa modificar o conteúdo de um objeto por meio de uma referência, não pode reatribuir a própria referência para apontar para um objeto completamente diferente. </p>
+<pre><code class="javascript">
+        /**
+         * Copy-paste this code in your browsers dev console to see the results in action.
+         */
+
+        function reassignObject(obj) {
+            // This modifies the original object
+            obj.name = "Modified";
+            
+            // This creates a new local variable, doesn't affect the original
+            obj = { name: "Completely New", age: 99 };
+            console.log("Inside function after reassignment:", obj);
+        }
+
+        let person = { name: "John", age: 25 };
+        reassignObject(person);
+        console.log("Outside function:", person); // { name: "Modified", age: 25 }
+    </code></pre>
+<p> Neste exemplo, modificar <code>obj.name</code> altera o objeto original porque estamos modificando o objeto para o qual a referência aponta. No entanto, quando atribuímos <code>obj</code> a um objeto completamente novo, estamos apenas alterando para onde a <code>obj</code> variável local aponta, sem afetar a <code>person</code> variável original. </p>
+<div class="callout info icon">
+<div class="title">Perspectiva da Memória</div>
+<p> Pense em referências como endereços. Quando você passa um objeto por referência, está dando à função o endereço onde o objeto reside. A função pode visitar esse endereço e modificar o objeto, mas não pode alterar para onde a sua variável original aponta. Essa abordagem permite o uso eficiente da memória e evita duplicações desnecessárias (overhead adicional), e é por isso que a passagem por referência é comum em muitas linguagens de programação. </p>
+</div>
+</section>
+<section>
+<h2>Implicações Práticas e Armadilhas Comuns</h2>
+<p> Compreender a passagem por valor vs passagem por referência é essencial para evitar bugs e escrever código previsível. Aqui estão alguns cenários comuns em que esse conhecimento é fundamental: </p>
+<h3>Mutações Inesperadas de Objetos</h3>
+<p> Um dos problemas mais comuns ocorre quando funções modificam objetos não intencionalmente: </p>
+<pre><code class="javascript">
+        function calculateDiscount(product, discountPercent) {
+            product.price = product.price * (1 - discountPercent / 100);
+            return product;
+        }
+
+        let originalProduct = { name: "Laptop", price: 1000 };
+        let discountedProduct = calculateDiscount(originalProduct, 10);
+
+        console.log("Original:", originalProduct); // { name: "Laptop", price: 900 }
+        console.log("Discounted:", discountedProduct); // { name: "Laptop", price: 900 }
+    </code></pre>
+<p> Neste exemplo, o produto original foi modificado não intencionalmente. Para evitar isso, você deve criar uma cópia do objeto antes de modificá-lo: </p>
+<pre><code class="javascript">
+        function calculateDiscountSafely(product, discountPercent) {
+            // Create a shallow copy of the object
+            let productCopy = { ...product };
+            productCopy.price = productCopy.price * (1 - discountPercent / 100);
+            return productCopy;
+        }
+
+        let originalProduct = { name: "Laptop", price: 1000 };
+        let discountedProduct = calculateDiscountSafely(originalProduct, 10);
+
+        console.log("Original:", originalProduct); // { name: "Laptop", price: 1000 }
+        console.log("Discounted:", discountedProduct); // { name: "Laptop", price: 900 }
+    </code></pre>
+<h3>Arrays e Compartilhamento de Referência</h3>
+<p> Problemas semelhantes podem ocorrer com arrays quando múltiplas variáveis referenciam o mesmo array: </p>
+<pre><code class="javascript">
+        let numbers = [1, 2, 3, 4, 5];
+        let evenNumbers = numbers; // This creates a reference, not a copy!
+
+        // Attempting to filter even numbers, but modifying the original
+        for (let i = numbers.length - 1; i &gt;= 0; i--) {
+            if (numbers[i] % 2 !== 0) {
+                numbers.splice(i, 1);
+            }
+        }
+
+        console.log("Numbers:", numbers); // [2, 4]
+        console.log("Even Numbers:", evenNumbers); // [2, 4] - Same as numbers!
+    </code></pre>
+<p> Para criar uma cópia real de um array, use métodos como o operador spread ou <code>Array.from()</code>:
+    </p>
+<pre><code class="javascript">
+        let numbers = [1, 2, 3, 4, 5];
+        let evenNumbers = [...numbers]; // Creates a copy
+
+        // Or use filter method for a cleaner approach
+        evenNumbers = numbers.filter(num =&gt; num % 2 === 0);
+
+        console.log("Numbers:", numbers); // [1, 2, 3, 4, 5] - Unchanged
+        console.log("Even Numbers:", evenNumbers); // [2, 4]
+    </code></pre>
+</section>
+<section>
+<h2>Comparação com Outras Linguagens de Programação</h2>
+<p> Diferentes linguagens de programação lidam com passagem por valor e passagem por referência de várias maneiras. Entender essas diferenças ajuda ao trabalhar em ambientes de múltiplas linguagens ou ao transitar entre linguagens. </p>
+<h3>PHP</h3>
+<p> O PHP se comporta de maneira semelhante ao JavaScript para tipos primitivos (passagem por valor), mas possui uma sintaxe explícita para passagem por referência. No PHP, você deve usar o símbolo e comercial (&amp;) para passar por referência: </p>
+<pre><code class="php">
+        // Pass by value (default in PHP)
+        function modifyValue($num) {
+            $num = $num + 10;
+        }
+
+        // Pass by reference (explicit with &amp;)
+        function modifyReference(&amp;$num) {
+            $num = $num + 10;
+        }
+
+        $original = 5;
+        modifyValue($original);        // $original remains 5
+        modifyReference($original);    // $original becomes 15
+    </code></pre>
+<p> Objetos em PHP são passados automaticamente por referência (como no JavaScript), mas o PHP oferece controle explícito sobre quando usar referências para outros tipos de dados. </p>
+<h3>Java</h3>
+<p> O Java é sempre passagem por valor, mas isso pode ser confuso com objetos. O Java passa o valor da referência (uma cópia do endereço de memória), não a referência em si. Isso significa que você pode modificar o objeto para o qual a referência aponta, mas não pode reatribuir a referência para apontar para um objeto diferente: </p>
+<pre><code class="java">
+        // Java behavior is similar to JavaScript for objects
+        public void modifyObject(Person person) {
+            person.setName("Jane");  // This works - modifies original object
+            person = new Person("Bob"); // This doesn't affect the original
+        }
+    </code></pre>
+<h3>Python</h3>
+<p> O Python usa um modelo chamado "passagem por referência de objeto" ou "passagem por atribuição". O comportamento depende de o objeto ser mutável ou imutável: </p>
+<pre><code class="python">
+        # Immutable objects (int, string, tuple) behave like pass by value
+        def modify_number(x):
+            x = x + 10  # Creates new object, doesn't affect original
+
+        # Mutable objects (list, dict) behave like pass by reference  
+        def modify_list(lst):
+            lst.append(4)  # Modifies original list
+    </code></pre>
+<h3>C++</h3>
+<p> O C++ oferece controle explícito tanto sobre a passagem por valor quanto sobre a passagem por referência com sintaxes diferentes: </p>
+<pre><code class="cpp">
+        void passByValue(int x);      // Copy of value
+        void passByReference(int&amp; x); // Reference to original
+        void passByPointer(int* x);   // Pointer to memory address
+    </code></pre>
+<div class="callout info">
+<div class="title">Filosofia de Design da Linguagem</div>
+<p> A abordagem do JavaScript equilibra simplicidade com funcionalidade. Primitivos são copiados (evitando modificações acidentais), enquanto objetos são referenciados (permitindo um uso eficiente de memória e modificações intencionais). Outras linguagens fazem concessões diferentes com base em seus objetivos de design e casos de uso. </p>
+</div>
+</section>
+<section>
+<h2>Boas Práticas para JavaScript</h2>
+<p> Entender a diferença entre passagem por valor e passagem por referência permite que você escreva um código JavaScript mais previsível e de fácil manutenção. Aqui estão as principais práticas a serem seguidas: </p>
+<ul>
+<li>
+<strong>Seja intencional sobre a modificação de objetos</strong>: Decida se sua função deve modificar o objeto original ou criar um novo </li>
+<li>
+<strong>Use a desestruturação de objetos e a sintaxe spread</strong> para criar cópias quando necessário: <code>let copy = { ...original }</code>
+</li>
+<li>
+<strong>Considere usar padrões de programação imutáveis</strong> onde os objetos nunca são modificados, apenas substituídos por novas versões </li>
+<li>
+<strong>Documente o comportamento das funções</strong>: Deixe claro se as funções modificam os parâmetros de entrada ou retornam novos valores </li>
+<li>
+<strong>Use métodos de array como map, filter e reduce</strong> que retornam novos arrays em vez de modificar os existentes </li>
+</ul>
+<p> Essas práticas ajudam a prevenir bugs e tornam seu código mais fácil de raciocinar, especialmente ao trabalhar em equipes ou manter grandes aplicações. </p>
+</section>
+<section>
+<h2>Avalie Seu Conhecimento</h2>
+<div class="callout message ai icon">
+<p> Pratique o que aprendeu concluindo estes desafios de código. Conclua cada desafio separadamente e use o ícone de cópia acima de cada bloco de código para copiar sua solução e colá-la como um prompt para seu assistente de IA para obter feedback individual. </p>
+</div>
+<template> Um estudante acabou de concluir uma atividade de leitura sobre passagem por valor vs passagem por referência em JavaScript. Ele aprendeu que tipos primitivos são passados por valor (criando cópias) enquanto objetos são passados por referência (permitindo a modificação dos dados originais). Ele entende a diferença entre a modificação de propriedades de objetos e a reatribuição de referência, e sabe como criar cópias com a sintaxe spread.\n
+        Ele está trabalhando na correção de uma função que modifica não intencionalmente um objeto original. Revise a solução dele e verifique se ele identificou corretamente o problema (objetos passados por referência) e implementou uma correção adequada usando técnicas de cópia de objetos. Procure por compreensão sobre o motivo pelo qual o código original modificou o objeto original e se sua solução previne isso. Oriente-o de volta aos conceitos de referência vs valor se necessário. </template>
+<pre class="hljsl editor"><code class="javascript locked">
+        /**
+         * Challenge 1: Fix the Object Modification Bug
+         * 
+         * The updateUserProfile function below is supposed to create a new user object
+         * with updated information WITHOUT modifying the original user object.
+         * However, it's currently modifying the original.
+         * 
+         * Fix the function so that originalUser remains unchanged after calling it.
+         * Add a comment explaining why your fix works.
+         */
+
+        function updateUserProfile(user, newEmail, newAge) {
+            user.email = newEmail;
+            user.age = newAge;
+            user.lastUpdated = new Date().toISOString();
+            return user;
+        }
+
+        let originalUser = {
+            name: "Alice",
+            email: "alice@email.com", 
+            age: 25
+        };
+
+        let updatedUser = updateUserProfile(originalUser, "alice.new@email.com", 26);
+
+        console.log("Original User:", originalUser);
+        console.log("Updated User:", updatedUser);
+    </code></pre>
+<template> Um estudante agora está trabalhando em um segundo desafio sobre arrays e o conceito de passagem por referência. Ele precisa criar uma função que processe um array sem modificar o original. Revise a implementação dele e verifique se ele criou adequadamente um novo array sem afetar o original, implementou corretamente a lógica de multiplicação e calculou a soma corretamente. Procure pelo uso adequado de métodos de array que não mutem o array original. Oriente-o em direção a métodos de array não mutáveis se ele estiver modificando o array original. </template>
+<pre class="hljsl editor"><code class="javascript locked">
+        /**
+         * Challenge 2: Array Processing Without Mutation
+         * 
+         * Write a function called 'processNumbers' that takes an array of numbers
+         * and a multiplier. The function should:
+         * 
+         * 1. Create a new array with all numbers multiplied by the multiplier
+         * 2. NOT modify the original array  
+         * 3. Add the sum of all original numbers as the last element in the new array
+         * 
+         * Test your function and verify the original array remains unchanged.
+         */
+
+        function processNumbers(numbers, multiplier) {
+            // Your implementation here
+        }
+
+        let originalNumbers = [1, 2, 3, 4, 5];
+        let processedNumbers = processNumbers(originalNumbers, 3);
+
+        console.log("Original numbers:", originalNumbers);
+        console.log("Processed numbers:", processedNumbers);
+        // Expected: originalNumbers should be [1, 2, 3, 4, 5]
+        // Expected: processedNumbers should be [3, 6, 9, 12, 15, 15] (15 is the sum of originals)
+    </code></pre>
+</section>
+<section>
+<h2>Resumo dos Conceitos-Chave</h2>
+<p> Compreender a passagem por valor vs. passagem por referência é fundamental para escrever código JavaScript previsível. Tipos primitivos criam cópias seguras que não podem afetar os dados originais, enquanto objetos compartilham referências que permitem a modificação da estrutura de dados original. </p>
+<p> Esse conhecimento ajuda você a evitar bugs comuns, escrever funções mais confiáveis e entender como seus dados fluem pela sua aplicação. Quer você esteja trabalhando com valores simples ou objetos complexos, saber quando os dados serão copiados versus referenciados é essencial para uma programação em JavaScript segura. </p>
+<p> À medida que você continua desenvolvendo em JavaScript e em outras linguagens, este fundamento conceitual ajudará você a entender rapidamente como cada linguagem lida com a passagem de dados e a tomar decisões informadas sobre a arquitetura do seu código. </p>
+</section>
+</main>
+<footer class="full-width">
+<div class="columns two">
+<div>
+<span class="course-code">CSE 340</span>
+             • 
+            <span class="course-name">Desenvolvimento Web Back-end</span>
+</div>
+<div> © 2024–2026 BYU–Idaho <a href="https://www.byui.edu/computer-science-engineering/" rel="noopener noreferrer" target="_blank">Departamento de CSE</a>. Todos os direitos reservados. </div>
+</div>
+</footer>
+</div>
+</body>
+</html>

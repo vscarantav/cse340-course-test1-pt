@@ -1,0 +1,430 @@
+html
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../../assets/images/favicon/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../../assets/images/favicon/favicon.png" rel="icon" type="image/png"/>
+<link href="../../../assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<title>Introdução ao Aninhamento de CSS</title>
+<meta content="Learn about modern CSS nesting: its history, syntax, and best practices for maintainable stylesheets." name="description"/>
+<script src="../../../assets/js/main.js" type="module"></script>
+<script src="../../../assets/js/theme-preference.js"></script>
+</head>
+<body>
+<div class="content-grid">
+<header class="full-width">
+<input aria-controls="site-primary-nav" class="visually-hidden" id="site-nav-toggle" type="checkbox"/>
+<label aria-hidden="true" class="site-nav-backdrop" for="site-nav-toggle"></label>
+<div class="inner">
+<div class="site-brand">
+<a aria-label="CSE 340 home" class="brand-link" href="../../../index.html">
+<img alt="BYU–Idaho" class="site-logo" decoding="async" src="../../../assets/images/logos/byui-logo.png"/>
+</a>
+</div>
+<div class="site-course-info">
+<a href="../../../index.html">
+<span class="course-code">CSE 340</span>
+                 • 
+                <span class="course-name">Desenvolvimento de Back-end Web</span>
+</a>
+</div>
+<nav aria-label="Primary" class="site-primary-nav" id="site-primary-nav">
+<ul aria-label="Course units" class="nav-list">
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<div class="site-header-tools">
+<label class="site-nav-menu-btn" for="site-nav-toggle">
+<span class="visually-hidden">Menu</span>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-open" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"></path></svg>
+<svg aria-hidden="true" class="site-nav-icon site-nav-icon-close" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"></path></svg>
+</label>
+<input aria-controls="site-search-panel" class="visually-hidden" id="site-search-toggle" type="checkbox"/>
+<label class="site-search-trigger" for="site-search-toggle">
+<span class="visually-hidden">Alternar pesquisa no site</span>
+<span aria-hidden="true">🔎</span>
+<span aria-hidden="true">✕</span>
+</label>
+<details class="theme-menu">
+<summary class="theme-control">
+<span class="visually-hidden">Esquema de cores</span>
+</summary>
+<div aria-label="Choose color scheme" class="theme-extra" role="group">
+<label class="theme-control theme-pick" data-theme-pick="light">
+<input name="theme-preference" type="radio" value="light"/>
+<span aria-hidden="true">☀️</span>
+<span class="visually-hidden">Claro</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="system">
+<input name="theme-preference" type="radio" value="system"/>
+<span aria-hidden="true">⚙️</span>
+<span class="visually-hidden">Padrão do sistema</span>
+</label>
+<label class="theme-control theme-pick" data-theme-pick="dark">
+<input name="theme-preference" type="radio" value="dark"/>
+<span aria-hidden="true">🌖</span>
+<span class="visually-hidden">Escuro</span>
+</label>
+</div>
+</details>
+</div>
+</div>
+<div aria-label="Site search" id="site-search-panel" role="region">
+<form action="" method="get" role="search">
+<label class="visually-hidden" for="site-search-query">Pesquisar</label>
+<input autocomplete="off" enterkeyhint="search" id="site-search-query" name="query" placeholder="Search…" type="search"/>
+</form>
+<div aria-live="polite" class="site-search-results" id="site-search-results"></div>
+</div>
+</header>
+<main>
+<nav aria-label="Course units" class="course-breadcrumbs unit">
+<ul>
+<li>
+<a aria-label="Home" href="../../../index.html">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z">
+</path></svg>
+</a>
+</li>
+<li><a href="../../../unit/1/index.html">Unidade 1</a></li>
+<li><a href="../../../unit/2/index.html">Unidade 2</a></li>
+<li><a href="../../../unit/3/index.html">Unidade 3</a></li>
+<li><a href="../../../unit/4/index.html">Unidade 4</a></li>
+<li><a href="../../../unit/5/index.html">Unidade 5</a></li>
+<li><a href="../../../unit/6/index.html">Unidade 6</a></li>
+<li><a href="../../../unit/7/index.html">Unidade 7</a></li>
+</ul>
+</nav>
+<section>
+<h1>Introdução ao Aninhamento de CSS</h1>
+<p> O CSS moderno evoluiu para incluir funcionalidades que os desenvolvedores web solicitam há muito tempo, incluindo suporte nativo para aninhamento de seletores. Essa funcionalidade poderosa, que passou a ser amplamente suportada pelos navegadores durante 2023, permite escrever folhas de estilo mais organizadas e fáceis de manter sem a necessidade de pré-processadores, otimizando o processo de desenvolvimento e mantendo os benefícios do estilo aninhado. </p>
+<p> Se você examinar de perto o CSS fornecido neste curso, notará uma estrutura que difere significativamente do CSS tradicional. Isso ocorre porque aproveitamos o padrão moderno de aninhamento de CSS, uma funcionalidade que permite uma organização mais intuitiva e hierárquica dos estilos. Ao usar essa abordagem, podemos escrever um código mais limpo e fácil de manter, que reflete a estrutura do HTML que ele estiliza. </p>
+</section>
+<section>
+<h2>Uma Breve História: Dos Pré-processadores ao Suporte Nativo</h2>
+<p> Antes do aninhamento de CSS se tornar uma funcionalidade nativa, os desenvolvedores dependiam de pré-processadores de CSS como Less e Sass (incluindo SCSS) para obter uma funcionalidade semelhante. Essas ferramentas permitiam que os desenvolvedores escrevessem estilos aninhados que depois seriam compilados em CSS regular. </p>
+<p> Embora os pré-processadores tenham sido revolucionários para sua época, eles introduziram complexidade adicional ao fluxo de trabalho de desenvolvimento. Todo projeto que usava Less ou Sass exigia uma etapa de pré-processamento na qual o código do pré-processador precisava ser compilado em CSS padrão que os navegadores pudessem entender. Isso significava configurando ferramentas de compilação, gerenciar dependências e lidar com possíveis erros de compilação. </p>
+<p> A introdução do aninhamento de CSS nativo elimina esse requisito de pré-processamento, permitindo que os desenvolvedores escrevam estilos aninhados diretamente em seus arquivos CSS que os navegadores podem interpretar sem qualquer etapa de compilação. </p>
+</section>
+<section>
+<h2>Como Funciona o Aninhamento de CSS</h2>
+<p> O aninhamento de CSS permite escrever seletores filhos diretamente dentro de suas regras pai, criando uma hierarquia visual que corresponde à sua estrutura HTML. Isso torna suas folhas de estilo mais legíveis e reduz a repetição. </p>
+<h3>Abordagem Tradicional do CSS</h3>
+<p> Sem o aninhamento, você escreveria cada seletor separadamente, repetindo o seletor pai para cada filho: </p>
+<pre><code class="css">
+        .card {
+            padding: 1rem;
+            border: 1px solid #ddd;
+        }
+        
+        .card .header {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card .header h2 {
+            color: #333;
+        }
+        
+        .card .content {
+            line-height: 1.6;
+        }
+        
+        .card .content p {
+            margin-bottom: 1rem;
+        }
+    </code></pre>
+<h3>Aninhamento Moderno de CSS</h3>
+<p> Com o aninhamento, você pode escrever os mesmos estilos de uma forma mais organizada: </p>
+<pre><code class="css">
+        .card {
+            padding: 1rem;
+            border: 1px solid #ddd;
+            
+            .header {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+                
+                h2 {
+                    color: #333;
+                }
+            }
+            
+            .content {
+                line-height: 1.6;
+                
+                p {
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+    </code></pre>
+<div class="callout info icon">
+<div class="title">Aninhamento Direto Sem &amp;</div>
+<p> Observe como os seletores filhos são colocados diretamente dentro de suas regras pai sem precisar do <code>&amp;</code> símbolo. No aninhamento de CSS nativo, o navegador entende automaticamente que <code>.header</code> dentro de <code>.card</code> significa <code>.card .header</code>. Isso é diferente de pré-processadores como o Sass, que costumam mostrar exemplos usando <code>&amp;</code> para todos os seletores aninhados. </p>
+</div>
+</section>
+<section>
+<h2>Entendendo Diferentes Sintaxes de Aninhamento</h2>
+<p> Ao explorar recursos de aninhamento de CSS online, você pode notar diferentes sintaxes sendo usadas. Isso pode ser confuso, então vamos esclarecer o que você pode encontrar e por que essas diferenças existem. </p>
+<h3>Aninhamento Nativo de CSS (Padrão Atual)</h3>
+<p> No aninhamento de CSS nativo, você pode aninhar seletores diretamente sem usar o <code>&amp;</code> símbolo para seletores descendentes: </p>
+<pre><code class="css">
+        .parent {
+            /* Direct nesting - no &amp; needed */
+            .child {
+                color: blue;
+            }
+            
+            /* This automatically becomes ".parent .child" */
+        }
+    </code></pre>
+<h3>Sintaxe de Pré-processador (O que Você Pode Ver)</h3>
+<p> Em muitos exemplos online, especialmente aqueles escritos para Sass ou Less, você pode ver o <code>&amp;</code> símbolo sendo usado em todos os lugares: </p>
+<pre><code class="css">
+        .parent {
+            /* Sass/Less style - using &amp; for all nesting */
+            &amp; .child {
+                color: blue;
+            }
+            
+            /* Also becomes ".parent .child" */
+        }
+    </code></pre>
+<h3>Por que essa Diferença?</h3>
+<p> Os pré-processadores de CSS como o Sass foram criados antes do aninhamento nativo de CSS existir. Eles estabeleceram suas próprias convenções de sintaxe, muitas vezes exigindo ou incentivando o uso de <code>&amp;</code> para maior clareza. Quando o aninhamento de CSS foi padronizado, a especificação tornou o <code>&amp;</code> opcional para seletores descendentes simples a fim de simplificar a sintaxe. </p>
+<p> Ambas as abordagens são válidas no aninhamento CSS nativo, mas a sintaxe mais simples (sem <code>&amp;</code> para descendentes) é preferida no CSS moderno. </p>
+<h3>Uma Distinção Crítica: O Espaço Importa!</h3>
+<p> É aqui que as coisas podem ficar confusas. No aninhamento CSS nativo, estes dois exemplos são ambos válidos, mas significam coisas completamente diferentes: </p>
+<pre><code class="css">
+        /* Example 1: No space - compound selector */
+        .demo {
+            :not(.pink) {
+                opacity: .25;
+            }
+        }
+        /* This becomes: .demo:not(.pink) */
+        /* Selects .demo elements that DON'T have the .pink class */
+        
+        /* Example 2: With space - descendant selector */
+        .demo {
+            &amp; :not(.pink) {
+                opacity: .25;
+            }
+        }
+        /* This becomes: .demo :not(.pink) */
+        /* Selects child elements of .demo that DON'T have the .pink class */
+    </code></pre>
+<p> A presença ou ausência de um espaço após o <code>&amp;</code> muda completamente o significado do seletor. Esta sutil diferença pode levar a resultados inesperados se você não tiver cuidado. </p>
+<div class="callout warn">
+<div class="title">O que Lembrar</div>
+<p> Ao escrever aninhamento CSS nativo: </p>
+<ul>
+<li>
+<code>&amp;</code> é opcional para seletores descendentes simples como <code>.child</code>
+</li>
+<li>
+<code>&amp;</code> é obrigatório para pseudo-classes (<code>&amp;:hover</code>) e classes modificadoras (<code>&amp;.active</code>)
+            </li>
+<li> O espaço após <code>&amp;</code> importa: <code>&amp; .class</code> (descendente) vs. <code>&amp;.class</code> (composto) </li>
+<li> Em caso de dúvida, usar <code>&amp;</code> explicitamente pode tornar sua intenção mais clara </li>
+</ul>
+</div>
+</section>
+<section>
+<h2>O Seletor de Aninhamento (&amp;)</h2>
+<p> O aninhamento CSS introduz o seletor de aninhamento (<code>&amp;</code>), que se refere ao seletor pai. Esta funcionalidade poderosa permite criar seletores e pseudo-classes mais complexos dentro de regras aninhadas. </p>
+<pre><code class="css">
+        .button {
+            background: blue;
+            color: white;
+            padding: 0.5rem 1rem;
+            
+            &amp;:hover {
+                background: darkblue;
+            }
+            
+            &amp;:active {
+                transform: scale(0.98);
+            }
+            
+            &amp;.primary {
+                background: green;
+            }
+            
+            &amp;.disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+        }
+    </code></pre>
+<p> O <code>&amp;</code> símbolo é substituído pelo seletor pai quando o CSS é processado. No exemplo acima, <code>&amp;:hover</code> torna-se <code>.button:hover</code>, e <code>&amp;.primary</code> torna-se <code>.button.primary</code>.
+    </p>
+</section>
+<section>
+<h2>Exemplos Práticos</h2>
+<p> Vamos explorar alguns exemplos do mundo real para ver como o aninhamento pode melhorar sua organização CSS. Observe que estes exemplos usam a sintaxe moderna de aninhamento CSS nativo onde <code>&amp;</code> é usado apenas quando necessário. </p>
+<h3>Menu de Navegação</h3>
+<pre><code class="css">
+        nav {
+            background: #333;
+            padding: 0;
+            
+            /* Direct nesting - no &amp; needed for descendants */
+            ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                
+                li {
+                    margin: 0;
+                    
+                    a {
+                        display: block;
+                        padding: 1rem 1.5rem;
+                        color: white;
+                        text-decoration: none;
+                        
+                        /* &amp; IS needed for pseudo-classes */
+                        &amp;:hover {
+                            background: #555;
+                        }
+                        
+                        /* &amp; IS needed for modifier classes */
+                        &amp;.active {
+                            background: #007bff;
+                        }
+                    }
+                }
+            }
+        }
+    </code></pre>
+<h3>Estilização de Formulário</h3>
+<pre><code class="css">
+        .form-group {
+            margin-bottom: 1.5rem;
+            
+            label {
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: bold;
+            }
+            
+            input,
+            textarea {
+                width: 100%;
+                padding: 0.75rem;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                
+                &amp;:focus {
+                    outline: none;
+                    border-color: #007bff;
+                    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+                }
+                
+                &amp;.error {
+                    border-color: #dc3545;
+                }
+            }
+            
+            .help-text {
+                margin-top: 0.25rem;
+                font-size: 0.875rem;
+                color: #6c757d;
+            }
+        }
+    </code></pre>
+<h3>Entendendo a Intenção do Seletor</h3>
+<p> Aqui está um exemplo prático mostrando como a presença de um espaço altera o significado do seletor: </p>
+<pre><code class="css">
+        .gallery {
+            /* Style all images inside .gallery */
+            img {
+                width: 100%;
+                height: auto;
+            }
+            
+            /* This affects .gallery elements without .featured class */
+            :not(.featured) {
+                opacity: 0.7;
+            }
+            
+            /* This affects children of .gallery without .featured class */
+            &amp; :not(.featured) {
+                filter: grayscale(50%);
+            }
+        }
+    </code></pre>
+<p> Neste exemplo, a primeira <code>:not(.featured)</code> regra se aplica ao <code>.gallery</code> próprio elemento se ele não tiver a <code>.featured</code> classe. A segunda regra com <code>&amp; :not(.featured)</code> se aplica a elementos filhos dentro de <code>.gallery</code> que não têm a <code>.featured</code> classe. </p>
+<h3>Um Tutorial em Vídeo</h3>
+<p> Para uma compreensão mais aprofundada do aninhamento CSS, confira este curto tutorial em vídeo: </p>
+<figure class="video"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" sandbox="allow-scripts allow-same-origin allow-presentation" src="https://www.youtube-nocookie.com/embed/dr6UAQUAiu4?modestbranding=1"></iframe></figure>
+</section>
+<section>
+<h2>Suporte dos Navegadores</h2>
+<p> O aninhamento CSS agora é suportado em todos os navegadores modernos, tornando seguro o seu uso em ambientes de produção. Você pode verificar o status atual de suporte dos navegadores em <a href="https://caniuse.com/css-nesting" rel="noopener noreferrer" target="_blank">caniuse.com/css-nesting</a>. Como esta funcionalidade tem excelente suporte, você pode usar com confiança o aninhamento CSS em seus projetos sem se preocupar com problemas de compatibilidade para a grande maioria dos seus usuários. </p>
+</section>
+<section>
+<h2>Boas Práticas</h2>
+<p> Embora o aninhamento CSS seja poderoso, é importante usá-lo de forma ponderada: </p>
+<ul>
+<li>
+<strong>Evite Aninhamento Profundo</strong>: Tente limitar o aninhamento a no máximo 3-4 níveis. Um aninhamento mais profundo pode tornar seu CSS mais difícil de ler e manter. </li>
+<li>
+<strong>Use Nomes Significativos</strong>: Como seletores aninhados criam cadeias de especificidade mais longas, garanta que os nomes das suas classes sejam descritivos e intencionais. </li>
+<li>
+<strong>Considere a Especificidade</strong>: Seletores aninhados aumentam a especificidade, o que pode tornar os estilos mais difíceis de sobrescrever. Fique atento a isso ao estruturar seu CSS. </li>
+<li>
+<strong>Mantenha a Consistência</strong>: Escolha um estilo de aninhamento e mantenha-o em todo o seu projeto para uma melhor legibilidade. </li>
+</ul>
+</section>
+<section>
+<h2>Avançando</h2>
+<p> À medida que você continua desenvolvendo os sites do seu projeto, considere adotar o aninhamento CSS para criar folhas de estilo mais fáceis de manter e organizadas. Este padrão moderno elimina a necessidade de pré-processadores, enquanto oferece os mesmos benefícios de organização que tornaram populares ferramentas como Less e Sass. </p>
+<p> Lembre-se de que um bom design front-end é mais do que apenas funcionalidade – é sobre criar código fácil de manter e escalável que outros desenvolvedores (incluindo seu eu futuro) possam facilmente entender e modificar. O aninhamento CSS é uma ferramenta que ajuda a atingir esse objetivo. </p>
+<div class="callout message">
+<div class="title">Explore Mais</div>
+<p> Para prática mão na massa e exemplos interativos, explore estes recursos: </p>
+<ul>
+<li>
+<a href="https://developer.chrome.com/docs/css-ui/css-nesting" rel="noopener noreferrer" target="_blank">Guia do Desenvolvedor do Chrome para Aninhamento CSS</a>
+</li>
+<li>
+<a href="https://www.w3schools.com/cssref/sel_nesting.php" rel="noopener noreferrer" target="_blank">Tutorial de Aninhamento CSS do W3Schools</a>
+</li>
+<li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting" rel="noopener noreferrer" target="_blank">MDN Web Docs: Usando o aninhamento CSS</a>
+</li>
+</ul>
+</div>
+</section>
+<section>
+<h2>Resumo</h2>
+<p> O aninhamento CSS representa uma evolução significativa na forma como escrevemos e organizamos nossas folhas de estilo. Ao trazer essa funcionalidade nativamente para o CSS, os navegadores eliminaram a necessidade de pré-processadores em muitos projetos, simplificando o fluxo de trabalho de desenvolvimento, enquanto mantêm os benefícios da organização de estilos aninhados. </p>
+<p> Ao trabalhar nos sites do seu projeto, aproveite essa funcionalidade moderna do CSS para criar um código mais limpo e fácil de manter. Lembre-se de que o objetivo não é apenas fazer as coisas funcionarem, mas criar soluções elegantes que demonstrem sua compreensão das melhores práticas de desenvolvimento web moderno. </p>
+</section>
+</main>
+<footer class="full-width">
+<div class="columns two">
+<div>
+<span class="course-code">CSE 340</span>
+             • 
+            <span class="course-name">Desenvolvimento Web Back-end</span>
+</div>
+<div> © 2024–2026 BYU–Idaho <a href="https://www.byui.edu/computer-science-engineering/" rel="noopener noreferrer" target="_blank">Departamento de CSE</a>. Todos os direitos reservados. </div>
+</div>
+</footer>
+</div>
+</body>
+</html>
